@@ -73,6 +73,7 @@ export const NavigationOptions = () => {
 
   return (
     <ActionSheet
+      id={ESheets.NavigationOptions}
       ref={actionSheetRef}
       containerStyle={[
         styles.navigateContainer,

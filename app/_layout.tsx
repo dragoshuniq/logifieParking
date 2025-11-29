@@ -10,7 +10,9 @@ import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
+import { SheetProvider } from "react-native-actions-sheet";
 
+import { NavigationOptions } from "@/components/parkingMap/navigation-options";
 import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
@@ -47,13 +49,16 @@ export default function RootLayout() {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack>
-            <Stack.Screen
-              name="(tabs)"
-              options={{ headerShown: false }}
-            />
-          </Stack>
-          <StatusBar style="auto" />
+          <SheetProvider>
+            <Stack>
+              <Stack.Screen
+                name="(tabs)"
+                options={{ headerShown: false }}
+              />
+            </Stack>
+            <StatusBar style="auto" />
+            <NavigationOptions />
+          </SheetProvider>
         </ThemeProvider>
       </PersistGate>
     </PersistQueryClientProvider>

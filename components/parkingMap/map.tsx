@@ -52,7 +52,6 @@ export const ParkingMap = () => {
               longitude: parking.longitude || 0,
             }}
             onPress={() => handleMarkerSelect(parking)}
-            onSelect={() => handleMarkerSelect(parking)}
           />
         ))}
       </MapView>
