@@ -1,12 +1,33 @@
+import { getAllParkings } from "@/api/parking";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { StyleSheet } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import { ThemedView } from "../ui/themed-view";
 
 export const ParkingMap = () => {
+  const { data } = useQuery({
+    queryKey: ["parkings"],
+    queryFn: () => getAllParkings(),
+  });
+
+  console.log(data);
+
   return (
     <ThemedView style={styles.container}>
-      <MapView style={styles.map} />
+      <MapView style={styles.map}>
+        {data?.parkings?.map((parking) => (
+          <Marker
+            key={parking._id || parking.id}
+            coordinate={{
+              latitude: parking.latitude || 0,
+              longitude: parking.longitude || 0,
+            }}
+            title={parking.name}
+            description={parking.address}
+          />
+        ))}
+      </MapView>
     </ThemedView>
   );
 };
