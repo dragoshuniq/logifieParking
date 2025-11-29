@@ -88,6 +88,7 @@ export type LocationDetails = {
     county?: string;
     state?: string;
     country?: string;
+    country_code?: string;
     postcode?: string;
   };
   extratags?: {

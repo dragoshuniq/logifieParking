@@ -6,6 +6,7 @@ import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { ActivityIndicator, StyleSheet } from "react-native";
+import CountryFlag from "react-native-country-flag";
 
 type LocationDetailsComponentProps = {
   lat: number;
@@ -34,13 +35,6 @@ export const LocationDetailsComponent = ({
           size="small"
           color={themeColors.primary.DEFAULT}
         />
-        <ThemedText
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.text}
-          style={styles.loadingText}
-        >
-          Loading location...
-        </ThemedText>
       </ThemedView>
     );
   }
@@ -169,13 +163,22 @@ export const LocationDetailsComponent = ({
           >
             Country:
           </ThemedText>
-          <ThemedText
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.text}
-            style={styles.value}
-          >
-            {address.country}
-          </ThemedText>
+          <ThemedView style={styles.countryValue}>
+            {address.country_code && (
+              <CountryFlag
+                isoCode={address.country_code.toUpperCase()}
+                size={20}
+                style={styles.flag}
+              />
+            )}
+            <ThemedText
+              lightColor={Colors.light.text}
+              darkColor={Colors.dark.text}
+              style={styles.value}
+            >
+              {address.country}
+            </ThemedText>
+          </ThemedView>
         </ThemedView>
       )}
       {address?.postcode && (
@@ -243,9 +246,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
   },
-  loadingText: {
-    marginTop: 8,
-  },
   errorText: {
     textAlign: "center",
   },
@@ -260,5 +260,13 @@ const styles = StyleSheet.create({
   },
   value: {
     flex: 1,
+  },
+  countryValue: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  flag: {
+    marginRight: 8,
   },
 });
