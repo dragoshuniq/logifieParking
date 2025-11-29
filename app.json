@@ -38,6 +38,12 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "react-native-maps",
+        {
+          "androidGoogleMapsApiKey": "AIzaSyCNDi3A1bNH2Ap3t_qlDbDN9K3gOL3TbVg"
+        }
       ]
     ],
     "experiments": {
