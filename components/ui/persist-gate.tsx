@@ -13,7 +13,7 @@ export function PersistGate({ children }: PersistGateProps) {
 
   useEffect(() => {
     if (!isRestoring) {
-      //   SplashScreen.hideAsync();
+      SplashScreen.hideAsync();
     }
   }, [isRestoring]);
 
