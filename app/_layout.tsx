@@ -11,6 +11,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
+import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
 const PERSIST_TIME = 1000 * 60 * 60 * 24 * 14; // 14 days
@@ -42,17 +43,19 @@ export default function RootLayout() {
         maxAge: PERSIST_TIME,
       }}
     >
-      <ThemeProvider
-        value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-      >
-        <Stack>
-          <Stack.Screen
-            name="(tabs)"
-            options={{ headerShown: false }}
-          />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
+      <PersistGate>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen
+              name="(tabs)"
+              options={{ headerShown: false }}
+            />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </PersistGate>
     </PersistQueryClientProvider>
   );
 }
