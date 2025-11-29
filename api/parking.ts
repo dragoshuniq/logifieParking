@@ -1,7 +1,8 @@
 const API_URL =
   process.env.EXPO_PUBLIC_API_URL || "http://192.168.0.145:3100";
 
-export interface IParking extends Document {
+export interface IParking {
+  _id: string;
   latitude: number;
   longitude: number;
   country: string;

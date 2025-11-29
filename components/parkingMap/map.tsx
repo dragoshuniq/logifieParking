@@ -18,13 +18,13 @@ export const ParkingMap = () => {
       <MapView style={styles.map}>
         {data?.parkings?.map((parking) => (
           <Marker
-            key={parking._id || parking.id}
+            key={parking._id}
             coordinate={{
               latitude: parking.latitude || 0,
               longitude: parking.longitude || 0,
             }}
-            title={parking.name}
-            description={parking.address}
+            title={parking.country}
+            description={parking.countryCode}
           />
         ))}
       </MapView>
