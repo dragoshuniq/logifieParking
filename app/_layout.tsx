@@ -18,6 +18,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       gcTime: PERSIST_TIME,
+      staleTime: PERSIST_TIME,
     },
   },
 });
