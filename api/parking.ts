@@ -1,5 +1,4 @@
-const API_URL =
-  process.env.EXPO_PUBLIC_API_URL || "http://192.168.0.145:3100";
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
 export interface IParking {
   _id: string;
@@ -102,15 +101,22 @@ export const fetchLocationDetails = async (
 ): Promise<LocationDetails | null> => {
   try {
     const response = await fetch(
-      `${API_URL}/api/parking/location-details?lat=${lat}&lng=${lng}`
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&extratags=1`,
+      {
+        headers: {
+          "User-Agent": "Logifie-Parking-App/1.0",
+        },
+      }
     );
+
     if (!response.ok) {
       throw new Error("Failed to fetch location details");
     }
+
     const data = await response.json();
     return data;
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error("Error fetching location details:", error);
     return null;
   }
 };
