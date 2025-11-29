@@ -33,7 +33,6 @@ export const showNavigationOptions = (
 
 export const NavigationOptions = () => {
   const payload = useSheetPayload(ESheets.NavigationOptions);
-
   const { destination } = payload || {};
   const [navigationOptions, setNavigationOptions] = useState<
     GetAppsResponse[]
