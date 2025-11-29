@@ -1,4 +1,4 @@
-import { getAllParkings } from "@/api/parking";
+import { getAllParkings, IParking } from "@/api/parking";
 import { DEFAULT_COORDINATES } from "@/constants/app.const";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
@@ -8,6 +8,7 @@ import { StyleSheet } from "react-native";
 import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
 import { ThemedView } from "../ui/themed-view";
+import { showNavigationOptions } from "./navigation-options";
 
 export const ParkingMap = () => {
   const theme = useColorScheme() ?? "light";
@@ -18,6 +19,15 @@ export const ParkingMap = () => {
 
   const clusterColor = Colors[theme].primary.DEFAULT;
   const clusterTextColor = Colors[theme].primary.foreground;
+
+  const handleMarkerSelect = (parking: IParking) => {
+    showNavigationOptions({
+      destination: {
+        latitude: parking.latitude,
+        longitude: parking.longitude,
+      },
+    });
+  };
 
   return (
     <ThemedView style={styles.container}>
@@ -41,6 +51,8 @@ export const ParkingMap = () => {
               latitude: parking.latitude || 0,
               longitude: parking.longitude || 0,
             }}
+            onPress={() => handleMarkerSelect(parking)}
+            onSelect={() => handleMarkerSelect(parking)}
           />
         ))}
       </MapView>
