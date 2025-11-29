@@ -9,8 +9,8 @@ import { QueryClient } from "@tanstack/react-query";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import "react-native-reanimated";
 import { SheetProvider } from "react-native-actions-sheet";
+import "react-native-reanimated";
 
 import { NavigationOptions } from "@/components/parkingMap/navigation-options";
 import { PersistGate } from "@/components/ui/persist-gate";

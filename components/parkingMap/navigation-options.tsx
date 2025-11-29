@@ -17,6 +17,7 @@ import ActionSheet, {
 } from "react-native-actions-sheet";
 import { getApps, GetAppsResponse } from "react-native-map-link";
 import { LatLng } from "react-native-maps";
+import { LocationDetailsComponent } from "./location-details";
 
 type NavigationOptionsProps = {
   destination: LatLng;
@@ -86,6 +87,19 @@ export const NavigationOptions = () => {
         { backgroundColor: themeColors.default[700] },
       ]}
     >
+      {destination && (
+        <ThemedView style={styles.locationDetailsContainer}>
+          <LocationDetailsComponent
+            lat={destination.latitude}
+            lng={destination.longitude}
+          />
+          <ThemedView
+            lightColor={Colors.light.default[500]}
+            darkColor={Colors.dark.default[500]}
+            style={styles.mapSeparator}
+          />
+        </ThemedView>
+      )}
       <FlatList
         data={navigationOptions}
         renderItem={renderAvailableMap}
@@ -105,6 +119,9 @@ const styles = StyleSheet.create({
   navigateContainer: {
     overflow: "hidden",
     paddingBottom: 10,
+  },
+  locationDetailsContainer: {
+    paddingTop: 8,
   },
   mapButtonText: {
     textAlign: "center",

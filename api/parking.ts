@@ -74,3 +74,43 @@ export const getParkingsByCountry = async (
     return [];
   }
 };
+
+export type LocationDetails = {
+  display_name: string;
+  category?: string;
+  type?: string;
+  osm_type?: string;
+  osm_id?: number;
+  address?: {
+    city?: string;
+    town?: string;
+    village?: string;
+    suburb?: string;
+    county?: string;
+    state?: string;
+    country?: string;
+    postcode?: string;
+  };
+  extratags?: {
+    [key: string]: string;
+  };
+};
+
+export const fetchLocationDetails = async (
+  lat: number,
+  lng: number
+): Promise<LocationDetails | null> => {
+  try {
+    const response = await fetch(
+      `${API_URL}/api/parking/location-details?lat=${lat}&lng=${lng}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch location details");
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+};
