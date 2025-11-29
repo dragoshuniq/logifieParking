@@ -41,8 +41,6 @@ export const ParkingMap = () => {
               latitude: parking.latitude || 0,
               longitude: parking.longitude || 0,
             }}
-            title={parking.country}
-            description={parking.countryCode}
           />
         ))}
       </MapView>

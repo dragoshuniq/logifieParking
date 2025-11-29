@@ -30,6 +30,7 @@
     },
     "plugins": [
       "expo-router",
+      "react-native-map-link",
       [
         "expo-splash-screen",
         {
