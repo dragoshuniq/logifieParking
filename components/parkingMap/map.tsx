@@ -31,11 +31,7 @@ export const ParkingMap = () => {
         }}
         clusterColor={clusterColor}
         clusterTextColor={clusterTextColor}
-        radius={50}
-        minZoom={10}
-        maxZoom={20}
-        extent={512}
-        nodeSize={64}
+        minPoints={10}
         animationEnabled
       >
         {data?.parkings?.map((parking) => (
