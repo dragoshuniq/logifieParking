@@ -11,6 +11,11 @@ export function useThemeColor(
   if (colorFromProps) {
     return colorFromProps;
   } else {
-    return Colors[theme][colorName];
+    const colorValue = Colors[theme][colorName];
+    return typeof colorValue === "object" &&
+      colorValue &&
+      "DEFAULT" in colorValue
+      ? colorValue.DEFAULT
+      : colorValue;
   }
 }
