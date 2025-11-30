@@ -1,11 +1,9 @@
 import { ThemedText } from "@/components/ui/themed-text";
-import { ThemedTouchableOpacity } from "@/components/ui/themed-touchable-opacity";
 import { ThemedView } from "@/components/ui/themed-view";
-import { Colors } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useThemedColors } from "@/hooks/use-themed-colors";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 type SortOptionProps = {
   label: string;
@@ -20,16 +18,16 @@ export const SortOption = ({
   onPress,
   isLast,
 }: SortOptionProps) => {
-  const colorScheme = useColorScheme() ?? "light";
-  const colors = Colors[colorScheme];
+  const { default: defaultColors, primary: primaryColors } =
+    useThemedColors("default", "primary");
 
   return (
-    <ThemedTouchableOpacity
+    <TouchableOpacity
       style={[
         styles.option,
         !isLast && {
           borderBottomWidth: StyleSheet.hairlineWidth,
-          borderBottomColor: colors.default[400],
+          borderBottomColor: defaultColors[400],
         },
       ]}
       onPress={onPress}
@@ -40,10 +38,10 @@ export const SortOption = ({
           styles.checkbox,
           {
             borderColor: isSelected
-              ? colors.primary.DEFAULT
-              : colors.default[400],
+              ? primaryColors.DEFAULT
+              : defaultColors[400],
             backgroundColor: isSelected
-              ? colors.primary.DEFAULT
+              ? primaryColors.DEFAULT
               : "transparent",
           },
         ]}
@@ -52,12 +50,12 @@ export const SortOption = ({
           <Ionicons
             name="checkmark"
             size={18}
-            color={colors.primary.foreground}
+            color={primaryColors.foreground}
           />
         )}
       </ThemedView>
       <ThemedText style={styles.optionText}>{label}</ThemedText>
-    </ThemedTouchableOpacity>
+    </TouchableOpacity>
   );
 };
 

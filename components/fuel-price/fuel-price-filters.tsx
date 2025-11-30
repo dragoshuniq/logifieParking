@@ -1,11 +1,9 @@
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedTouchableOpacity } from "@/components/ui/themed-touchable-opacity";
-import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets } from "@/constants/sheets";
-import { Colors } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useThemedColors } from "@/hooks/use-themed-colors";
 import React, { useRef, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import ActionSheet, {
   ActionSheetRef,
   SheetManager,
@@ -52,9 +50,8 @@ export const FuelPriceFilters = () => {
     currentSort || SortType.None
   );
   const actionSheetRef = useRef<ActionSheetRef>(null);
-  const colorScheme = useColorScheme() ?? "light";
-  const colors = Colors[colorScheme];
-
+  const { content2: content2Colors, tint: tintColors } =
+    useThemedColors("content2", "tint");
   const handleSortSelect = (sort: SortType) => {
     setSelectedSort(selectedSort === sort ? SortType.None : sort);
   };
@@ -70,16 +67,12 @@ export const FuelPriceFilters = () => {
       ref={actionSheetRef}
       containerStyle={[
         styles.container,
-        { backgroundColor: colors.background },
+        { backgroundColor: content2Colors.DEFAULT },
       ]}
       gestureEnabled
       useBottomSafeAreaPadding
-      indicatorStyle={[
-        styles.indicator,
-        { backgroundColor: colors.default[400] },
-      ]}
     >
-      <ThemedView style={styles.content}>
+      <View style={styles.content}>
         <ThemedText style={styles.title}>Sort by</ThemedText>
 
         {SORT_OPTIONS.map((option, index) => (
@@ -95,7 +88,7 @@ export const FuelPriceFilters = () => {
         <ThemedTouchableOpacity
           style={[
             styles.confirmButton,
-            { backgroundColor: colors.tint },
+            { backgroundColor: tintColors },
           ]}
           onPress={handleConfirm}
         >
@@ -107,7 +100,7 @@ export const FuelPriceFilters = () => {
             Apply
           </ThemedText>
         </ThemedTouchableOpacity>
-      </ThemedView>
+      </View>
     </ActionSheet>
   );
 };
@@ -127,10 +120,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginBottom: 20,
     textAlign: "center",
-  },
-  indicator: {
-    width: 40,
-    height: 4,
   },
   confirmButton: {
     marginTop: 16,
