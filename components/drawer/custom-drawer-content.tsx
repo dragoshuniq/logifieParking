@@ -1,17 +1,18 @@
 import { ESheets } from "@/constants/sheets";
 import { Colors } from "@/constants/theme";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useThemeToggle } from "@/hooks/use-theme-toggle";
 import {
   LANGUAGE_FLAGS,
   LANGUAGE_NAMES,
   Languages,
   validateLanguage,
 } from "@/providers/i18n";
+import { Ionicons } from "@expo/vector-icons";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
-import * as Sharing from "expo-sharing";
 import { useTranslation } from "react-i18next";
-import { Platform, ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
 import CountryFlag from "react-native-country-flag";
 import { ExternalLink } from "../ui/external-link";
@@ -21,39 +22,20 @@ import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 import { ThemedView } from "../ui/themed-view";
 
 const HOME_URL = process.env.EXPO_PUBLIC_HOME_URL ?? "";
-const ANDROID_APP_URL = process.env.EXPO_PUBLIC_ANDROID_APP_URL ?? "";
-const IOS_APP_URL = process.env.EXPO_PUBLIC_IOS_APP_URL ?? "";
 
 export function CustomDrawerContent() {
-  const colors = useThemeColor({}, "default");
-  const borderColor = colors[400];
-  const iconColor = useThemeColor({}, "icon");
+  const colorScheme = useColorScheme() ?? "light";
+  const defaultColors = Colors[colorScheme].default;
+  const primaryColors = Colors[colorScheme].primary;
+  const secondaryColors = Colors[colorScheme].secondary;
+  const borderColor = defaultColors[400];
+  const { toggleTheme, isDark } = useThemeToggle();
   const {
     i18n: { language },
   } = useTranslation();
 
-  console.log(language);
-
   const handleOpenLanguagePicker = () => {
     SheetManager.show(ESheets.LanguagePicker);
-  };
-
-  const handleShare = async () => {
-    const isAvailable = await Sharing.isAvailableAsync();
-    if (!isAvailable) {
-      return;
-    }
-
-    let shareUrl = "";
-    if (Platform.OS === "android" && ANDROID_APP_URL) {
-      shareUrl = ANDROID_APP_URL;
-    } else if (Platform.OS === "ios" && IOS_APP_URL) {
-      shareUrl = IOS_APP_URL;
-    }
-
-    if (shareUrl) {
-      await Sharing.shareAsync(shareUrl);
-    }
   };
 
   return (
@@ -68,26 +50,41 @@ export function CustomDrawerContent() {
             style={styles.logo}
             contentFit="contain"
           />
-          <ThemedTouchableOpacity
-            style={[
-              styles.languageButton,
-              { borderColor: Colors.light.default[400] },
-            ]}
-            onPress={handleOpenLanguagePicker}
-          >
-            <CountryFlag
-              isoCode={
-                LANGUAGE_FLAGS[
-                  validateLanguage(language) as Languages
-                ]
-              }
-              size={32}
-              style={{ borderRadius: 100, width: 40, height: 40 }}
-            />
-            <ThemedText style={styles.languageButtonLabel}>
-              {LANGUAGE_NAMES[language as Languages]}
-            </ThemedText>
-          </ThemedTouchableOpacity>
+          <View style={styles.actionContainer}>
+            <ThemedTouchableOpacity
+              style={[
+                styles.languageButton,
+                { borderColor: borderColor },
+              ]}
+              onPress={handleOpenLanguagePicker}
+            >
+              <CountryFlag
+                isoCode={
+                  LANGUAGE_FLAGS[
+                    validateLanguage(language) as Languages
+                  ]
+                }
+                size={32}
+                style={{ borderRadius: 100, width: 32, height: 32 }}
+              />
+              <ThemedText style={styles.languageButtonLabel}>
+                {LANGUAGE_NAMES[language as Languages]}
+              </ThemedText>
+            </ThemedTouchableOpacity>
+            <ThemedTouchableOpacity
+              onPress={toggleTheme}
+              style={[
+                styles.themeButton,
+                { borderColor: borderColor },
+              ]}
+            >
+              <Ionicons
+                name={isDark ? "moon" : "sunny"}
+                size={32}
+                color={secondaryColors.DEFAULT}
+              />
+            </ThemedTouchableOpacity>
+          </View>
         </ThemedView>
       </ScrollView>
 
@@ -100,11 +97,9 @@ export function CustomDrawerContent() {
         ]}
       >
         <ExternalLink href={HOME_URL as any}>
-          <ThemedText style={[styles.link, { color: iconColor }]}>
-            Visit Website
-          </ThemedText>
+          <ThemedText style={styles.link}>Visit Website</ThemedText>
         </ExternalLink>
-        <ThemedText style={[styles.version, { color: iconColor }]}>
+        <ThemedText style={styles.version}>
           Version {Application.nativeApplicationVersion}
         </ThemedText>
       </ThemedView>
@@ -140,7 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   languageButton: {
-    width: "100%",
+    alignSelf: "flex-start",
     paddingVertical: 8,
     paddingHorizontal: 8,
     borderRadius: 40,
@@ -152,5 +147,31 @@ const styles = StyleSheet.create({
   languageButtonLabel: {
     fontSize: 16,
     fontWeight: "700",
+  },
+  themeContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 16,
+    marginTop: 16,
+  },
+  themeLabel: {
+    fontSize: 16,
+    fontWeight: "700",
+  },
+  actionContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 16,
+    width: "100%",
+  },
+  themeButton: {
+    padding: 8,
+    borderRadius: 100,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
