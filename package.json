@@ -22,6 +22,7 @@
     "@tanstack/react-query-persist-client": "^5.90.13",
     "dayjs": "^1.11.19",
     "expo": "~54.0.25",
+    "expo-application": "~7.0.7",
     "expo-build-properties": "^1.0.9",
     "expo-constants": "~18.0.10",
     "expo-font": "~14.0.9",

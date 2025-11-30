@@ -10,6 +10,7 @@ import { StatusBar } from "expo-status-bar";
 import { SheetProvider } from "react-native-actions-sheet";
 import "react-native-reanimated";
 
+import { CustomDrawerContent } from "@/components/drawer/custom-drawer-content";
 import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { ONE_WEEK, queryClient } from "@/providers/query";
@@ -42,7 +43,7 @@ export default function RootLayout() {
         >
           <SheetProvider>
             <SafeAreaProvider>
-              <Drawer>
+              <Drawer drawerContent={() => <CustomDrawerContent />}>
                 <Drawer.Screen
                   name="(tabs)"
                   options={{ headerShown: false }}
