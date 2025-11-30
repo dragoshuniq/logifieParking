@@ -1,17 +1,17 @@
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
-import * as Location from "expo-location";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import * as Location from "expo-location";
 import React, { useState } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { ThemedPressable } from "../ui/themed-pressable";
+import { ThemedView } from "../ui/themed-view";
 
-interface LocationButtonProps {
+type Props = {
   onLocationFound: (location: Location.LocationObject) => void;
-}
+};
 
-export const LocationButton: React.FC<LocationButtonProps> = ({
-  onLocationFound,
-}) => {
+export const LocationButton = ({ onLocationFound }: Props) => {
   const theme = useColorScheme() ?? "light";
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,7 +19,8 @@ export const LocationButton: React.FC<LocationButtonProps> = ({
     try {
       setIsLoading(true);
 
-      const { status } = await Location.requestForegroundPermissionsAsync();
+      const { status } =
+        await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         setIsLoading(false);
         return;
@@ -37,18 +38,16 @@ export const LocationButton: React.FC<LocationButtonProps> = ({
     }
   };
 
-  const backgroundColor = Colors[theme].background;
   const iconColor = Colors[theme].primary.DEFAULT;
 
   return (
-    <View style={styles.container}>
-      <Pressable
+    <ThemedView style={styles.container}>
+      <ThemedPressable
         onPress={handlePress}
         disabled={isLoading}
         style={({ pressed }) => [
           styles.button,
           {
-            backgroundColor,
             opacity: pressed || isLoading ? 0.7 : 1,
           },
         ]}
@@ -58,8 +57,8 @@ export const LocationButton: React.FC<LocationButtonProps> = ({
           size={24}
           color={iconColor}
         />
-      </Pressable>
-    </View>
+      </ThemedPressable>
+    </ThemedView>
   );
 };
 
@@ -86,4 +85,3 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
-
