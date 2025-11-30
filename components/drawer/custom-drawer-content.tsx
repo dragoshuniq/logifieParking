@@ -41,7 +41,7 @@ export function CustomDrawerContent() {
   return (
     <ThemedSafeAreaView style={styles.container}>
       <ScrollView
-        style={styles.scrollView}
+        contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
         <ThemedView style={styles.logoContainer}>
@@ -50,42 +50,39 @@ export function CustomDrawerContent() {
             style={styles.logo}
             contentFit="contain"
           />
-          <View style={styles.actionContainer}>
-            <ThemedTouchableOpacity
-              style={[
-                styles.languageButton,
-                { borderColor: borderColor },
-              ]}
-              onPress={handleOpenLanguagePicker}
-            >
-              <CountryFlag
-                isoCode={
-                  LANGUAGE_FLAGS[
-                    validateLanguage(language) as Languages
-                  ]
-                }
-                size={32}
-                style={{ borderRadius: 100, width: 32, height: 32 }}
-              />
-              <ThemedText style={styles.languageButtonLabel}>
-                {LANGUAGE_NAMES[language as Languages]}
-              </ThemedText>
-            </ThemedTouchableOpacity>
-            <ThemedTouchableOpacity
-              onPress={toggleTheme}
-              style={[
-                styles.themeButton,
-                { borderColor: borderColor },
-              ]}
-            >
-              <Ionicons
-                name={isDark ? "moon" : "sunny"}
-                size={30}
-                color={secondaryColors.DEFAULT}
-              />
-            </ThemedTouchableOpacity>
-          </View>
         </ThemedView>
+        <View style={styles.actionContainer}>
+          <ThemedTouchableOpacity
+            style={[
+              styles.languageButton,
+              { borderColor: borderColor },
+            ]}
+            onPress={handleOpenLanguagePicker}
+          >
+            <CountryFlag
+              isoCode={
+                LANGUAGE_FLAGS[
+                  validateLanguage(language) as Languages
+                ]
+              }
+              size={32}
+              style={{ borderRadius: 100, width: 32, height: 32 }}
+            />
+            <ThemedText style={styles.languageButtonLabel}>
+              {LANGUAGE_NAMES[language as Languages]}
+            </ThemedText>
+          </ThemedTouchableOpacity>
+          <ThemedTouchableOpacity
+            onPress={toggleTheme}
+            style={[styles.themeButton, { borderColor: borderColor }]}
+          >
+            <Ionicons
+              name={isDark ? "moon" : "sunny"}
+              size={30}
+              color={secondaryColors.DEFAULT}
+            />
+          </ThemedTouchableOpacity>
+        </View>
       </ScrollView>
 
       <ThemedView
@@ -114,6 +111,7 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     paddingHorizontal: 16,
+    gap: 16,
   },
   logoContainer: {
     alignItems: "center",

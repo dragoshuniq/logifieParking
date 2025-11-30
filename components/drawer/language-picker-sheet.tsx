@@ -1,5 +1,5 @@
 import { ESheets } from "@/constants/sheets";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
   LANGUAGE_FLAGS,
   LANGUAGE_NAMES,
@@ -7,7 +7,12 @@ import {
   validateLanguage,
 } from "@/providers/i18n";
 import { useTranslation } from "react-i18next";
-import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import ActionSheet, {
   SheetManager,
   SheetProps,
@@ -36,9 +41,11 @@ export default function LanguagePickerSheet(props: SheetProps) {
     t,
   } = useTranslation();
 
-  const colors = useThemeColor({}, "primary");
-  const backgroundColor = colors[50];
-  const primaryColor = useThemeColor({}, "tint");
+  const {
+    primary: primaryColors,
+    content2: content2Colors,
+    default: defaultColors,
+  } = useThemedColors("primary", "content2", "default");
 
   const handleLanguageSelect = (language: Languages) => {
     changeLanguage(validateLanguage(language));
@@ -54,9 +61,11 @@ export default function LanguagePickerSheet(props: SheetProps) {
           styles.languageItem,
           {
             backgroundColor: isSelected
-              ? `${primaryColor}15`
-              : colors[50],
-            borderColor: isSelected ? primaryColor : colors[400],
+              ? primaryColors[50]
+              : content2Colors.DEFAULT,
+            borderColor: isSelected
+              ? primaryColors.DEFAULT
+              : defaultColors[300],
           },
         ]}
         onPress={() => handleLanguageSelect(item.code)}
@@ -83,15 +92,18 @@ export default function LanguagePickerSheet(props: SheetProps) {
   return (
     <ActionSheet
       id={props.sheetId}
-      containerStyle={[styles.container, { backgroundColor }]}
+      containerStyle={[
+        styles.container,
+        { backgroundColor: content2Colors.DEFAULT },
+      ]}
       gestureEnabled
       closeOnTouchBackdrop
     >
-      <ThemedView style={styles.header}>
+      <View style={styles.header}>
         <ThemedText type="subtitle">
           {t("common.selectLanguage")}
         </ThemedText>
-      </ThemedView>
+      </View>
       <FlatList
         data={LANGUAGES}
         renderItem={renderLanguageItem}
