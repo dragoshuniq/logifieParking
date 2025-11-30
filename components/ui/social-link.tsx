@@ -10,7 +10,7 @@ export function SocialLink({ network, children, ...rest }: Props) {
   const handlePress = async () => {
     try {
       await Linking.openURL(network.webLink);
-    } catch (error) {
+    } catch {
       Alert.alert("Error", `Could not open ${network.name}`);
     }
   };
