@@ -15,6 +15,7 @@ import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { ONE_WEEK, queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
+import "@/providers/i18n";
 import { Drawer } from "expo-router/drawer";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 

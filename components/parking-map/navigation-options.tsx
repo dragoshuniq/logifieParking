@@ -118,6 +118,8 @@ const styles = StyleSheet.create({
   navigateContainer: {
     overflow: "hidden",
     paddingBottom: 10,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
   },
   locationDetailsContainer: {
     paddingTop: 8,

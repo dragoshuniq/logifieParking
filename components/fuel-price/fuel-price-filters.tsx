@@ -115,6 +115,8 @@ export const FuelPriceFilters = () => {
 const styles = StyleSheet.create({
   container: {
     overflow: "hidden",
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
   },
   content: {
     padding: 20,

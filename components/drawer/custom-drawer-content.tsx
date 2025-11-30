@@ -1,9 +1,11 @@
 import { ESheets } from "@/constants/sheets";
 import { useThemeColor } from "@/hooks/use-theme-color";
+import { LANGUAGE_NAMES, Languages } from "@/providers/i18n";
 import { Ionicons } from "@expo/vector-icons";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
 import * as Sharing from "expo-sharing";
+import { useTranslation } from "react-i18next";
 import {
   Platform,
   ScrollView,
@@ -26,6 +28,9 @@ export function CustomDrawerContent() {
   const borderColor = useThemeColor({}, "icon");
   const iconColor = useThemeColor({}, "icon");
   const textColor = useThemeColor({}, "text");
+  const {
+    i18n: { language },
+  } = useTranslation();
 
   const handleOpenLanguagePicker = () => {
     SheetManager.show(ESheets.LanguagePicker);
@@ -85,7 +90,7 @@ export function CustomDrawerContent() {
                   { color: iconColor },
                 ]}
               >
-                English
+                {LANGUAGE_NAMES[language as Languages]}
               </ThemedText>
             </ThemedView>
             <Ionicons
