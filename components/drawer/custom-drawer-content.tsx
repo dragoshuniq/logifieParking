@@ -1,3 +1,5 @@
+import { ExternalLinks } from "@/constants/app.const";
+import { DRAWER_LINKS } from "@/constants/drawer.config";
 import { ESheets } from "@/constants/sheets";
 import { useThemeToggle } from "@/hooks/use-theme-toggle";
 import { useThemedColors } from "@/hooks/use-themed-colors";
@@ -20,8 +22,6 @@ import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 import { ThemedView } from "../ui/themed-view";
 
-const HOME_URL = process.env.EXPO_PUBLIC_HOME_URL ?? "";
-
 export function CustomDrawerContent() {
   const {
     default: defaultColors,
@@ -32,7 +32,12 @@ export function CustomDrawerContent() {
   const { toggleTheme, isDark } = useThemeToggle();
   const {
     i18n: { language },
+    t,
   } = useTranslation();
+
+  const links = ExternalLinks(
+    validateLanguage(language) as Languages
+  );
 
   const handleOpenLanguagePicker = () => {
     SheetManager.show(ESheets.LanguagePicker);
@@ -83,6 +88,45 @@ export function CustomDrawerContent() {
             />
           </ThemedTouchableOpacity>
         </View>
+
+        <ThemedView style={styles.linksContainer}>
+          {DRAWER_LINKS.map((link) => (
+            <ExternalLink
+              key={link.id}
+              href={links[link.urlKey] as any}
+            >
+              <ThemedView
+                style={[
+                  styles.linkButton,
+                  {
+                    borderColor: link.highlighted
+                      ? primaryColors.DEFAULT
+                      : borderColor,
+                    backgroundColor: link.highlighted
+                      ? primaryColors[50]
+                      : "transparent",
+                  },
+                ]}
+              >
+                <Ionicons
+                  name={link.icon}
+                  size={20}
+                  color={primaryColors.DEFAULT}
+                />
+                <ThemedText
+                  style={[
+                    styles.linkButtonText,
+                    link.highlighted && {
+                      color: primaryColors.DEFAULT,
+                    },
+                  ]}
+                >
+                  {t(link.translationKey)}
+                </ThemedText>
+              </ThemedView>
+            </ExternalLink>
+          ))}
+        </ThemedView>
       </ScrollView>
 
       <ThemedView
@@ -93,9 +137,6 @@ export function CustomDrawerContent() {
           },
         ]}
       >
-        <ExternalLink href={HOME_URL as any}>
-          <ThemedText style={styles.link}>Visit Website</ThemedText>
-        </ExternalLink>
         <ThemedText style={styles.version}>
           Version {Application.nativeApplicationVersion}
         </ThemedText>
@@ -123,14 +164,31 @@ const styles = StyleSheet.create({
   footer: {
     paddingHorizontal: 16,
     paddingTop: 16,
+    paddingBottom: 8,
     borderTopWidth: 1,
-  },
-  link: {
-    fontSize: 14,
-    marginBottom: 8,
   },
   version: {
     fontSize: 12,
+    textAlign: "center",
+  },
+  linksContainer: {
+    gap: 12,
+    paddingTop: 16,
+    width: "100%",
+  },
+  linkButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    width: "100%",
+  },
+  linkButtonText: {
+    fontSize: 15,
+    fontWeight: "600",
   },
   languageButton: {
     alignSelf: "flex-start",

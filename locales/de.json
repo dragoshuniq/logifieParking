@@ -1,5 +1,10 @@
 {
   "common": {
     "selectLanguage": "Sprache auswählen"
+  },
+  "drawer": {
+    "home": "Startseite",
+    "contact": "Kontaktieren Sie uns",
+    "getQuote": "Angebot erhalten"
   }
 }

@@ -1,5 +1,10 @@
 {
   "common": {
     "selectLanguage": "Select Language"
+  },
+  "drawer": {
+    "home": "Home",
+    "contact": "Contact Us",
+    "getQuote": "Get Quote"
   }
 }
