@@ -1,7 +1,6 @@
 import { ESheets } from "@/constants/sheets";
-import { Colors } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useThemeToggle } from "@/hooks/use-theme-toggle";
+import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
   LANGUAGE_FLAGS,
   LANGUAGE_NAMES,
@@ -24,10 +23,11 @@ import { ThemedView } from "../ui/themed-view";
 const HOME_URL = process.env.EXPO_PUBLIC_HOME_URL ?? "";
 
 export function CustomDrawerContent() {
-  const colorScheme = useColorScheme() ?? "light";
-  const defaultColors = Colors[colorScheme].default;
-  const primaryColors = Colors[colorScheme].primary;
-  const secondaryColors = Colors[colorScheme].secondary;
+  const {
+    default: defaultColors,
+    primary: primaryColors,
+    secondary: secondaryColors,
+  } = useThemedColors("default", "primary", "secondary");
   const borderColor = defaultColors[400];
   const { toggleTheme, isDark } = useThemeToggle();
   const {
@@ -80,7 +80,7 @@ export function CustomDrawerContent() {
             >
               <Ionicons
                 name={isDark ? "moon" : "sunny"}
-                size={32}
+                size={30}
                 color={secondaryColors.DEFAULT}
               />
             </ThemedTouchableOpacity>
