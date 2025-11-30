@@ -5,7 +5,6 @@ import * as Location from "expo-location";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { ThemedPressable } from "../ui/themed-pressable";
-import { ThemedView } from "../ui/themed-view";
 
 type Props = {
   onLocationFound: (location: Location.LocationObject) => void;
@@ -41,35 +40,27 @@ export const LocationButton = ({ onLocationFound }: Props) => {
   const iconColor = Colors[theme].primary.DEFAULT;
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedPressable
-        onPress={handlePress}
-        disabled={isLoading}
-        style={({ pressed }) => [
-          styles.button,
-          {
-            opacity: pressed || isLoading ? 0.7 : 1,
-          },
-        ]}
-      >
-        <MaterialIcons
-          name="my-location"
-          size={24}
-          color={iconColor}
-        />
-      </ThemedPressable>
-    </ThemedView>
+    <ThemedPressable
+      onPress={handlePress}
+      disabled={isLoading}
+      style={({ pressed }) => [
+        styles.button,
+        {
+          opacity: pressed || isLoading ? 0.7 : 1,
+        },
+      ]}
+    >
+      <MaterialIcons name="my-location" size={24} color={iconColor} />
+    </ThemedPressable>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  button: {
     position: "absolute",
     bottom: 20,
     right: 20,
     zIndex: 1000,
-  },
-  button: {
     width: 48,
     height: 48,
     borderRadius: 24,

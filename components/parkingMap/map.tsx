@@ -38,8 +38,8 @@ export const ParkingMap = () => {
       {
         latitude,
         longitude,
-        latitudeDelta: 0.05,
-        longitudeDelta: 0.05,
+        latitudeDelta: 0.5,
+        longitudeDelta: 0.5,
       },
       1000
     );
