@@ -32,6 +32,7 @@ export const ParkingMap = () => {
   return (
     <ThemedView style={styles.container}>
       <MapView
+        showsUserLocation
         style={styles.map}
         initialRegion={{
           latitude: DEFAULT_COORDINATES.latitude,
