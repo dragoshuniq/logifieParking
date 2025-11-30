@@ -13,8 +13,9 @@ import "react-native-reanimated";
 
 import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
-import { PERSIST_TIME, queryClient } from "@/providers/query";
+import { ONE_WEEK, queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const asyncStoragePersister = createAsyncStoragePersister({
   storage: AsyncStorage,
@@ -32,7 +33,7 @@ export default function RootLayout() {
       client={queryClient}
       persistOptions={{
         persister: asyncStoragePersister,
-        maxAge: PERSIST_TIME,
+        maxAge: ONE_WEEK,
       }}
     >
       <PersistGate>
@@ -40,12 +41,14 @@ export default function RootLayout() {
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
           <SheetProvider>
-            <Stack>
-              <Stack.Screen
-                name="(tabs)"
-                options={{ headerShown: false }}
-              />
-            </Stack>
+            <SafeAreaProvider>
+              <Stack>
+                <Stack.Screen
+                  name="(tabs)"
+                  options={{ headerShown: false }}
+                />
+              </Stack>
+            </SafeAreaProvider>
             <StatusBar style="auto" />
           </SheetProvider>
         </ThemeProvider>

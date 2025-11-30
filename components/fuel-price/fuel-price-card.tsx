@@ -78,10 +78,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
+    flex: 1,
   },
   countryName: {
     fontSize: 18,
     fontWeight: "bold",
+    flex: 1,
   },
   countryCode: {
     fontSize: 14,

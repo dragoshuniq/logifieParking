@@ -9,12 +9,13 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedView } from "../ui/themed-view";
 import { FuelPriceCard } from "./fuel-price-card";
 
 export const FuelPrice = () => {
+  const insets = useSafeAreaInsets();
   const { data, isLoading, refetch, isRefetching } = useQuery({
     queryKey: ["fuel-prices"],
     queryFn: () => getFuelData(),
@@ -54,24 +55,25 @@ export const FuelPrice = () => {
   };
 
   return (
-    <SafeAreaProvider style={styles.container}>
-      <ThemedView style={styles.container}>
-        <FlatList
-          data={data?.countries || []}
-          keyExtractor={(item) => item.countryCode}
-          renderItem={({ item }) => <FuelPriceCard country={item} />}
-          ListHeaderComponent={renderHeader}
-          ListEmptyComponent={renderEmpty}
-          contentContainerStyle={styles.listContent}
-          refreshControl={
-            <RefreshControl
-              refreshing={isRefetching}
-              onRefresh={() => refetch()}
-            />
-          }
-        />
-      </ThemedView>
-    </SafeAreaProvider>
+    <ThemedView style={styles.container}>
+      <FlatList
+        data={data?.countries || []}
+        keyExtractor={(item) => item.countryCode}
+        renderItem={({ item }) => <FuelPriceCard country={item} />}
+        ListHeaderComponent={renderHeader}
+        ListEmptyComponent={renderEmpty}
+        contentContainerStyle={[
+          styles.listContent,
+          { paddingTop: insets.top },
+        ]}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefetching}
+            onRefresh={() => refetch()}
+          />
+        }
+      />
+    </ThemedView>
   );
 };
 
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 16,
-    paddingTop: 24,
+    paddingBottom: 8,
   },
   title: {
     fontSize: 28,
