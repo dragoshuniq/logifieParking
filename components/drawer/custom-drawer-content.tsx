@@ -1,14 +1,23 @@
 import { ESheets } from "@/constants/sheets";
+import { Colors } from "@/constants/theme";
 import { useThemeColor } from "@/hooks/use-theme-color";
+import {
+  LANGUAGE_FLAGS,
+  LANGUAGE_NAMES,
+  Languages,
+  validateLanguage,
+} from "@/providers/i18n";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
 import * as Sharing from "expo-sharing";
 import { useTranslation } from "react-i18next";
 import { Platform, ScrollView, StyleSheet } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import CountryFlag from "react-native-country-flag";
 import { ExternalLink } from "../ui/external-link";
+import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
 import { ThemedText } from "../ui/themed-text";
+import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 import { ThemedView } from "../ui/themed-view";
 
 const HOME_URL = process.env.EXPO_PUBLIC_HOME_URL ?? "";
@@ -16,13 +25,14 @@ const ANDROID_APP_URL = process.env.EXPO_PUBLIC_ANDROID_APP_URL ?? "";
 const IOS_APP_URL = process.env.EXPO_PUBLIC_IOS_APP_URL ?? "";
 
 export function CustomDrawerContent() {
-  const insets = useSafeAreaInsets();
   const colors = useThemeColor({}, "default");
   const borderColor = colors[400];
   const iconColor = useThemeColor({}, "icon");
   const {
     i18n: { language },
   } = useTranslation();
+
+  console.log(language);
 
   const handleOpenLanguagePicker = () => {
     SheetManager.show(ESheets.LanguagePicker);
@@ -47,9 +57,7 @@ export function CustomDrawerContent() {
   };
 
   return (
-    <ThemedView
-      style={[styles.container, { paddingTop: insets.top }]}
-    >
+    <ThemedSafeAreaView style={styles.container}>
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -60,6 +68,26 @@ export function CustomDrawerContent() {
             style={styles.logo}
             contentFit="contain"
           />
+          <ThemedTouchableOpacity
+            style={[
+              styles.languageButton,
+              { borderColor: Colors.light.default[400] },
+            ]}
+            onPress={handleOpenLanguagePicker}
+          >
+            <CountryFlag
+              isoCode={
+                LANGUAGE_FLAGS[
+                  validateLanguage(language) as Languages
+                ]
+              }
+              size={32}
+              style={{ borderRadius: 100, width: 40, height: 40 }}
+            />
+            <ThemedText style={styles.languageButtonLabel}>
+              {LANGUAGE_NAMES[language as Languages]}
+            </ThemedText>
+          </ThemedTouchableOpacity>
         </ThemedView>
       </ScrollView>
 
@@ -68,7 +96,6 @@ export function CustomDrawerContent() {
           styles.footer,
           {
             borderTopColor: borderColor,
-            paddingBottom: insets.bottom + 16,
           },
         ]}
       >
@@ -81,7 +108,7 @@ export function CustomDrawerContent() {
           Version {Application.nativeApplicationVersion}
         </ThemedText>
       </ThemedView>
-    </ThemedView>
+    </ThemedSafeAreaView>
   );
 }
 
@@ -91,48 +118,14 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+    paddingHorizontal: 16,
   },
   logoContainer: {
     alignItems: "center",
-    paddingVertical: 32,
   },
   logo: {
     width: 150,
     height: 60,
-  },
-  section: {
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-  },
-  languageButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-  },
-  languageButtonContent: {
-    flex: 1,
-  },
-  languageButtonLabel: {
-    fontSize: 16,
-    marginBottom: 4,
-  },
-  languageButtonValue: {
-    fontSize: 14,
-  },
-  actionButton: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-    marginBottom: 12,
-    alignItems: "center",
-  },
-  actionButtonText: {
-    fontSize: 16,
   },
   footer: {
     paddingHorizontal: 16,
@@ -145,5 +138,19 @@ const styles = StyleSheet.create({
   },
   version: {
     fontSize: 12,
+  },
+  languageButton: {
+    width: "100%",
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    borderRadius: 40,
+    borderWidth: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
+  },
+  languageButtonLabel: {
+    fontSize: 16,
+    fontWeight: "700",
   },
 });

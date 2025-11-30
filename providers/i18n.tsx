@@ -40,6 +40,24 @@ export const LANGUAGE_NAMES: Record<Languages, string> = {
   [Languages.TR]: "Türkçe",
 };
 
+export const LANGUAGE_FLAGS: Record<Languages, string> = {
+  [Languages.EN]: "GB",
+  [Languages.DE]: "DE",
+  [Languages.FR]: "FR",
+  [Languages.PL]: "PL",
+  [Languages.UA]: "UA",
+  [Languages.RO]: "RO",
+  [Languages.ES]: "ES",
+  [Languages.PT]: "PT",
+  [Languages.IT]: "IT",
+  [Languages.NL]: "NL",
+  [Languages.SE]: "SE",
+  [Languages.NO]: "NO",
+  [Languages.FI]: "FI",
+  [Languages.DK]: "DK",
+  [Languages.TR]: "TR",
+};
+
 export const validateLanguage = (language: string): Languages => {
   if (Object.values(Languages).includes(language as Languages)) {
     return language as Languages;

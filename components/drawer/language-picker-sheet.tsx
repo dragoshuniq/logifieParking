@@ -1,7 +1,7 @@
 import { ESheets } from "@/constants/sheets";
-import { Colors } from "@/constants/theme";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import {
+  LANGUAGE_FLAGS,
   LANGUAGE_NAMES,
   Languages,
   validateLanguage,
@@ -15,24 +15,6 @@ import ActionSheet, {
 import CountryFlag from "react-native-country-flag";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedView } from "../ui/themed-view";
-
-const LANGUAGE_FLAGS: Record<Languages, string> = {
-  [Languages.EN]: "GB",
-  [Languages.DE]: "DE",
-  [Languages.FR]: "FR",
-  [Languages.PL]: "PL",
-  [Languages.UA]: "UA",
-  [Languages.RO]: "RO",
-  [Languages.ES]: "ES",
-  [Languages.PT]: "PT",
-  [Languages.IT]: "IT",
-  [Languages.NL]: "NL",
-  [Languages.SE]: "SE",
-  [Languages.NO]: "NO",
-  [Languages.FI]: "FI",
-  [Languages.DK]: "DK",
-  [Languages.TR]: "TR",
-};
 
 type LanguageItem = {
   code: Languages;
@@ -54,7 +36,7 @@ export default function LanguagePickerSheet(props: SheetProps) {
     t,
   } = useTranslation();
 
-  const colors = useThemeColor({}, "default");
+  const colors = useThemeColor({}, "primary");
   const backgroundColor = colors[50];
   const primaryColor = useThemeColor({}, "tint");
 
@@ -73,10 +55,8 @@ export default function LanguagePickerSheet(props: SheetProps) {
           {
             backgroundColor: isSelected
               ? `${primaryColor}15`
-              : backgroundColor,
-            borderColor: isSelected
-              ? primaryColor
-              : Colors.light.default[400],
+              : colors[50],
+            borderColor: isSelected ? primaryColor : colors[400],
           },
         ]}
         onPress={() => handleLanguageSelect(item.code)}

@@ -13,9 +13,9 @@ import "react-native-reanimated";
 import { CustomDrawerContent } from "@/components/drawer/custom-drawer-content";
 import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import "@/providers/i18n";
 import { ONE_WEEK, queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
-import "@/providers/i18n";
 import { Drawer } from "expo-router/drawer";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
