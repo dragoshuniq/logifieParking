@@ -53,6 +53,18 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
           value={searchQuery}
           onChangeText={onSearchChange}
         />
+        {searchQuery.length > 0 && (
+          <ThemedTouchableOpacity
+            style={styles.clearIcon}
+            onPress={() => onSearchChange("")}
+          >
+            <MaterialIcons
+              name="close"
+              size={18}
+              color={colors.icon}
+            />
+          </ThemedTouchableOpacity>
+        )}
         <ThemedTouchableOpacity
           style={[
             styles.filterButton,
@@ -106,13 +118,19 @@ const styles = StyleSheet.create({
     left: 12,
     zIndex: 1,
   },
+  clearIcon: {
+    position: "absolute",
+    right: 60,
+    zIndex: 1,
+    padding: 4,
+  },
   searchInput: {
     flex: 1,
     height: 44,
     borderWidth: 1,
     borderRadius: 8,
     paddingLeft: 40,
-    paddingRight: 12,
+    paddingRight: 40,
     fontSize: 16,
   },
   filterButton: {
