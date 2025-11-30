@@ -2,7 +2,7 @@ import { getFuelData, getStaleTimeForFuelData } from "@/api/fuel";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { ONE_WEEK } from "@/providers/query";
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo, useState } from "react";
 import {
@@ -53,7 +53,7 @@ export const FuelPrice = () => {
         </ThemedText>
 
         <View style={styles.searchContainer}>
-          <Ionicons
+          <MaterialIcons
             name="search"
             size={20}
             color={colors.icon}
@@ -82,8 +82,8 @@ export const FuelPrice = () => {
             ]}
             onPress={handleFilterPress}
           >
-            <Ionicons
-              name="options-outline"
+            <MaterialIcons
+              name="filter-list"
               size={20}
               color={colors.icon}
             />

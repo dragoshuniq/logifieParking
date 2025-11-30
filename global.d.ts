@@ -9,5 +9,12 @@ declare module "react-native-actions-sheet" {
       };
       returnValue?: undefined;
     };
+    FuelPriceFilters: {
+      payload: {
+        currentSort: SortType;
+        onSortChange: (sort: SortType) => void;
+      };
+      returnValue?: undefined;
+    };
   }
 }

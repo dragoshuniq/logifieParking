@@ -14,7 +14,12 @@ type SortOptionProps = {
   isLast?: boolean;
 };
 
-export const SortOption = ({ label, isSelected, onPress, isLast }: SortOptionProps) => {
+export const SortOption = ({
+  label,
+  isSelected,
+  onPress,
+  isLast,
+}: SortOptionProps) => {
   const colorScheme = useColorScheme() ?? "light";
   const colors = Colors[colorScheme];
 
@@ -24,7 +29,7 @@ export const SortOption = ({ label, isSelected, onPress, isLast }: SortOptionPro
         styles.option,
         !isLast && {
           borderBottomWidth: StyleSheet.hairlineWidth,
-          borderBottomColor: colors.border,
+          borderBottomColor: colors.default[400],
         },
       ]}
       onPress={onPress}
@@ -34,8 +39,12 @@ export const SortOption = ({ label, isSelected, onPress, isLast }: SortOptionPro
         style={[
           styles.checkbox,
           {
-            borderColor: isSelected ? colors.primary.DEFAULT : colors.border,
-            backgroundColor: isSelected ? colors.primary.DEFAULT : "transparent",
+            borderColor: isSelected
+              ? colors.primary.DEFAULT
+              : colors.default[400],
+            backgroundColor: isSelected
+              ? colors.primary.DEFAULT
+              : "transparent",
           },
         ]}
       >
@@ -72,5 +81,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-
