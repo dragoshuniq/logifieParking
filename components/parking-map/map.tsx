@@ -1,5 +1,5 @@
 import { getAllParkings, IParking } from "@/api/parking";
-import { DEFAULT_COORDINATES } from "@/constants/app.const";
+import { AppConstants } from "@/constants/app.const";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { TWO_WEEKS } from "@/providers/query";
@@ -55,8 +55,8 @@ export const ParkingMap = () => {
         showsUserLocation
         style={styles.map}
         initialRegion={{
-          latitude: DEFAULT_COORDINATES.latitude,
-          longitude: DEFAULT_COORDINATES.longitude,
+          latitude: AppConstants.coordinates.latitude,
+          longitude: AppConstants.coordinates.longitude,
           latitudeDelta: 8.5,
           longitudeDelta: 8.5,
         }}

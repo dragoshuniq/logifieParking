@@ -1,6 +1,7 @@
 import { ExternalLinks } from "@/constants/app.const";
 import { DRAWER_LINKS } from "@/constants/drawer.config";
 import { ESheets } from "@/constants/sheets";
+import { SocialNetworksRoutes } from "@/constants/social.config";
 import { useThemeToggle } from "@/hooks/use-theme-toggle";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
@@ -17,6 +18,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
 import CountryFlag from "react-native-country-flag";
 import { ExternalLink } from "../ui/external-link";
+import { SocialLink } from "../ui/social-link";
 import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
@@ -127,6 +129,33 @@ export function CustomDrawerContent() {
             </ExternalLink>
           ))}
         </ThemedView>
+
+        <ThemedView style={styles.socialContainer}>
+          <ThemedText style={styles.socialTitle}>
+            {t("drawer.followUs")}
+          </ThemedText>
+          <View style={styles.socialButtons}>
+            {SocialNetworksRoutes.map((network) => (
+              <SocialLink
+                key={network.name}
+                network={network}
+              >
+                <ThemedView
+                  style={[
+                    styles.socialButton,
+                    { borderColor: borderColor },
+                  ]}
+                >
+                  <Ionicons
+                    name={network.icon}
+                    size={22}
+                    color={secondaryColors.DEFAULT}
+                  />
+                </ThemedView>
+              </SocialLink>
+            ))}
+          </View>
+        </ThemedView>
       </ScrollView>
 
       <ThemedView
@@ -226,6 +255,29 @@ const styles = StyleSheet.create({
   themeButton: {
     padding: 8,
     borderRadius: 100,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  socialContainer: {
+    gap: 12,
+    paddingTop: 16,
+    width: "100%",
+  },
+  socialTitle: {
+    fontSize: 14,
+    fontWeight: "600",
+    opacity: 0.6,
+  },
+  socialButtons: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+  },
+  socialButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
