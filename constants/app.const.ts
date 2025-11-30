@@ -38,6 +38,8 @@ export const ExternalLinks = (language: Languages) => {
     Home: HOME_URL,
     Contact: `${HOME_URL}/${language}${AppRoutes.Contact}`,
     GetQuote: `${HOME_URL}/${language}${AppRoutes.GetQuote}`,
+    TermsAndConditions: `${HOME_URL}/${language}${AppRoutes.TermsAndConditions}`,
+    PrivacyPolicy: `${HOME_URL}/${language}${AppRoutes.PrivacyPolicy}`,
   };
 };
 

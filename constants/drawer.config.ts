@@ -4,7 +4,12 @@ export type DrawerLinkConfig = {
   id: string;
   icon: keyof typeof Ionicons.glyphMap;
   translationKey: string;
-  urlKey: "Home" | "Contact" | "GetQuote";
+  urlKey:
+    | "Home"
+    | "Contact"
+    | "GetQuote"
+    | "TermsAndConditions"
+    | "PrivacyPolicy";
   highlighted?: boolean;
 };
 
@@ -28,5 +33,16 @@ export const DRAWER_LINKS: DrawerLinkConfig[] = [
     urlKey: "GetQuote",
     highlighted: true,
   },
+  {
+    id: "termsAndConditions",
+    icon: "document-text-outline",
+    translationKey: "drawer.termsAndConditions",
+    urlKey: "TermsAndConditions",
+  },
+  {
+    id: "privacyPolicy",
+    icon: "shield-outline",
+    translationKey: "drawer.privacyPolicy",
+    urlKey: "PrivacyPolicy",
+  },
 ];
-
