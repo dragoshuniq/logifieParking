@@ -1,4 +1,5 @@
 import { ThemedText } from "@/components/ui/themed-text";
+import { ThemedTouchableOpacity } from "@/components/ui/themed-touchable-opacity";
 import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets } from "@/constants/sheets";
 import { Colors } from "@/constants/theme";
@@ -27,7 +28,9 @@ type FuelPriceFiltersPayload = {
   onSortChange: (sort: SortType) => void;
 };
 
-export const showFuelPriceFilters = (payload: FuelPriceFiltersPayload) => {
+export const showFuelPriceFilters = (
+  payload: FuelPriceFiltersPayload
+) => {
   SheetManager.show(ESheets.FuelPriceFilters, {
     payload,
   });
@@ -53,8 +56,11 @@ export const FuelPriceFilters = () => {
   const colors = Colors[colorScheme];
 
   const handleSortSelect = (sort: SortType) => {
-    setSelectedSort(sort);
-    onSortChange?.(sort);
+    setSelectedSort(selectedSort === sort ? SortType.None : sort);
+  };
+
+  const handleConfirm = () => {
+    onSortChange?.(selectedSort);
     SheetManager.hide(ESheets.FuelPriceFilters);
   };
 
@@ -85,6 +91,22 @@ export const FuelPriceFilters = () => {
             isLast={index === SORT_OPTIONS.length - 1}
           />
         ))}
+
+        <ThemedTouchableOpacity
+          style={[
+            styles.confirmButton,
+            { backgroundColor: colors.tint },
+          ]}
+          onPress={handleConfirm}
+        >
+          <ThemedText
+            style={styles.confirmButtonText}
+            lightColor="#fff"
+            darkColor="#fff"
+          >
+            Apply
+          </ThemedText>
+        </ThemedTouchableOpacity>
       </ThemedView>
     </ActionSheet>
   );
@@ -108,7 +130,15 @@ const styles = StyleSheet.create({
     width: 40,
     height: 4,
   },
+  confirmButton: {
+    marginTop: 16,
+    paddingVertical: 14,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  confirmButtonText: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
 });
-
-
-

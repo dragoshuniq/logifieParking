@@ -76,16 +76,21 @@ export const FuelPrice = () => {
           <ThemedTouchableOpacity
             style={[
               styles.filterButton,
-              {
-                borderColor: colors.default[400],
-              },
+              sortType !== SortType.None
+                ? { backgroundColor: colors.tint }
+                : {
+                    borderColor: colors.default[400],
+                    borderWidth: 1,
+                  },
             ]}
             onPress={handleFilterPress}
           >
             <MaterialIcons
               name="filter-list"
               size={20}
-              color={colors.icon}
+              color={
+                sortType !== SortType.None ? "#fff" : colors.icon
+              }
             />
           </ThemedTouchableOpacity>
         </View>
@@ -209,7 +214,6 @@ const styles = StyleSheet.create({
   filterButton: {
     width: 44,
     height: 44,
-    borderWidth: 1,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
