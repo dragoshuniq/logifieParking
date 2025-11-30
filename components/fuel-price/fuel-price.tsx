@@ -9,14 +9,13 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedView } from "../ui/themed-view";
 import { FuelPriceCard } from "./fuel-price-card";
 
 export const FuelPrice = () => {
-  const insets = useSafeAreaInsets();
-  const { data, isLoading, refetch, isRefetching } = useQuery({
+  const { data, isFetching, refetch } = useQuery({
     queryKey: ["fuel-prices"],
     queryFn: () => getFuelData(),
     staleTime: (query) => {
@@ -39,7 +38,7 @@ export const FuelPrice = () => {
   };
 
   const renderEmpty = () => {
-    if (isLoading) {
+    if (isFetching) {
       return (
         <View style={styles.centerContainer}>
           <ActivityIndicator size="large" />
@@ -55,25 +54,22 @@ export const FuelPrice = () => {
   };
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedSafeAreaView style={styles.container}>
       <FlatList
         data={data?.countries || []}
         keyExtractor={(item) => item.countryCode}
         renderItem={({ item }) => <FuelPriceCard country={item} />}
         ListHeaderComponent={renderHeader}
         ListEmptyComponent={renderEmpty}
-        contentContainerStyle={[
-          styles.listContent,
-          { paddingTop: insets.top },
-        ]}
+        contentContainerStyle={styles.listContent}
         refreshControl={
           <RefreshControl
-            refreshing={isRefetching}
+            refreshing={isFetching}
             onRefresh={() => refetch()}
           />
         }
       />
-    </ThemedView>
+    </ThemedSafeAreaView>
   );
 };
 
@@ -92,7 +88,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 4,
   },
