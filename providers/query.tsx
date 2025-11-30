@@ -1,12 +1,18 @@
 import { QueryClient } from "@tanstack/react-query";
 
-export const PERSIST_TIME = 1000 * 60 * 60 * 24 * 14;
+export const ONE_MINUTE = 1000 * 60;
+export const ONE_HOUR = ONE_MINUTE * 60;
+export const ONE_DAY = ONE_HOUR * 24;
+export const TWO_WEEKS = ONE_DAY * 14;
+
+export const DEFAULT_GC_TIME = ONE_DAY;
+export const DEFAULT_STALE_TIME = ONE_MINUTE * 5;
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      gcTime: PERSIST_TIME,
-      staleTime: PERSIST_TIME,
+      gcTime: DEFAULT_GC_TIME,
+      staleTime: DEFAULT_STALE_TIME,
       retry: (failureCount) => {
         if (failureCount >= 2) {
           return false;

@@ -24,8 +24,6 @@ export const LocationDetailsComponent = ({
     useQuery<LocationDetails | null>({
       queryKey: ["locationDetails", lat, lng],
       queryFn: () => fetchLocationDetails(lat, lng),
-      staleTime: 0,
-      gcTime: 0,
     });
 
   if (isFetching) {

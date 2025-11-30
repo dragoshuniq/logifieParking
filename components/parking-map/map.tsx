@@ -2,6 +2,7 @@ import { getAllParkings, IParking } from "@/api/parking";
 import { DEFAULT_COORDINATES } from "@/constants/app.const";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { TWO_WEEKS } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
 import * as Location from "expo-location";
 import React, { useRef } from "react";
@@ -18,6 +19,8 @@ export const ParkingMap = () => {
   const { data } = useQuery({
     queryKey: ["parkings"],
     queryFn: () => getAllParkings(),
+    staleTime: TWO_WEEKS,
+    gcTime: TWO_WEEKS,
   });
 
   const clusterColor = Colors[theme].primary.DEFAULT;
