@@ -54,7 +54,8 @@ export default function LanguagePickerSheet(props: SheetProps) {
     t,
   } = useTranslation();
 
-  const backgroundColor = useThemeColor({}, "background");
+  const colors = useThemeColor({}, "default");
+  const backgroundColor = colors[50];
   const primaryColor = useThemeColor({}, "tint");
 
   const handleLanguageSelect = (language: Languages) => {

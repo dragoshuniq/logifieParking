@@ -1,22 +1,14 @@
 import { ESheets } from "@/constants/sheets";
 import { useThemeColor } from "@/hooks/use-theme-color";
-import { LANGUAGE_NAMES, Languages } from "@/providers/i18n";
-import { Ionicons } from "@expo/vector-icons";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
 import * as Sharing from "expo-sharing";
 import { useTranslation } from "react-i18next";
-import {
-  Platform,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { Platform, ScrollView, StyleSheet } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExternalLink } from "../ui/external-link";
 import { ThemedText } from "../ui/themed-text";
-import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 import { ThemedView } from "../ui/themed-view";
 
 const HOME_URL = process.env.EXPO_PUBLIC_HOME_URL ?? "";
@@ -25,9 +17,9 @@ const IOS_APP_URL = process.env.EXPO_PUBLIC_IOS_APP_URL ?? "";
 
 export function CustomDrawerContent() {
   const insets = useSafeAreaInsets();
-  const borderColor = useThemeColor({}, "icon");
+  const colors = useThemeColor({}, "default");
+  const borderColor = colors[400];
   const iconColor = useThemeColor({}, "icon");
-  const textColor = useThemeColor({}, "text");
   const {
     i18n: { language },
   } = useTranslation();
@@ -68,51 +60,6 @@ export function CustomDrawerContent() {
             style={styles.logo}
             contentFit="contain"
           />
-        </ThemedView>
-
-        <ThemedView style={styles.section}>
-          <ThemedTouchableOpacity
-            style={[styles.languageButton, { borderColor }]}
-            onPress={handleOpenLanguagePicker}
-            activeOpacity={0.7}
-          >
-            <ThemedView
-              style={styles.languageButtonContent}
-              lightColor="transparent"
-              darkColor="transparent"
-            >
-              <ThemedText style={styles.languageButtonLabel}>
-                Language
-              </ThemedText>
-              <ThemedText
-                style={[
-                  styles.languageButtonValue,
-                  { color: iconColor },
-                ]}
-              >
-                {LANGUAGE_NAMES[language as Languages]}
-              </ThemedText>
-            </ThemedView>
-            <Ionicons
-              name="chevron-forward"
-              size={24}
-              color={textColor}
-            />
-          </ThemedTouchableOpacity>
-        </ThemedView>
-
-        <ThemedView style={styles.section}>
-          {(ANDROID_APP_URL || IOS_APP_URL) && (
-            <TouchableOpacity
-              style={[styles.actionButton, { borderColor }]}
-              onPress={handleShare}
-              activeOpacity={0.7}
-            >
-              <ThemedText style={styles.actionButtonText}>
-                Share App
-              </ThemedText>
-            </TouchableOpacity>
-          )}
         </ThemedView>
       </ScrollView>
 
