@@ -1,4 +1,4 @@
-import { ParkingMap } from "@/components/parkingMap";
+import { ParkingMap } from "@/components/parking-map";
 
 export default function HomeScreen() {
   return <ParkingMap />;

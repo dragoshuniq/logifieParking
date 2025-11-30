@@ -3,7 +3,7 @@ import { useColorScheme } from "@/hooks/use-color-scheme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import * as Location from "expo-location";
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { Alert, Linking, Platform, StyleSheet } from "react-native";
 import { ThemedPressable } from "../ui/themed-pressable";
 
 type Props = {
@@ -17,6 +17,34 @@ export const LocationButton = ({ onLocationFound }: Props) => {
   const handlePress = async () => {
     try {
       setIsLoading(true);
+
+      const { status: existingStatus } =
+        await Location.getForegroundPermissionsAsync();
+
+      if (existingStatus === "denied") {
+        Alert.alert(
+          "Location Permission Required",
+          "Location access is required to find your current position. Please enable it in your device settings.",
+          [
+            {
+              text: "Cancel",
+              style: "cancel",
+            },
+            {
+              text: "Open Settings",
+              onPress: () => {
+                if (Platform.OS === "ios") {
+                  Linking.openURL("app-settings:");
+                } else {
+                  Linking.openSettings();
+                }
+              },
+            },
+          ]
+        );
+        setIsLoading(false);
+        return;
+      }
 
       const { status } =
         await Location.requestForegroundPermissionsAsync();
