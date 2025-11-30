@@ -19,6 +19,7 @@ import { SheetManager } from "react-native-actions-sheet";
 import CountryFlag from "react-native-country-flag";
 import { ExternalLink } from "../ui/external-link";
 import { SocialLink } from "../ui/social-link";
+import { ThemedDivider } from "../ui/themed-divider";
 import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
@@ -51,84 +52,89 @@ export function CustomDrawerContent() {
         contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
-        <ThemedView style={styles.logoContainer}>
-          <Image
-            source={require("@/assets/images/blogo.png")}
-            style={styles.logo}
-            contentFit="contain"
-          />
-        </ThemedView>
-        <View style={styles.actionContainer}>
-          <ThemedTouchableOpacity
-            style={[
-              styles.languageButton,
-              { borderColor: borderColor },
-            ]}
-            onPress={handleOpenLanguagePicker}
-          >
-            <CountryFlag
-              isoCode={
-                LANGUAGE_FLAGS[
-                  validateLanguage(language) as Languages
-                ]
-              }
-              size={32}
-              style={{ borderRadius: 100, width: 32, height: 32 }}
+        <View style={styles.headerContainer}>
+          <ThemedView style={styles.logoContainer}>
+            <Image
+              source={require("@/assets/images/blogo.png")}
+              style={styles.logo}
+              contentFit="contain"
             />
-            <ThemedText style={styles.languageButtonLabel}>
-              {LANGUAGE_NAMES[language as Languages]}
-            </ThemedText>
-          </ThemedTouchableOpacity>
-          <ThemedTouchableOpacity
-            onPress={toggleTheme}
-            style={[styles.themeButton, { borderColor: borderColor }]}
-          >
-            <Ionicons
-              name={isDark ? "moon" : "sunny"}
-              size={30}
-              color={secondaryColors.DEFAULT}
-            />
-          </ThemedTouchableOpacity>
-        </View>
-
-        <ThemedView style={styles.linksContainer}>
-          {DRAWER_LINKS.map((link) => (
-            <ExternalLink
-              key={link.id}
-              href={links[link.urlKey] as any}
+          </ThemedView>
+          <View style={styles.actionContainer}>
+            <ThemedTouchableOpacity
+              style={[
+                styles.languageButton,
+                { borderColor: borderColor },
+              ]}
+              onPress={handleOpenLanguagePicker}
             >
-              <ThemedView
-                style={[
-                  styles.linkButton,
-                  {
-                    borderColor: link.highlighted
-                      ? primaryColors.DEFAULT
-                      : borderColor,
-                    backgroundColor: link.highlighted
-                      ? primaryColors[50]
-                      : "transparent",
-                  },
-                ]}
+              <CountryFlag
+                isoCode={
+                  LANGUAGE_FLAGS[
+                    validateLanguage(language) as Languages
+                  ]
+                }
+                size={32}
+                style={styles.languageFlag}
+              />
+              <ThemedText style={styles.languageButtonLabel}>
+                {LANGUAGE_NAMES[language as Languages]}
+              </ThemedText>
+            </ThemedTouchableOpacity>
+            <ThemedTouchableOpacity
+              onPress={toggleTheme}
+              style={[
+                styles.themeButton,
+                { borderColor: borderColor },
+              ]}
+            >
+              <Ionicons
+                name={isDark ? "moon" : "sunny"}
+                size={30}
+                color={secondaryColors.DEFAULT}
+              />
+            </ThemedTouchableOpacity>
+          </View>
+
+          <ThemedView style={styles.linksContainer}>
+            {DRAWER_LINKS.map((link) => (
+              <ExternalLink
+                key={link.id}
+                href={links[link.urlKey] as any}
               >
-                <Ionicons
-                  name={link.icon}
-                  size={20}
-                  color={primaryColors.DEFAULT}
-                />
-                <ThemedText
+                <ThemedView
                   style={[
-                    styles.linkButtonText,
-                    link.highlighted && {
-                      color: primaryColors.DEFAULT,
+                    styles.linkButton,
+                    {
+                      borderColor: link.highlighted
+                        ? primaryColors.DEFAULT
+                        : borderColor,
+                      backgroundColor: link.highlighted
+                        ? primaryColors[50]
+                        : "transparent",
                     },
                   ]}
                 >
-                  {t(link.translationKey)}
-                </ThemedText>
-              </ThemedView>
-            </ExternalLink>
-          ))}
-        </ThemedView>
+                  <Ionicons
+                    name={link.icon}
+                    size={20}
+                    color={primaryColors.DEFAULT}
+                  />
+                  <ThemedText
+                    style={[
+                      styles.linkButtonText,
+                      link.highlighted && {
+                        color: primaryColors.DEFAULT,
+                      },
+                    ]}
+                  >
+                    {t(link.translationKey)}
+                  </ThemedText>
+                </ThemedView>
+              </ExternalLink>
+            ))}
+          </ThemedView>
+        </View>
 
         <ThemedView style={styles.socialContainer}>
           <ThemedText style={styles.socialTitle}>
@@ -136,10 +142,7 @@ export function CustomDrawerContent() {
           </ThemedText>
           <View style={styles.socialButtons}>
             {SocialNetworksRoutes.map((network) => (
-              <SocialLink
-                key={network.name}
-                network={network}
-              >
+              <SocialLink key={network.name} network={network}>
                 <ThemedView
                   style={[
                     styles.socialButton,
@@ -158,14 +161,9 @@ export function CustomDrawerContent() {
         </ThemedView>
       </ScrollView>
 
-      <ThemedView
-        style={[
-          styles.footer,
-          {
-            borderTopColor: borderColor,
-          },
-        ]}
-      >
+      <ThemedView style={styles.footer}>
+        <ThemedDivider thickness={2} />
+
         <ThemedText style={styles.version}>
           Version {Application.nativeApplicationVersion}
         </ThemedText>
@@ -178,10 +176,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  headerContainer: {
+    gap: 16,
+  },
   scrollView: {
     flex: 1,
     paddingHorizontal: 16,
     gap: 16,
+    justifyContent: "space-between",
   },
   logoContainer: {
     alignItems: "center",
@@ -191,18 +193,16 @@ const styles = StyleSheet.create({
     height: 60,
   },
   footer: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
+    paddingVertical: 16,
     paddingBottom: 8,
-    borderTopWidth: 1,
+    gap: 16,
   },
   version: {
     fontSize: 12,
     textAlign: "center",
   },
   linksContainer: {
-    gap: 12,
-    paddingTop: 16,
+    gap: 16,
     width: "100%",
   },
   linkButton: {
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     gap: 12,
     paddingVertical: 14,
     paddingHorizontal: 16,
-    borderRadius: 12,
+    borderRadius: 24,
     borderWidth: 1,
     width: "100%",
   },
@@ -261,7 +261,6 @@ const styles = StyleSheet.create({
   },
   socialContainer: {
     gap: 12,
-    paddingTop: 16,
     width: "100%",
   },
   socialTitle: {
@@ -277,9 +276,15 @@ const styles = StyleSheet.create({
   socialButton: {
     width: 44,
     height: 44,
-    borderRadius: 12,
+    borderRadius: 24,
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  languageFlag: {
+    borderRadius: 100,
+    width: 32,
+    height: 32,
+    boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
   },
 });
