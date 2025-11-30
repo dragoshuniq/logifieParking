@@ -3,15 +3,18 @@ import { DEFAULT_COORDINATES } from "@/constants/app.const";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import * as Location from "expo-location";
+import React, { useRef } from "react";
 import { StyleSheet } from "react-native";
 import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
 import { ThemedView } from "../ui/themed-view";
+import { LocationButton } from "./location-button";
 import { showNavigationOptions } from "./navigation-options";
 
 export const ParkingMap = () => {
   const theme = useColorScheme() ?? "light";
+  const mapRef = useRef<MapView>(null);
   const { data } = useQuery({
     queryKey: ["parkings"],
     queryFn: () => getAllParkings(),
@@ -29,9 +32,23 @@ export const ParkingMap = () => {
     });
   };
 
+  const handleLocationFound = (location: Location.LocationObject) => {
+    const { latitude, longitude } = location.coords;
+    (mapRef.current as any)?.animateToRegion?.(
+      {
+        latitude,
+        longitude,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
+      },
+      1000
+    );
+  };
+
   return (
     <ThemedView style={styles.container}>
       <MapView
+        ref={mapRef}
         showsUserLocation
         style={styles.map}
         initialRegion={{
@@ -56,6 +73,7 @@ export const ParkingMap = () => {
           />
         ))}
       </MapView>
+      <LocationButton onLocationFound={handleLocationFound} />
     </ThemedView>
   );
 };

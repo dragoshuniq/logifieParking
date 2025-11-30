@@ -32,6 +32,13 @@
       "expo-router",
       "react-native-map-link",
       [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "$(PRODUCT_NAME) needs access to your location to display nearby truck parking locations and help you find the closest available parking spots.",
+          "locationWhenInUsePermission": "$(PRODUCT_NAME) needs access to your location to display nearby truck parking locations and help you find the closest available parking spots."
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/images/blogo.png",
