@@ -66,14 +66,14 @@ export const validateLanguage = (language: string): Languages => {
 };
 
 const resources = {
-  en: en,
-  de: de,
+  en: { translation: en },
+  de: { translation: de },
 };
 
 i18next.use(initReactI18next).init({
   compatibilityJSON: "v4",
   resources,
-  lng: Localization.getLocales()[0]?.languageCode || "en",
+  lng: Localization.getLocales()[0]?.languageCode || Languages.EN,
   fallbackLng: Languages.EN,
   interpolation: {
     escapeValue: false,
