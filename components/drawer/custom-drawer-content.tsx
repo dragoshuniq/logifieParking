@@ -14,12 +14,12 @@ import { SheetManager } from "react-native-actions-sheet";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExternalLink } from "../ui/external-link";
 import { ThemedText } from "../ui/themed-text";
+import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 import { ThemedView } from "../ui/themed-view";
 
-const HOME_URL =
-  process.env.EXPO_PUBLIC_HOME_URL || "https://logifie.com";
-const ANDROID_APP_URL = process.env.EXPO_PUBLIC_ANDROID_APP_URL;
-const IOS_APP_URL = process.env.EXPO_PUBLIC_IOS_APP_URL;
+const HOME_URL = process.env.EXPO_PUBLIC_HOME_URL ?? "";
+const ANDROID_APP_URL = process.env.EXPO_PUBLIC_ANDROID_APP_URL ?? "";
+const IOS_APP_URL = process.env.EXPO_PUBLIC_IOS_APP_URL ?? "";
 
 export function CustomDrawerContent() {
   const insets = useSafeAreaInsets();
@@ -66,7 +66,7 @@ export function CustomDrawerContent() {
         </ThemedView>
 
         <ThemedView style={styles.section}>
-          <TouchableOpacity
+          <ThemedTouchableOpacity
             style={[styles.languageButton, { borderColor }]}
             onPress={handleOpenLanguagePicker}
             activeOpacity={0.7}
@@ -93,7 +93,7 @@ export function CustomDrawerContent() {
               size={24}
               color={textColor}
             />
-          </TouchableOpacity>
+          </ThemedTouchableOpacity>
         </ThemedView>
 
         <ThemedView style={styles.section}>
@@ -122,11 +122,11 @@ export function CustomDrawerContent() {
       >
         <ExternalLink href={HOME_URL as any}>
           <ThemedText style={[styles.link, { color: iconColor }]}>
-            {HOME_URL}
+            Visit Website
           </ThemedText>
         </ExternalLink>
         <ThemedText style={[styles.version, { color: iconColor }]}>
-          Version {Application.nativeApplicationVersion || "1.0.0"}
+          Version {Application.nativeApplicationVersion}
         </ThemedText>
       </ThemedView>
     </ThemedView>
