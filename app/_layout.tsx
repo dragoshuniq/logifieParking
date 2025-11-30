@@ -6,7 +6,6 @@ import {
 } from "@react-navigation/native";
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
-import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SheetProvider } from "react-native-actions-sheet";
 import "react-native-reanimated";
@@ -15,6 +14,7 @@ import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { ONE_WEEK, queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
+import { Drawer } from "expo-router/drawer";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const asyncStoragePersister = createAsyncStoragePersister({
@@ -42,12 +42,12 @@ export default function RootLayout() {
         >
           <SheetProvider>
             <SafeAreaProvider>
-              <Stack>
-                <Stack.Screen
+              <Drawer>
+                <Drawer.Screen
                   name="(tabs)"
                   options={{ headerShown: false }}
                 />
-              </Stack>
+              </Drawer>
             </SafeAreaProvider>
             <StatusBar style="auto" />
           </SheetProvider>
