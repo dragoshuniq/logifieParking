@@ -3,6 +3,7 @@ import { QueryClient } from "@tanstack/react-query";
 export const ONE_MINUTE = 1000 * 60;
 export const ONE_HOUR = ONE_MINUTE * 60;
 export const ONE_DAY = ONE_HOUR * 24;
+export const ONE_WEEK = ONE_DAY * 7;
 export const TWO_WEEKS = ONE_DAY * 14;
 
 export const DEFAULT_GC_TIME = ONE_DAY;
@@ -27,8 +28,6 @@ export const queryClient = new QueryClient({
         }
         return true;
       },
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
       networkMode: "offlineFirst",
       placeholderData: (previousData: unknown) => previousData,
     },

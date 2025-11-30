@@ -1,0 +1,78 @@
+import dayjs from "dayjs";
+
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
+export interface IFuelPrice {
+  country: string;
+  countryCode: string;
+  petrol: number;
+  diesel: number;
+  currencyHome?: string;
+  petrolHome?: number;
+  dieselHome?: number;
+}
+
+export interface IFuel {
+  _id: string;
+  date: string;
+  countries: IFuelPrice[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export const getFuelData = async (
+  date?: string
+): Promise<IFuel | null> => {
+  try {
+    const url = date
+      ? `${API_URL}/api/fuel?date=${date}`
+      : `${API_URL}/api/fuel`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to fetch fuel data");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const getStaleTimeForFuelData = (
+  lastDataDate?: string
+): number => {
+  const now = dayjs();
+  const currentDay = now.day();
+  const currentHour = now.hour();
+
+  const isThursday = currentDay === 4;
+  const isAfterNoon = currentHour >= 12;
+
+  if (isThursday && isAfterNoon) {
+    return 1000 * 60 * 60;
+  }
+
+  if (lastDataDate) {
+    const dataDate = dayjs(lastDataDate);
+    const daysSinceUpdate = now.diff(dataDate, "day");
+
+    if (daysSinceUpdate < 7) {
+      const nextThursday = now
+        .day(4)
+        .hour(12)
+        .minute(0)
+        .second(0)
+        .millisecond(0);
+
+      const adjustedNextThursday = nextThursday.isBefore(now)
+        ? nextThursday.add(1, "week")
+        : nextThursday;
+
+      const timeUntilNextThursday = adjustedNextThursday.diff(now);
+      return Math.max(timeUntilNextThursday, 1000 * 60 * 60);
+    }
+  }
+
+  return 1000 * 60 * 60;
+};
