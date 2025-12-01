@@ -1,5 +1,4 @@
 import { ThemedText } from "@/components/ui/themed-text";
-import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import dayjs from "dayjs";
 import { useMemo } from "react";
@@ -48,7 +47,7 @@ export const HorizontalCalendar = ({
   const currentMonth = dayjs(selectedDate).format("MMMM YYYY");
 
   return (
-    <ThemedView style={styles.container}>
+    <View style={styles.container}>
       <ThemedText style={styles.monthText}>{currentMonth}</ThemedText>
       <View style={styles.calendarWrapper}>
         <CalendarProvider
@@ -65,13 +64,13 @@ export const HorizontalCalendar = ({
           />
         </CalendarProvider>
       </View>
-    </ThemedView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 8,
+    paddingTop: 8,
   },
   monthText: {
     fontSize: 16,

@@ -1,7 +1,6 @@
 import { showActivityForm } from "@/components/driver/activity-form";
 import { ActivityList } from "@/components/driver/activity-list";
 import { Charts } from "@/components/driver/charts";
-import { ComplianceAlert } from "@/components/driver/compliance-alert";
 import { showDatePicker } from "@/components/driver/date-picker-sheet";
 import { HorizontalCalendar } from "@/components/driver/horizontal-calendar";
 import { StatsCard } from "@/components/driver/stats-card";
@@ -35,6 +34,7 @@ import {
   View,
 } from "react-native";
 import { ThemedText } from "../ui/themed-text";
+import { ThemedView } from "../ui/themed-view";
 
 dayjs.extend(isoWeek);
 
@@ -210,55 +210,55 @@ export const DriverHours = () => {
   );
 
   return (
-    <View style={[styles.container, { backgroundColor: background }]}>
-      <>
-        <View style={styles.header}>
-          <ThemedText style={styles.headerTitle}>
-            {t("driver.title")}
-          </ThemedText>
-          <View style={styles.headerButtons}>
-            <TouchableOpacity
-              onPress={handleDatePicker}
-              style={[
-                styles.headerButton,
-                { backgroundColor: primary.DEFAULT },
-              ]}
-            >
-              <FontAwesome6
-                name="calendar-days"
-                size={16}
-                color={primary.foreground}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={handleExport}
-              style={[
-                styles.headerButton,
-                { backgroundColor: primary.DEFAULT },
-              ]}
-            >
-              <FontAwesome6
-                name="file-export"
-                size={16}
-                color={primary.foreground}
-              />
-            </TouchableOpacity>
-          </View>
+    <ThemedView
+      style={[styles.container, { backgroundColor: background }]}
+    >
+      <View style={styles.header}>
+        <ThemedText style={styles.headerTitle}>
+          {t("driver.title")}
+        </ThemedText>
+        <View style={styles.headerButtons}>
+          <TouchableOpacity
+            onPress={handleDatePicker}
+            style={[
+              styles.headerButton,
+              { backgroundColor: primary.DEFAULT },
+            ]}
+          >
+            <FontAwesome6
+              name="calendar-days"
+              size={16}
+              color={primary.foreground}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleExport}
+            style={[
+              styles.headerButton,
+              { backgroundColor: primary.DEFAULT },
+            ]}
+          >
+            <FontAwesome6
+              name="file-export"
+              size={16}
+              color={primary.foreground}
+            />
+          </TouchableOpacity>
         </View>
-        <HorizontalCalendar
-          selectedDate={dayjs(selectedDate).format("YYYY-MM-DD")}
-          onDateSelect={(dateStr) => {
-            const date = dayjs(dateStr).toDate();
-            setSelectedDate(date);
-            updateWeekDates(date);
-          }}
-        />
-      </>
+      </View>
+      <HorizontalCalendar
+        selectedDate={dayjs(selectedDate).format("YYYY-MM-DD")}
+        onDateSelect={(dateStr) => {
+          const date = dayjs(dateStr).toDate();
+          setSelectedDate(date);
+          updateWeekDates(date);
+        }}
+      />
       <ScrollView
         showsVerticalScrollIndicator={false}
         stickyHeaderHiddenOnScroll={false}
       >
-        <ComplianceAlert compliance={compliance} />
+        {/* <ComplianceAlert compliance={compliance} /> */}
 
         <ScrollView
           horizontal
@@ -301,7 +301,7 @@ export const DriverHours = () => {
           onAddPress={handleAddPress}
         />
       </ScrollView>
-    </View>
+    </ThemedView>
   );
 };
 
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingBottom: 8,
   },
   headerTitle: {
     fontSize: 24,
