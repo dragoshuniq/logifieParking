@@ -1,5 +1,4 @@
 import { ThemedText } from "@/components/ui/themed-text";
-import { ThemedView } from "@/components/ui/themed-view";
 import { ActivityFormPayload, ESheets } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { Activity, ActivityType } from "@/utils/driver-db";
@@ -48,7 +47,7 @@ const ActivityFormSheet = () => {
   const actionSheetRef = useRef<ActionSheetRef>(null);
 
   const [isManualEntry, setIsManualEntry] = useState(
-    !initialActivity?.startTime
+    initialActivity && !initialActivity?.startTime
   );
   const [activityType, setActivityType] = useState<ActivityType>(
     initialActivity?.type || "driving"
@@ -143,19 +142,6 @@ const ActivityFormSheet = () => {
     });
   };
 
-  const calculateDuration = (): number => {
-    if (isManualEntry) {
-      return parseFloat(duration) || 0;
-    }
-    if (startTime && endTime) {
-      const start = dayjs(`${date} ${startTime}`);
-      const end = dayjs(`${date} ${endTime}`);
-      const diff = end.diff(start, "minute");
-      return Math.max(0, diff / 60);
-    }
-    return 0;
-  };
-
   const handleSave = () => {
     if (!date || !onSave) return;
 
@@ -228,203 +214,199 @@ const ActivityFormSheet = () => {
         styles.container,
         { backgroundColor: content1.DEFAULT },
       ]}
+      gestureEnabled
+      closeOnPressBack
     >
-      <ThemedView
-        style={[
-          styles.content,
-          { backgroundColor: content1.DEFAULT },
-        ]}
+      <ThemedText style={styles.title}>
+        {initialActivity
+          ? t("driver.editActivity")
+          : t("driver.addActivity")}
+      </ThemedText>
+
+      <ScrollView
+        style={styles.form}
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled
       >
-        <ThemedText style={styles.title}>
-          {initialActivity
-            ? t("driver.editActivity")
-            : t("driver.addActivity")}
+        <ThemedText style={styles.label}>
+          {t("driver.activityType")}
         </ThemedText>
-
-        <ScrollView
-          style={styles.form}
-          showsVerticalScrollIndicator={false}
-        >
-          <ThemedText style={styles.label}>
-            {t("driver.activityType")}
-          </ThemedText>
-          <View style={styles.typeContainer}>
-            {activityTypes.map((item) => (
-              <TouchableOpacity
-                key={item.type}
-                onPress={() => setActivityType(item.type)}
-                style={[
-                  styles.typeButton,
-                  {
-                    backgroundColor:
-                      activityType === item.type
-                        ? primary.DEFAULT
-                        : content2.DEFAULT,
-                  },
-                ]}
-              >
-                <ThemedText
-                  style={{
-                    color:
-                      activityType === item.type
-                        ? primary.foreground
-                        : content2.foreground,
-                  }}
-                >
-                  {item.label}
-                </ThemedText>
-              </TouchableOpacity>
-            ))}
-          </View>
-
-          <View style={styles.entryModeContainer}>
+        <View style={styles.typeContainer}>
+          {activityTypes.map((item) => (
             <TouchableOpacity
-              onPress={() => setIsManualEntry(false)}
+              key={item.type}
+              onPress={() => setActivityType(item.type)}
               style={[
-                styles.entryModeButton,
+                styles.typeButton,
                 {
-                  backgroundColor: !isManualEntry
-                    ? primary.DEFAULT
-                    : content2.DEFAULT,
+                  backgroundColor:
+                    activityType === item.type
+                      ? primary.DEFAULT
+                      : content2.DEFAULT,
                 },
               ]}
             >
               <ThemedText
                 style={{
-                  color: !isManualEntry
-                    ? primary.foreground
-                    : content2.foreground,
+                  color:
+                    activityType === item.type
+                      ? primary.foreground
+                      : content2.foreground,
                 }}
               >
-                {t("driver.timeEntry")}
+                {item.label}
               </ThemedText>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => setIsManualEntry(true)}
-              style={[
-                styles.entryModeButton,
-                {
-                  backgroundColor: isManualEntry
-                    ? primary.DEFAULT
-                    : content2.DEFAULT,
-                },
-              ]}
-            >
-              <ThemedText
-                style={{
-                  color: isManualEntry
-                    ? primary.foreground
-                    : content2.foreground,
-                }}
-              >
-                {t("driver.manualEntry")}
-              </ThemedText>
-            </TouchableOpacity>
-          </View>
+          ))}
+        </View>
 
-          <ThemedText style={styles.label}>
-            {t("driver.startTime")}
-          </ThemedText>
+        <View style={styles.entryModeContainer}>
           <TouchableOpacity
-            onPress={handleStartTimePicker}
+            onPress={() => setIsManualEntry(false)}
             style={[
-              styles.input,
-              { backgroundColor: content2.DEFAULT },
+              styles.entryModeButton,
+              {
+                backgroundColor: !isManualEntry
+                  ? primary.DEFAULT
+                  : content2.DEFAULT,
+              },
             ]}
           >
             <ThemedText
               style={{
-                color: startTime ? text : "#999",
+                color: !isManualEntry
+                  ? primary.foreground
+                  : content2.foreground,
               }}
             >
-              {startTime || "HH:MM"}
+              {t("driver.timeEntry")}
             </ThemedText>
           </TouchableOpacity>
-
-          {isManualEntry ? (
-            <View>
-              <ThemedText style={styles.label}>
-                {t("driver.duration")}
-              </ThemedText>
-              <TextInput
-                style={[
-                  styles.input,
-                  { color: text, backgroundColor: content2.DEFAULT },
-                ]}
-                value={duration}
-                onChangeText={setDuration}
-                keyboardType="decimal-pad"
-                placeholder="0.0"
-                placeholderTextColor="#999"
-              />
-            </View>
-          ) : (
-            <View>
-              <ThemedText style={styles.label}>
-                {t("driver.endTime")}
-              </ThemedText>
-              <TouchableOpacity
-                onPress={handleEndTimePicker}
-                style={[
-                  styles.input,
-                  { backgroundColor: content2.DEFAULT },
-                ]}
-              >
-                <ThemedText
-                  style={{
-                    color: endTime ? text : "#999",
-                  }}
-                >
-                  {endTime || "HH:MM"}
-                </ThemedText>
-              </TouchableOpacity>
-            </View>
-          )}
-        </ScrollView>
-
-        <View style={styles.buttonContainer}>
           <TouchableOpacity
-            onPress={onCloseSheet}
+            onPress={() => setIsManualEntry(true)}
             style={[
-              styles.button,
-              { backgroundColor: content2.DEFAULT },
+              styles.entryModeButton,
+              {
+                backgroundColor: isManualEntry
+                  ? primary.DEFAULT
+                  : content2.DEFAULT,
+              },
             ]}
           >
-            <ThemedText style={{ color: content2.foreground }}>
-              {t("driver.cancel")}
-            </ThemedText>
-          </TouchableOpacity>
-
-          {initialActivity && onDelete && (
-            <TouchableOpacity
-              onPress={() => {
-                onDelete();
-                onCloseSheet();
+            <ThemedText
+              style={{
+                color: isManualEntry
+                  ? primary.foreground
+                  : content2.foreground,
               }}
-              style={[
-                styles.button,
-                { backgroundColor: danger.DEFAULT },
-              ]}
             >
-              <ThemedText style={{ color: danger.foreground }}>
-                {t("driver.delete")}
-              </ThemedText>
-            </TouchableOpacity>
-          )}
-
-          <TouchableOpacity
-            onPress={handleSave}
-            style={[
-              styles.button,
-              { backgroundColor: success.DEFAULT },
-            ]}
-          >
-            <ThemedText style={{ color: success.foreground }}>
-              {t("driver.save")}
+              {t("driver.manualEntry")}
             </ThemedText>
           </TouchableOpacity>
         </View>
-      </ThemedView>
+
+        <ThemedText style={styles.label}>
+          {t("driver.startTime")}
+        </ThemedText>
+        <TouchableOpacity
+          onPress={handleStartTimePicker}
+          style={[
+            styles.input,
+            { backgroundColor: content2.DEFAULT },
+          ]}
+        >
+          <ThemedText
+            style={{
+              color: startTime ? text : "#999",
+            }}
+          >
+            {startTime || "HH:MM"}
+          </ThemedText>
+        </TouchableOpacity>
+
+        {isManualEntry ? (
+          <View>
+            <ThemedText style={styles.label}>
+              {t("driver.duration")}
+            </ThemedText>
+            <TextInput
+              style={[
+                styles.input,
+                { color: text, backgroundColor: content2.DEFAULT },
+              ]}
+              value={duration}
+              onChangeText={setDuration}
+              keyboardType="decimal-pad"
+              placeholder="0.0"
+              placeholderTextColor="#999"
+            />
+          </View>
+        ) : (
+          <View>
+            <ThemedText style={styles.label}>
+              {t("driver.endTime")}
+            </ThemedText>
+            <TouchableOpacity
+              onPress={handleEndTimePicker}
+              style={[
+                styles.input,
+                { backgroundColor: content2.DEFAULT },
+              ]}
+            >
+              <ThemedText
+                style={{
+                  color: endTime ? text : "#999",
+                }}
+              >
+                {endTime || "HH:MM"}
+              </ThemedText>
+            </TouchableOpacity>
+          </View>
+        )}
+      </ScrollView>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={onCloseSheet}
+          style={[
+            styles.button,
+            { backgroundColor: content2.DEFAULT },
+          ]}
+        >
+          <ThemedText style={{ color: content2.foreground }}>
+            {t("driver.cancel")}
+          </ThemedText>
+        </TouchableOpacity>
+
+        {initialActivity && onDelete && (
+          <TouchableOpacity
+            onPress={() => {
+              onDelete();
+              onCloseSheet();
+            }}
+            style={[
+              styles.button,
+              { backgroundColor: danger.DEFAULT },
+            ]}
+          >
+            <ThemedText style={{ color: danger.foreground }}>
+              {t("driver.delete")}
+            </ThemedText>
+          </TouchableOpacity>
+        )}
+
+        <TouchableOpacity
+          onPress={handleSave}
+          style={[
+            styles.button,
+            { backgroundColor: success.DEFAULT },
+          ]}
+        >
+          <ThemedText style={{ color: success.foreground }}>
+            {t("driver.save")}
+          </ThemedText>
+        </TouchableOpacity>
+      </View>
     </ActionSheet>
   );
 };
@@ -433,12 +415,10 @@ export default ActivityFormSheet;
 
 const styles = StyleSheet.create({
   container: {
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-  },
-  content: {
-    padding: 20,
-    maxHeight: "85%",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingHorizontal: 20,
+    paddingTop: 20,
   },
   title: {
     fontSize: 20,
@@ -446,6 +426,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   form: {
+    flexGrow: 1,
     marginBottom: 20,
   },
   label: {
@@ -484,6 +465,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     gap: 8,
+    paddingBottom: 20,
   },
   button: {
     flex: 1,
