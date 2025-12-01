@@ -2,7 +2,7 @@ import { useThemedColors } from "@/hooks/use-themed-colors";
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerActions } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
@@ -17,7 +17,11 @@ export const CustomDrawerHeader = ({ title }: { title: string }) => {
   );
 };
 
-export const DrawerToggleButton = () => {
+export const DrawerToggleButton = ({
+  containerStyle,
+}: {
+  containerStyle?: StyleProp<ViewStyle>;
+}) => {
   const navigation = useNavigation();
   const { primary, secondary } = useThemedColors(
     "primary",
@@ -29,7 +33,11 @@ export const DrawerToggleButton = () => {
   return (
     <ThemedTouchableOpacity
       onPress={toggleDrawer}
-      style={[styles.button, { shadowColor: secondary.DEFAULT }]}
+      style={[
+        styles.button,
+        { shadowColor: secondary.DEFAULT },
+        containerStyle,
+      ]}
     >
       <Ionicons name="menu" size={30} color={primary.DEFAULT} />
     </ThemedTouchableOpacity>
