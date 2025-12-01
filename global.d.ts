@@ -37,7 +37,7 @@ declare module "react-native-actions-sheet" {
         onSave: (activity: Activity) => void;
         onDelete?: () => void;
         initialActivity?: Activity;
-        date: string;
+        selectedDate: Date;
       };
       returnValue?: undefined;
     };

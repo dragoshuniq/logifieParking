@@ -39,24 +39,29 @@ const ActivityFormSheet = () => {
       "text"
     );
 
-  const { onSave, onDelete, initialActivity, date } = payload || {
-    onSave: () => {},
-    date: "",
-  };
+  const { onSave, onDelete, initialActivity, selectedDate } =
+    payload || {
+      onSave: () => {},
+      selectedDate: new Date(),
+    };
 
   const actionSheetRef = useRef<ActionSheetRef>(null);
 
   const [isManualEntry, setIsManualEntry] = useState(
-    initialActivity && !initialActivity?.startTime
+    !initialActivity?.startDateTime
   );
   const [activityType, setActivityType] = useState<ActivityType>(
     initialActivity?.type || "driving"
   );
   const [startTime, setStartTime] = useState(
-    initialActivity?.startTime || ""
+    initialActivity
+      ? dayjs(initialActivity.startDateTime).format("HH:mm")
+      : ""
   );
   const [endTime, setEndTime] = useState(
-    initialActivity?.endTime || ""
+    initialActivity
+      ? dayjs(initialActivity.endDateTime).format("HH:mm")
+      : ""
   );
   const [duration, setDuration] = useState(
     initialActivity?.duration.toString() || ""
@@ -75,19 +80,26 @@ const ActivityFormSheet = () => {
 
   const handleStartTimePicker = () => {
     const currentTime = startTime
-      ? dayjs(`${date} ${startTime}`).toDate()
+      ? dayjs(selectedDate)
+          .hour(parseInt(startTime.split(":")[0]))
+          .minute(parseInt(startTime.split(":")[1]))
+          .toDate()
       : new Date();
 
     showTimePicker({
       value: currentTime,
       minuteInterval: 15,
-      onConfirm: (selectedDate) => {
-        const timeStr = dayjs(selectedDate).format("HH:mm");
+      onConfirm: (selectedTime) => {
+        const timeStr = dayjs(selectedTime).format("HH:mm");
         setStartTime(timeStr);
 
         if (!isManualEntry && endTime) {
-          const start = dayjs(`${date} ${timeStr}`);
-          const end = dayjs(`${date} ${endTime}`);
+          const start = dayjs(selectedDate)
+            .hour(parseInt(timeStr.split(":")[0]))
+            .minute(parseInt(timeStr.split(":")[1]));
+          const end = dayjs(selectedDate)
+            .hour(parseInt(endTime.split(":")[0]))
+            .minute(parseInt(endTime.split(":")[1]));
           if (end.isBefore(start) || end.isSame(start)) {
             setEndTime("");
             Alert.alert(
@@ -112,19 +124,29 @@ const ActivityFormSheet = () => {
       return;
     }
 
-    const startDate = dayjs(`${date} ${startTime}`).toDate();
+    const startDate = dayjs(selectedDate)
+      .hour(parseInt(startTime.split(":")[0]))
+      .minute(parseInt(startTime.split(":")[1]))
+      .toDate();
     const currentTime = endTime
-      ? dayjs(`${date} ${endTime}`).toDate()
-      : new Date(startDate.getTime() + 60 * 60 * 1000);
+      ? dayjs(selectedDate)
+          .hour(parseInt(endTime.split(":")[0]))
+          .minute(parseInt(endTime.split(":")[1]))
+          .toDate()
+      : dayjs(startDate).add(1, "hour").toDate();
 
     showTimePicker({
       value: currentTime,
       minimumDate: startDate,
       minuteInterval: 15,
-      onConfirm: (selectedDate) => {
-        const timeStr = dayjs(selectedDate).format("HH:mm");
-        const start = dayjs(`${date} ${startTime}`);
-        const end = dayjs(`${date} ${timeStr}`);
+      onConfirm: (selectedTime) => {
+        const timeStr = dayjs(selectedTime).format("HH:mm");
+        const start = dayjs(selectedDate)
+          .hour(parseInt(startTime.split(":")[0]))
+          .minute(parseInt(startTime.split(":")[1]));
+        const end = dayjs(selectedDate)
+          .hour(parseInt(timeStr.split(":")[0]))
+          .minute(parseInt(timeStr.split(":")[1]));
 
         if (end.isBefore(start) || end.isSame(start)) {
           Alert.alert(
@@ -143,10 +165,10 @@ const ActivityFormSheet = () => {
   };
 
   const handleSave = () => {
-    if (!date || !onSave) return;
+    if (!selectedDate || !onSave) return;
 
-    let finalStartTime = startTime;
-    let finalEndTime = endTime;
+    let startDateTime: dayjs.Dayjs;
+    let endDateTime: dayjs.Dayjs;
     let calculatedDuration = 0;
 
     if (isManualEntry) {
@@ -170,9 +192,12 @@ const ActivityFormSheet = () => {
       }
 
       calculatedDuration = durationNum;
-      const startDateTime = dayjs(`${date} ${startTime}`);
-      const endDateTime = startDateTime.add(durationNum, "hour");
-      finalEndTime = endDateTime.format("HH:mm");
+      startDateTime = dayjs(selectedDate)
+        .hour(parseInt(startTime.split(":")[0]))
+        .minute(parseInt(startTime.split(":")[1]))
+        .second(0)
+        .millisecond(0);
+      endDateTime = startDateTime.add(durationNum, "hour");
     } else {
       if (!startTime || !endTime) {
         Alert.alert(
@@ -185,21 +210,31 @@ const ActivityFormSheet = () => {
         return;
       }
 
-      const start = dayjs(`${date} ${startTime}`);
-      const end = dayjs(`${date} ${endTime}`);
-      const diff = end.diff(start, "minute");
-      calculatedDuration = Math.max(0, diff / 60);
+      startDateTime = dayjs(selectedDate)
+        .hour(parseInt(startTime.split(":")[0]))
+        .minute(parseInt(startTime.split(":")[1]))
+        .second(0)
+        .millisecond(0);
+      endDateTime = dayjs(selectedDate)
+        .hour(parseInt(endTime.split(":")[0]))
+        .minute(parseInt(endTime.split(":")[1]))
+        .second(0)
+        .millisecond(0);
+      calculatedDuration = endDateTime.diff(
+        startDateTime,
+        "hour",
+        true
+      );
     }
 
     if (calculatedDuration <= 0) return;
 
     const activity: Activity = {
       id: initialActivity?.id,
-      date,
-      type: activityType,
+      startDateTime: startDateTime.valueOf(),
+      endDateTime: endDateTime.valueOf(),
       duration: calculatedDuration,
-      startTime: finalStartTime,
-      endTime: finalEndTime,
+      type: activityType,
     };
 
     onSave(activity);

@@ -50,7 +50,7 @@ export const Charts = ({ weeklyStats }: ChartsProps) => {
 
   const barData = weeklyStats.dailyStats.map((day) => ({
     value: day.drivingHours + day.workHours,
-    label: dayjs(day.date).format("ddd"),
+    label: dayjs(day.date).format("dd"),
     frontColor: primary.DEFAULT,
     topLabelComponent: () => (
       <ThemedText style={{ fontSize: 10, marginBottom: 2 }}>

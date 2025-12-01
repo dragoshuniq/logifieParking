@@ -47,10 +47,8 @@ export const DriverHours = () => {
     "background"
   );
 
-  const [selectedDate, setSelectedDate] = useState(
-    dayjs().format("YYYY-MM-DD")
-  );
-  const [weekDates, setWeekDates] = useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [weekDates, setWeekDates] = useState<Date[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [weekActivities, setWeekActivities] = useState<Activity[]>(
     []
@@ -59,11 +57,11 @@ export const DriverHours = () => {
     Activity[]
   >([]);
 
-  const updateWeekDates = useCallback((date: string) => {
+  const updateWeekDates = useCallback((date: Date) => {
     const current = dayjs(date);
     const startOfWeek = current.startOf("isoWeek");
     const dates = Array.from({ length: 7 }, (_, i) =>
-      startOfWeek.add(i, "day").format("YYYY-MM-DD")
+      startOfWeek.add(i, "day").toDate()
     );
     setWeekDates(dates);
   }, []);
@@ -73,10 +71,8 @@ export const DriverHours = () => {
     setActivities(dayActivities);
 
     const current = dayjs(selectedDate);
-    const startOfWeek = current
-      .startOf("isoWeek")
-      .format("YYYY-MM-DD");
-    const endOfWeek = current.endOf("isoWeek").format("YYYY-MM-DD");
+    const startOfWeek = current.startOf("isoWeek").toDate();
+    const endOfWeek = current.endOf("isoWeek").toDate();
     const weekActs = await getActivitiesByDateRange(
       startOfWeek,
       endOfWeek
@@ -86,10 +82,8 @@ export const DriverHours = () => {
     const startOfFortnight = current
       .subtract(14, "day")
       .startOf("isoWeek")
-      .format("YYYY-MM-DD");
-    const endOfFortnight = current
-      .endOf("isoWeek")
-      .format("YYYY-MM-DD");
+      .toDate();
+    const endOfFortnight = current.endOf("isoWeek").toDate();
     const fortnightActs = await getActivitiesByDateRange(
       startOfFortnight,
       endOfFortnight
@@ -122,7 +116,7 @@ export const DriverHours = () => {
   const handleActivityPress = (activity: Activity) => {
     showActivityForm({
       initialActivity: activity,
-      date: selectedDate,
+      selectedDate,
       onSave: handleSaveActivity,
       onDelete: async () => {
         if (!activity.id) return;
@@ -138,7 +132,7 @@ export const DriverHours = () => {
 
   const handleAddPress = () => {
     showActivityForm({
-      date: selectedDate,
+      selectedDate,
       onSave: handleSaveActivity,
     });
   };
@@ -181,7 +175,7 @@ export const DriverHours = () => {
     Array.from({ length: 14 }, (_, i) =>
       dayjs(selectedDate)
         .subtract(14 - i, "day")
-        .format("YYYY-MM-DD")
+        .toDate()
     )
   );
 
@@ -227,12 +221,13 @@ export const DriverHours = () => {
           </TouchableOpacity>
         </View>
         <HorizontalCalendar
-          selectedDate={selectedDate}
-          onDateSelect={(date) => {
+          selectedDate={dayjs(selectedDate).format("YYYY-MM-DD")}
+          onDateSelect={(dateStr) => {
+            const date = dayjs(dateStr).toDate();
             setSelectedDate(date);
             updateWeekDates(date);
           }}
-          weekDates={weekDates}
+          weekDates={weekDates.map(d => dayjs(d).format("YYYY-MM-DD"))}
         />
       </>
       <ScrollView

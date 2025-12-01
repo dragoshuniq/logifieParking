@@ -3,6 +3,7 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { Activity } from "@/utils/driver-db";
 import { FontAwesome6 } from "@expo/vector-icons";
+import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -126,11 +127,8 @@ export const ActivityList = ({
                 </View>
                 <View style={styles.activityDetails}>
                   <ThemedText style={styles.activityType}>
-                    {item.startTime && item.endTime
-                      ? `${formatTime(item.startTime)} - ${formatTime(
-                          item.endTime
-                        )}`
-                      : `${item.duration.toFixed(1)}h`}
+                    {formatTime(dayjs(item.startDateTime).format("HH:mm"))} -{" "}
+                    {formatTime(dayjs(item.endDateTime).format("HH:mm"))}
                   </ThemedText>
                   <ThemedText style={styles.activityTime}>
                     {t(`driver.${item.type}`)} •{" "}

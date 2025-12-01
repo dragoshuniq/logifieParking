@@ -21,5 +21,5 @@ export interface ActivityFormPayload {
   onSave: (activity: Activity) => void;
   onDelete?: () => void;
   initialActivity?: Activity;
-  date: string;
+  selectedDate: Date;
 }

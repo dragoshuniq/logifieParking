@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { Activity, ActivityType } from './driver-db';
 
 export interface ComplianceStatus {
@@ -7,7 +8,7 @@ export interface ComplianceStatus {
 }
 
 export interface DailyStats {
-  date: string;
+  date: Date;
   totalHours: number;
   drivingHours: number;
   workHours: number;
@@ -23,8 +24,13 @@ export interface WeeklyStats {
   dailyStats: DailyStats[];
 }
 
-export const calculateDailyStats = (activities: Activity[], date: string): DailyStats => {
-  const dayActivities = activities.filter(a => a.date === date);
+export const calculateDailyStats = (activities: Activity[], date: Date): DailyStats => {
+  const startOfDay = dayjs(date).startOf('day').valueOf();
+  const endOfDay = dayjs(date).endOf('day').valueOf();
+  
+  const dayActivities = activities.filter(
+    a => a.startDateTime >= startOfDay && a.startDateTime <= endOfDay
+  );
   
   const stats: DailyStats = {
     date,
@@ -57,7 +63,7 @@ export const calculateDailyStats = (activities: Activity[], date: string): Daily
   return stats;
 };
 
-export const calculateWeeklyStats = (activities: Activity[], dates: string[]): WeeklyStats => {
+export const calculateWeeklyStats = (activities: Activity[], dates: Date[]): WeeklyStats => {
   const dailyStats = dates.map(date => calculateDailyStats(activities, date));
   
   const stats: WeeklyStats = {

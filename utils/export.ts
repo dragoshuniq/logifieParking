@@ -4,13 +4,17 @@ import { Activity } from './driver-db';
 
 export const exportToCSV = async (activities: Activity[]): Promise<void> => {
   const headers = ['Date', 'Start Time', 'End Time', 'Duration (hours)', 'Activity Type'];
-  const rows = activities.map(activity => [
-    activity.date,
-    activity.startTime || 'N/A',
-    activity.endTime || 'N/A',
-    activity.duration.toFixed(2),
-    activity.type,
-  ]);
+  const rows = activities.map(activity => {
+    const startDate = new Date(activity.startDateTime);
+    const endDate = new Date(activity.endDateTime);
+    return [
+      startDate.toLocaleDateString(),
+      startDate.toLocaleTimeString(),
+      endDate.toLocaleTimeString(),
+      activity.duration.toFixed(2),
+      activity.type,
+    ];
+  });
   
   const csvContent = [
     headers.join(','),
@@ -37,13 +41,17 @@ export const exportToXLS = async (activities: Activity[]): Promise<void> => {
   const xlsFooter = '</Workbook>';
   
   const headers = ['Date', 'Start Time', 'End Time', 'Duration (hours)', 'Activity Type'];
-  const rows = activities.map(activity => [
-    activity.date,
-    activity.startTime || 'N/A',
-    activity.endTime || 'N/A',
-    activity.duration.toFixed(2),
-    activity.type,
-  ]);
+  const rows = activities.map(activity => {
+    const startDate = new Date(activity.startDateTime);
+    const endDate = new Date(activity.endDateTime);
+    return [
+      startDate.toLocaleDateString(),
+      startDate.toLocaleTimeString(),
+      endDate.toLocaleTimeString(),
+      activity.duration.toFixed(2),
+      activity.type,
+    ];
+  });
   
   const worksheet = `
     <Worksheet ss:Name="Driver Hours">
