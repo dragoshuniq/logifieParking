@@ -1,11 +1,9 @@
-import {
-  ActivityList,
-  Charts,
-  ComplianceAlert,
-  HorizontalCalendar,
-  showActivityForm,
-  StatsCard,
-} from "@/components/driver";
+import { ActivityList } from "@/components/driver/activity-list";
+import { showActivityForm } from "@/components/driver/activity-form";
+import { Charts } from "@/components/driver/charts";
+import { ComplianceAlert } from "@/components/driver/compliance-alert";
+import { HorizontalCalendar } from "@/components/driver/horizontal-calendar";
+import { StatsCard } from "@/components/driver/stats-card";
 import { getComplianceLevel } from "@/components/driver/utils";
 import { ThemedText } from "@/components/ui/themed-text";
 import { useThemedColors } from "@/hooks/use-themed-colors";
@@ -227,7 +225,6 @@ export const DriverHours = () => {
             setSelectedDate(date);
             updateWeekDates(date);
           }}
-          weekDates={weekDates.map(d => dayjs(d).format("YYYY-MM-DD"))}
         />
       </>
       <ScrollView

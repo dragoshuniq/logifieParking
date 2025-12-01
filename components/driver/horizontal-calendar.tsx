@@ -1,80 +1,65 @@
-import { useThemedColors } from "@/hooks/use-themed-colors";
-import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
-import dayjs from "dayjs";
-import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { useThemedColors } from "@/hooks/use-themed-colors";
+import { useMemo } from "react";
+import { StyleSheet, View } from "react-native";
+import {
+  CalendarProvider,
+  WeekCalendar,
+} from "react-native-calendars";
 
-interface HorizontalCalendarProps {
+type Props = {
   selectedDate: string;
   onDateSelect: (date: string) => void;
-  weekDates: string[];
-}
+};
 
 export const HorizontalCalendar = ({
   selectedDate,
   onDateSelect,
-  weekDates,
-}: HorizontalCalendarProps) => {
-  const { primary, content2, content3 } = useThemedColors("primary", "content2", "content3");
+}: Props) => {
+  const { primary, content2, content3, background } = useThemedColors(
+    "primary",
+    "content2",
+    "content3",
+    "background"
+  );
+
+  const calendarTheme = useMemo(
+    () => ({
+      backgroundColor: background,
+      calendarBackground: background,
+      textSectionTitleColor: content3.foreground,
+      dayTextColor: content2.foreground,
+      todayTextColor: primary.DEFAULT,
+      monthTextColor: content2.foreground,
+      textDisabledColor: content3.foreground,
+      selectedDayBackgroundColor: primary.DEFAULT,
+      selectedDayTextColor: primary.foreground,
+      textDayFontSize: 16,
+      textMonthFontSize: 12,
+      textDayHeaderFontSize: 12,
+      textDayFontWeight: "600" as const,
+      textDayHeaderFontWeight: "600" as const,
+    }),
+    [primary, content2, content3, background]
+  );
 
   return (
     <ThemedView style={styles.container}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
-      >
-        {weekDates.map((date) => {
-          const isSelected = date === selectedDate;
-          const isToday = date === dayjs().format("YYYY-MM-DD");
-          const day = dayjs(date);
-
-          return (
-            <TouchableOpacity
-              key={date}
-              onPress={() => onDateSelect(date)}
-              style={[
-                styles.dateItem,
-                {
-                  backgroundColor: isSelected ? primary.DEFAULT : content2.DEFAULT,
-                  borderColor: isToday ? primary.DEFAULT : "transparent",
-                },
-              ]}
-            >
-              <ThemedText
-                style={[
-                  styles.dayName,
-                  {
-                    color: isSelected ? primary.foreground : content2.foreground,
-                  },
-                ]}
-              >
-                {day.format("ddd")}
-              </ThemedText>
-              <ThemedText
-                style={[
-                  styles.dayNumber,
-                  {
-                    color: isSelected ? primary.foreground : content2.foreground,
-                  },
-                ]}
-              >
-                {day.format("D")}
-              </ThemedText>
-              <ThemedText
-                style={[
-                  styles.monthName,
-                  {
-                    color: isSelected ? primary.foreground : content3.foreground,
-                  },
-                ]}
-              >
-                {day.format("MMM")}
-              </ThemedText>
-            </TouchableOpacity>
-          );
-        })}
-      </ScrollView>
+      <View style={styles.calendarWrapper}>
+        <CalendarProvider
+          key={background}
+          date={selectedDate}
+          onDateChanged={onDateSelect}
+        >
+          <WeekCalendar
+            allowShadow
+            current={selectedDate}
+            onDayPress={(day) => onDateSelect(day.dateString)}
+            theme={calendarTheme}
+            style={styles.calendar}
+          />
+        </CalendarProvider>
+      </View>
     </ThemedView>
   );
 };
@@ -83,31 +68,11 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 8,
   },
-  scrollContent: {
-    paddingHorizontal: 16,
-    gap: 8,
+  calendarWrapper: {
+    height: 120,
+    width: "100%",
   },
-  dateItem: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    alignItems: "center",
-    minWidth: 70,
-    borderWidth: 2,
-  },
-  dayName: {
-    fontSize: 12,
-    fontWeight: "600",
-    textTransform: "uppercase",
-  },
-  dayNumber: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginVertical: 4,
-  },
-  monthName: {
-    fontSize: 10,
-    textTransform: "uppercase",
+  calendar: {
+    paddingHorizontal: 8,
   },
 });
-
