@@ -19,6 +19,7 @@ export const DRAWER_LINKS: DrawerLinkConfig[] = [
     icon: "home-outline",
     translationKey: "drawer.home",
     urlKey: "Home",
+    highlighted: true,
   },
   {
     id: "contact",
@@ -31,7 +32,6 @@ export const DRAWER_LINKS: DrawerLinkConfig[] = [
     icon: "calculator-outline",
     translationKey: "drawer.getQuote",
     urlKey: "GetQuote",
-    highlighted: true,
   },
   {
     id: "termsAndConditions",

@@ -47,7 +47,9 @@ export default function RootLayout() {
               <Drawer drawerContent={() => <CustomDrawerContent />}>
                 <Drawer.Screen
                   name="(tabs)"
-                  options={{ headerShown: false }}
+                  options={{
+                    headerShown: false,
+                  }}
                 />
               </Drawer>
             </SafeAreaProvider>

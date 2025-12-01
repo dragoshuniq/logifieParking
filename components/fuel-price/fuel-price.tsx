@@ -11,8 +11,8 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
 import { ThemedText } from "../ui/themed-text";
+import { ThemedView } from "../ui/themed-view";
 import { FuelPriceCard } from "./fuel-price-card";
 import { showFuelPriceFilters, SortType } from "./fuel-price-filters";
 import { FuelPriceHeader } from "./fuel-price-header";
@@ -104,7 +104,7 @@ export const FuelPrice = () => {
   }, [data, searchQuery, sortType]);
 
   return (
-    <ThemedSafeAreaView style={styles.container}>
+    <ThemedView style={styles.container}>
       <FlatList
         data={countries}
         keyExtractor={(item) => item.countryCode}
@@ -119,7 +119,7 @@ export const FuelPrice = () => {
           />
         }
       />
-    </ThemedSafeAreaView>
+    </ThemedView>
   );
 };
 

@@ -1,0 +1,61 @@
+import { useThemedColors } from "@/hooks/use-themed-colors";
+import { Ionicons } from "@expo/vector-icons";
+import { DrawerActions } from "@react-navigation/native";
+import { useNavigation } from "expo-router";
+import { StyleSheet, View } from "react-native";
+import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
+import { ThemedText } from "../ui/themed-text";
+import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
+
+export const CustomDrawerHeader = ({ title }: { title: string }) => {
+  return (
+    <ThemedSafeAreaView style={styles.container}>
+      <DrawerToggleButton />
+      <ThemedText style={styles.title}>{title}</ThemedText>
+      <View style={{ width: 40 }} />
+    </ThemedSafeAreaView>
+  );
+};
+
+export const DrawerToggleButton = () => {
+  const navigation = useNavigation();
+  const { primary, secondary } = useThemedColors(
+    "primary",
+    "secondary"
+  );
+  const toggleDrawer = () => {
+    navigation.dispatch(DrawerActions.toggleDrawer());
+  };
+  return (
+    <ThemedTouchableOpacity
+      onPress={toggleDrawer}
+      style={[styles.button, { shadowColor: secondary.DEFAULT }]}
+    >
+      <Ionicons name="menu" size={30} color={primary.DEFAULT} />
+    </ThemedTouchableOpacity>
+  );
+};
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    justifyContent: "space-between",
+  },
+  button: {
+    borderRadius: 12,
+    padding: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    alignSelf: "center",
+    textAlign: "center",
+    flex: 1,
+  },
+});

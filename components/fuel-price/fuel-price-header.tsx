@@ -27,7 +27,6 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
   if (!data) return null;
   return (
     <ThemedView style={styles.header}>
-      <ThemedText style={styles.title}>Fuel Prices</ThemedText>
       <ThemedText style={styles.date}>
         Updated: {new Date(data.date).toLocaleDateString()}
       </ThemedText>
@@ -97,14 +96,8 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 8,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 4,
-  },
   date: {
-    fontSize: 14,
-    opacity: 0.7,
+    fontSize: 16,
     marginBottom: 16,
   },
   searchContainer: {
