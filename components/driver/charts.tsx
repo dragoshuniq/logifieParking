@@ -1,11 +1,11 @@
-import { useThemedColors } from "@/hooks/use-themed-colors";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
-import { DailyStats, WeeklyStats } from "@/utils/compliance";
+import { useThemedColors } from "@/hooks/use-themed-colors";
+import { WeeklyStats } from "@/utils/compliance";
 import dayjs from "dayjs";
-import { BarChart, PieChart } from "react-native-gifted-charts";
 import { useTranslation } from "react-i18next";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { BarChart, PieChart } from "react-native-gifted-charts";
 
 interface ChartsProps {
   weeklyStats: WeeklyStats;
@@ -13,13 +13,14 @@ interface ChartsProps {
 
 export const Charts = ({ weeklyStats }: ChartsProps) => {
   const { t } = useTranslation();
-  const { content2, primary, warning, success, text } = useThemedColors(
-    "content2",
-    "primary",
-    "warning",
-    "success",
-    "text"
-  );
+  const { content2, primary, warning, success, text } =
+    useThemedColors(
+      "content2",
+      "primary",
+      "warning",
+      "success",
+      "text"
+    );
 
   const pieData = [
     {
@@ -28,9 +29,12 @@ export const Charts = ({ weeklyStats }: ChartsProps) => {
       text: `${weeklyStats.totalDrivingHours.toFixed(1)}h`,
     },
     {
-      value: weeklyStats.totalWorkHours - weeklyStats.totalDrivingHours,
+      value:
+        weeklyStats.totalWorkHours - weeklyStats.totalDrivingHours,
       color: warning.DEFAULT,
-      text: `${(weeklyStats.totalWorkHours - weeklyStats.totalDrivingHours).toFixed(1)}h`,
+      text: `${(
+        weeklyStats.totalWorkHours - weeklyStats.totalDrivingHours
+      ).toFixed(1)}h`,
     },
     {
       value: weeklyStats.totalBreakHours,
@@ -66,16 +70,28 @@ export const Charts = ({ weeklyStats }: ChartsProps) => {
     { label: t("driver.rest"), color: "#6366f1" },
   ];
 
-  const totalHours = weeklyStats.totalWorkHours + weeklyStats.totalBreakHours + weeklyStats.totalRestHours;
+  const totalHours =
+    weeklyStats.totalWorkHours +
+    weeklyStats.totalBreakHours +
+    weeklyStats.totalRestHours;
 
   return (
     <ThemedView style={styles.container}>
-      <ThemedText style={styles.sectionTitle}>Weekly Overview</ThemedText>
+      <ThemedText style={styles.sectionTitle}>
+        Weekly Overview
+      </ThemedText>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView showsHorizontalScrollIndicator={false}>
         <View style={styles.chartsContainer}>
-          <ThemedView style={[styles.chartContainer, { backgroundColor: content2.DEFAULT }]}>
-            <ThemedText style={styles.chartTitle}>Activity Distribution</ThemedText>
+          <ThemedView
+            style={[
+              styles.chartContainer,
+              { backgroundColor: content2.DEFAULT },
+            ]}
+          >
+            <ThemedText style={styles.chartTitle}>
+              Activity Distribution
+            </ThemedText>
             {totalHours > 0 ? (
               <View style={styles.pieChartWrapper}>
                 <PieChart
@@ -88,17 +104,27 @@ export const Charts = ({ weeklyStats }: ChartsProps) => {
                       <ThemedText style={styles.centerLabelValue}>
                         {totalHours.toFixed(1)}
                       </ThemedText>
-                      <ThemedText style={styles.centerLabelText}>hours</ThemedText>
+                      <ThemedText style={styles.centerLabelText}>
+                        hours
+                      </ThemedText>
                     </View>
                   )}
                 />
                 <View style={styles.legend}>
                   {legendData.map((item, index) => {
-                    const dataItem = pieData.find((d) => d.color === item.color);
-                    if (!dataItem || dataItem.value === 0) return null;
+                    const dataItem = pieData.find(
+                      (d) => d.color === item.color
+                    );
+                    if (!dataItem || dataItem.value === 0)
+                      return null;
                     return (
                       <View key={index} style={styles.legendItem}>
-                        <View style={[styles.legendColor, { backgroundColor: item.color }]} />
+                        <View
+                          style={[
+                            styles.legendColor,
+                            { backgroundColor: item.color },
+                          ]}
+                        />
                         <ThemedText style={styles.legendText}>
                           {item.label}: {dataItem.text}
                         </ThemedText>
@@ -109,13 +135,22 @@ export const Charts = ({ weeklyStats }: ChartsProps) => {
               </View>
             ) : (
               <View style={styles.emptyChart}>
-                <ThemedText style={styles.emptyText}>No data</ThemedText>
+                <ThemedText style={styles.emptyText}>
+                  No data
+                </ThemedText>
               </View>
             )}
           </ThemedView>
 
-          <ThemedView style={[styles.chartContainer, { backgroundColor: content2.DEFAULT }]}>
-            <ThemedText style={styles.chartTitle}>Daily Work Hours</ThemedText>
+          <ThemedView
+            style={[
+              styles.chartContainer,
+              { backgroundColor: content2.DEFAULT },
+            ]}
+          >
+            <ThemedText style={styles.chartTitle}>
+              Daily Work Hours
+            </ThemedText>
             {barData.some((d) => d.value > 0) ? (
               <View style={styles.barChartWrapper}>
                 <BarChart
@@ -129,20 +164,26 @@ export const Charts = ({ weeklyStats }: ChartsProps) => {
                   hideRules
                   xAxisThickness={1}
                   yAxisThickness={1}
-                  xAxisColor={text.DEFAULT}
-                  yAxisColor={text.DEFAULT}
-                  yAxisTextStyle={{ color: text.DEFAULT, fontSize: 10 }}
-                  xAxisLabelTextStyle={{ color: text.DEFAULT, fontSize: 10 }}
+                  xAxisColor={text}
+                  yAxisColor={text}
+                  yAxisTextStyle={{
+                    color: text,
+                    fontSize: 10,
+                  }}
+                  xAxisLabelTextStyle={{
+                    color: text,
+                    fontSize: 10,
+                  }}
                   noOfSections={4}
                   maxValue={16}
                   yAxisLabelSuffix="h"
-                  showGradient
-                  gradientColor={primary[600]}
                 />
               </View>
             ) : (
               <View style={styles.emptyChart}>
-                <ThemedText style={styles.emptyText}>No data</ThemedText>
+                <ThemedText style={styles.emptyText}>
+                  No data
+                </ThemedText>
               </View>
             )}
           </ThemedView>
@@ -220,4 +261,3 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-

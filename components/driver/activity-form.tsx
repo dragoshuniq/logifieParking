@@ -28,7 +28,7 @@ export const showActivityForm = (payload: ActivityFormPayload) => {
 };
 
 const ActivityFormSheet = () => {
-  const payload = useSheetPayload("ActivityForm");
+  const payload = useSheetPayload(ESheets.ActivityForm);
   const { t } = useTranslation();
   const { content1, content2, primary, success, danger, text } =
     useThemedColors(
@@ -159,6 +159,10 @@ const ActivityFormSheet = () => {
   const handleSave = () => {
     if (!date || !onSave) return;
 
+    let finalStartTime = startTime;
+    let finalEndTime = endTime;
+    let calculatedDuration = 0;
+
     if (isManualEntry) {
       if (!startTime) {
         Alert.alert(
@@ -178,6 +182,11 @@ const ActivityFormSheet = () => {
         );
         return;
       }
+
+      calculatedDuration = durationNum;
+      const startDateTime = dayjs(`${date} ${startTime}`);
+      const endDateTime = startDateTime.add(durationNum, "hour");
+      finalEndTime = endDateTime.format("HH:mm");
     } else {
       if (!startTime || !endTime) {
         Alert.alert(
@@ -189,9 +198,13 @@ const ActivityFormSheet = () => {
         );
         return;
       }
+
+      const start = dayjs(`${date} ${startTime}`);
+      const end = dayjs(`${date} ${endTime}`);
+      const diff = end.diff(start, "minute");
+      calculatedDuration = Math.max(0, diff / 60);
     }
 
-    const calculatedDuration = calculateDuration();
     if (calculatedDuration <= 0) return;
 
     const activity: Activity = {
@@ -199,8 +212,8 @@ const ActivityFormSheet = () => {
       date,
       type: activityType,
       duration: calculatedDuration,
-      startTime: startTime || undefined,
-      endTime: isManualEntry ? undefined : endTime,
+      startTime: finalStartTime,
+      endTime: finalEndTime,
     };
 
     onSave(activity);
@@ -420,8 +433,8 @@ export default ActivityFormSheet;
 
 const styles = StyleSheet.create({
   container: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
   },
   content: {
     padding: 20,

@@ -1,20 +1,18 @@
-import { ThemedSafeAreaView } from "@/components/ui/themed-safe-area-view";
-import { ThemedText } from "@/components/ui/themed-text";
-import { ThemedView } from "@/components/ui/themed-view";
 import {
-  showActivityForm,
   ActivityList,
   Charts,
   ComplianceAlert,
   HorizontalCalendar,
+  showActivityForm,
   StatsCard,
 } from "@/components/driver";
+import { ThemedSafeAreaView } from "@/components/ui/themed-safe-area-view";
+import { ThemedText } from "@/components/ui/themed-text";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
   calculateDailyStats,
   calculateWeeklyStats,
   checkCompliance,
-  getComplianceColor,
 } from "@/utils/compliance";
 import {
   Activity,
@@ -31,56 +29,82 @@ import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 dayjs.extend(isoWeek);
 
 export default function DriverScreen() {
   const { t } = useTranslation();
-  const { primary, content2, background } = useThemedColors("primary", "content2", "background");
+  const { primary, background } = useThemedColors(
+    "primary",
+    "content2",
+    "background"
+  );
 
-  const [selectedDate, setSelectedDate] = useState(dayjs().format("YYYY-MM-DD"));
+  const [selectedDate, setSelectedDate] = useState(
+    dayjs().format("YYYY-MM-DD")
+  );
   const [weekDates, setWeekDates] = useState<string[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [weekActivities, setWeekActivities] = useState<Activity[]>([]);
-  const [fortnightActivities, setFortnightActivities] = useState<Activity[]>([]);
+  const [weekActivities, setWeekActivities] = useState<Activity[]>(
+    []
+  );
+  const [fortnightActivities, setFortnightActivities] = useState<
+    Activity[]
+  >([]);
 
-  useEffect(() => {
-    initDatabase();
-    updateWeekDates(selectedDate);
-  }, []);
-
-  useEffect(() => {
-    loadActivities();
-  }, [selectedDate]);
-
-  const updateWeekDates = (date: string) => {
+  const updateWeekDates = useCallback((date: string) => {
     const current = dayjs(date);
     const startOfWeek = current.startOf("isoWeek");
     const dates = Array.from({ length: 7 }, (_, i) =>
       startOfWeek.add(i, "day").format("YYYY-MM-DD")
     );
     setWeekDates(dates);
-  };
+  }, []);
 
-  const loadActivities = async () => {
+  const loadActivities = useCallback(async () => {
     const dayActivities = await getActivitiesByDate(selectedDate);
     setActivities(dayActivities);
 
     const current = dayjs(selectedDate);
-    const startOfWeek = current.startOf("isoWeek").format("YYYY-MM-DD");
+    const startOfWeek = current
+      .startOf("isoWeek")
+      .format("YYYY-MM-DD");
     const endOfWeek = current.endOf("isoWeek").format("YYYY-MM-DD");
-    const weekActs = await getActivitiesByDateRange(startOfWeek, endOfWeek);
+    const weekActs = await getActivitiesByDateRange(
+      startOfWeek,
+      endOfWeek
+    );
     setWeekActivities(weekActs);
 
     const startOfFortnight = current
       .subtract(14, "day")
       .startOf("isoWeek")
       .format("YYYY-MM-DD");
-    const endOfFortnight = current.endOf("isoWeek").format("YYYY-MM-DD");
-    const fortnightActs = await getActivitiesByDateRange(startOfFortnight, endOfFortnight);
+    const endOfFortnight = current
+      .endOf("isoWeek")
+      .format("YYYY-MM-DD");
+    const fortnightActs = await getActivitiesByDateRange(
+      startOfFortnight,
+      endOfFortnight
+    );
     setFortnightActivities(fortnightActs);
-  };
+  }, [selectedDate]);
+
+  useEffect(() => {
+    initDatabase();
+    updateWeekDates(selectedDate);
+  }, [selectedDate, updateWeekDates]);
+
+  useEffect(() => {
+    loadActivities();
+  }, [loadActivities]);
 
   const handleSaveActivity = async (activity: Activity) => {
     try {
@@ -90,7 +114,7 @@ export default function DriverScreen() {
         await addActivity(activity);
       }
       loadActivities();
-    } catch (error) {
+    } catch {
       Alert.alert("Error", "Failed to save activity");
     }
   };
@@ -105,7 +129,7 @@ export default function DriverScreen() {
         try {
           await deleteActivity(activity.id);
           loadActivities();
-        } catch (error) {
+        } catch {
           Alert.alert("Error", "Failed to delete activity");
         }
       },
@@ -131,7 +155,7 @@ export default function DriverScreen() {
           try {
             const allActivities = [...fortnightActivities];
             await exportToCSV(allActivities);
-          } catch (error) {
+          } catch {
             Alert.alert("Error", "Failed to export CSV");
           }
         },
@@ -155,7 +179,9 @@ export default function DriverScreen() {
   const fortnightStats = calculateWeeklyStats(
     fortnightActivities,
     Array.from({ length: 14 }, (_, i) =>
-      dayjs(selectedDate).subtract(14 - i, "day").format("YYYY-MM-DD")
+      dayjs(selectedDate)
+        .subtract(14 - i, "day")
+        .format("YYYY-MM-DD")
     )
   );
 
@@ -183,14 +209,25 @@ export default function DriverScreen() {
       : "compliant";
 
   return (
-    <ThemedSafeAreaView style={{ flex: 1, backgroundColor: background.DEFAULT }}>
+    <ThemedSafeAreaView
+      style={{ flex: 1, backgroundColor: background.DEFAULT }}
+    >
       <View style={styles.header}>
-        <ThemedText style={styles.headerTitle}>{t("driver.title")}</ThemedText>
+        <ThemedText style={styles.headerTitle}>
+          {t("driver.title")}
+        </ThemedText>
         <TouchableOpacity
           onPress={handleExport}
-          style={[styles.exportButton, { backgroundColor: primary.DEFAULT }]}
+          style={[
+            styles.exportButton,
+            { backgroundColor: primary.DEFAULT },
+          ]}
         >
-          <FontAwesome6 name="file-export" size={16} color={primary.foreground} />
+          <FontAwesome6
+            name="file-export"
+            size={16}
+            color={primary.foreground}
+          />
         </TouchableOpacity>
       </View>
 
@@ -215,7 +252,9 @@ export default function DriverScreen() {
             title={t("driver.dailyHours")}
             value={dailyStats.totalHours.toFixed(1)}
             maxValue="13"
-            level={dailyStats.totalHours > 13 ? "violation" : "compliant"}
+            level={
+              dailyStats.totalHours > 13 ? "violation" : "compliant"
+            }
           />
           <StatsCard
             title={t("driver.weeklyHours")}
@@ -277,4 +316,3 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 });
-

@@ -1,7 +1,13 @@
-"use client";
-
 import { TIMEZONE } from "@/constants/app.const";
+import dayjs from "dayjs";
+import "dayjs/locale/de";
+import "dayjs/locale/en";
+import duration from "dayjs/plugin/duration";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 import { useTranslation } from "react-i18next";
+
+dayjs.extend(duration);
+dayjs.extend(localizedFormat);
 
 export const useFormatDate = () => {
   const {
@@ -40,4 +46,48 @@ export const useFormatCurrency = () => {
   };
 
   return { formatCurrency };
+};
+
+export const useFormatTime = () => {
+  const {
+    i18n: { language },
+  } = useTranslation();
+
+  const formatTime = (time: string) => {
+    const [hours, minutes] = time.split(":");
+    const date = new Date();
+    date.setHours(parseInt(hours, 10));
+    date.setMinutes(parseInt(minutes, 10));
+
+    return new Intl.DateTimeFormat(language, {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(date);
+  };
+
+  return { formatTime };
+};
+
+export const useFormatDuration = () => {
+  const {
+    i18n: { language },
+  } = useTranslation();
+
+  const formatDuration = (hours: number) => {
+    dayjs.locale(language);
+    const dur = dayjs.duration(hours, "hours");
+    const h = Math.floor(dur.asHours());
+    const m = dur.minutes();
+
+    const hourLabel = language === "de" ? "Std" : "h";
+    const minuteLabel = language === "de" ? "Min" : "m";
+
+    if (m === 0) {
+      return `${h}${hourLabel}`;
+    }
+    return `${h}${hourLabel} ${m}${minuteLabel}`;
+  };
+
+  return { formatDuration };
 };

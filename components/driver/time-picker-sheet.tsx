@@ -3,7 +3,9 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets, TimePickerProps } from "@/constants/sheets";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePicker, {
+  type DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -85,16 +87,21 @@ const TimePickerSheet = () => {
             value={localTime}
             mode="time"
             display={Platform.OS === "ios" ? "spinner" : "default"}
-            onChange={(event, selectedDate) => {
+            onChange={(
+              event: DateTimePickerEvent,
+              selectedDate?: Date
+            ) => {
               if (selectedDate) {
                 setLocalTime(selectedDate);
               }
             }}
             maximumDate={maximumDate}
             minimumDate={minimumDate}
-            minuteInterval={minuteInterval}
-            textColor={text}
-            themeVariant={colorScheme}
+            minuteInterval={minuteInterval as any}
+            {...(Platform.OS === "ios" && {
+              textColor: text,
+              themeVariant: colorScheme,
+            })}
           />
         </View>
 

@@ -17,7 +17,7 @@ export const ActivityList = ({
   onActivityPress,
   onAddPress,
 }: ActivityListProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { content2, primary, success, warning, text } =
     useThemedColors(
       "content2",
@@ -26,6 +26,19 @@ export const ActivityList = ({
       "warning",
       "text"
     );
+
+  const formatTime = (time: string) => {
+    const [hours, minutes] = time.split(":");
+    const date = new Date();
+    date.setHours(parseInt(hours, 10));
+    date.setMinutes(parseInt(minutes, 10));
+
+    return new Intl.DateTimeFormat(i18n.language, {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(date);
+  };
 
   const getActivityIcon = (type: string) => {
     switch (type) {
@@ -113,17 +126,17 @@ export const ActivityList = ({
                 </View>
                 <View style={styles.activityDetails}>
                   <ThemedText style={styles.activityType}>
-                    {t(`driver.${item.type}`)}
+                    {item.startTime && item.endTime
+                      ? `${formatTime(item.startTime)} - ${formatTime(
+                          item.endTime
+                        )}`
+                      : `${item.duration.toFixed(1)}h`}
                   </ThemedText>
                   <ThemedText style={styles.activityTime}>
-                    {item.startTime && item.endTime
-                      ? `${item.startTime} - ${item.endTime}`
-                      : `${item.duration.toFixed(2)}h`}
+                    {t(`driver.${item.type}`)} •{" "}
+                    {item.duration.toFixed(1)}h
                   </ThemedText>
                 </View>
-                <ThemedText style={styles.activityDuration}>
-                  {item.duration.toFixed(2)}h
-                </ThemedText>
               </ThemedView>
             </TouchableOpacity>
           ))
