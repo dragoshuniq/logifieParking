@@ -4,7 +4,7 @@ import { useThemedColors } from "@/hooks/use-themed-colors";
 import { WeeklyStats } from "@/utils/compliance";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { BarChart, PieChart } from "react-native-gifted-charts";
 
 interface ChartsProps {
@@ -81,114 +81,111 @@ export const Charts = ({ weeklyStats }: ChartsProps) => {
         Weekly Overview
       </ThemedText>
 
-      <ScrollView showsHorizontalScrollIndicator={false}>
-        <View style={styles.chartsContainer}>
-          <ThemedView
-            style={[
-              styles.chartContainer,
-              { backgroundColor: content2.DEFAULT },
-            ]}
-          >
-            <ThemedText style={styles.chartTitle}>
-              Activity Distribution
-            </ThemedText>
-            {totalHours > 0 ? (
-              <View style={styles.pieChartWrapper}>
-                <PieChart
-                  data={pieData}
-                  donut
-                  radius={80}
-                  innerRadius={50}
-                  centerLabelComponent={() => (
-                    <View style={styles.centerLabel}>
-                      <ThemedText style={styles.centerLabelValue}>
-                        {totalHours.toFixed(1)}
-                      </ThemedText>
-                      <ThemedText style={styles.centerLabelText}>
-                        hours
+      <View style={styles.chartsContainer}>
+        <ThemedView
+          style={[
+            styles.chartContainer,
+            { backgroundColor: content2.DEFAULT },
+          ]}
+        >
+          <ThemedText style={styles.chartTitle}>
+            Activity Distribution
+          </ThemedText>
+          {totalHours > 0 ? (
+            <View style={styles.pieChartWrapper}>
+              <PieChart
+                data={pieData}
+                donut
+                radius={80}
+                innerRadius={50}
+                centerLabelComponent={() => (
+                  <View style={styles.centerLabel}>
+                    <ThemedText style={styles.centerLabelValue}>
+                      {totalHours.toFixed(1)}
+                    </ThemedText>
+                    <ThemedText style={styles.centerLabelText}>
+                      hours
+                    </ThemedText>
+                  </View>
+                )}
+              />
+              <View style={styles.legend}>
+                {legendData.map((item, index) => {
+                  const dataItem = pieData.find(
+                    (d) => d.color === item.color
+                  );
+                  if (!dataItem || dataItem.value === 0) return null;
+                  return (
+                    <View key={index} style={styles.legendItem}>
+                      <View
+                        style={[
+                          styles.legendColor,
+                          { backgroundColor: item.color },
+                        ]}
+                      />
+                      <ThemedText style={styles.legendText}>
+                        {item.label}: {dataItem.text}
                       </ThemedText>
                     </View>
-                  )}
-                />
-                <View style={styles.legend}>
-                  {legendData.map((item, index) => {
-                    const dataItem = pieData.find(
-                      (d) => d.color === item.color
-                    );
-                    if (!dataItem || dataItem.value === 0)
-                      return null;
-                    return (
-                      <View key={index} style={styles.legendItem}>
-                        <View
-                          style={[
-                            styles.legendColor,
-                            { backgroundColor: item.color },
-                          ]}
-                        />
-                        <ThemedText style={styles.legendText}>
-                          {item.label}: {dataItem.text}
-                        </ThemedText>
-                      </View>
-                    );
-                  })}
-                </View>
+                  );
+                })}
               </View>
-            ) : (
-              <View style={styles.emptyChart}>
-                <ThemedText style={styles.emptyText}>
-                  No data
-                </ThemedText>
-              </View>
-            )}
-          </ThemedView>
+            </View>
+          ) : (
+            <View style={styles.emptyChart}>
+              <ThemedText style={styles.emptyText}>
+                No data
+              </ThemedText>
+            </View>
+          )}
+        </ThemedView>
 
-          <ThemedView
-            style={[
-              styles.chartContainer,
-              { backgroundColor: content2.DEFAULT },
-            ]}
-          >
-            <ThemedText style={styles.chartTitle}>
-              Daily Work Hours
-            </ThemedText>
-            {barData.some((d) => d.value > 0) ? (
-              <View style={styles.barChartWrapper}>
-                <BarChart
-                  data={barData}
-                  width={Math.max(280, barData.length * 45)}
-                  height={220}
-                  barWidth={32}
-                  spacing={8}
-                  roundedTop
-                  roundedBottom
-                  hideRules
-                  xAxisThickness={1}
-                  yAxisThickness={1}
-                  xAxisColor={text}
-                  yAxisColor={text}
-                  yAxisTextStyle={{
-                    color: text,
-                    fontSize: 10,
-                  }}
-                  xAxisLabelTextStyle={{
-                    color: text,
-                    fontSize: 10,
-                  }}
-                  noOfSections={4}
-                  maxValue={16}
-                  yAxisLabelSuffix="h"
-                />
-              </View>
-            ) : (
-              <View style={styles.emptyChart}>
-                <ThemedText style={styles.emptyText}>
-                  No data
-                </ThemedText>
-              </View>
-            )}
-          </ThemedView>
-        </View>
-      </ScrollView>
+        <ThemedView
+          style={[
+            styles.chartContainer,
+            { backgroundColor: content2.DEFAULT },
+          ]}
+        >
+          <ThemedText style={styles.chartTitle}>
+            Daily Work Hours
+          </ThemedText>
+          {barData.some((d) => d.value > 0) ? (
+            <View style={styles.barChartWrapper}>
+              <BarChart
+                data={barData}
+                width={Math.max(280, barData.length * 45)}
+                height={220}
+                barWidth={32}
+                spacing={8}
+                roundedTop
+                roundedBottom
+                hideRules
+                xAxisThickness={1}
+                yAxisThickness={1}
+                xAxisColor={text}
+                yAxisColor={text}
+                yAxisTextStyle={{
+                  color: text,
+                  fontSize: 10,
+                }}
+                xAxisLabelTextStyle={{
+                  color: text,
+                  fontSize: 10,
+                }}
+                noOfSections={4}
+                maxValue={16}
+                yAxisLabelSuffix="h"
+              />
+            </View>
+          ) : (
+            <View style={styles.emptyChart}>
+              <ThemedText style={styles.emptyText}>
+                No data
+              </ThemedText>
+            </View>
+          )}
+        </ThemedView>
+      </View>
     </ThemedView>
   );
 };
@@ -203,7 +200,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   chartsContainer: {
-    flexDirection: "row",
     gap: 20,
   },
   chartContainer: {

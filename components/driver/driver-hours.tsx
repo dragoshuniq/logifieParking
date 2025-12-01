@@ -7,7 +7,6 @@ import {
   StatsCard,
 } from "@/components/driver";
 import { getComplianceLevel } from "@/components/driver/utils";
-import { ThemedSafeAreaView } from "@/components/ui/themed-safe-area-view";
 import { ThemedText } from "@/components/ui/themed-text";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
@@ -207,29 +206,26 @@ export const DriverHours = () => {
   );
 
   return (
-    <ThemedSafeAreaView
-      style={{ flex: 1, backgroundColor: background }}
-    >
-      <View style={styles.header}>
-        <ThemedText style={styles.headerTitle}>
-          {t("driver.title")}
-        </ThemedText>
-        <TouchableOpacity
-          onPress={handleExport}
-          style={[
-            styles.exportButton,
-            { backgroundColor: primary.DEFAULT },
-          ]}
-        >
-          <FontAwesome6
-            name="file-export"
-            size={16}
-            color={primary.foreground}
-          />
-        </TouchableOpacity>
-      </View>
-
-      <ScrollView style={styles.container}>
+    <View style={[styles.container, { backgroundColor: background }]}>
+      <>
+        <View style={styles.header}>
+          <ThemedText style={styles.headerTitle}>
+            {t("driver.title")}
+          </ThemedText>
+          <TouchableOpacity
+            onPress={handleExport}
+            style={[
+              styles.exportButton,
+              { backgroundColor: primary.DEFAULT },
+            ]}
+          >
+            <FontAwesome6
+              name="file-export"
+              size={16}
+              color={primary.foreground}
+            />
+          </TouchableOpacity>
+        </View>
         <HorizontalCalendar
           selectedDate={selectedDate}
           onDateSelect={(date) => {
@@ -238,7 +234,11 @@ export const DriverHours = () => {
           }}
           weekDates={weekDates}
         />
-
+      </>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        stickyHeaderHiddenOnScroll={false}
+      >
         <ComplianceAlert compliance={compliance} />
 
         <ScrollView
@@ -282,7 +282,7 @@ export const DriverHours = () => {
           onAddPress={handleAddPress}
         />
       </ScrollView>
-    </ThemedSafeAreaView>
+    </View>
   );
 };
 
