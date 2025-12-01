@@ -127,8 +127,13 @@ export const ActivityList = ({
                 </View>
                 <View style={styles.activityDetails}>
                   <ThemedText style={styles.activityType}>
-                    {formatTime(dayjs(item.startDateTime).format("HH:mm"))} -{" "}
-                    {formatTime(dayjs(item.endDateTime).format("HH:mm"))}
+                    {formatTime(
+                      dayjs(item.startDateTime).format("HH:mm")
+                    )}{" "}
+                    -{" "}
+                    {formatTime(
+                      dayjs(item.endDateTime).format("HH:mm")
+                    )}
                   </ThemedText>
                   <ThemedText style={styles.activityTime}>
                     {t(`driver.${item.type}`)} •{" "}

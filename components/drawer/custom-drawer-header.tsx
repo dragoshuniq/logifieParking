@@ -2,16 +2,18 @@ import { useThemedColors } from "@/hooks/use-themed-colors";
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerActions } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 
 export const CustomDrawerHeader = ({ title }: { title: string }) => {
+  const { t } = useTranslation();
   return (
     <ThemedSafeAreaView style={styles.container}>
       <DrawerToggleButton />
-      <ThemedText style={styles.title}>{title}</ThemedText>
+      <ThemedText style={styles.title}>{t(title)}</ThemedText>
       <View style={{ width: 40 }} />
     </ThemedSafeAreaView>
   );

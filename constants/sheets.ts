@@ -6,6 +6,7 @@ export enum ESheets {
   LanguagePicker = "LanguagePicker",
   TimePicker = "TimePicker",
   ActivityForm = "ActivityForm",
+  DatePicker = "DatePicker",
 }
 
 export interface TimePickerProps {
@@ -22,4 +23,12 @@ export interface ActivityFormPayload {
   onDelete?: () => void;
   initialActivity?: Activity;
   selectedDate: Date;
+}
+
+export interface DatePickerProps {
+  onCancel?: () => void;
+  onConfirm: (date: string) => void;
+  value?: string;
+  minDate?: string;
+  maxDate?: string;
 }

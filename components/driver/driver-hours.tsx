@@ -1,11 +1,11 @@
-import { ActivityList } from "@/components/driver/activity-list";
 import { showActivityForm } from "@/components/driver/activity-form";
+import { ActivityList } from "@/components/driver/activity-list";
 import { Charts } from "@/components/driver/charts";
 import { ComplianceAlert } from "@/components/driver/compliance-alert";
+import { showDatePicker } from "@/components/driver/date-picker-sheet";
 import { HorizontalCalendar } from "@/components/driver/horizontal-calendar";
 import { StatsCard } from "@/components/driver/stats-card";
 import { getComplianceLevel } from "@/components/driver/utils";
-import { ThemedText } from "@/components/ui/themed-text";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
   calculateDailyStats,
@@ -34,6 +34,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { ThemedText } from "../ui/themed-text";
 
 dayjs.extend(isoWeek);
 
@@ -135,6 +136,17 @@ export const DriverHours = () => {
     });
   };
 
+  const handleDatePicker = () => {
+    showDatePicker({
+      value: dayjs(selectedDate).format("YYYY-MM-DD"),
+      onConfirm: (dateStr: string) => {
+        const date = dayjs(dateStr).toDate();
+        setSelectedDate(date);
+        updateWeekDates(date);
+      },
+    });
+  };
+
   const handleExport = useCallback(async () => {
     Alert.alert("Export Data", "Choose export format", [
       {
@@ -204,19 +216,34 @@ export const DriverHours = () => {
           <ThemedText style={styles.headerTitle}>
             {t("driver.title")}
           </ThemedText>
-          <TouchableOpacity
-            onPress={handleExport}
-            style={[
-              styles.exportButton,
-              { backgroundColor: primary.DEFAULT },
-            ]}
-          >
-            <FontAwesome6
-              name="file-export"
-              size={16}
-              color={primary.foreground}
-            />
-          </TouchableOpacity>
+          <View style={styles.headerButtons}>
+            <TouchableOpacity
+              onPress={handleDatePicker}
+              style={[
+                styles.headerButton,
+                { backgroundColor: primary.DEFAULT },
+              ]}
+            >
+              <FontAwesome6
+                name="calendar-days"
+                size={16}
+                color={primary.foreground}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleExport}
+              style={[
+                styles.headerButton,
+                { backgroundColor: primary.DEFAULT },
+              ]}
+            >
+              <FontAwesome6
+                name="file-export"
+                size={16}
+                color={primary.foreground}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
         <HorizontalCalendar
           selectedDate={dayjs(selectedDate).format("YYYY-MM-DD")}
@@ -293,7 +320,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
   },
-  exportButton: {
+  headerButtons: {
+    flexDirection: "row",
+    gap: 8,
+  },
+  headerButton: {
     width: 40,
     height: 40,
     borderRadius: 20,

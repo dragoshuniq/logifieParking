@@ -1,5 +1,7 @@
+import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
+import dayjs from "dayjs";
 import { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import {
@@ -43,8 +45,11 @@ export const HorizontalCalendar = ({
     [primary, content2, content3, background]
   );
 
+  const currentMonth = dayjs(selectedDate).format("MMMM YYYY");
+
   return (
     <ThemedView style={styles.container}>
+      <ThemedText style={styles.monthText}>{currentMonth}</ThemedText>
       <View style={styles.calendarWrapper}>
         <CalendarProvider
           key={background}
@@ -67,6 +72,12 @@ export const HorizontalCalendar = ({
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 8,
+  },
+  monthText: {
+    fontSize: 16,
+    fontWeight: "600",
+    textAlign: "center",
+    marginBottom: 8,
   },
   calendarWrapper: {
     height: 120,
