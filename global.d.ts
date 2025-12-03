@@ -41,5 +41,15 @@ declare module "react-native-actions-sheet" {
       };
       returnValue?: undefined;
     };
+    DatePicker: {
+      payload: {
+        onCancel?: () => void;
+        onConfirm: (date: string) => void;
+        value?: string;
+        minDate?: string;
+        maxDate?: string;
+      };
+      returnValue?: undefined;
+    };
   }
 }

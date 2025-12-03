@@ -19,7 +19,9 @@ export const showDatePicker = (payload: DatePickerProps) => {
 };
 
 const DatePickerSheet = () => {
-  const payload = useSheetPayload("DatePicker");
+  const payload = useSheetPayload("DatePicker") as
+    | DatePickerProps
+    | undefined;
   const { content1, content2, primary, content3, background } =
     useThemedColors(
       "content1",
@@ -35,10 +37,12 @@ const DatePickerSheet = () => {
     value,
     minDate,
     maxDate,
-  } = payload || {};
+  } = payload || ({} as DatePickerProps);
 
   const [localDate, setLocalDate] = useState(
-    value ? dayjs(value).format("YYYY-MM-DD") : dayjs().format("YYYY-MM-DD")
+    value
+      ? dayjs(value).format("YYYY-MM-DD")
+      : dayjs().format("YYYY-MM-DD")
   );
   const actionSheetRef = useRef<ActionSheetRef>(null);
 
@@ -67,6 +71,7 @@ const DatePickerSheet = () => {
       textDisabledColor: content3.foreground,
       selectedDayBackgroundColor: primary.DEFAULT,
       selectedDayTextColor: primary.foreground,
+      arrowColor: primary.DEFAULT,
       textDayFontSize: 16,
       textMonthFontSize: 16,
       textDayHeaderFontSize: 14,
@@ -95,7 +100,10 @@ const DatePickerSheet = () => {
       ]}
     >
       <ThemedView
-        style={[styles.content, { backgroundColor: content1.DEFAULT }]}
+        style={[
+          styles.content,
+          { backgroundColor: content1.DEFAULT },
+        ]}
       >
         <Calendar
           firstDay={1}
@@ -110,17 +118,26 @@ const DatePickerSheet = () => {
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
             onPress={handleClose}
-            style={[styles.button, { backgroundColor: content2.DEFAULT }]}
+            style={[
+              styles.button,
+              { backgroundColor: content2.DEFAULT },
+            ]}
           >
             <ThemedText style={styles.buttonText}>Cancel</ThemedText>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={handleConfirm}
-            style={[styles.button, { backgroundColor: primary.DEFAULT }]}
+            style={[
+              styles.button,
+              { backgroundColor: primary.DEFAULT },
+            ]}
           >
             <ThemedText
-              style={[styles.buttonText, { color: primary.foreground }]}
+              style={[
+                styles.buttonText,
+                { color: primary.foreground },
+              ]}
             >
               Confirm
             </ThemedText>
@@ -157,4 +174,3 @@ const styles = StyleSheet.create({
 });
 
 export default DatePickerSheet;
-
