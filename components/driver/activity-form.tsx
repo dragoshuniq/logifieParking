@@ -79,27 +79,36 @@ const ActivityFormSheet = () => {
   };
 
   const handleStartTimePicker = () => {
+    const now = dayjs();
+    const interval = 5;
     const currentTime = startTime
       ? dayjs(selectedDate)
           .hour(parseInt(startTime.split(":")[0]))
           .minute(parseInt(startTime.split(":")[1]))
           .toDate()
-      : new Date();
+      : dayjs(selectedDate)
+          .hour(now.hour())
+          .minute(Math.floor(now.minute() / interval) * interval)
+          .second(0)
+          .millisecond(0)
+          .toDate();
 
     showTimePicker({
       value: currentTime,
-      minuteInterval: 15,
+      minuteInterval: interval,
       onConfirm: (selectedTime) => {
         const timeStr = dayjs(selectedTime).format("HH:mm");
         setStartTime(timeStr);
 
         if (!isManualEntry && endTime) {
+          const [startHour, startMinute] = timeStr.split(":");
+          const [endHour, endMinute] = endTime.split(":");
           const start = dayjs(selectedDate)
-            .hour(parseInt(timeStr.split(":")[0]))
-            .minute(parseInt(timeStr.split(":")[1]));
+            .hour(parseInt(startHour))
+            .minute(parseInt(startMinute));
           const end = dayjs(selectedDate)
-            .hour(parseInt(endTime.split(":")[0]))
-            .minute(parseInt(endTime.split(":")[1]));
+            .hour(parseInt(endHour))
+            .minute(parseInt(endMinute));
           if (end.isBefore(start) || end.isSame(start)) {
             setEndTime("");
             Alert.alert(
@@ -124,29 +133,35 @@ const ActivityFormSheet = () => {
       return;
     }
 
+    const interval = 5;
+    const [startHour, startMinute] = startTime.split(":");
+    const [endHour, endMinute] = endTime.split(":");
     const startDate = dayjs(selectedDate)
-      .hour(parseInt(startTime.split(":")[0]))
-      .minute(parseInt(startTime.split(":")[1]))
+      .hour(parseInt(startHour))
+      .minute(parseInt(startMinute))
+      .second(0)
+      .millisecond(0)
       .toDate();
     const currentTime = endTime
       ? dayjs(selectedDate)
-          .hour(parseInt(endTime.split(":")[0]))
-          .minute(parseInt(endTime.split(":")[1]))
+          .hour(parseInt(endHour))
+          .minute(parseInt(endMinute))
           .toDate()
       : dayjs(startDate).add(1, "hour").toDate();
 
     showTimePicker({
       value: currentTime,
       minimumDate: startDate,
-      minuteInterval: 15,
+      minuteInterval: interval,
       onConfirm: (selectedTime) => {
         const timeStr = dayjs(selectedTime).format("HH:mm");
+        const [endHour, endMinute] = timeStr.split(":");
         const start = dayjs(selectedDate)
-          .hour(parseInt(startTime.split(":")[0]))
-          .minute(parseInt(startTime.split(":")[1]));
+          .hour(parseInt(startHour))
+          .minute(parseInt(startMinute));
         const end = dayjs(selectedDate)
-          .hour(parseInt(timeStr.split(":")[0]))
-          .minute(parseInt(timeStr.split(":")[1]));
+          .hour(parseInt(endHour))
+          .minute(parseInt(endMinute));
 
         if (end.isBefore(start) || end.isSame(start)) {
           Alert.alert(
@@ -192,9 +207,10 @@ const ActivityFormSheet = () => {
       }
 
       calculatedDuration = durationNum;
+      const [startHour, startMinute] = startTime.split(":");
       startDateTime = dayjs(selectedDate)
-        .hour(parseInt(startTime.split(":")[0]))
-        .minute(parseInt(startTime.split(":")[1]))
+        .hour(parseInt(startHour))
+        .minute(parseInt(startMinute))
         .second(0)
         .millisecond(0);
       endDateTime = startDateTime.add(durationNum, "hour");
@@ -210,14 +226,17 @@ const ActivityFormSheet = () => {
         return;
       }
 
+      const [startHour, startMinute] = startTime.split(":");
+      const [endHour, endMinute] = endTime.split(":");
+
       startDateTime = dayjs(selectedDate)
-        .hour(parseInt(startTime.split(":")[0]))
-        .minute(parseInt(startTime.split(":")[1]))
+        .hour(parseInt(startHour))
+        .minute(parseInt(startMinute))
         .second(0)
         .millisecond(0);
       endDateTime = dayjs(selectedDate)
-        .hour(parseInt(endTime.split(":")[0]))
-        .minute(parseInt(endTime.split(":")[1]))
+        .hour(parseInt(endHour))
+        .minute(parseInt(endMinute))
         .second(0)
         .millisecond(0);
       calculatedDuration = endDateTime.diff(

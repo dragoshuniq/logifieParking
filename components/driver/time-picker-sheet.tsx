@@ -6,7 +6,7 @@ import { useThemedColors } from "@/hooks/use-themed-colors";
 import DateTimePicker, {
   type DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Platform,
@@ -43,11 +43,15 @@ const TimePickerSheet = () => {
     value = new Date(),
     maximumDate,
     minimumDate,
-    minuteInterval = 15,
+    minuteInterval = 5,
   } = payload || {};
 
   const [localTime, setLocalTime] = useState<Date>(value);
   const actionSheetRef = useRef<ActionSheetRef>(null);
+
+  useEffect(() => {
+    setLocalTime(value);
+  }, [value]);
 
   const onCloseSheet = () => {
     actionSheetRef?.current?.hide();
