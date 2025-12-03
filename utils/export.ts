@@ -38,20 +38,29 @@ export const exportToCSV = async (
     "YYYY-MM-DD_HH-mm"
   )}.csv`;
 
-  const file = new File(Paths.document, fileName);
-  file.create();
-  file.write(csvContent);
+  try {
+    const file = new File(Paths.document, fileName);
+    file.create();
+    file.write(csvContent);
 
-  const isAvailable = await isAvailableAsync();
-  if (!isAvailable) {
-    throw new Error("Sharing is not available on this device");
+    if (!file.exists) {
+      throw new Error("File was not created successfully");
+    }
+
+    const isAvailable = await isAvailableAsync();
+    if (!isAvailable) {
+      throw new Error("Sharing is not available on this device");
+    }
+
+    await shareAsync(file.uri, {
+      mimeType: "text/csv",
+      dialogTitle: "Export Driver Hours",
+      UTI: "public.comma-separated-values-text",
+    });
+  } catch (error) {
+    console.error("Export error:", error);
+    throw error;
   }
-
-  await shareAsync(file.uri, {
-    mimeType: "text/csv",
-    dialogTitle: "Export Driver Hours",
-    UTI: "public.comma-separated-values-text",
-  });
 };
 
 export const exportToXLS = async (
@@ -120,17 +129,26 @@ export const exportToXLS = async (
     "YYYY-MM-DD_HH-mm"
   )}.xls`;
 
-  const file = new File(Paths.document, fileName);
-  file.create();
-  file.write(xlsContent);
+  try {
+    const file = new File(Paths.document, fileName);
+    file.create();
+    file.write(xlsContent);
 
-  const isAvailable = await isAvailableAsync();
-  if (!isAvailable) {
-    throw new Error("Sharing is not available on this device");
+    if (!file.exists) {
+      throw new Error("File was not created successfully");
+    }
+
+    const isAvailable = await isAvailableAsync();
+    if (!isAvailable) {
+      throw new Error("Sharing is not available on this device");
+    }
+
+    await shareAsync(file.uri, {
+      mimeType: "application/vnd.ms-excel",
+      dialogTitle: "Export Driver Hours",
+    });
+  } catch (error) {
+    console.error("Export error:", error);
+    throw error;
   }
-
-  await shareAsync(file.uri, {
-    mimeType: "application/vnd.ms-excel",
-    dialogTitle: "Export Driver Hours",
-  });
 };
