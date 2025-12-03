@@ -33,9 +33,14 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
 
   return (
     <ThemedView
-      style={[styles.chartContainer, { backgroundColor: content2.DEFAULT }]}
+      style={[
+        styles.chartContainer,
+        { backgroundColor: content2.DEFAULT },
+      ]}
     >
-      <ThemedText style={styles.chartTitle}>Daily Work Hours</ThemedText>
+      <ThemedText style={styles.chartTitle}>
+        Daily Work Hours
+      </ThemedText>
       {barData.some((d) => d.value > 0) ? (
         <View style={styles.barChartWrapper}>
           <BarChart
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   emptyChart: {
-    height: 200,
+    height: 150,
     justifyContent: "center",
     alignItems: "center",
     opacity: 0.3,
@@ -97,4 +102,3 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-

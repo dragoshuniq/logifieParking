@@ -78,6 +78,7 @@ export const HorizontalCalendar = ({
           onDateChanged={onDateSelect}
         >
           <WeekCalendar
+            firstDay={1}
             allowShadow
             current={selectedDate}
             markedDates={markedDatesObject}

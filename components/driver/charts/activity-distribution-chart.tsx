@@ -52,7 +52,10 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
 
   return (
     <ThemedView
-      style={[styles.chartContainer, { backgroundColor: content2.DEFAULT }]}
+      style={[
+        styles.chartContainer,
+        { backgroundColor: content2.DEFAULT },
+      ]}
     >
       <ThemedText style={styles.chartTitle}>
         Activity Distribution
@@ -128,7 +131,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   emptyChart: {
-    height: 200,
+    height: 150,
     justifyContent: "center",
     alignItems: "center",
     opacity: 0.3,
@@ -153,4 +156,3 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-
