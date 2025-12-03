@@ -9,7 +9,8 @@
     "followUs": "Follow Us",
     "driver": "Driver Hours",
     "fuelPrices": "Fuel Prices",
-    "rateApp": "Rate Our App"
+    "rateApp": "Rate Our App",
+    "shareApp": "Share App"
   },
   "driver": {
     "title": "Work Hours Tracking",

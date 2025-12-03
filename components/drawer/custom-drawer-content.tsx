@@ -10,6 +10,7 @@ import {
   Languages,
   validateLanguage,
 } from "@/providers/i18n";
+import { shareApp } from "@/utils/share-app";
 import { Ionicons } from "@expo/vector-icons";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
@@ -137,9 +138,24 @@ export function CustomDrawerContent() {
         </View>
 
         <ThemedView style={styles.socialContainer}>
-          <ThemedText style={styles.socialTitle}>
-            {t("drawer.followUs")}
-          </ThemedText>
+          <View style={styles.socialHeader}>
+            <ThemedText style={styles.socialTitle}>
+              {t("drawer.followUs")}
+            </ThemedText>
+            <ThemedTouchableOpacity
+              onPress={shareApp}
+              style={[
+                styles.shareButton,
+                { borderColor: borderColor },
+              ]}
+            >
+              <Ionicons
+                name="share-social-outline"
+                size={22}
+                color={primaryColors.DEFAULT}
+              />
+            </ThemedTouchableOpacity>
+          </View>
           <View style={styles.socialButtons}>
             {SocialNetworksRoutes.map((network) => (
               <SocialLink key={network.name} network={network}>
@@ -263,10 +279,23 @@ const styles = StyleSheet.create({
     gap: 12,
     width: "100%",
   },
+  socialHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   socialTitle: {
     fontSize: 14,
     fontWeight: "600",
     opacity: 0.6,
+  },
+  shareButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 24,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
   socialButtons: {
     flexDirection: "row",
