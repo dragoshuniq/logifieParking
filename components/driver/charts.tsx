@@ -7,11 +7,11 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import { BarChart, PieChart } from "react-native-gifted-charts";
 
-interface ChartsProps {
+type Props = {
   weeklyStats: WeeklyStats;
-}
+};
 
-export const Charts = ({ weeklyStats }: ChartsProps) => {
+export const Charts = ({ weeklyStats }: Props) => {
   const { t } = useTranslation();
   const { content2, primary, warning, success, text } =
     useThemedColors(

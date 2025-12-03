@@ -1,6 +1,7 @@
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
+import { useFormatTime } from "@/hooks/useFormat";
 import { Activity } from "@/utils/driver-db";
 import { FontAwesome6 } from "@expo/vector-icons";
 import dayjs from "dayjs";
@@ -18,7 +19,8 @@ export const ActivityList = ({
   onActivityPress,
   onAddPress,
 }: ActivityListProps) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const { formatTime } = useFormatTime();
   const { content2, primary, success, warning, text } =
     useThemedColors(
       "content2",
@@ -27,19 +29,6 @@ export const ActivityList = ({
       "warning",
       "text"
     );
-
-  const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(":");
-    const date = new Date();
-    date.setHours(parseInt(hours, 10));
-    date.setMinutes(parseInt(minutes, 10));
-
-    return new Intl.DateTimeFormat(i18n.language, {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    }).format(date);
-  };
 
   const getActivityIcon = (type: string) => {
     switch (type) {
