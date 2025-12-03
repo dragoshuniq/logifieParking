@@ -48,21 +48,21 @@ export const HorizontalCalendar = ({
 
   const markedDatesObject = useMemo(() => {
     const marked: Record<string, any> = {};
-    
+
     markedDates.forEach((date) => {
       marked[date] = {
         marked: true,
         dotColor: primary.DEFAULT,
       };
     });
-    
+
     marked[selectedDate] = {
       ...marked[selectedDate],
       selected: true,
       selectedColor: primary.DEFAULT,
       selectedTextColor: primary.foreground,
     };
-    
+
     return marked;
   }, [selectedDate, markedDates, primary]);
 
