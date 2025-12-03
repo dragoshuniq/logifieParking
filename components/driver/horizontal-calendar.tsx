@@ -11,11 +11,13 @@ import {
 type Props = {
   selectedDate: string;
   onDateSelect: (date: string) => void;
+  markedDates?: string[];
 };
 
 export const HorizontalCalendar = ({
   selectedDate,
   onDateSelect,
+  markedDates = [],
 }: Props) => {
   const { primary, content2, content3, background } = useThemedColors(
     "primary",
@@ -44,6 +46,26 @@ export const HorizontalCalendar = ({
     [primary, content2, content3, background]
   );
 
+  const markedDatesObject = useMemo(() => {
+    const marked: Record<string, any> = {};
+    
+    markedDates.forEach((date) => {
+      marked[date] = {
+        marked: true,
+        dotColor: primary.DEFAULT,
+      };
+    });
+    
+    marked[selectedDate] = {
+      ...marked[selectedDate],
+      selected: true,
+      selectedColor: primary.DEFAULT,
+      selectedTextColor: primary.foreground,
+    };
+    
+    return marked;
+  }, [selectedDate, markedDates, primary]);
+
   const currentMonth = dayjs(selectedDate).format("MMMM YYYY");
 
   return (
@@ -58,6 +80,7 @@ export const HorizontalCalendar = ({
           <WeekCalendar
             allowShadow
             current={selectedDate}
+            markedDates={markedDatesObject}
             onDayPress={(day) => onDateSelect(day.dateString)}
             theme={calendarTheme}
             style={styles.calendar}

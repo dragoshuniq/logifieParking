@@ -1,6 +1,9 @@
 import { showActivityForm } from "@/components/driver/activity-form";
 import { ActivityList } from "@/components/driver/activity-list";
-import { Charts } from "@/components/driver/charts";
+import {
+  ActivityDistributionChart,
+  DailyWorkHoursChart,
+} from "@/components/driver/charts";
 import { showDatePicker } from "@/components/driver/date-picker-sheet";
 import { HorizontalCalendar } from "@/components/driver/horizontal-calendar";
 import { StatsCard } from "@/components/driver/stats-card";
@@ -245,6 +248,13 @@ export const DriverHours = () => {
       </View>
       <HorizontalCalendar
         selectedDate={dayjs(selectedDate).format("YYYY-MM-DD")}
+        markedDates={weekActivities
+          .map((activity) =>
+            dayjs(activity.startDateTime).format("YYYY-MM-DD")
+          )
+          .filter(
+            (date, index, self) => self.indexOf(date) === index
+          )}
         onDateSelect={(dateStr) => {
           const date = dayjs(dateStr).toDate();
           setSelectedDate(date);
@@ -288,7 +298,21 @@ export const DriverHours = () => {
           />
         </ScrollView>
 
-        <Charts weeklyStats={weeklyStats} />
+        <ThemedView style={{ padding: 16 }}>
+          <ThemedText
+            style={{
+              fontSize: 18,
+              fontWeight: "bold",
+              marginBottom: 16,
+            }}
+          >
+            Weekly Overview
+          </ThemedText>
+          <View style={{ gap: 20 }}>
+            <ActivityDistributionChart dailyStats={dailyStats} />
+            <DailyWorkHoursChart weeklyStats={weeklyStats} />
+          </View>
+        </ThemedView>
 
         <ActivityList
           activities={activities}
