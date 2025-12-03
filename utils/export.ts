@@ -39,8 +39,8 @@ export const exportToCSV = async (
   )}.csv`;
 
   const file = new File(Paths.document, fileName);
-  await file.create();
-  await file.write(csvContent);
+  file.create();
+  file.write(csvContent);
 
   const isAvailable = await isAvailableAsync();
   if (!isAvailable) {
@@ -121,8 +121,8 @@ export const exportToXLS = async (
   )}.xls`;
 
   const file = new File(Paths.document, fileName);
-  await file.create();
-  await file.write(xlsContent);
+  file.create();
+  file.write(xlsContent);
 
   const isAvailable = await isAvailableAsync();
   if (!isAvailable) {
