@@ -9,7 +9,6 @@ import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
   calculateDailyStats,
   calculateWeeklyStats,
-  checkCompliance,
 } from "@/utils/compliance";
 import {
   Activity,
@@ -189,8 +188,6 @@ export const DriverHours = () => {
     )
   );
 
-  const compliance = checkCompliance(weeklyStats, fortnightStats);
-
   const weeklyWorkLevel = getComplianceLevel(
     weeklyStats.totalWorkHours,
     48,
@@ -258,8 +255,6 @@ export const DriverHours = () => {
         showsVerticalScrollIndicator={false}
         stickyHeaderHiddenOnScroll={false}
       >
-        {/* <ComplianceAlert compliance={compliance} /> */}
-
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
