@@ -8,7 +8,8 @@
     "getQuote": "Angebot erhalten",
     "followUs": "Folgen Sie uns",
     "driver": "Fahrerstunden",
-    "fuelPrices": "Kraftstoffpreise"
+    "fuelPrices": "Kraftstoffpreise",
+    "rateApp": "App bewerten"
   },
   "driver": {
     "title": "Arbeitszeitverfolgung",

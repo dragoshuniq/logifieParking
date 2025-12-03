@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { File, Paths } from "expo-file-system";
 import { isAvailableAsync, shareAsync } from "expo-sharing";
 import { Activity } from "./driver-db";
+import { requestStoreReviewAfterAction } from "./store-review";
 
 export const exportToCSV = async (
   activities: Activity[]
@@ -57,6 +58,8 @@ export const exportToCSV = async (
       dialogTitle: "Export Driver Hours",
       UTI: "public.comma-separated-values-text",
     });
+
+    requestStoreReviewAfterAction();
   } catch (error) {
     console.error("Export error:", error);
     throw error;
@@ -147,6 +150,8 @@ export const exportToXLS = async (
       mimeType: "application/vnd.ms-excel",
       dialogTitle: "Export Driver Hours",
     });
+
+    requestStoreReviewAfterAction();
   } catch (error) {
     console.error("Export error:", error);
     throw error;

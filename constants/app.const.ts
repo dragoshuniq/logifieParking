@@ -26,6 +26,10 @@ export const AppConstants = {
     companyRegon: "XXX",
     companyKrs: "XXX",
   },
+  store: {
+    iosAppId: "",
+    androidPackageName: "",
+  },
 } as const;
 
 export const DEFAULT_COORDINATES = {

@@ -8,7 +8,8 @@
     "getQuote": "Get Quote",
     "followUs": "Follow Us",
     "driver": "Driver Hours",
-    "fuelPrices": "Fuel Prices"
+    "fuelPrices": "Fuel Prices",
+    "rateApp": "Rate Our App"
   },
   "driver": {
     "title": "Work Hours Tracking",
