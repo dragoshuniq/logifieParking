@@ -1,6 +1,7 @@
 import LanguagePickerSheet from "@/components/drawer/language-picker-sheet";
 import ActivityFormSheet from "@/components/driver/activity-form";
 import DatePickerSheet from "@/components/driver/date-picker-sheet";
+import ExportConfigSheet from "@/components/driver/export-config-sheet";
 import TimePickerSheet from "@/components/driver/time-picker-sheet";
 import { FuelPriceFilters } from "@/components/fuel-price/fuel-price-filters";
 import { NavigationOptions } from "@/components/parking-map/navigation-options";
@@ -13,3 +14,4 @@ registerSheet(ESheets.LanguagePicker, LanguagePickerSheet);
 registerSheet(ESheets.ActivityForm, ActivityFormSheet);
 registerSheet(ESheets.TimePicker, TimePickerSheet);
 registerSheet(ESheets.DatePicker, DatePickerSheet);
+registerSheet(ESheets.ExportConfig, ExportConfigSheet);

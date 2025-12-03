@@ -5,6 +5,7 @@ import {
   DailyWorkHoursChart,
 } from "@/components/driver/charts";
 import { showDatePicker } from "@/components/driver/date-picker-sheet";
+import { showExportConfig } from "@/components/driver/export-config-sheet";
 import { HorizontalCalendar } from "@/components/driver/horizontal-calendar";
 import { StatsCard } from "@/components/driver/stats-card";
 import { getComplianceLevel } from "@/components/driver/utils";
@@ -149,36 +150,33 @@ export const DriverHours = () => {
     });
   };
 
-  const handleExport = useCallback(async () => {
-    Alert.alert("Export Data", "Choose export format", [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      {
-        text: "CSV",
-        onPress: async () => {
-          try {
-            const allActivities = [...fortnightActivities];
-            await exportToCSV(allActivities);
-          } catch {
-            Alert.alert("Error", "Failed to export CSV");
+  const handleExport = () => {
+    showExportConfig({
+      selectedDate,
+      onExport: async (
+        type: "csv" | "xls",
+        startDate: Date,
+        endDate: Date
+      ) => {
+        try {
+          const activities = await getActivitiesByDateRange(
+            startDate,
+            endDate
+          );
+          if (type === "csv") {
+            await exportToCSV(activities);
+          } else {
+            await exportToXLS(activities);
           }
-        },
+        } catch {
+          Alert.alert(
+            "Error",
+            `Failed to export ${type.toUpperCase()}`
+          );
+        }
       },
-      {
-        text: "XLS",
-        onPress: async () => {
-          try {
-            const allActivities = [...fortnightActivities];
-            await exportToXLS(allActivities);
-          } catch {
-            Alert.alert("Error", "Failed to export XLS");
-          }
-        },
-      },
-    ]);
-  }, [fortnightActivities]);
+    });
+  };
 
   const dailyStats = calculateDailyStats(activities, selectedDate);
   const weeklyStats = calculateWeeklyStats(weekActivities, weekDates);

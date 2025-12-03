@@ -7,6 +7,7 @@ export enum ESheets {
   TimePicker = "TimePicker",
   ActivityForm = "ActivityForm",
   DatePicker = "DatePicker",
+  ExportConfig = "ExportConfig",
 }
 
 export interface TimePickerProps {
@@ -31,4 +32,13 @@ export interface DatePickerProps {
   value?: string;
   minDate?: string;
   maxDate?: string;
+}
+
+export interface ExportConfigProps {
+  onExport: (
+    type: "csv" | "xls",
+    startDate: Date,
+    endDate: Date
+  ) => void;
+  selectedDate: Date;
 }

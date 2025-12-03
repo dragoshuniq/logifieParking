@@ -51,5 +51,16 @@ declare module "react-native-actions-sheet" {
       };
       returnValue?: undefined;
     };
+    ExportConfig: {
+      payload: {
+        onExport: (
+          type: "csv" | "xls",
+          startDate: Date,
+          endDate: Date
+        ) => void;
+        selectedDate: Date;
+      };
+      returnValue?: undefined;
+    };
   }
 }
