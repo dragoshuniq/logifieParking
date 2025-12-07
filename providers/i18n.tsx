@@ -1,4 +1,3 @@
-import de from "@/locales/de.json";
 import en from "@/locales/en.json";
 import { configureDayjsLocale } from "@/utils/dayjs-config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -85,7 +84,6 @@ export const loadPersistedLanguage = async (): Promise<Languages> => {
 
 const resources = {
   en: { translation: en },
-  de: { translation: de },
 };
 
 const initI18n = async () => {

@@ -35,7 +35,6 @@ import {
 } from "@/utils/driver-db";
 import { exportToCSV, exportToXLS } from "@/utils/export";
 import { FontAwesome6 } from "@expo/vector-icons";
-import isoWeek from "dayjs/plugin/isoWeek";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -47,8 +46,6 @@ import {
 } from "react-native";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedView } from "../ui/themed-view";
-
-dayjs.extend(isoWeek);
 
 export const DriverHours = () => {
   const { t } = useTranslation();
