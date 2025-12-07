@@ -37,9 +37,9 @@ export const ActivityList = ({
       case ActivityType.OTHER_WORK:
         return "hammer";
       case ActivityType.AVAILABILITY:
-        return "clock";
+        return "bed";
       case ActivityType.BREAK:
-        return "circle";
+        return "bed";
       case ActivityType.REST:
         return "bed";
       default:
