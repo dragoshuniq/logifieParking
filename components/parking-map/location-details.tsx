@@ -1,4 +1,8 @@
-import { fetchLocationDetails, LocationDetails } from "@/api/parking";
+import {
+  fetchLocationDetails,
+  getFacilityType,
+  LocationDetails,
+} from "@/api/parking";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { Colors } from "@/constants/theme";
@@ -18,14 +22,14 @@ export const LocationDetailsComponent = ({
   lat,
   lng,
 }: LocationDetailsComponentProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const colorScheme = useColorScheme() ?? "light";
   const themeColors = Colors[colorScheme as "light" | "dark"];
 
   const { data: locationDetails, isFetching } =
     useQuery<LocationDetails | null>({
-      queryKey: ["locationDetails", lat, lng],
-      queryFn: () => fetchLocationDetails(lat, lng),
+      queryKey: ["locationDetails", lat, lng, i18n.language],
+      queryFn: () => fetchLocationDetails(lat, lng, i18n.language),
     });
 
   if (isFetching) {
@@ -55,6 +59,11 @@ export const LocationDetailsComponent = ({
 
   const address = locationDetails.address;
   const city = address?.city || address?.town || address?.village;
+  const facilityType = getFacilityType(
+    locationDetails.category,
+    locationDetails.type,
+    locationDetails.extratags
+  );
 
   return (
     <ThemedView style={styles.container}>
@@ -234,7 +243,8 @@ export const LocationDetailsComponent = ({
             darkColor={Colors.dark.text}
             style={styles.value}
           >
-            {locationDetails.type}
+            {facilityType.icon}{" "}
+            {t(`parking.facilityTypes.${facilityType.type}`)}
           </ThemedText>
         </ThemedView>
       )}

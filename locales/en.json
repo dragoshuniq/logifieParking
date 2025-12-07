@@ -159,7 +159,24 @@
     "country": "Country",
     "postcode": "Postcode",
     "category": "Category",
-    "type": "Type"
+    "type": "Type",
+    "facilityTypes": {
+      "parking": "Parking",
+      "gas_station": "Gas Station",
+      "parking_space": "Parking Space",
+      "truck_stop": "Truck Stop",
+      "rest_area": "Rest Area",
+      "motorway_services": "Motorway Services",
+      "car_wash": "Car Wash",
+      "charging_station": "Charging Station",
+      "amenity": "Amenity",
+      "highway_rest_area": "Highway Rest Area",
+      "highway_services": "Highway Services",
+      "highway": "Highway",
+      "fuel_shop": "Fuel Shop",
+      "shop": "Shop",
+      "location": "Location"
+    }
   },
   "location": {
     "permissionRequired": "Location Permission Required",
