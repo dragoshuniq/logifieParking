@@ -4,6 +4,7 @@ import {
   LANGUAGE_FLAGS,
   LANGUAGE_NAMES,
   Languages,
+  persistLanguage,
   validateLanguage,
 } from "@/providers/i18n";
 import { useTranslation } from "react-i18next";
@@ -47,8 +48,10 @@ export default function LanguagePickerSheet(props: SheetProps) {
     default: defaultColors,
   } = useThemedColors("primary", "content2", "default");
 
-  const handleLanguageSelect = (language: Languages) => {
-    changeLanguage(validateLanguage(language));
+  const handleLanguageSelect = async (language: Languages) => {
+    const validatedLanguage = validateLanguage(language);
+    await persistLanguage(validatedLanguage);
+    changeLanguage(validatedLanguage);
     SheetManager.hide(ESheets.LanguagePicker);
   };
 
