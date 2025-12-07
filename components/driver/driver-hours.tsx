@@ -190,9 +190,9 @@ export const DriverHours = () => {
           );
           const deficits = await getWeeklyRestDeficits();
           if (type === "csv") {
-            await exportToCSV(activities, deficits);
+            await exportToCSV(activities, deficits, t);
           } else {
-            await exportToXLS(activities, deficits);
+            await exportToXLS(activities, deficits, t);
           }
         } catch {
           Alert.alert(

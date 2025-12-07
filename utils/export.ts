@@ -14,18 +14,23 @@ import {
 } from "./driver-db";
 import { requestStoreReviewAfterAction } from "./store-review";
 
-const getActivityTypeLabel = (type: ActivityType): string => {
+type TranslateFunction = (key: string) => string;
+
+const getActivityTypeLabel = (
+  type: ActivityType,
+  t: TranslateFunction
+): string => {
   switch (type) {
     case ActivityType.DRIVING:
-      return "Driving";
+      return t("driver.activityTypes.driving");
     case ActivityType.OTHER_WORK:
-      return "Other Work";
+      return t("driver.activityTypes.otherWork");
     case ActivityType.BREAK:
-      return "Break";
+      return t("driver.activityTypes.break");
     case ActivityType.REST:
-      return "Rest";
+      return t("driver.activityTypes.rest");
     case ActivityType.AVAILABILITY:
-      return "Availability";
+      return t("driver.activityTypes.availability");
     default:
       return type;
   }
@@ -33,22 +38,23 @@ const getActivityTypeLabel = (type: ActivityType): string => {
 
 export const exportToCSV = async (
   activities: Activity[],
-  deficits?: WeeklyRestDeficit[]
+  deficits: WeeklyRestDeficit[] | undefined,
+  t: TranslateFunction
 ): Promise<void> => {
   if (!activities || activities.length === 0) {
     throw new Error("No activities to export");
   }
 
   const headers = [
-    "Date",
-    "Start Time",
-    "End Time",
-    "Duration (hours)",
-    "Activity Type",
-    "Daily Driving Compliance",
-    "Break Compliance",
-    "Daily Rest Compliance",
-    "Night Work",
+    t("driver.export.headers.date"),
+    t("driver.export.headers.startTime"),
+    t("driver.export.headers.endTime"),
+    t("driver.export.headers.duration"),
+    t("driver.export.headers.activityType"),
+    t("driver.export.headers.dailyDriving"),
+    t("driver.export.headers.breakCompliance"),
+    t("driver.export.headers.dailyRest"),
+    t("driver.export.headers.nightWork"),
   ];
   const rows = activities.map((activity) => {
     const startDate = dayjs(activity.startDateTime);
@@ -98,9 +104,16 @@ export const exportToCSV = async (
 
   if (deficits && deficits.length > 0) {
     csvContent += "\n\n";
-    csvContent += "Weekly Rest Compensation Deficits\n";
     csvContent +=
-      "Week Start,Week End,Deficit Hours,Compensated Hours,Must Compensate By\n";
+      t("driver.export.headers.weeklyRestDeficits") + "\n";
+    csvContent +=
+      [
+        t("driver.export.headers.weekStart"),
+        t("driver.export.headers.weekEnd"),
+        t("driver.export.headers.deficitHours"),
+        t("driver.export.headers.compensatedHours"),
+        t("driver.export.headers.mustCompensateBy"),
+      ].join(",") + "\n";
     deficits.forEach((deficit) => {
       csvContent +=
         [
@@ -133,7 +146,7 @@ export const exportToCSV = async (
 
     await shareAsync(file.uri, {
       mimeType: "text/csv",
-      dialogTitle: "Export Driver Hours",
+      dialogTitle: t("driver.export.dialogTitle"),
       UTI: "public.comma-separated-values-text",
     });
 
@@ -146,7 +159,8 @@ export const exportToCSV = async (
 
 export const exportToXLS = async (
   activities: Activity[],
-  deficits?: WeeklyRestDeficit[]
+  deficits: WeeklyRestDeficit[] | undefined,
+  t: TranslateFunction
 ): Promise<void> => {
   if (!activities || activities.length === 0) {
     throw new Error("No activities to export");
@@ -159,15 +173,15 @@ export const exportToXLS = async (
   const xlsFooter = "</Workbook>";
 
   const headers = [
-    "Date",
-    "Start Time",
-    "End Time",
-    "Duration (hours)",
-    "Activity Type",
-    "Daily Driving Compliance",
-    "Break Compliance",
-    "Daily Rest Compliance",
-    "Night Work",
+    t("driver.export.headers.date"),
+    t("driver.export.headers.startTime"),
+    t("driver.export.headers.endTime"),
+    t("driver.export.headers.duration"),
+    t("driver.export.headers.activityType"),
+    t("driver.export.headers.dailyDriving"),
+    t("driver.export.headers.breakCompliance"),
+    t("driver.export.headers.dailyRest"),
+    t("driver.export.headers.nightWork"),
   ];
   const rows = activities.map((activity) => {
     const startDate = dayjs(activity.startDateTime);
@@ -240,11 +254,11 @@ export const exportToXLS = async (
 
   if (deficits && deficits.length > 0) {
     const deficitHeaders = [
-      "Week Start",
-      "Week End",
-      "Deficit Hours",
-      "Compensated Hours",
-      "Must Compensate By",
+      t("driver.export.headers.weekStart"),
+      t("driver.export.headers.weekEnd"),
+      t("driver.export.headers.deficitHours"),
+      t("driver.export.headers.compensatedHours"),
+      t("driver.export.headers.mustCompensateBy"),
     ];
     const deficitRows = deficits.map((deficit) => [
       dayjs(deficit.weekStart).format("YYYY-MM-DD"),
@@ -305,7 +319,7 @@ export const exportToXLS = async (
 
     await shareAsync(file.uri, {
       mimeType: "application/vnd.ms-excel",
-      dialogTitle: "Export Driver Hours",
+      dialogTitle: t("driver.export.dialogTitle"),
     });
 
     requestStoreReviewAfterAction();

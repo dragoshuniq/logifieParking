@@ -13,7 +13,11 @@
     "information": "Information",
     "noInformation": "No information available",
     "version": "Version {{version}}",
-    "couldNotOpen": "Could not open {{name}}"
+    "couldNotOpen": "Could not open {{name}}",
+    "ok": "OK",
+    "violation": "VIOLATION",
+    "yes": "YES",
+    "no": "NO"
   },
   "format": {
     "hourShort": "h",
@@ -103,7 +107,25 @@
       "endDate": "End Date",
       "export": "Export",
       "selectBothDates": "Please select both start and end dates",
-      "startBeforeEnd": "Start date must be before end date"
+      "startBeforeEnd": "Start date must be before end date",
+      "dialogTitle": "Export Driver Hours",
+      "headers": {
+        "date": "Date",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "duration": "Duration (hours)",
+        "activityType": "Activity Type",
+        "dailyDriving": "Daily Driving Compliance",
+        "breakCompliance": "Break Compliance",
+        "dailyRest": "Daily Rest Compliance",
+        "nightWork": "Night Work",
+        "weeklyRestDeficits": "Weekly Rest Compensation Deficits",
+        "weekStart": "Week Start",
+        "weekEnd": "Week End",
+        "deficitHours": "Deficit Hours",
+        "compensatedHours": "Compensated Hours",
+        "mustCompensateBy": "Must Compensate By"
+      }
     },
     "errors": {
       "deleteFailed": "Failed to delete activity",

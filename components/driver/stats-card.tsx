@@ -58,7 +58,7 @@ export const StatsCard = ({
         >
           <MaterialIcons
             name="info"
-            size={20}
+            size={24}
             color={warning.DEFAULT}
           />
         </TouchableOpacity>
@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
   },
   infoButton: {
     position: "absolute",
-    top: -6,
-    right: -6,
+    top: -8,
+    right: -8,
     zIndex: 10,
     borderRadius: 100,
   },
