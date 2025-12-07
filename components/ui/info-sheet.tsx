@@ -35,6 +35,8 @@ const InfoSheet = (props: SheetProps) => {
   const { title = t("common.information"), sections = [] } =
     payload || {};
 
+  const translatedTitle = title.includes(".") ? t(title) : title;
+
   const onCloseSheet = () => {
     SheetManager.hide(ESheets.InfoSheet);
   };
