@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Valitse kieli",
+    "cancel": "Peruuta",
+    "confirm": "Vahvista",
+    "save": "Tallenna",
+    "delete": "Poista",
+    "apply": "Käytä",
+    "error": "Virhe",
+    "select": "Valitse",
+    "total": "Yhteensä",
+    "noData": "Ei tietoja",
+    "information": "Tiedot",
+    "noInformation": "Ei tietoja saatavilla",
+    "version": "Versio {{version}}",
+    "couldNotOpen": "Kohdetta {{name}} ei voitu avata",
+    "ok": "OK",
+    "violation": "RIKKOMUS",
+    "yes": "KYLLÄ",
+    "no": "EI"
+  },
+  "format": {
+    "hourShort": "h",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Valitse kieli"
+  },
+  "drawer": {
+    "home": "Etusivu",
+    "contact": "Ota yhteyttä",
+    "getQuote": "Pyydä tarjous",
+    "termsConditions": "Ehdot",
+    "privacyPolicy": "Tietosuoja",
+    "driver": "Kuljettaja",
+    "fuelPrices": "Polttoaineen hinnat"
+  },
+  "driver": {
+    "title": "Työaikaseuranta",
+    "none": "Ei yhtään",
+    "noActivities": "Ei aktiviteetteja tälle päivälle",
+    "weeklyOverview": "Viikkonäkymä",
+    "selectTime": "Valitse aika",
+    "activityDistribution": "Aktiviteettijakauma",
+    "dailyWorkHours": "Päivittäiset työtunnit",
+    "activityTypes": {
+      "driving": "Ajo",
+      "otherWork": "Muu työ",
+      "break": "Tauko",
+      "rest": "Lepo",
+      "availability": "Valmiusaika"
+    },
+    "form": {
+      "addActivity": "Lisää aktiviteetti",
+      "editActivity": "Muokkaa aktiviteettia",
+      "activityType": "Aktiviteettityyppi",
+      "timeEntry": "Aikakirjaus",
+      "manualEntry": "Manuaalinen syöttö",
+      "startTime": "Aloitusaika",
+      "endTime": "Lopetusaika",
+      "duration": "Kesto (tunnit)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validointi",
+      "startTimeRequired": "Aloitusaika vaaditaan",
+      "durationGreaterThanZero": "Keston on oltava suurempi kuin 0",
+      "bothTimesRequired": "Sekä alku- että lopetusaika vaaditaan",
+      "endTimeAfterStart": "Lopetusaika oltava aloitusajan jälkeen",
+      "selectStartTimeFirst": "Valitse ensin aloitusaika"
+    },
+    "stats": {
+      "dailyDriving": "Päivittäinen ajo",
+      "dailyWorking": "Päivittäinen työ",
+      "breakCompliance": "Taukojen noudattaminen",
+      "dailyRest": "Päivittäinen lepo",
+      "nightWork": "Yötyö",
+      "weeklyWorking": "Viikkotyö",
+      "drivingHours": "Ajotunnit",
+      "weeklyRest": "Viikkolepo",
+      "restCompensation": "Lepokorvaus",
+      "extendedDaysUsed": "Käytetty {{count}}/2 pidennettyä (10h) päivää",
+      "dailyDrivingLimit": "10h max 2x/viikko",
+      "reducedRestLimit": "15h max (lepo 9h)",
+      "regularRestLimit": "15h max",
+      "breaksCount": "{{count}} taukoa",
+      "noBreaks": "Ei taukoja",
+      "activityWindow": "{{hours}}h ikkuna",
+      "nightWorkWindow": "Työ 00:00-07:00",
+      "fourMonthAvg": "Keskiarvo: {{hours}}h (≤48)",
+      "twoWeekTotal": "2vk: {{hours}}h/90",
+      "hoursAgo": "{{hours}}h sitten",
+      "noWeeklyRest": "Ei viikkolepoa",
+      "hoursOwed": "{{hours}}h avoinna"
+    },
+    "export": {
+      "title": "Vientiasetukset",
+      "exportType": "Vientityyppi",
+      "period": "Jakso",
+      "selectedWeek": "Valittu viikko",
+      "currentWeek": "Kuluvan viikon",
+      "currentMonth": "Kuluva kuukausi",
+      "customPeriod": "Mukautettu jakso",
+      "customRange": "Mukautettu jakso",
+      "startDate": "Aloituspäivä",
+      "endDate": "Lopetuspäivä",
+      "export": "Vie",
+      "selectBothDates": "Valitse sekä alku- että lopetuspäivä",
+      "startBeforeEnd": "Aloituspäivän oltava ennen lopetuspäivää",
+      "dialogTitle": "Vie kuljettajan tunnit",
+      "headers": {
+        "date": "Päivämäärä",
+        "startTime": "Aloitusaika",
+        "endTime": "Lopetusaika",
+        "duration": "Kesto (tunnit)",
+        "activityType": "Aktiviteettityyppi",
+        "dailyDriving": "Päivittäisen ajon noudattaminen",
+        "breakCompliance": "Taukojen noudattaminen",
+        "dailyRest": "Päivittäisen levon noudattaminen",
+        "nightWork": "Yötyö",
+        "weeklyRestDeficits": "Viikkolevon korvausvajeet",
+        "weekStart": "Viikon alku",
+        "weekEnd": "Viikon loppu",
+        "deficitHours": "Vajetunnit",
+        "compensatedHours": "Korvatut tunnit",
+        "mustCompensateBy": "Korvattava viimeistään"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Aktiviteetin poistaminen epäonnistui",
+      "exportFailed": "Kohteen {{type}} vienti epäonnistui",
+      "saveFailed": "Aktiviteetin tallennus epäonnistui"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Lajittele",
+    "noData": "Ei polttoainetietoja",
+    "updated": "Päivitetty: {{date}}",
+    "searchPlaceholder": "Hae maita...",
+    "petrol": "Bensiini",
+    "diesel": "Diesel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Bensiini: matalasta korkeaan",
+    "petrolDesc": "Bensiini: korkeasta matalaan",
+    "dieselAsc": "Diesel: matalasta korkeaan",
+    "dieselDesc": "Diesel: korkeasta matalaan"
+  },
+  "parking": {
+    "noLocationDetails": "Ei sijaintitietoja",
+    "location": "Sijainti",
+    "city": "Kaupunki",
+    "suburb": "Lähiö",
+    "county": "Maakunta",
+    "state": "Osavaltio",
+    "country": "Maa",
+    "postcode": "Postinumero",
+    "category": "Kategoria",
+    "type": "Tyyppi",
+    "facilityTypes": {
+      "parking": "Pysäköinti",
+      "gas_station": "Huoltoasema",
+      "parking_space": "Pysäköintipaikka",
+      "truck_stop": "Kuorma-autopysäkki",
+      "rest_area": "Lepopaikka",
+      "motorway_services": "Moottoritiepalvelut",
+      "car_wash": "Autopesu",
+      "charging_station": "Latausasema",
+      "amenity": "Palvelu",
+      "highway_rest_area": "Moottoritielevähdys",
+      "highway_services": "Moottoritiepalvelut",
+      "highway": "Moottoritie",
+      "fuel_shop": "Polttoainekauppa",
+      "shop": "Kauppa",
+      "location": "Sijainti"
+    }
+  },
+  "location": {
+    "permissionRequired": "Sijaintilupa vaaditaan",
+    "permissionMessage": "Sijaintia tarvitaan nykyisen paikan löytämiseen. Ota käyttöön laitteen asetuksista.",
+    "openSettings": "Avaa asetukset"
+  },
+  "tabs": {
+    "driver": "Kuljettaja",
+    "map": "Kartta",
+    "gas": "Polttoaine"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Vastuuvapaus",
+      "purpose": {
+        "heading": "Sovelluksen tarkoitus",
+        "content": "Tämä sovellus on apuväline ammattikuljettajille. Sen tarkoitus on helpottaa päivittäisten aktiviteettien kirjaamista ja tarkastelua sekä näyttää niiden suhde EU:n ajo- ja työaikasääntöihin."
+      },
+      "noOfficialLogbook": {
+        "heading": "Ei virallinen lokikirja tai ajopiirturi",
+        "content": "Sovelluksen tiedot ovat vain informatiivisia eivätkä KORVAA:\n• ajopiirturia tai sen tulosteita,\n• lain vaatimia virallisia lokikirjoja tai rekistereitä,\n• valvontaviranomaisten edellyttämää dokumentaatiota.\nPerustaudu aina ajopiirturiin ja yrityksen virallisiin rekistereihin ensisijaisena lähteenä."
+      },
+      "noLegalAdvice": {
+        "heading": "Ei oikeudellista tai ammatillista neuvontaa",
+        "content": "Noudattavuuslaskelmat perustuvat EU-sääntelyyn mutta ovat yksinkertaistettuja, eivätkä ehkä kata kaikkia kansallisia tai yrityskohtaisia sääntöjä.\n\nSovellus ei tarjoa oikeudellista, verotuksellista, HR- tai ammatillista neuvontaa. Olet itse vastuussa voimassa olevan lainsäädännön, yrityspolitiikan ja työnantajan tai neuvonantajan ohjeiden tarkistamisesta."
+      },
+      "dataStorage": {
+        "heading": "Tietojen säilytys ja yksityisyys",
+        "content": "Aktiviteettihistoria tallennetaan vain paikallisesti laitteellesi sovelluksen välimuistiin. Emme tallenna tietojasi ulkoiseen tietokantaan tai keskitetylle palvelimelle.\n\nKoska tiedot ovat välimuistissa:\n• ne voivat poistua, kun tyhjennät sovellustiedot, asennat uudelleen tai vaihdat laitetta,\n• emme voi palauttaa kadonneita tietoja tai antaa varmuuskopioita.\nJos tarvitset pitkän aikavälin rekistereitä, vie ne ja säilytä kopiot turvallisesti."
+      },
+      "userResponsibility": {
+        "heading": "Käyttäjän vastuu",
+        "content": "Olet aina vastuussa:\n• miten suunnittelet työn ja levon,\n• miten tulkitset sovelluksessa näytetyt tiedot,\n• kaikkien sovellettavien lakien ja yrityssääntöjen noudattamisesta.\n\nPidä sovellusta tukityökaluna, ei päätöksentekijänä. Epäselvissä tilanteissa seuraa ajopiirturia, yrityksen ohjeita ja virallista oikeudellista neuvontaa."
+      }
+    },
+    "parking": {
+      "title": "Kuorma-autopysäköinti - Vastuuvapaus",
+      "sourceInfo": {
+        "heading": "Tietolähde",
+        "content": "Sovelluksessa näytetyt pysäköintipaikat, palvelut ja tiedot tulevat julkisista ja kolmansien osapuolien lähteistä (avoin data, julkiset sivustot, käyttäjien lisäykset tai ulkoiset palvelut).\n\nEmme ylläpidä näitä pysäköintejä emmekä hallitse julkaistuja tietoja."
+      },
+      "accuracy": {
+        "heading": "Tarkkuus ja päivitykset",
+        "content": "Pyrimme näyttämään hyödyllistä ja ajantasaista tietoa, mutta emme voi taata sen täydellisyyttä, oikeellisuutta tai ajantasaisuutta.\n\nEsimerkkejä muutoksista ilman ilmoitusta:\n• aukioloajat ja pääsylinjat,\n• hinnat, maksutavat ja varausvaatimukset,\n• saatavilla olevat palvelut (suihku, turvallisuus, ruoka, polttoaine jne.),\n• paikkamäärä tai tilapäinen sulkeminen."
+      },
+      "verifyBefore": {
+        "heading": "Varmista aina ennen ajoa",
+        "content": "Ennen kuin ajat mihinkään sovelluksen pysäköintiin, varmista avaintiedot itse:\n• tarkista sijainti navigointi- tai karttasovelluksessa,\n• käytä muita luotettavia pysäköinti-/kuorma-autosovelluksia,\n• käy pysäköinnin virallisella verkkosivulla, jos saatavilla,\n• ota suoraan yhteyttä ylläpitäjään tai isäntään, jos yhteystiedot on annettu.\n\nÄlä luota pelkästään sovelluksen tietoihin reitti-, lepo- tai turvallisuussuunnittelussa."
+      },
+      "noEndorsement": {
+        "heading": "Ei suositusta tai takuuta",
+        "content": "Pysäköinnin näkyminen sovelluksessa EI tarkoita, että suosittelemme, tarkastamme tai takaamme sitä.\n\nEmme vahvista:\n• pysäköinnin turvallisuustasoa,\n• vapaiden paikkojen saatavuutta milloin tahansa,\n• pysäköinnin lakien tai yritysvaatimusten noudattamista."
+      },
+      "userResponsibility": {
+        "heading": "Käyttäjän vastuu",
+        "content": "Olet aina vastuussa:\n• missä pysähdyt ja lepäät,\n• tarkistamisesta, että pysäköinti sopii ajoneuvolle ja kuormalle,\n• ajo-/lepoaikasääntöjen ja kaikkien liikennesääntöjen noudattamisesta.\n\nKäytä pysäköintikarttaa tukena. Tarkista tärkeät tiedot aina kahdesti ennen saapumista."
+      }
+    },
+    "fuel": {
+      "title": "Polttoaineen hinnat - Vastuuvapaus",
+      "sourceData": {
+        "heading": "Datalähde",
+        "content": "Polttoaineen hinnat perustuvat julkisiin tietoihin EU-lähteistä ja/tai muista virallisista julkaisuista. Ne näytetään viitteellisesti eikä niitä kerätä suoraan meiltä."
+      },
+      "accuracy": {
+        "heading": "Tarkkuus ja ajantasaisuus",
+        "content": "Hinnat ovat suuntaa-antavia ja voivat poiketa todellisista hinnoista asemilla. Ne muuttuvat usein verojen, markkinoiden, sijainnin ja vuorokaudenajan mukaan. Emme takaa täydellisyyttä, virheettömyyttä tai ajantasaisuutta."
+      },
+      "howToUse": {
+        "heading": "Käyttö",
+        "content": "Käytä hintoja vain karkeana viitteenä. Tarkista aina ajantasainen hinta pumpulla, aseman sivustolla tai toisessa luotettavassa sovelluksessa ennen päätöstä."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Päivittäinen ajoaika",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "EU-asetus (EY) N:o 561/2006 - Art. 6 (päivittäinen ajoaika)."
+      },
+      "rules": {
+        "heading": "Säännöt",
+        "content": "• Vakiokatto: enintään 9 tuntia ajoaikaa yhden työpäivän aikana.\n• Laajennettu katto: enintään 10 tuntia korkeintaan 2 päivänä viikossa.\n• Ajoaika lasketaan kahden peräkkäisen päivittäisen tai viikoittaisen levon välillä."
+      },
+      "example": {
+        "heading": "Esimerkki",
+        "content": "Jos ajat 10h maanantaina ja 10h keskiviikkona, kaikkina muina saman viikon päivinä on pysyttävä 9h tai alle."
+      }
+    },
+    "dailyWorking": {
+      "title": "Päivittäinen työaika ja kesto",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "EU-direktiivi 2002/15/EY (liikkuvien työntekijöiden työaika) + Asetus (EY) N:o 561/2006 (lepoajat)."
+      },
+      "whatCounts": {
+        "heading": "Mikä lasketaan työajaksi",
+        "content": "• Ajo (todellinen ajoaika).\n• Muu työ (lastaus, purku, hallinto, huolto jne.).\n• Työaika EI sisällä: taukoja, lepoja tai valmiusaikaa.\n• Valmiusaika kirjataan erikseen, mutta pidentää silti päivittäistä kestoa (aika lepojen välillä)."
+      },
+      "dailyLimits": {
+        "heading": "Päivittäiset rajat (levon vaikutus)",
+        "content": "• EU ei aseta tiukkaa päivittäistä työaikakattoa, mutta:\n  • Viikkorajat pätevät: enintään 60h viikossa, keskim. 48h/viikko enintään 4 kuukauden jaksolla.\n  • Päivittäisten lepojen vuoksi (561/2006):\n    - Kun normaali päivittäinen lepo on 11h, enimmäiskesto on 13h.\n    - Kun lyhennetty päivittäinen lepo on vähintään 9h (max 3 kertaa viikolla) kesto voi olla enintään 15h.\n  • Yötyössä työaika 24h aikana ei saa ylittää 10h (katso Yötyö)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Taukojen noudattaminen",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "• EU-asetus (EY) N:o 561/2006 - Art. 7 (ajoaikatauot).\n• EU-direktiivi 2002/15/EY - tauot liikkuvien työntekijöiden työajassa."
+      },
+      "drivingBreaks": {
+        "heading": "Ajoaikatauot (561/2006)",
+        "content": "• Enintään 4,5 tunnin ajon jälkeen on pidettävä vähintään 45 minuutin tauko.\n• Nämä 45 minuuttia voi jakaa:\n  - ensimmäinen tauko vähintään 15 min, ja\n  - toinen tauko vähintään 30 min,\n  kunhan ne yhdessä ovat vähintään 45 min 4,5h ajoikkunan sisällä."
+      },
+      "workingBreaks": {
+        "heading": "Työajantauot (2002/15/EY)",
+        "content": "• Et saa tehdä työtä yli 6 tuntia yhtäjaksoisesti ilman taukoa.\n• Jos päivittäinen työaika on >6h ja ≤9h: vähintään 30 min yhteensä.\n• Jos työaika on >9h: vähintään 45 min yhteensä.\n• Tauot voi jakaa vähintään 15 minuutin jaksoihin.\n• Kun yhdistetään ajo ja muu työ, molempia taukosääntöjä on noudatettava (tiukempi pätee)."
+      },
+      "important": {
+        "heading": "Tärkeää",
+        "content": "• Tauot katkaisevat työajan eivätkä ole työaikaa.\n• Ne kuitenkin pidentävät päivittäistä kestoa (aika ensimmäisen ja viimeisen aktiviteetin välillä)."
+      }
+    },
+    "dailyRest": {
+      "title": "Päivittäinen lepo ja aktiivisuusikkuna",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "EU-asetus (EY) N:o 561/2006 - Art. 8 (päivittäinen lepo)."
+      },
+      "requirements": {
+        "heading": "Päivittäisen levon vaatimukset",
+        "content": "• Normaali päivittäinen lepo: vähintään 11 tuntia yhtäjaksoisesti 24h sisällä edellisen päivä- tai viikkolevon päättymisestä.\n• Jaettu normaali lepo: 3h + 9h (ensimmäinen osa vähintään 3h, toinen vähintään 9h).\n• Lyhennetty päivittäinen lepo: vähintään 9h mutta alle 11h.\n• Enintään 3 lyhennettyä päivittäistä lepoa kahden viikkolevon välillä."
+      },
+      "activityWindow": {
+        "heading": "Aktiivisuusikkuna (päivittäinen kesto)",
+        "content": "• Päivittäinen kesto = aika ensimmäisestä aktiviteetista (Ajo/Muu työ/Valmius/Tauko) viimeiseen ennen seuraavaa päivä- tai viikkolepoa.\n• Normaalilla päivittäisellä levolla (11h): max 13h kesto 24h jaksossa.\n• Lyhennetyllä päivittäisellä levolla (≥9h): max 15h kesto, sallittu enintään 3 kertaa viikkolepojen välillä.\n• Koko päivittäisen levon on mahduttava kyseiseen 24h jaksoon työpäivän alusta."
+      }
+    },
+    "nightWork": {
+      "title": "Yötyö (EU-työaika)",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "EU-direktiivi 2002/15/EY - yötyö maantieliikenteen liikkuville työntekijöille."
+      },
+      "definition": {
+        "heading": "Yöajan määritelmä",
+        "content": "• EU-lainsäädäntö määrittelee “yöajan” vähintään 4 peräkkäiseksi tunniksi klo 00:00–07:00 välillä.\n• Jokainen jäsenvaltio määrittää tarkat 4 yö­tuntia kansallisessa lainsäädännössä.\n• Sovelluksessa tämä on konfiguroitava 4 tunnin ikkuna (esim. 00:00–04:00 tai 01:00–05:00)."
+      },
+      "limit": {
+        "heading": "Yötyön raja",
+        "content": "• Jos työtä (Ajo tai Muu työ) tehdään määritellyn yöikkunan sisällä, se lasketaan yötyöksi.\n• Yötyössä kokonais­työaika ei saa ylittää 10 tuntia 24 tunnin jaksossa.\n• Tämä 10h koskee vain työaikaa (Ajo + Muu työ), ei taukoja, lepoa tai valmiusaikaa.\n• Jäsenvaltiot voivat lisätä lisiä tai suojia, mutta ne eivät sisälly tähän."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Viikkotyöaika",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "EU-direktiivi 2002/15/EY - maantieliikenteen liikkuvien työntekijöiden työaika."
+      },
+      "limits": {
+        "heading": "Viikkorajat",
+        "content": "• Keskimääräinen työaika: ei saa ylittää 48 tuntia viikossa, laskettuna viitejaksolla (enintään 4 kk).\n• Yksittäinen viikko: työaika voi olla enintään 60h, kunhan 48h/viikko keskiarvoa ei ylitetä viitejaksolla.\n• Työaika = Ajo + Muu työ.\n• Tauot, lepoperiodit ja valmiusaika eivät ole työaikaa."
+      },
+      "calculation": {
+        "heading": "Laskentajakso",
+        "content": "• “Viikko” EU-säännöissä on yleensä kiinteä 7 päivän jakso (561/2006: ma 00:00 – su 24:00).\n• Sovellus voi seurata liukuvaa 4 kuukauden jaksoa 48h keskiarvolle.\n• Jos yksi viikko >60h → välitön työaikarike.\n• Jos liukuva keskiarvo >48h/viikko → työaikarike."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Viikoittainen ja kahden viikon ajo",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "EU-asetus (EY) N:o 561/2006 - Art. 6 (ajon rajat viikolla ja kahdessa viikossa)."
+      },
+      "limits": {
+        "heading": "Ajokatto",
+        "content": "• Yksi viikko: enintään 56 tuntia ajoa.\n• Kaksi peräkkäistä viikkoa: yhteensä enintään 90 tuntia ajoa.\n• “Viikko” 561/2006 mukaan: maanantai 00:00 – sunnuntai 24:00."
+      },
+      "example": {
+        "heading": "Esimerkki",
+        "content": "Viikko 1: 48h ajo → Viikko 2 max 42h (48 + 42 = 90).\nViikko 2: 42h ajo → Viikko 3 max 48h (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Viikkolepo ja 45h tauko",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "EU-asetus (EY) N:o 561/2006 - Art. 8 (viikkolepo, myös liikkuvuuspaketti)."
+      },
+      "requirements": {
+        "heading": "Viikkolevon vaatimukset",
+        "content": "• Uuden viikkolevon on ALETTAVA viimeistään 144 tunnin (6 × 24h) kuluttua edellisen viikkolevon LOPUSTA.\n• Normaali viikkolepo: vähintään 45 peräkkäistä tuntia.\n• Lyhennetty viikkolepo: vähintään 24 tuntia mutta alle 45 tuntia.\n• Kahden peräkkäisen viikon aikana oltava vähintään 2 viikkolepoa ja vähintään 1 niistä on oltava normaali (≥45h)."
+      },
+      "compensation": {
+        "heading": "Korvaussäännöt (kooste)",
+        "content": "• Jokainen lyhennetty viikkolepo luo vajeen: 45h miinus toteutunut lepo.\n• Jokainen vaje on korvattava “yhtenä blokkina” 3 viikon kuluessa vähennysviikosta.\n• Korvaus on liitettävä toiseen vähintään 9h lepoon (päivä- tai viikkolepo)."
+      },
+      "whereRest": {
+        "heading": "Missä lepo voidaan pitää",
+        "content": "• Normaalia viikkolepoa (≥45h) ei saa pitää ajoneuvossa.\n• Päivä- ja lyhennetty viikkolepo voidaan pitää ajoneuvossa, jos se on pysäköity ja varustettu asianmukaisella makuupaikalla."
+      },
+      "daysCovered": {
+        "heading": "Viikkolevon kattamat päivät",
+        "content": "• Päivät, jotka viikkolepo (≥24h) kattaa kokonaan, lasketaan vapaiksi.\n• Päivälepojen tarkastuksessa nämä päivät katsotaan automaattisesti noudatetuiksi."
+      }
+    },
+    "restCompensation": {
+      "title": "Lepokorvaus",
+      "legalBasis": {
+        "heading": "Oikeusperusta",
+        "content": "EU-asetus (EY) N:o 561/2006 - Art. 8(6) (korvaus lyhennetystä viikkolevosta)."
+      },
+      "whenRequired": {
+        "heading": "Milloin korvaus vaaditaan",
+        "content": "• Jokainen lyhennetty viikkolepo (24h - <45h) luo “vajeen” suhteessa 45h:iin.\n• Vaje = 45 tuntia − toteutunut viikkolevon kesto.\n• Esim: 30h viikkolepo → 15h vaje, joka on korvattava myöhemmin."
+      },
+      "rules": {
+        "heading": "Korvaussäännöt",
+        "content": "• Jokainen vaje on korvattava 3 viikon kuluessa vähennysviikosta.\n• Korvaus on tehtävä yhtenä yhtenäisenä jaksona.\n• Se on liitettävä toiseen vähintään 9 tunnin lepoon (päivä- tai viikkolepo).\n• Korvausta ei saa jakaa useaan lepoon."
+      },
+      "display": {
+        "heading": "Näyttö sovelluksessa",
+        "content": "• Näyttää, kuinka monta lyhennettyä viikkolepoa on korvaamatta.\n• Näyttää korvaamatta olevien tuntien kokonaismäärän ja viimeisen määräajan."
+      }
+    }
+  }
+}
