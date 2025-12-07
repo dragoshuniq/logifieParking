@@ -324,7 +324,7 @@ export const DriverHours = () => {
           <StatsCard
             title={t("driver.stats.dailyDriving")}
             value={dailyDriving.drivingHours.toFixed(1)}
-            maxValue={dailyDriving.limit.toString()}
+            maxValue={"9"}
             level={dailyDriving.level}
             subtitle={
               dailyDriving.extendedDaysThisWeek > 0

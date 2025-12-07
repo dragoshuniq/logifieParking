@@ -204,9 +204,6 @@ export const calculateDailyDrivingCompliance = (
     0
   );
 
-  const startOfWeek = dayjs(date).startOf("isoWeek").valueOf();
-  const endOfWeek = dayjs(date).endOf("isoWeek").valueOf();
-
   const weekDays = Array.from({ length: 7 }, (_, i) =>
     dayjs(date).startOf("isoWeek").add(i, "day")
   );
