@@ -2,7 +2,10 @@ import { Tabs } from "expo-router";
 import React from "react";
 
 import { CustomDrawerHeader } from "@/components/drawer/custom-drawer-header";
-import { driverDisclaimer } from "@/components/drawer/disclaimers";
+import {
+  driverDisclaimer,
+  fuelPricesDisclaimer,
+} from "@/components/drawer/disclaimers";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -54,7 +57,10 @@ export default function TabLayout() {
         options={{
           title: "Gas",
           header: () => (
-            <CustomDrawerHeader title="drawer.fuelPrices" />
+            <CustomDrawerHeader
+              title="drawer.fuelPrices"
+              disclaimer={fuelPricesDisclaimer}
+            />
           ),
           tabBarIcon: ({ color }) => (
             <FontAwesome6 size={28} name="gas-pump" color={color} />

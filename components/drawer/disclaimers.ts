@@ -101,3 +101,28 @@ export const parkingDisclaimer: InfoSheetProps = {
     },
   ],
 };
+
+export const fuelPricesDisclaimer: InfoSheetProps = {
+  title: "Fuel Prices - Disclaimer",
+  sections: [
+    {
+      heading: "Source of Data",
+      content:
+        "Fuel prices are based on public information from European Union sources and/or other official publications. " +
+        "They are shown for convenience only and are not collected directly by us.",
+    },
+    {
+      heading: "Accuracy & Timing",
+      content:
+        "Prices are indicative and may differ from actual prices at individual stations. " +
+        "They can change frequently due to taxes, market conditions, location and time of day. " +
+        "We do not guarantee that the prices in the app are complete, error-free or up to date.",
+    },
+    {
+      heading: "How to Use",
+      content:
+        "Use the prices as a rough reference only. Always check the current price at the station pump, " +
+        "on the station’s website or in another trusted app before making decisions.",
+    },
+  ],
+};
