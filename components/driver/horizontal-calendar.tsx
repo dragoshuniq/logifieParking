@@ -1,7 +1,10 @@
 import { ThemedText } from "@/components/ui/themed-text";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
-import { useMemo } from "react";
+import { useFormatDate } from "@/hooks/useFormat";
+import { Languages } from "@/providers/i18n";
+import { configureCalendarLocale } from "@/utils/calendar-config";
+import { configureDayjsLocale } from "@/utils/dayjs-config";
+import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import {
@@ -21,6 +24,7 @@ export const HorizontalCalendar = ({
   markedDates = [],
 }: Props) => {
   const { i18n } = useTranslation();
+  const { formatDate } = useFormatDate();
   const { primary, content2, content3, background } = useThemedColors(
     "primary",
     "content2",
@@ -29,6 +33,10 @@ export const HorizontalCalendar = ({
   );
 
   configureDayjsLocale(i18n.language);
+
+  useEffect(() => {
+    configureCalendarLocale(i18n.language as Languages);
+  }, [i18n.language]);
 
   const calendarTheme = useMemo(
     () => ({
@@ -70,14 +78,17 @@ export const HorizontalCalendar = ({
     return marked;
   }, [selectedDate, markedDates, primary]);
 
-  const currentMonth = dayjs(selectedDate).format("MMMM YYYY");
+  const currentMonth = formatDate(selectedDate, {
+    year: "numeric",
+    month: "long",
+  });
 
   return (
     <View style={styles.container}>
       <ThemedText style={styles.monthText}>{currentMonth}</ThemedText>
       <View style={styles.calendarWrapper}>
         <CalendarProvider
-          key={background}
+          key={`${background}-${i18n.language}`}
           date={selectedDate}
           onDateChanged={onDateSelect}
         >

@@ -15,12 +15,14 @@ import "dayjs/locale/sv";
 import "dayjs/locale/tr";
 import "dayjs/locale/uk";
 import isoWeek from "dayjs/plugin/isoWeek";
+import localeData from "dayjs/plugin/localeData";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(isoWeek);
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
+dayjs.extend(localeData);
 
 const localeMap: Record<string, string> = {
   en: "en",
@@ -40,8 +42,12 @@ const localeMap: Record<string, string> = {
   tr: "tr",
 };
 
+export const getDayjsLocale = (locale: string): string => {
+  return localeMap[locale] || locale;
+};
+
 export const configureDayjsLocale = (locale: string) => {
-  const dayjsLocale = localeMap[locale] || locale;
+  const dayjsLocale = getDayjsLocale(locale);
   dayjs.locale(dayjsLocale);
 };
 

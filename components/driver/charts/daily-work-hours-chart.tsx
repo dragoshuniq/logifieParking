@@ -1,9 +1,9 @@
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import { useFormatDuration } from "@/hooks/useFormat";
+import { useFormatDate, useFormatDuration } from "@/hooks/useFormat";
 import { WeeklyStats } from "@/utils/compliance";
-import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
+import { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
@@ -15,6 +15,7 @@ type Props = {
 export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
   const { t, i18n } = useTranslation();
   const { formatDuration } = useFormatDuration();
+  const { formatDate } = useFormatDate();
   const { content2, primary, text } = useThemedColors(
     "content2",
     "primary",
@@ -25,7 +26,7 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
 
   const barData = weeklyStats.dailyStats.map((day) => ({
     value: day.drivingHours + day.workHours + day.availabilityHours,
-    label: dayjs(day.date).format("dd"),
+    label: formatDate(day.date, { weekday: "short" }),
     frontColor: primary.DEFAULT,
     topLabelComponent: () => (
       <ThemedText style={{ fontSize: 10, marginBottom: 2 }}>

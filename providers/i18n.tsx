@@ -1,4 +1,5 @@
 import en from "@/locales/en.json";
+import { configureCalendarLocale } from "@/utils/calendar-config";
 import { configureDayjsLocale } from "@/utils/dayjs-config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Localization from "expo-localization";
@@ -100,6 +101,7 @@ const initI18n = async () => {
   });
 
   configureDayjsLocale(language);
+  configureCalendarLocale(language);
 };
 
 initI18n();

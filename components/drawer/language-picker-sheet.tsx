@@ -7,6 +7,7 @@ import {
   persistLanguage,
   validateLanguage,
 } from "@/providers/i18n";
+import { configureCalendarLocale } from "@/utils/calendar-config";
 import { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useTranslation } from "react-i18next";
 import {
@@ -53,6 +54,7 @@ export default function LanguagePickerSheet(props: SheetProps) {
     const validatedLanguage = validateLanguage(language);
     changeLanguage(validatedLanguage);
     configureDayjsLocale(validatedLanguage);
+    configureCalendarLocale(validatedLanguage);
     await persistLanguage(validatedLanguage);
 
     SheetManager.hide(ESheets.LanguagePicker);

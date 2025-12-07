@@ -2,6 +2,7 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets, ExportConfigProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
+import { useFormatDate } from "@/hooks/useFormat";
 import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -36,6 +37,7 @@ const ExportConfigSheet = () => {
     | ExportConfigProps
     | undefined;
   const { t, i18n } = useTranslation();
+  const { formatDate } = useFormatDate();
   const { content1, content2, primary } = useThemedColors(
     "content1",
     "content2",
@@ -310,7 +312,11 @@ const ExportConfigSheet = () => {
                 </ThemedText>
                 <ThemedText style={styles.dateInputValue}>
                   {customStartDate
-                    ? dayjs(customStartDate).format("MMM DD, YYYY")
+                    ? formatDate(customStartDate, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })
                     : t("common.select")}
                 </ThemedText>
               </TouchableOpacity>
@@ -326,7 +332,11 @@ const ExportConfigSheet = () => {
                 </ThemedText>
                 <ThemedText style={styles.dateInputValue}>
                   {customEndDate
-                    ? dayjs(customEndDate).format("MMM DD, YYYY")
+                    ? formatDate(customEndDate, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })
                     : t("common.select")}
                 </ThemedText>
               </TouchableOpacity>
