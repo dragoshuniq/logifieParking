@@ -4,8 +4,7 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, View } from "react-native";
-import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 type StatsCardProps = {
   title: string;
@@ -55,7 +54,7 @@ export const StatsCard = ({
       style={[styles.card, { backgroundColor: content2.DEFAULT }]}
     >
       {info && (
-        <ThemedTouchableOpacity
+        <TouchableOpacity
           onPress={handleInfoPress}
           style={styles.infoButton}
         >
@@ -64,7 +63,7 @@ export const StatsCard = ({
             size={16}
             color={primary.DEFAULT}
           />
-        </ThemedTouchableOpacity>
+        </TouchableOpacity>
       )}
       <ThemedText style={styles.title}>{title}</ThemedText>
       <View style={styles.valueContainer}>
