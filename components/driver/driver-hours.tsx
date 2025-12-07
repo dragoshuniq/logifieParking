@@ -152,7 +152,10 @@ export const DriverHours = () => {
           await deleteActivity(activity.id);
           loadActivities();
         } catch {
-          Alert.alert("Error", "Failed to delete activity");
+          Alert.alert(
+            t("common.error"),
+            t("driver.errors.deleteFailed")
+          );
         }
       },
     });
@@ -197,8 +200,10 @@ export const DriverHours = () => {
           }
         } catch {
           Alert.alert(
-            "Error",
-            `Failed to export ${type.toUpperCase()}`
+            t("common.error"),
+            t("driver.errors.exportFailed", {
+              type: type.toUpperCase(),
+            })
           );
         }
       },
@@ -329,19 +334,21 @@ export const DriverHours = () => {
           contentContainerStyle={styles.statsScroll}
         >
           <StatsCard
-            title={t("driver.dailyDriving")}
+            title={t("driver.stats.dailyDriving")}
             value={dailyDriving.drivingHours.toFixed(1)}
             maxValue={dailyDriving.limit.toString()}
             level={dailyDriving.level}
             subtitle={
               dailyDriving.extendedDaysThisWeek > 0
-                ? `Used ${dailyDriving.extendedDaysThisWeek}/2 extended (10h) days`
-                : "9h daily, 10h max 2×/week"
+                ? t("driver.stats.extendedDaysUsed", {
+                    count: dailyDriving.extendedDaysThisWeek,
+                  })
+                : t("driver.stats.dailyDrivingLimit")
             }
             info={getComplianceInfo("dailyDriving")}
           />
           <StatsCard
-            title="Daily Working"
+            title={t("driver.stats.dailyWorking")}
             value={dailyWorkingHours.toFixed(1)}
             maxValue={maxDailyWorking.toString()}
             level={
@@ -352,13 +359,13 @@ export const DriverHours = () => {
             }
             subtitle={
               dailyRest.restType === "reduced"
-                ? "15h max (9h rest)"
-                : "13h max (11h rest)"
+                ? t("driver.stats.reducedRestLimit")
+                : t("driver.stats.regularRestLimit")
             }
             info={getComplianceInfo("dailyWorking")}
           />
           <StatsCard
-            title={t("driver.breakCompliance")}
+            title={t("driver.stats.breakCompliance")}
             value={`${Math.floor(
               breakCompliance.totalBreakMinutes
             )}m`}
@@ -370,85 +377,90 @@ export const DriverHours = () => {
             level={breakCompliance.level}
             subtitle={
               breakCompliance.breaks.length > 0
-                ? `${breakCompliance.breaks.length} breaks`
-                : "No breaks"
+                ? t("driver.stats.breaksCount", {
+                    count: breakCompliance.breaks.length,
+                  })
+                : t("driver.stats.noBreaks")
             }
             info={getComplianceInfo("breakCompliance")}
           />
           <StatsCard
-            title={t("driver.dailyRest")}
+            title={t("driver.stats.dailyRest")}
             value={dailyRest.restHours.toFixed(1)}
             maxValue="11"
             level={dailyRest.level}
             subtitle={
               dailyRest.activityWindowHours > 0
-                ? `${dailyRest.activityWindowHours.toFixed(
-                    1
-                  )}h window`
+                ? t("driver.stats.activityWindow", {
+                    hours: dailyRest.activityWindowHours.toFixed(1),
+                  })
                 : undefined
             }
             info={getComplianceInfo("dailyRest")}
           />
           {nightWork.hasNightWork && (
             <StatsCard
-              title={t("driver.nightWork")}
+              title={t("driver.stats.nightWork")}
               value={nightWork.actualWorkingTime.toFixed(1)}
               maxValue={nightWork.maxWorkingTime.toString()}
               level={nightWork.level}
-              subtitle="00:00-07:00 work"
+              subtitle={t("driver.stats.nightWorkWindow")}
               info={getComplianceInfo("nightWork")}
             />
           )}
           <StatsCard
-            title={t("driver.weeklyWorking")}
+            title={t("driver.stats.weeklyWorking")}
             value={weeklyWorking.weeklyHours.toFixed(1)}
             maxValue="60"
             level={weeklyWorking.level}
-            subtitle={`Avg: ${weeklyWorking.fourMonthAverage.toFixed(
-              1
-            )}h (≤48)`}
+            subtitle={t("driver.stats.fourMonthAvg", {
+              hours: weeklyWorking.fourMonthAverage.toFixed(1),
+            })}
             info={getComplianceInfo("weeklyWorking")}
           />
           <StatsCard
-            title={t("driver.drivingHours")}
+            title={t("driver.stats.drivingHours")}
             value={weeklyDriving.weeklyDrivingHours.toFixed(1)}
             maxValue="56"
             level={weeklyDriving.level}
-            subtitle={`2wk: ${weeklyDriving.twoWeekDrivingHours.toFixed(
-              1
-            )}h/90`}
+            subtitle={t("driver.stats.twoWeekTotal", {
+              hours: weeklyDriving.twoWeekDrivingHours.toFixed(1),
+            })}
             info={getComplianceInfo("weeklyDriving")}
           />
           <StatsCard
-            title={t("driver.weeklyRest")}
+            title={t("driver.stats.weeklyRest")}
             value={
               weeklyRest.lastRestHours > 0
                 ? `${weeklyRest.lastRestHours.toFixed(0)}h`
-                : "None"
+                : t("driver.none")
             }
             maxValue="45"
             level={weeklyRest.level}
             subtitle={
               weeklyRest.lastRestEnd
-                ? `${weeklyRest.hoursSinceLastWeeklyRest.toFixed(
-                    0
-                  )}h ago`
-                : "No weekly rest"
+                ? t("driver.stats.hoursAgo", {
+                    hours:
+                      weeklyRest.hoursSinceLastWeeklyRest.toFixed(0),
+                  })
+                : t("driver.stats.noWeeklyRest")
             }
             info={getComplianceInfo("weeklyRest")}
           />
           {restDeficits.length > 0 && (
             <StatsCard
-              title="Rest Compensation"
+              title={t("driver.stats.restCompensation")}
               value={`${restDeficits.length}`}
               level="warning"
-              subtitle={`${restDeficits
-                .reduce(
-                  (sum, d) =>
-                    sum + (d.deficitHours - d.compensatedHours),
-                  0
-                )
-                .toFixed(1)}h owed`}
+              subtitle={t("driver.stats.hoursOwed", {
+                hours: restDeficits
+                  .reduce(
+                    (sum, d) =>
+                      sum + (d.deficitHours - d.compensatedHours),
+                    0
+                  )
+                  .toFixed(1),
+              })}
               info={getComplianceInfo("restCompensation")}
             />
           )}
@@ -462,7 +474,7 @@ export const DriverHours = () => {
               marginBottom: 16,
             }}
           >
-            Weekly Overview
+            {t("driver.weeklyOverview")}
           </ThemedText>
           <View style={{ gap: 20 }}>
             <ActivityDistributionChart dailyStats={dailyStats} />

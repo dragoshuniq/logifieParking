@@ -4,6 +4,7 @@ import { DatePickerProps, ESheets } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import dayjs from "dayjs";
 import { useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import ActionSheet, {
   ActionSheetRef,
@@ -22,6 +23,7 @@ const DatePickerSheet = () => {
   const payload = useSheetPayload("DatePicker") as
     | DatePickerProps
     | undefined;
+  const { t } = useTranslation();
   const { content1, content2, primary, content3, background } =
     useThemedColors(
       "content1",
@@ -123,7 +125,9 @@ const DatePickerSheet = () => {
               { backgroundColor: content2.DEFAULT },
             ]}
           >
-            <ThemedText style={styles.buttonText}>Cancel</ThemedText>
+            <ThemedText style={styles.buttonText}>
+              {t("common.cancel")}
+            </ThemedText>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -139,7 +143,7 @@ const DatePickerSheet = () => {
                 { color: primary.foreground },
               ]}
             >
-              Confirm
+              {t("common.confirm")}
             </ThemedText>
           </TouchableOpacity>
         </View>

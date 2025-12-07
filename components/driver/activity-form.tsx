@@ -68,13 +68,25 @@ const ActivityFormSheet = () => {
   );
 
   const activityTypes: { type: ActivityType; label: string }[] = [
-    { type: ActivityType.DRIVING, label: t("driver.driving") },
-    { type: ActivityType.OTHER_WORK, label: t("driver.work") },
-    { type: ActivityType.BREAK, label: t("driver.break") },
-    { type: ActivityType.REST, label: t("driver.rest") },
+    {
+      type: ActivityType.DRIVING,
+      label: t("driver.activityTypes.driving"),
+    },
+    {
+      type: ActivityType.OTHER_WORK,
+      label: t("driver.activityTypes.otherWork"),
+    },
+    {
+      type: ActivityType.BREAK,
+      label: t("driver.activityTypes.break"),
+    },
+    {
+      type: ActivityType.REST,
+      label: t("driver.activityTypes.rest"),
+    },
     {
       type: ActivityType.AVAILABILITY,
-      label: t("driver.availability"),
+      label: t("driver.activityTypes.availability"),
     },
   ];
 
@@ -116,11 +128,8 @@ const ActivityFormSheet = () => {
           if (end.isBefore(start) || end.isSame(start)) {
             setEndTime("");
             Alert.alert(
-              t("driver.validation", "Validation"),
-              t(
-                "driver.endTimeEarlier",
-                "End time must be after start time. Please select end time again."
-              )
+              t("driver.validation.title"),
+              t("driver.validation.endTimeAfterStart")
             );
           }
         }
@@ -131,8 +140,8 @@ const ActivityFormSheet = () => {
   const handleEndTimePicker = () => {
     if (!startTime) {
       Alert.alert(
-        t("driver.validation", "Validation"),
-        t("driver.selectStartFirst", "Please select start time first")
+        t("driver.validation.title"),
+        t("driver.validation.selectStartTimeFirst")
       );
       return;
     }
@@ -169,11 +178,8 @@ const ActivityFormSheet = () => {
 
         if (end.isBefore(start) || end.isSame(start)) {
           Alert.alert(
-            t("driver.validation", "Validation"),
-            t(
-              "driver.endTimeEarlier",
-              "End time must be after start time"
-            )
+            t("driver.validation.title"),
+            t("driver.validation.endTimeAfterStart")
           );
           return;
         }
@@ -193,19 +199,16 @@ const ActivityFormSheet = () => {
     if (isManualEntry) {
       if (!startTime) {
         Alert.alert(
-          t("driver.validation", "Validation"),
-          t("driver.startTimeRequired", "Start time is required")
+          t("driver.validation.title"),
+          t("driver.validation.startTimeRequired")
         );
         return;
       }
       const durationNum = parseFloat(duration);
       if (!durationNum || durationNum <= 0) {
         Alert.alert(
-          t("driver.validation", "Validation"),
-          t(
-            "driver.durationRequired",
-            "Duration must be greater than 0"
-          )
+          t("driver.validation.title"),
+          t("driver.validation.durationGreaterThanZero")
         );
         return;
       }
@@ -221,11 +224,8 @@ const ActivityFormSheet = () => {
     } else {
       if (!startTime || !endTime) {
         Alert.alert(
-          t("driver.validation", "Validation"),
-          t(
-            "driver.timesRequired",
-            "Both start and end times are required"
-          )
+          t("driver.validation.title"),
+          t("driver.validation.bothTimesRequired")
         );
         return;
       }
@@ -277,8 +277,8 @@ const ActivityFormSheet = () => {
     >
       <ThemedText style={styles.title}>
         {initialActivity
-          ? t("driver.editActivity")
-          : t("driver.addActivity")}
+          ? t("driver.form.editActivity")
+          : t("driver.form.addActivity")}
       </ThemedText>
 
       <ScrollView
@@ -287,7 +287,7 @@ const ActivityFormSheet = () => {
         nestedScrollEnabled
       >
         <ThemedText style={styles.label}>
-          {t("driver.activityType")}
+          {t("driver.form.activityType")}
         </ThemedText>
         <View style={styles.typeContainer}>
           {activityTypes.map((item) => (
@@ -337,7 +337,7 @@ const ActivityFormSheet = () => {
                   : content2.foreground,
               }}
             >
-              {t("driver.timeEntry")}
+              {t("driver.form.timeEntry")}
             </ThemedText>
           </TouchableOpacity>
           <TouchableOpacity
@@ -358,13 +358,13 @@ const ActivityFormSheet = () => {
                   : content2.foreground,
               }}
             >
-              {t("driver.manualEntry")}
+              {t("driver.form.manualEntry")}
             </ThemedText>
           </TouchableOpacity>
         </View>
 
         <ThemedText style={styles.label}>
-          {t("driver.startTime")}
+          {t("driver.form.startTime")}
         </ThemedText>
         <TouchableOpacity
           onPress={handleStartTimePicker}
@@ -385,7 +385,7 @@ const ActivityFormSheet = () => {
         {isManualEntry ? (
           <View>
             <ThemedText style={styles.label}>
-              {t("driver.duration")}
+              {t("driver.form.duration")}
             </ThemedText>
             <TextInput
               style={[
@@ -402,7 +402,7 @@ const ActivityFormSheet = () => {
         ) : (
           <View>
             <ThemedText style={styles.label}>
-              {t("driver.endTime")}
+              {t("driver.form.endTime")}
             </ThemedText>
             <TouchableOpacity
               onPress={handleEndTimePicker}
@@ -432,7 +432,7 @@ const ActivityFormSheet = () => {
           ]}
         >
           <ThemedText style={{ color: content2.foreground }}>
-            {t("driver.cancel")}
+            {t("common.cancel")}
           </ThemedText>
         </TouchableOpacity>
 
@@ -448,7 +448,7 @@ const ActivityFormSheet = () => {
             ]}
           >
             <ThemedText style={{ color: danger.foreground }}>
-              {t("driver.delete")}
+              {t("common.delete")}
             </ThemedText>
           </TouchableOpacity>
         )}
@@ -461,7 +461,7 @@ const ActivityFormSheet = () => {
           ]}
         >
           <ThemedText style={{ color: success.foreground }}>
-            {t("driver.save")}
+            {t("common.save")}
           </ThemedText>
         </TouchableOpacity>
       </View>

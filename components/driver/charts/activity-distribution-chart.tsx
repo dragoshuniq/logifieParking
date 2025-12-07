@@ -25,27 +25,27 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
     {
       value: dailyStats.drivingHours,
       color: primary.DEFAULT,
-      label: t("driver.drivingHours"),
+      label: t("driver.activityTypes.driving"),
     },
     {
       value: dailyStats.workHours,
       color: warning.DEFAULT,
-      label: t("driver.work"),
+      label: t("driver.activityTypes.otherWork"),
     },
     {
       value: dailyStats.availabilityHours,
       color: "#f59e0b",
-      label: t("driver.availability"),
+      label: t("driver.activityTypes.availability"),
     },
     {
       value: dailyStats.breakHours,
       color: success.DEFAULT,
-      label: t("driver.break"),
+      label: t("driver.activityTypes.break"),
     },
     {
       value: dailyStats.restHours,
       color: "#6366f1",
-      label: t("driver.rest"),
+      label: t("driver.activityTypes.rest"),
     },
   ].filter((item) => item.value > 0);
 
@@ -64,7 +64,7 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
       ]}
     >
       <ThemedText style={styles.chartTitle}>
-        Activity Distribution
+        {t("driver.activityDistribution")}
       </ThemedText>
       {totalHours > 0 ? (
         <View style={styles.pieChartWrapper}>
@@ -79,7 +79,7 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
                   {formatDuration(totalHours)}
                 </ThemedText>
                 <ThemedText style={styles.centerLabelText}>
-                  total
+                  {t("common.total")}
                 </ThemedText>
               </View>
             )}
@@ -102,7 +102,9 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
         </View>
       ) : (
         <View style={styles.emptyChart}>
-          <ThemedText style={styles.emptyText}>No data</ThemedText>
+          <ThemedText style={styles.emptyText}>
+            {t("common.noData")}
+          </ThemedText>
         </View>
       )}
     </ThemedView>

@@ -101,7 +101,7 @@ export default function LanguagePickerSheet(props: SheetProps) {
     >
       <View style={styles.header}>
         <ThemedText type="subtitle">
-          {t("common.selectLanguage")}
+          {t("language.selectLanguage")}
         </ThemedText>
       </View>
       <FlatList

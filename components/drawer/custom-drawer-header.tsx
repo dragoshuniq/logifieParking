@@ -22,7 +22,7 @@ export const CustomDrawerHeader = ({
   return (
     <ThemedSafeAreaView style={styles.container}>
       <DrawerToggleButton />
-      <ThemedText style={styles.title}>{t(title)}</ThemedText>
+      <ThemedText style={styles.title}>{title}</ThemedText>
       <ThemedTouchableOpacity
         onPress={() => {
           if (disclaimer) {

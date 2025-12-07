@@ -88,7 +88,7 @@ export const ActivityList = ({
               { color: primary.foreground },
             ]}
           >
-            {t("driver.addActivity")}
+            {t("driver.form.addActivity")}
           </ThemedText>
         </TouchableOpacity>
       </View>
@@ -129,7 +129,7 @@ export const ActivityList = ({
                     )}
                   </ThemedText>
                   <ThemedText style={styles.activityTime}>
-                    {t(`driver.${item.type}`)} •{" "}
+                    {t(`driver.activityTypes.${item.type}`)} •{" "}
                     {item.duration.toFixed(1)}h
                   </ThemedText>
                 </View>
@@ -150,7 +150,7 @@ export const ActivityList = ({
               opacity={0.3}
             />
             <ThemedText style={styles.emptyText}>
-              No activities for this day
+              {t("driver.noActivities")}
             </ThemedText>
           </ThemedView>
         )}
