@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Sprache auswählen",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "apply": "Anwenden",
+    "error": "Fehler",
+    "select": "Auswählen",
+    "total": "Gesamt",
+    "noData": "Keine Daten",
+    "information": "Informationen",
+    "noInformation": "Keine Informationen verfügbar",
+    "version": "Version {{version}}",
+    "couldNotOpen": "{{name}} konnte nicht geöffnet werden",
+    "ok": "OK",
+    "violation": "VERSTOSS",
+    "yes": "JA",
+    "no": "NEIN"
+  },
+  "format": {
+    "hourShort": "h",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Sprache auswählen"
+  },
+  "drawer": {
+    "home": "Startseite",
+    "contact": "Kontakt",
+    "getQuote": "Angebot anfordern",
+    "termsConditions": "AGB",
+    "privacyPolicy": "Datenschutzerklärung",
+    "driver": "Fahrer",
+    "fuelPrices": "Kraftstoffpreise"
+  },
+  "driver": {
+    "title": "Arbeitszeiterfassung",
+    "none": "Keine",
+    "noActivities": "Keine Aktivitäten für diesen Tag",
+    "weeklyOverview": "Wochenübersicht",
+    "selectTime": "Zeit auswählen",
+    "activityDistribution": "Aktivitätsverteilung",
+    "dailyWorkHours": "Tägliche Arbeitsstunden",
+    "activityTypes": {
+      "driving": "Fahrt",
+      "otherWork": "Andere Arbeit",
+      "break": "Pause",
+      "rest": "Ruhe",
+      "availability": "Bereitschaft"
+    },
+    "form": {
+      "addActivity": "Aktivität hinzufügen",
+      "editActivity": "Aktivität bearbeiten",
+      "activityType": "Aktivitätstyp",
+      "timeEntry": "Zeiterfassung",
+      "manualEntry": "Manuelle Eingabe",
+      "startTime": "Startzeit",
+      "endTime": "Endzeit",
+      "duration": "Dauer (Stunden)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validierung",
+      "startTimeRequired": "Startzeit ist erforderlich",
+      "durationGreaterThanZero": "Dauer muss größer als 0 sein",
+      "bothTimesRequired": "Start- und Endzeit sind erforderlich",
+      "endTimeAfterStart": "Endzeit muss nach der Startzeit liegen",
+      "selectStartTimeFirst": "Bitte zuerst die Startzeit wählen"
+    },
+    "stats": {
+      "dailyDriving": "Tägliche Fahrzeit",
+      "dailyWorking": "Tägliche Arbeitszeit",
+      "breakCompliance": "Pauseneinhaltung",
+      "dailyRest": "Tägliche Ruhezeit",
+      "nightWork": "Nachtarbeit",
+      "weeklyWorking": "Wöchentliche Arbeitszeit",
+      "drivingHours": "Fahrstunden",
+      "weeklyRest": "Wöchentliche Ruhezeit",
+      "restCompensation": "Ruhezeit-Ausgleich",
+      "extendedDaysUsed": "{{count}}/2 verlängerte (10h) Tage genutzt",
+      "dailyDrivingLimit": "10h max 2x/Woche",
+      "reducedRestLimit": "15h max (9h Ruhe)",
+      "regularRestLimit": "15h max",
+      "breaksCount": "{{count}} Pausen",
+      "noBreaks": "Keine Pausen",
+      "activityWindow": "{{hours}}h Zeitraum",
+      "nightWorkWindow": "Arbeit 00:00-07:00",
+      "fourMonthAvg": "Durchschn.: {{hours}}h (≤48)",
+      "twoWeekTotal": "2Wo: {{hours}}h/90",
+      "hoursAgo": "vor {{hours}}h",
+      "noWeeklyRest": "Keine Wochenruhe",
+      "hoursOwed": "{{hours}}h offen"
+    },
+    "export": {
+      "title": "Export-Konfiguration",
+      "exportType": "Exporttyp",
+      "period": "Zeitraum",
+      "selectedWeek": "Ausgewählte Woche",
+      "currentWeek": "Aktuelle Woche",
+      "currentMonth": "Aktueller Monat",
+      "customPeriod": "Benutzerdefinierter Zeitraum",
+      "customRange": "Benutzerdefinierter Zeitraum",
+      "startDate": "Startdatum",
+      "endDate": "Enddatum",
+      "export": "Exportieren",
+      "selectBothDates": "Bitte Start- und Enddatum auswählen",
+      "startBeforeEnd": "Startdatum muss vor Enddatum liegen",
+      "dialogTitle": "Fahrerzeiten exportieren",
+      "headers": {
+        "date": "Datum",
+        "startTime": "Startzeit",
+        "endTime": "Endzeit",
+        "duration": "Dauer (Stunden)",
+        "activityType": "Aktivitätstyp",
+        "dailyDriving": "Einhaltung täglicher Fahrzeit",
+        "breakCompliance": "Einhaltung Pausen",
+        "dailyRest": "Einhaltung täglicher Ruhe",
+        "nightWork": "Nachtarbeit",
+        "weeklyRestDeficits": "Ausgleichsdefizite Wochenruhe",
+        "weekStart": "Wochenbeginn",
+        "weekEnd": "Wochenende",
+        "deficitHours": "Defizitstunden",
+        "compensatedHours": "Ausgeglichene Stunden",
+        "mustCompensateBy": "Ausgleich fällig bis"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Aktivität konnte nicht gelöscht werden",
+      "exportFailed": "{{type}} konnte nicht exportiert werden",
+      "saveFailed": "Aktivität konnte nicht gespeichert werden"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Sortieren nach",
+    "noData": "Keine Kraftstoffdaten verfügbar",
+    "updated": "Aktualisiert: {{date}}",
+    "searchPlaceholder": "Länder suchen...",
+    "petrol": "Benzin",
+    "diesel": "Diesel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Benzin: aufsteigend",
+    "petrolDesc": "Benzin: absteigend",
+    "dieselAsc": "Diesel: aufsteigend",
+    "dieselDesc": "Diesel: absteigend"
+  },
+  "parking": {
+    "noLocationDetails": "Keine Standortdetails verfügbar",
+    "location": "Standort",
+    "city": "Stadt",
+    "suburb": "Stadtteil",
+    "county": "Bezirk",
+    "state": "Bundesland",
+    "country": "Land",
+    "postcode": "Postleitzahl",
+    "category": "Kategorie",
+    "type": "Typ",
+    "facilityTypes": {
+      "parking": "Parkplatz",
+      "gas_station": "Tankstelle",
+      "parking_space": "Parkfläche",
+      "truck_stop": "Autohof",
+      "rest_area": "Rastplatz",
+      "motorway_services": "Autobahnservices",
+      "car_wash": "Waschanlage",
+      "charging_station": "Ladestation",
+      "amenity": "Service",
+      "highway_rest_area": "Autobahn-Rastplatz",
+      "highway_services": "Autobahnservices",
+      "highway": "Autobahn",
+      "fuel_shop": "Kraftstoffshop",
+      "shop": "Geschäft",
+      "location": "Standort"
+    }
+  },
+  "location": {
+    "permissionRequired": "Standortfreigabe erforderlich",
+    "permissionMessage": "Standortzugriff wird benötigt, um deine Position zu finden. Bitte in den Geräteeinstellungen aktivieren.",
+    "openSettings": "Einstellungen öffnen"
+  },
+  "tabs": {
+    "driver": "Fahrer",
+    "map": "Karte",
+    "gas": "Kraftstoff"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Haftungsausschluss",
+      "purpose": {
+        "heading": "Zweck der App",
+        "content": "Diese App ist als Hilfsmittel für Berufskraftfahrer konzipiert. Sie soll die Erfassung und Auswertung deiner täglichen Aktivitäten erleichtern und veranschaulichen, wie sie zu EU-Regeln für Lenk- und Arbeitszeiten stehen."
+      },
+      "noOfficialLogbook": {
+        "heading": "Kein offizielles Fahrtenbuch oder Tachograf",
+        "content": "Die in der App angezeigten Daten dienen nur zur Information und ersetzen NICHT:\n• den Tachografen oder Tachografenausdrucke,\n• gesetzlich vorgeschriebene Fahrtenbücher oder Aufzeichnungen,\n• Dokumentation, die von Kontrollbehörden verlangt wird.\nVerlasse dich immer auf den Tachografen und die offiziellen Unternehmensaufzeichnungen als primäre Quelle."
+      },
+      "noLegalAdvice": {
+        "heading": "Keine Rechts- oder Fachberatung",
+        "content": "Die Compliance-Berechnungen basieren auf EU-Vorschriften, sind aber vereinfacht und decken möglicherweise nicht alle nationalen oder firmenspezifischen Regeln ab.\n\nDiese App bietet keine Rechts-, Steuer-, Personal- oder Fachberatung. Du bist verantwortlich, die aktuelle Gesetzgebung, Unternehmensrichtlinien und Anweisungen deines Arbeitgebers oder Beraters zu prüfen."
+      },
+      "dataStorage": {
+        "heading": "Datenspeicherung & Datenschutz",
+        "content": "Dein Aktivitätsverlauf wird nur lokal auf deinem Gerät im App-Cache gespeichert. Wir speichern deine Daten nicht in einer externen Datenbank oder auf einem zentralen Server.\n\nDa Daten im Cache liegen:\n• können sie gelöscht werden, wenn du App-Daten löschst, die App neu installierst oder das Gerät wechselst,\n• können wir verlorene Daten nicht wiederherstellen oder Backups bereitstellen.\nWenn du Langzeitaufzeichnungen benötigst, nutze die Exportfunktion und bewahre Kopien sicher auf."
+      },
+      "userResponsibility": {
+        "heading": "Verantwortung des Nutzers",
+        "content": "Du bist stets verantwortlich für:\n• die Planung deiner Arbeit und Ruhezeiten,\n• die Interpretation der in der App gezeigten Informationen,\n• die Einhaltung aller geltenden Gesetze und Unternehmensregeln.\n\nNutze die App als Unterstützung, nicht als Entscheidungsgrundlage. Im Zweifel folge Tachograf, Unternehmensvorgaben und offiziellen Rechtsleitlinien."
+      }
+    },
+    "parking": {
+      "title": "Lkw-Parkplätze - Haftungsausschluss",
+      "sourceInfo": {
+        "heading": "Informationsquelle",
+        "content": "Die in der App angezeigten Parkplätze, Einrichtungen und Details stammen aus öffentlichen und externen Quellen (z. B. Open Data, öffentliche Websites, Nutzerbeiträge oder externe Dienste).\n\nWir betreiben diese Lkw-Parkplätze nicht und kontrollieren die veröffentlichten Daten nicht."
+      },
+      "accuracy": {
+        "heading": "Genauigkeit & Aktualität",
+        "content": "Wir bemühen uns um nützliche und aktuelle Informationen, können aber keine vollständige, korrekte oder stets aktuelle Darstellung garantieren.\n\nBeispiele für Änderungen ohne Ankündigung:\n• Öffnungszeiten und Zugangsregeln,\n• Preise, Zahlungsarten und Reservierungspflichten,\n• verfügbare Services (Duschen, Sicherheit, Essen, Kraftstoff etc.),\n• Stellplatzanzahl oder vorübergehende Schließungen."
+      },
+      "verifyBefore": {
+        "heading": "Immer vor Fahrtantritt prüfen",
+        "content": "Bevor du zu einem in der App angezeigten Parkplatz fährst, prüfe die wichtigsten Details selbst:\n• Standort in einer Navi- oder Karten-App kontrollieren,\n• andere vertrauenswürdige Lkw-/Park-Apps nutzen,\n• die offizielle Website des Parkplatzes besuchen, falls vorhanden,\n• Betreiber oder Gastgeber direkt kontaktieren, wenn Kontaktdaten vorliegen.\n\nVerlasse dich nicht ausschließlich auf die App-Informationen bei Routen-, Ruhe- oder Sicherheitsplanung."
+      },
+      "noEndorsement": {
+        "heading": "Keine Empfehlung oder Garantie",
+        "content": "Die Aufnahme eines Parkplatzes bedeutet NICHT, dass wir ihn empfehlen, prüfen oder garantieren.\n\nWir bestätigen nicht:\n• Sicherheits- oder Schutzniveau des Parkplatzes,\n• Verfügbarkeit freier Plätze zu einem Zeitpunkt,\n• Konformität des Parkplatzes mit gesetzlichen oder Unternehmensanforderungen."
+      },
+      "userResponsibility": {
+        "heading": "Verantwortung des Nutzers",
+        "content": "Du bist stets verantwortlich für:\n• die Wahl deines Stopps und deiner Ruhe,\n• die Prüfung, ob der Parkplatz für dein Fahrzeug und deine Ladung geeignet ist,\n• die Einhaltung von Lenk-/Ruhezeiten sowie aller Verkehrszeichen und Vorschriften.\n\nNutze die Parkplatzkarte als Unterstützung. Prüfe wichtige Details immer doppelt, bevor du ankommst."
+      }
+    },
+    "fuel": {
+      "title": "Kraftstoffpreise - Haftungsausschluss",
+      "sourceData": {
+        "heading": "Datenquelle",
+        "content": "Kraftstoffpreise basieren auf öffentlichen Informationen aus Quellen der Europäischen Union und/oder anderen offiziellen Veröffentlichungen. Sie werden nur zur Orientierung angezeigt und nicht von uns direkt erhoben."
+      },
+      "accuracy": {
+        "heading": "Genauigkeit & Zeitpunkt",
+        "content": "Preise sind Richtwerte und können von tatsächlichen Preisen an einzelnen Stationen abweichen. Sie ändern sich häufig durch Steuern, Marktbedingungen, Standort und Tageszeit. Wir garantieren keine Vollständigkeit, Fehlerfreiheit oder Aktualität."
+      },
+      "howToUse": {
+        "heading": "Nutzung",
+        "content": "Nutze die Preise nur als grobe Referenz. Prüfe stets den aktuellen Preis an der Zapfsäule, auf der Website der Station oder in einer vertrauenswürdigen App, bevor du entscheidest."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Tägliche Lenkzeit",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "EU-Verordnung (EG) Nr. 561/2006 - Art. 6 (tägliche Lenkzeit)."
+      },
+      "rules": {
+        "heading": "Regeln",
+        "content": "• Standardlimit: max. 9 Stunden Lenkzeit innerhalb eines täglichen Arbeitszeitraums.\n• Erweitertes Limit: bis zu 10 Stunden an höchstens 2 Tagen pro Woche.\n• Lenkzeit wird zwischen zwei aufeinanderfolgenden täglichen oder wöchentlichen Ruhezeiten gerechnet."
+      },
+      "example": {
+        "heading": "Beispiel",
+        "content": "Wenn du 10h am Montag und 10h am Mittwoch fährst, musst du an allen anderen Tagen derselben Woche bei höchstens 9h bleiben."
+      }
+    },
+    "dailyWorking": {
+      "title": "Tägliche Arbeitszeit & Spanne",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "EU-Richtlinie 2002/15/EG (Arbeitszeit mobiler Arbeitnehmer) + Verordnung (EG) Nr. 561/2006 (Ruhezeiten)."
+      },
+      "whatCounts": {
+        "heading": "Was als Arbeitszeit gilt",
+        "content": "• Fahren (tatsächliche Lenkzeit).\n• Andere Arbeit (Laden, Entladen, Verwaltung, Wartung usw.).\n• Arbeitszeit umfasst NICHT: Pausen, Ruhezeiten oder Bereitschaftszeiten.\n• Bereitschaftszeiten werden separat erfasst, verlängern aber die tägliche „Spanne“ (Zeit zwischen Ruhezeiten)."
+      },
+      "dailyLimits": {
+        "heading": "Tägliche Grenzen (Einfluss der Ruheregeln)",
+        "content": "• Die EU setzt keine strikte tägliche Arbeitszeitgrenze, aber:\n  • Wöchentliche Grenzen gelten: max. 60h in einer Woche, mit 48h/Woche im Durchschnitt über bis zu 4 Monate.\n  • Wegen täglicher Ruheanforderungen nach VO 561/2006:\n    - Bei regelmäßiger täglicher Ruhe von 11h beträgt die maximale „Spanne“ zwischen Ruhezeiten 13h.\n    - Bei reduzierter täglicher Ruhe von mindestens 9h (max. 3-mal zwischen Wochenruhen) kann die Spanne bis 15h betragen.\n  • Bei Nachtarbeit darf die Arbeitszeit in 24h 10h nicht überschreiten (siehe Karte Nachtarbeit)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Pauseneinhaltung",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "• EU-Verordnung (EG) Nr. 561/2006 - Art. 7 (Lenkzeitpausen).\n• EU-Richtlinie 2002/15/EG - Pausen bei Arbeitszeit mobiler Arbeitnehmer."
+      },
+      "drivingBreaks": {
+        "heading": "Lenkzeitpausen (VO 561/2006)",
+        "content": "• Nach maximal 4,5 Stunden Lenkzeit ist eine Pause von mindestens 45 Minuten erforderlich.\n• Diese 45 Minuten können aufgeteilt werden in:\n  - eine erste Pause von mindestens 15 Minuten und\n  - eine zweite Pause von mindestens 30 Minuten,\n  sofern beide zusammen innerhalb des 4,5h-Lenkzeitfensters mindestens 45 Minuten ergeben."
+      },
+      "workingBreaks": {
+        "heading": "Pausen bei Arbeitszeit (RL 2002/15/EG)",
+        "content": "• Du darfst nicht mehr als 6 Stunden ohne Pause arbeiten.\n• Wenn die tägliche Arbeitszeit >6h und ≤9h ist: insgesamt mindestens 30 Minuten Pause.\n• Wenn die tägliche Arbeitszeit >9h ist: insgesamt mindestens 45 Minuten Pause.\n• Diese Pausen können in Abschnitte von mindestens 15 Minuten aufgeteilt werden.\n• Bei gemischtem Fahren und anderer Arbeit müssen beide Pausenregeln eingehalten werden (die strengere gilt)."
+      },
+      "important": {
+        "heading": "Wichtig",
+        "content": "• Pausen unterbrechen die Arbeitszeit und gelten NICHT als Arbeitszeit.\n• Sie verlängern dennoch die tägliche Spanne (Zeit zwischen erster und letzter Tätigkeit)."
+      }
+    },
+    "dailyRest": {
+      "title": "Tägliche Ruhe & Aktivitätsfenster",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "EU-Verordnung (EG) Nr. 561/2006 - Art. 8 (tägliche Ruhezeiten)."
+      },
+      "requirements": {
+        "heading": "Anforderungen an tägliche Ruhe",
+        "content": "• Regelmäßige tägliche Ruhe: mindestens 11 aufeinanderfolgende Stunden innerhalb von 24h nach Ende der vorherigen täglichen oder wöchentlichen Ruhe.\n• Aufgeteilte regelmäßige Ruhe: 3h + 9h (erster Teil mindestens 3h, zweiter mindestens 9h).\n• Reduzierte tägliche Ruhe: mindestens 9h, aber weniger als 11h.\n• Maximal 3 reduzierte tägliche Ruhezeiten zwischen zwei Wochenruhen erlaubt."
+      },
+      "activityWindow": {
+        "heading": "Aktivitätsfenster (tägliche Spanne)",
+        "content": "• Tägliche Spanne = Zeit von der ersten Tätigkeit (Fahren/Andere Arbeit/Bereitschaft/Pause) bis zur letzten vor der nächsten täglichen oder wöchentlichen Ruhe.\n• Bei regelmäßiger täglicher Ruhe (11h): max. 13h Spanne innerhalb von 24h.\n• Bei reduzierter täglicher Ruhe (≥9h): max. 15h Spanne, höchstens 3-mal zwischen Wochenruhen.\n• Die gesamte tägliche Ruhe muss in das maßgebliche 24h-Fenster ab Arbeitsbeginn passen."
+      }
+    },
+    "nightWork": {
+      "title": "Nachtarbeit (EU-Arbeitszeit)",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "EU-Richtlinie 2002/15/EG - Nachtarbeit für mobile Straßenverkehrsarbeiter."
+      },
+      "definition": {
+        "heading": "Definition Nachtzeit",
+        "content": "• EU-Recht definiert „Nachtzeit“ als mindestens 4 aufeinanderfolgende Stunden zwischen 00:00 und 07:00.\n• Jeder Mitgliedstaat legt die exakten 4 Nachtstunden national fest.\n• In der App erscheint dies als konfigurierbares 4-Stunden-Fenster (z. B. 00:00-04:00 oder 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Grenze für Nachtarbeit",
+        "content": "• Wenn Arbeitszeit (Fahren oder Andere Arbeit) im definierten Nachtfenster liegt, gilt sie als Nachtarbeit.\n• Bei Nachtarbeit darf die gesamte Arbeitszeit in 24h 10 Stunden nicht überschreiten.\n• Diese 10h-Grenze gilt nur für Arbeitszeit (Fahren + Andere Arbeit), nicht für Pausen, Ruhe oder Bereitschaft.\n• Mitgliedstaaten können Zuschläge oder weitere Schutzmaßnahmen vorsehen, sind hier aber nicht berücksichtigt."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Wöchentliche Arbeitszeit",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "EU-Richtlinie 2002/15/EG - Arbeitszeit mobiler Straßenverkehrsarbeiter."
+      },
+      "limits": {
+        "heading": "Wöchentliche Grenzen",
+        "content": "• Durchschnittliche Arbeitszeit: darf 48 Stunden pro Woche nicht überschreiten, berechnet über einen Bezugszeitraum (bis zu 4 Monate).\n• Einzelne Woche: Arbeitszeit kann bis zu 60 Stunden erreichen, sofern der Durchschnitt von 48h/Woche im Bezugszeitraum nicht überschritten wird.\n• Arbeitszeit = Fahren + Andere Arbeit.\n• Pausen, Ruhezeiten und Bereitschaft zählen NICHT als Arbeitszeit."
+      },
+      "calculation": {
+        "heading": "Berechnungszeitraum",
+        "content": "• „Woche“ in den EU-Regeln ist meist ein fester 7-Tage-Zeitraum (VO 561/2006: Montag 00:00 bis Sonntag 24:00).\n• Die App kann einen rollierenden 4-Monats-Zeitraum für den 48h-Durchschnitt überwachen.\n• Überschreitet eine Woche 60h → sofortiger Arbeitszeitverstoß.\n• Überschreitet der rollierende Durchschnitt 48h/Woche → Arbeitszeitverstoß."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Wöchentliche & 2‑wöchentliche Lenkzeit",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "EU-Verordnung (EG) Nr. 561/2006 - Art. 6 (wöchentliche und zweiwöchige Lenkzeitbegrenzungen)."
+      },
+      "limits": {
+        "heading": "Lenkzeitgrenzen",
+        "content": "• Einzige Woche: maximal 56 Stunden Lenkzeit.\n• Zwei aufeinanderfolgende Wochen: maximal 90 Stunden Lenkzeit insgesamt.\n• „Woche“ nach VO 561/2006: Montag 00:00 bis Sonntag 24:00."
+      },
+      "example": {
+        "heading": "Beispiel",
+        "content": "Woche 1: 48h Lenkzeit → Woche 2 darf höchstens 42h haben (48 + 42 = 90).\nWoche 2: 42h Lenkzeit → Woche 3 darf höchstens 48h haben (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Wöchentliche Ruhe & 45h-Pause",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "EU-Verordnung (EG) Nr. 561/2006 - Art. 8 (wöchentliche Ruhezeiten, inkl. Mobilitätspaket)."
+      },
+      "requirements": {
+        "heading": "Anforderungen an Wochenruhe",
+        "content": "• Eine neue Wochenruhe muss SPÄTESTENS 144 Stunden (6 × 24h) nach ENDE der vorherigen Wochenruhe BEGINNEN.\n• Regelmäßige Wochenruhe: mindestens 45 aufeinanderfolgende Stunden.\n• Reduzierte Wochenruhe: mindestens 24, aber weniger als 45 Stunden.\n• In zwei aufeinanderfolgenden Wochen sind mindestens 2 Wochenruhen erforderlich, davon mindestens eine regelmäßig (≥45h)."
+      },
+      "compensation": {
+        "heading": "Ausgleichsregeln (Überblick)",
+        "content": "• Jede reduzierte Wochenruhe erzeugt ein Defizit: 45h minus tatsächliche Ruhedauer.\n• Jedes Defizit muss „en bloc“ (am Stück) innerhalb von 3 Wochen nach der Woche der Reduktion ausgeglichen werden.\n• Der Ausgleich muss an eine weitere Ruhezeit von mindestens 9h (täglich oder wöchentlich) angehängt werden."
+      },
+      "whereRest": {
+        "heading": "Wo Ruhe genommen werden darf",
+        "content": "• Regelmäßige Wochenruhen (≥45h) dürfen NICHT im Fahrzeug genommen werden.\n• Tägliche Ruhez. und reduzierte Wochenruhen dürfen im Fahrzeug stattfinden, wenn es steht und geeignete Schlafplätze vorhanden sind."
+      },
+      "daysCovered": {
+        "heading": "Von Wochenruhe abgedeckte Tage",
+        "content": "• Tage, die vollständig von einer qualifizierenden Wochenruhe (≥24h) abgedeckt sind, gelten als dienstfrei.\n• Für tägliche Ruheprüfungen gelten diese Tage automatisch als konform."
+      }
+    },
+    "restCompensation": {
+      "title": "Ausgleich für Ruhezeit",
+      "legalBasis": {
+        "heading": "Rechtsgrundlage",
+        "content": "EU-Verordnung (EG) Nr. 561/2006 - Art. 8(6) (Ausgleich reduzierter Wochenruhe)."
+      },
+      "whenRequired": {
+        "heading": "Wann Ausgleich nötig ist",
+        "content": "• Jede reduzierte Wochenruhe (24h bis <45h) erzeugt ein „Defizit“ gegenüber 45h.\n• Defizit = 45 Stunden − tatsächliche Dauer der Wochenruhe.\n• Beispiel: 30h Wochenruhe → 15h Defizit, das später ausgeglichen werden muss."
+      },
+      "rules": {
+        "heading": "Ausgleichsregeln",
+        "content": "• Jedes Defizit muss innerhalb von 3 Wochen nach der Woche der Reduktion ausgeglichen werden.\n• Der Ausgleich muss in einem zusammenhängenden Block erfolgen.\n• Er muss an eine andere Ruhezeit von mindestens 9 Stunden (täglich oder wöchentlich) angehängt werden.\n• Aufteilung des Ausgleichs auf mehrere Ruhezeiten ist nicht zulässig."
+      },
+      "display": {
+        "heading": "Anzeige in der App",
+        "content": "• Zeigt, wie viele reduzierte Wochenruhen noch auszugleichen sind.\n• Zeigt die gesamten offenen Ausgleichsstunden und die späteste Frist für den Ausgleich."
+      }
+    }
+  }
+}
