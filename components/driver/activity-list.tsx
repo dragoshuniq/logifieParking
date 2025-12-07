@@ -33,13 +33,13 @@ export const ActivityList = ({
   const getActivityIcon = (type: ActivityType) => {
     switch (type) {
       case ActivityType.DRIVING:
-        return "truck";
+        return "circle-dot";
       case ActivityType.OTHER_WORK:
-        return "briefcase";
+        return "hammer";
       case ActivityType.AVAILABILITY:
         return "clock";
       case ActivityType.BREAK:
-        return "coffee";
+        return "circle";
       case ActivityType.REST:
         return "bed";
       default:
