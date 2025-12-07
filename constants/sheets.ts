@@ -51,6 +51,5 @@ export type InfoSection = {
 
 export type InfoSheetProps = {
   title: string;
-  icon: string;
   sections: InfoSection[];
 };

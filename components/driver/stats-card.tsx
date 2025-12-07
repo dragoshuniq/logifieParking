@@ -3,7 +3,7 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 type StatsCardProps = {
@@ -58,8 +58,8 @@ export const StatsCard = ({
           onPress={handleInfoPress}
           style={styles.infoButton}
         >
-          <Ionicons
-            name="information-circle-outline"
+          <MaterialIcons
+            name="info"
             size={16}
             color={primary.DEFAULT}
           />

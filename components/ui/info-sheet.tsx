@@ -2,7 +2,7 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets, InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import { FontAwesome6 } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import {
   FlatList,
   StyleSheet,
@@ -30,11 +30,7 @@ const InfoSheet = (props: SheetProps) => {
     "text"
   );
 
-  const {
-    title = "Information",
-    icon = "info-circle",
-    sections = [],
-  } = payload || {};
+  const { title = "Information", sections = [] } = payload || {};
 
   const onCloseSheet = () => {
     SheetManager.hide(ESheets.InfoSheet);
@@ -78,8 +74,8 @@ const InfoSheet = (props: SheetProps) => {
               { backgroundColor: primary.DEFAULT },
             ]}
           >
-            <FontAwesome6
-              name={icon}
+            <MaterialIcons
+              name="info"
               size={20}
               color={primary.foreground}
             />
@@ -90,7 +86,7 @@ const InfoSheet = (props: SheetProps) => {
           onPress={onCloseSheet}
           style={styles.closeButton}
         >
-          <FontAwesome6 name="xmark" size={20} color={text} />
+          <MaterialIcons name="close" size={20} color={text} />
         </TouchableOpacity>
       </View>
 

@@ -2,7 +2,6 @@ import { InfoSheetProps } from "@/constants/sheets";
 
 export const driverDisclaimer: InfoSheetProps = {
   title: "Disclaimer",
-  icon: "information-circle-outline",
   sections: [
     {
       heading: "Purpose of This App",
@@ -47,6 +46,58 @@ export const driverDisclaimer: InfoSheetProps = {
         "• staying compliant with all applicable laws and company rules.\n\n" +
         "Treat the app as a support tool, not as a decision-maker. " +
         "In case of doubt, follow your tachograph, company instructions, and official legal guidance.",
+    },
+  ],
+};
+
+export const parkingDisclaimer: InfoSheetProps = {
+  title: "Truck Parking - Disclaimer",
+  sections: [
+    {
+      heading: "Source of Information",
+      content:
+        "Parking locations, facilities and details shown in this app come from public and third-party sources " +
+        "(for example open data, public websites, user submissions or external services).\n\n" +
+        "We do not operate these truck parks and we do not control the data they publish.",
+    },
+    {
+      heading: "Accuracy & Updates",
+      content:
+        "We try to display useful and up-to-date information, but we cannot guarantee that it is complete, correct " +
+        "or current at all times.\n\n" +
+        "Examples of things that may change without notice:\n" +
+        "• opening hours and access rules,\n" +
+        "• prices, payment methods and reservation requirements,\n" +
+        "• available services (showers, security, food, fuel, etc.),\n" +
+        "• number of spaces or whether the parking is temporarily closed.",
+    },
+    {
+      heading: "Always Verify Before You Drive",
+      content:
+        "Before you drive to any parking shown in the app, always verify the key details yourself by:\n" +
+        "• checking the location in a navigation or map app,\n" +
+        "• using other trusted third-party parking / truck apps,\n" +
+        "• visiting the official website of the parking, if available,\n" +
+        "• contacting the operator or host directly when contact details are provided.\n\n" +
+        "Do not rely only on the information displayed in this app when planning your route, rest or security.",
+    },
+    {
+      heading: "No Endorsement or Guarantee",
+      content:
+        "Listing a parking place in the app does NOT mean we recommend, inspect or guarantee it.\n\n" +
+        "We do not confirm:\n" +
+        "• safety or security level of the parking,\n" +
+        "• availability of free spaces at any moment,\n" +
+        "• compliance of the parking with legal or company requirements.",
+    },
+    {
+      heading: "User Responsibility",
+      content:
+        "You are always responsible for:\n" +
+        "• choosing where to stop and rest,\n" +
+        "• checking that the parking is suitable for your vehicle and cargo,\n" +
+        "• complying with driving/rest-time rules and all road signs and regulations.\n\n" +
+        "Treat the parking map as a support tool only. Always double-check important details before you arrive.",
     },
   ],
 };

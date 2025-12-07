@@ -6,7 +6,6 @@ export const getComplianceInfo = (
   const infoMap: Record<string, InfoSheetProps> = {
     dailyDriving: {
       title: "Daily Driving Time",
-      icon: "circle-dot",
       sections: [
         {
           heading: "Legal Basis",
@@ -30,7 +29,6 @@ export const getComplianceInfo = (
 
     dailyWorking: {
       title: "Daily Working Time & Spread",
-      icon: "briefcase",
       sections: [
         {
           heading: "Legal Basis",
@@ -60,7 +58,6 @@ export const getComplianceInfo = (
 
     breakCompliance: {
       title: "Break Compliance",
-      icon: "coffee",
       sections: [
         {
           heading: "Legal Basis",
@@ -97,7 +94,6 @@ export const getComplianceInfo = (
 
     dailyRest: {
       title: "Daily Rest & Activity Window",
-      icon: "bed",
       sections: [
         {
           heading: "Legal Basis",
@@ -125,7 +121,6 @@ export const getComplianceInfo = (
 
     nightWork: {
       title: "Night Work (EU Working Time)",
-      icon: "moon",
       sections: [
         {
           heading: "Legal Basis",
@@ -152,7 +147,6 @@ export const getComplianceInfo = (
 
     weeklyWorking: {
       title: "Weekly Working Time",
-      icon: "calendar-week",
       sections: [
         {
           heading: "Legal Basis",
@@ -180,7 +174,6 @@ export const getComplianceInfo = (
 
     weeklyDriving: {
       title: "Weekly & Fortnightly Driving",
-      icon: "truck",
       sections: [
         {
           heading: "Legal Basis",
@@ -205,7 +198,6 @@ export const getComplianceInfo = (
 
     weeklyRest: {
       title: "Weekly Rest & 45h Pause",
-      icon: "spa",
       sections: [
         {
           heading: "Legal Basis",
@@ -244,7 +236,6 @@ export const getComplianceInfo = (
 
     restCompensation: {
       title: "Rest Compensation",
-      icon: "clock-rotate-left",
       sections: [
         {
           heading: "Legal Basis",

@@ -1,6 +1,6 @@
 import { InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { DrawerActions } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
@@ -30,8 +30,8 @@ export const CustomDrawerHeader = ({
           }
         }}
       >
-        <Ionicons
-          name="information-circle-outline"
+        <MaterialIcons
+          name="info"
           size={30}
           color={primary.DEFAULT}
         />

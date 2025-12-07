@@ -65,7 +65,6 @@ declare module "react-native-actions-sheet" {
     InfoSheet: {
       payload: {
         title: string;
-        icon: string;
         sections: {
           heading: string;
           content: string;

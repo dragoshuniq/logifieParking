@@ -13,6 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { DrawerToggleButton } from "../drawer/custom-drawer-header";
 import { ThemedView } from "../ui/themed-view";
 import { LocationButton } from "./location-button";
+import { MapDisclaimerButton } from "./map-disclaimer";
 import { showNavigationOptions } from "./navigation-options";
 
 export const ParkingMap = () => {
@@ -82,6 +83,7 @@ export const ParkingMap = () => {
           />
         ))}
       </MapView>
+      <MapDisclaimerButton />
       <LocationButton onLocationFound={handleLocationFound} />
     </ThemedView>
   );
