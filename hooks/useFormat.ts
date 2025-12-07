@@ -72,6 +72,7 @@ export const useFormatTime = () => {
 export const useFormatDuration = () => {
   const {
     i18n: { language },
+    t,
   } = useTranslation();
 
   const formatDuration = (hours: number) => {
@@ -80,13 +81,12 @@ export const useFormatDuration = () => {
     const h = Math.floor(dur.asHours());
     const m = dur.minutes();
 
-    const hourLabel = language === "de" ? "Std" : "h";
-    const minuteLabel = language === "de" ? "Min" : "m";
-
     if (m === 0) {
-      return `${h}${hourLabel}`;
+      return `${h}${t("format.hourShort")}`;
     }
-    return `${h}${hourLabel} ${m}${minuteLabel}`;
+    return `${h}${t("format.hourShort")} ${m}${t(
+      "format.minuteShort"
+    )}`;
   };
 
   return { formatDuration };
