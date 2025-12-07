@@ -2,6 +2,7 @@ import { Tabs } from "expo-router";
 import React from "react";
 
 import { CustomDrawerHeader } from "@/components/drawer/custom-drawer-header";
+import { driverDisclaimer } from "@/components/drawer/disclaimers";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -23,7 +24,12 @@ export default function TabLayout() {
         name="driver"
         options={{
           title: "Driver",
-          header: () => <CustomDrawerHeader title="drawer.driver" />,
+          header: () => (
+            <CustomDrawerHeader
+              title="drawer.driver"
+              disclaimer={driverDisclaimer}
+            />
+          ),
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               size={28}

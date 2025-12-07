@@ -3,7 +3,7 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import { FontAwesome6 } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, View } from "react-native";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 
@@ -59,8 +59,8 @@ export const StatsCard = ({
           onPress={handleInfoPress}
           style={styles.infoButton}
         >
-          <FontAwesome6
-            name="circle-info"
+          <Ionicons
+            name="information-circle-outline"
             size={16}
             color={primary.DEFAULT}
           />

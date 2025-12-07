@@ -1,20 +1,41 @@
+import { InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerActions } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { showInfoSheet } from "../ui/info-sheet";
 import { ThemedSafeAreaView } from "../ui/themed-safe-area-view";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 
-export const CustomDrawerHeader = ({ title }: { title: string }) => {
+export const CustomDrawerHeader = ({
+  title,
+  disclaimer,
+}: {
+  title: string;
+  disclaimer?: InfoSheetProps;
+}) => {
   const { t } = useTranslation();
+  const { primary } = useThemedColors("primary");
   return (
     <ThemedSafeAreaView style={styles.container}>
       <DrawerToggleButton />
       <ThemedText style={styles.title}>{t(title)}</ThemedText>
-      <View style={{ width: 40 }} />
+      <ThemedTouchableOpacity
+        onPress={() => {
+          if (disclaimer) {
+            showInfoSheet(disclaimer);
+          }
+        }}
+      >
+        <Ionicons
+          name="information-circle-outline"
+          size={30}
+          color={primary.DEFAULT}
+        />
+      </ThemedTouchableOpacity>
     </ThemedSafeAreaView>
   );
 };
