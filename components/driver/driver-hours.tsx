@@ -509,6 +509,6 @@ const styles = StyleSheet.create({
   statsScroll: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    gap: 8,
+    gap: 12,
   },
 });
