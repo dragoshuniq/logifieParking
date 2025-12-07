@@ -148,7 +148,12 @@ export const ActivityList = ({
                   </ThemedText>
                   <View style={styles.activityTimeRow}>
                     <ThemedText style={styles.activityTime}>
-                      {t(`driver.activityTypes.${getActivityTranslationKey(item.type)}`)} •{" "}
+                      {t(
+                        `driver.activityTypes.${getActivityTranslationKey(
+                          item.type
+                        )}`
+                      )}{" "}
+                      •{" "}
                     </ThemedText>
                     <FormattedHours
                       hours={item.duration}

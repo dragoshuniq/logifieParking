@@ -258,7 +258,7 @@
       },
       "whatCounts": {
         "heading": "What Counts as Working Time",
-        "content": "• DRIVING (actual driving time).\n• OTHER_WORK (loading, unloading, admin, maintenance, etc.).\n• Working time does NOT include: breaks, rest periods, or periods of availability.\n• Periods of AVAILABILITY are tracked separately but still extend the daily 'spread' (time between rest periods)."
+        "content": "• Driving (actual driving time).\n• Other Work (loading, unloading, admin, maintenance, etc.).\n• Working time does NOT include: breaks, rest periods, or periods of availability.\n• Periods of Availability are tracked separately but still extend the daily 'spread' (time between rest periods)."
       },
       "dailyLimits": {
         "heading": "Daily Limits (Effect of Rest Rules)",
@@ -296,7 +296,7 @@
       },
       "activityWindow": {
         "heading": "Activity Window (Daily Spread)",
-        "content": "• Daily spread = time from first duty activity (DRIVING/OTHER_WORK/AVAILABILITY/BREAK) to the last one before the next daily or weekly rest.\n• With regular daily rest (11h): max 13h spread within the 24h window.\n• With reduced daily rest (≥9h): max 15h spread, allowed at most 3 times between weekly rests.\n• The full daily rest must fit inside the relevant 24h period counted from the start of the working day."
+        "content": "• Daily spread = time from first duty activity (Driving/Other Work/Availability/Break) to the last one before the next daily or weekly rest.\n• With regular daily rest (11h): max 13h spread within the 24h window.\n• With reduced daily rest (≥9h): max 15h spread, allowed at most 3 times between weekly rests.\n• The full daily rest must fit inside the relevant 24h period counted from the start of the working day."
       }
     },
     "nightWork": {
@@ -311,7 +311,7 @@
       },
       "limit": {
         "heading": "Night Work Limit",
-        "content": "• If any working time (DRIVING or OTHER_WORK) is performed during the defined night-time window, this counts as night work.\n• When night work is performed, total working time must not exceed 10 hours in any 24-hour period.\n• This 10h cap applies to working time only (DRIVING + OTHER_WORK), not to breaks, rest or pure availability.\n• Individual Member States may add extra pay or protections, but those are not part of this EU-only profile."
+        "content": "• If any working time (Driving or Other Work) is performed during the defined night-time window, this counts as night work.\n• When night work is performed, total working time must not exceed 10 hours in any 24-hour period.\n• This 10h cap applies to working time only (Driving + Other Work), not to breaks, rest or pure availability.\n• Individual Member States may add extra pay or protections, but those are not part of this EU-only profile."
       }
     },
     "weeklyWorking": {
@@ -322,7 +322,7 @@
       },
       "limits": {
         "heading": "Weekly Limits",
-        "content": "• Average working time: must not exceed 48 hours per week, calculated over a reference period (up to 4 months).\n• Single week: working time may reach up to 60 hours, provided that the 48h/week average over the reference period is not exceeded.\n• Working time = DRIVING + OTHER_WORK.\n• Breaks, rest periods and periods of availability do NOT count as working time."
+        "content": "• Average working time: must not exceed 48 hours per week, calculated over a reference period (up to 4 months).\n• Single week: working time may reach up to 60 hours, provided that the 48h/week average over the reference period is not exceeded.\n• Working time = Driving + Other Work.\n• Breaks, rest periods and periods of availability do NOT count as working time."
       },
       "calculation": {
         "heading": "Calculation Period",

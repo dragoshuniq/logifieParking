@@ -216,7 +216,7 @@ export const exportToXLS = async (
       startDate.format("HH:mm"),
       endDate.format("HH:mm"),
       activity.duration.toFixed(2),
-      getActivityTypeLabel(activity.type),
+      getActivityTypeLabel(activity.type, t),
       drivingCompliance.isCompliant ? "OK" : "VIOLATION",
       breakCompliance.isCompliant ? "OK" : "VIOLATION",
       restCompliance.isCompliant ? "OK" : "VIOLATION",
