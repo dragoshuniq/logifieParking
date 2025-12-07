@@ -239,7 +239,7 @@
       "title": "Daily Driving Time",
       "legalBasis": {
         "heading": "Legal Basis",
-        "content": "EU Regulation (EC) No 561/2006 – Art. 6 (daily driving time)."
+        "content": "EU Regulation (EC) No 561/2006 - Art. 6 (daily driving time)."
       },
       "rules": {
         "heading": "Rules",
@@ -262,18 +262,18 @@
       },
       "dailyLimits": {
         "heading": "Daily Limits (Effect of Rest Rules)",
-        "content": "• The EU rules do not set a strict daily working-time cap, but:\n  • You must respect weekly limits: max 60h in any single week, with a 48h/week average over up to 4 months.\n  • Because of daily rest requirements under Reg. 561/2006:\n    – With regular daily rest of 11h, the maximum 'spread' between rest periods is 13h.\n    – With reduced daily rest of at least 9h (max 3 times between weekly rests), the spread can be up to 15h.\n  • If night work is performed, working time in any 24h period must not exceed 10h (see Night Work card)."
+        "content": "• The EU rules do not set a strict daily working-time cap, but:\n  • You must respect weekly limits: max 60h in any single week, with a 48h/week average over up to 4 months.\n  • Because of daily rest requirements under Reg. 561/2006:\n    - With regular daily rest of 11h, the maximum 'spread' between rest periods is 13h.\n    - With reduced daily rest of at least 9h (max 3 times between weekly rests), the spread can be up to 15h.\n  • If night work is performed, working time in any 24h period must not exceed 10h (see Night Work card)."
       }
     },
     "breakCompliance": {
       "title": "Break Compliance",
       "legalBasis": {
         "heading": "Legal Basis",
-        "content": "• EU Regulation (EC) No 561/2006 – Art. 7 (driving-time breaks).\n• EU Directive 2002/15/EC – working-time breaks for mobile workers."
+        "content": "• EU Regulation (EC) No 561/2006 - Art. 7 (driving-time breaks).\n• EU Directive 2002/15/EC - working-time breaks for mobile workers."
       },
       "drivingBreaks": {
         "heading": "Driving-Time Breaks (Reg. 561/2006)",
-        "content": "• After a maximum of 4.5 hours of driving, you must take at least 45 minutes of break.\n• This 45-minute break can be split into:\n  – a first break of at least 15 minutes, and\n  – a second break of at least 30 minutes,\n  provided both are taken so that together they add up to at least 45 minutes within the 4.5h driving window."
+        "content": "• After a maximum of 4.5 hours of driving, you must take at least 45 minutes of break.\n• This 45-minute break can be split into:\n  - a first break of at least 15 minutes, and\n  - a second break of at least 30 minutes,\n  provided both are taken so that together they add up to at least 45 minutes within the 4.5h driving window."
       },
       "workingBreaks": {
         "heading": "Working-Time Breaks (Dir. 2002/15/EC)",
@@ -288,7 +288,7 @@
       "title": "Daily Rest & Activity Window",
       "legalBasis": {
         "heading": "Legal Basis",
-        "content": "EU Regulation (EC) No 561/2006 – Art. 8 (daily rest periods)."
+        "content": "EU Regulation (EC) No 561/2006 - Art. 8 (daily rest periods)."
       },
       "requirements": {
         "heading": "Daily Rest Requirements",
@@ -303,11 +303,11 @@
       "title": "Night Work (EU Working Time)",
       "legalBasis": {
         "heading": "Legal Basis",
-        "content": "EU Directive 2002/15/EC – night work for mobile road transport workers."
+        "content": "EU Directive 2002/15/EC - night work for mobile road transport workers."
       },
       "definition": {
         "heading": "Night Time Definition",
-        "content": "• EU law defines 'night time' as a period of at least 4 consecutive hours between 00:00 and 07:00.\n• Each Member State sets the exact 4h night period in its national law.\n• In the app, this appears as a configurable 4-hour window (e.g. 00:00–04:00 or 01:00–05:00)."
+        "content": "• EU law defines 'night time' as a period of at least 4 consecutive hours between 00:00 and 07:00.\n• Each Member State sets the exact 4h night period in its national law.\n• In the app, this appears as a configurable 4-hour window (e.g. 00:00-04:00 or 01:00-05:00)."
       },
       "limit": {
         "heading": "Night Work Limit",
@@ -318,7 +318,7 @@
       "title": "Weekly Working Time",
       "legalBasis": {
         "heading": "Legal Basis",
-        "content": "EU Directive 2002/15/EC – working time of mobile road transport workers."
+        "content": "EU Directive 2002/15/EC - working time of mobile road transport workers."
       },
       "limits": {
         "heading": "Weekly Limits",
@@ -333,7 +333,7 @@
       "title": "Weekly & Fortnightly Driving",
       "legalBasis": {
         "heading": "Legal Basis",
-        "content": "EU Regulation (EC) No 561/2006 – Art. 6 (weekly and two-week driving limits)."
+        "content": "EU Regulation (EC) No 561/2006 - Art. 6 (weekly and two-week driving limits)."
       },
       "limits": {
         "heading": "Driving Limits",
@@ -348,7 +348,7 @@
       "title": "Weekly Rest & 45h Pause",
       "legalBasis": {
         "heading": "Legal Basis",
-        "content": "EU Regulation (EC) No 561/2006 – Art. 8 (weekly rest periods, including Mobility Package amendments)."
+        "content": "EU Regulation (EC) No 561/2006 - Art. 8 (weekly rest periods, including Mobility Package amendments)."
       },
       "requirements": {
         "heading": "Weekly Rest Requirements",
@@ -371,7 +371,7 @@
       "title": "Rest Compensation",
       "legalBasis": {
         "heading": "Legal Basis",
-        "content": "EU Regulation (EC) No 561/2006 – Art. 8(6) (compensation for reduced weekly rest)."
+        "content": "EU Regulation (EC) No 561/2006 - Art. 8(6) (compensation for reduced weekly rest)."
       },
       "whenRequired": {
         "heading": "When Compensation Is Required",

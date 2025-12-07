@@ -31,6 +31,23 @@ export const ActivityList = ({
       "text"
     );
 
+  const getActivityTranslationKey = (type: ActivityType): string => {
+    switch (type) {
+      case ActivityType.DRIVING:
+        return "driving";
+      case ActivityType.OTHER_WORK:
+        return "otherWork";
+      case ActivityType.BREAK:
+        return "break";
+      case ActivityType.REST:
+        return "rest";
+      case ActivityType.AVAILABILITY:
+        return "availability";
+      default:
+        return "driving";
+    }
+  };
+
   const getActivityIcon = (type: ActivityType) => {
     switch (type) {
       case ActivityType.DRIVING:
@@ -131,7 +148,7 @@ export const ActivityList = ({
                   </ThemedText>
                   <View style={styles.activityTimeRow}>
                     <ThemedText style={styles.activityTime}>
-                      {t(`driver.activityTypes.${item.type}`)} •{" "}
+                      {t(`driver.activityTypes.${getActivityTranslationKey(item.type)}`)} •{" "}
                     </ThemedText>
                     <FormattedHours
                       hours={item.duration}
