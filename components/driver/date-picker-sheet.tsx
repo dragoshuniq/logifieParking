@@ -65,7 +65,7 @@ const DatePickerSheet = () => {
   const calendarTheme = useMemo(
     () => ({
       backgroundColor: background,
-      calendarBackground: background,
+      calendarBackground: "transparent",
       textSectionTitleColor: content3.foreground,
       dayTextColor: content2.foreground,
       todayTextColor: primary.DEFAULT,

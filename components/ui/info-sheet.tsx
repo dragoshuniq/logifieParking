@@ -51,10 +51,10 @@ const InfoSheet = (props: SheetProps) => {
       style={[styles.section, { backgroundColor: content2.DEFAULT }]}
     >
       <ThemedText style={styles.sectionHeading}>
-        {item.heading}
+        {t(item.heading)}
       </ThemedText>
       <ThemedText style={styles.sectionContent}>
-        {item.content}
+        {t(item.content)}
       </ThemedText>
     </ThemedView>
   );
@@ -83,7 +83,9 @@ const InfoSheet = (props: SheetProps) => {
               color={primary.foreground}
             />
           </View>
-          <ThemedText style={styles.title}>{title}</ThemedText>
+          <ThemedText style={styles.title}>
+            {translatedTitle}
+          </ThemedText>
         </View>
         <TouchableOpacity
           onPress={onCloseSheet}
