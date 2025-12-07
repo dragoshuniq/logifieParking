@@ -320,8 +320,8 @@ export const DriverHours = () => {
             level={dailyDriving.level}
             subtitle={
               dailyDriving.extendedDaysThisWeek > 0
-                ? `${dailyDriving.extendedDaysThisWeek}/2 extended days`
-                : undefined
+                ? `Used ${dailyDriving.extendedDaysThisWeek}/2 extended (10h) days`
+                : "9h daily, 10h max 2×/week"
             }
           />
           <StatsCard

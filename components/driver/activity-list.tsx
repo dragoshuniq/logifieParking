@@ -64,23 +64,6 @@ export const ActivityList = ({
     }
   };
 
-  const getActivityLabel = (type: ActivityType) => {
-    switch (type) {
-      case ActivityType.DRIVING:
-        return t("driver.driving");
-      case ActivityType.OTHER_WORK:
-        return t("driver.work");
-      case ActivityType.AVAILABILITY:
-        return t("driver.availability");
-      case ActivityType.BREAK:
-        return t("driver.break");
-      case ActivityType.REST:
-        return t("driver.rest");
-      default:
-        return type;
-    }
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
