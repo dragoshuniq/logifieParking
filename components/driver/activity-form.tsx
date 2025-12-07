@@ -416,7 +416,7 @@ const ActivityFormSheet = () => {
                   color: endTime ? text : "#999",
                 }}
               >
-                {endTime || "HH:MM"}
+                {endTime || t("driver.form.timePlaceholder")}
               </ThemedText>
             </TouchableOpacity>
           </View>

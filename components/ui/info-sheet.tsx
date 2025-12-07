@@ -3,6 +3,7 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets, InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import {
   FlatList,
   StyleSheet,
@@ -23,6 +24,7 @@ export const showInfoSheet = (payload: InfoSheetProps) => {
 
 const InfoSheet = (props: SheetProps) => {
   const payload = useSheetPayload(ESheets.InfoSheet);
+  const { t } = useTranslation();
   const { content1, content2, primary, text } = useThemedColors(
     "content1",
     "content2",
@@ -30,7 +32,8 @@ const InfoSheet = (props: SheetProps) => {
     "text"
   );
 
-  const { title = "Information", sections = [] } = payload || {};
+  const { title = t("common.information"), sections = [] } =
+    payload || {};
 
   const onCloseSheet = () => {
     SheetManager.hide(ESheets.InfoSheet);
@@ -103,7 +106,7 @@ const InfoSheet = (props: SheetProps) => {
               { backgroundColor: content2.DEFAULT },
             ]}
           >
-            <ThemedText>No information available</ThemedText>
+            <ThemedText>{t("common.noInformation")}</ThemedText>
           </ThemedView>
         }
       />

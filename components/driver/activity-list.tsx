@@ -7,6 +7,7 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { FormattedHours } from "./formatted-hours";
 
 interface ActivityListProps {
   activities: Activity[];
@@ -128,10 +129,15 @@ export const ActivityList = ({
                       dayjs(item.endDateTime).format("HH:mm")
                     )}
                   </ThemedText>
-                  <ThemedText style={styles.activityTime}>
-                    {t(`driver.activityTypes.${item.type}`)} •{" "}
-                    {item.duration.toFixed(1)}h
-                  </ThemedText>
+                  <View style={styles.activityTimeRow}>
+                    <ThemedText style={styles.activityTime}>
+                      {t(`driver.activityTypes.${item.type}`)} •{" "}
+                    </ThemedText>
+                    <FormattedHours
+                      hours={item.duration}
+                      style={styles.activityTime}
+                    />
+                  </View>
                 </View>
               </ThemedView>
             </TouchableOpacity>
@@ -214,6 +220,10 @@ const styles = StyleSheet.create({
   activityTime: {
     fontSize: 12,
     opacity: 0.6,
+    marginTop: 2,
+  },
+  activityTimeRow: {
+    flexDirection: "row",
     marginTop: 2,
   },
   activityDuration: {

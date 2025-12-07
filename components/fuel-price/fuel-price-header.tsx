@@ -1,6 +1,7 @@
 import { Colors } from "@/constants/theme";
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { memo } from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, TextInput, View } from "react-native";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
@@ -24,11 +25,15 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
   sortType,
   onFilterPress,
 }: FuelPriceHeaderProps) {
+  const { t, i18n } = useTranslation();
+
   if (!data) return null;
   return (
     <ThemedView style={styles.header}>
       <ThemedText style={styles.date}>
-        Updated: {new Date(data.date).toLocaleDateString()}
+        {t("fuelPrice.updated", {
+          date: new Date(data.date).toLocaleDateString(i18n.language),
+        })}
       </ThemedText>
 
       <View style={styles.searchContainer}>
@@ -47,7 +52,7 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
               backgroundColor: colors.background,
             },
           ]}
-          placeholder="Search countries..."
+          placeholder={t("fuelPrice.searchPlaceholder")}
           placeholderTextColor={colors.tabIconDefault}
           value={searchQuery}
           onChangeText={onSearchChange}

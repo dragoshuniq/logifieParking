@@ -360,7 +360,7 @@ const ExportConfigSheet = () => {
                 { color: primary.foreground },
               ]}
             >
-              Export
+              {t("driver.export.export")}
             </ThemedText>
           </TouchableOpacity>
         </View>
