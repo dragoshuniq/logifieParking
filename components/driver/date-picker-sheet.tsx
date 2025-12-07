@@ -2,7 +2,7 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { DatePickerProps, ESheets } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import dayjs from "dayjs";
+import dayjs from "@/utils/dayjs-config";
 import { useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, TouchableOpacity, View } from "react-native";

@@ -1,5 +1,5 @@
 import { TIMEZONE } from "@/constants/app.const";
-import dayjs from "dayjs";
+import dayjs from "@/utils/dayjs-config";
 import "dayjs/locale/de";
 import "dayjs/locale/en";
 import duration from "dayjs/plugin/duration";

@@ -1,5 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { CustomDrawerHeader } from "@/components/drawer/custom-drawer-header";
 import {
@@ -13,6 +14,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/build/MaterialCommunityIcons";
 
 export default function TabLayout() {
+  const { t } = useTranslation();
   const colorScheme = useColorScheme();
 
   return (
@@ -26,7 +28,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="driver"
         options={{
-          title: "Driver",
+          title: t("tabs.driver"),
           header: () => (
             <CustomDrawerHeader
               title="drawer.driver"
@@ -45,7 +47,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Map",
+          title: t("tabs.map"),
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <MaterialIcons size={28} name="map" color={color} />
@@ -55,7 +57,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="gas"
         options={{
-          title: "Gas",
+          title: t("tabs.gas"),
           header: () => (
             <CustomDrawerHeader
               title="drawer.fuelPrices"

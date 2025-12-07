@@ -196,7 +196,9 @@ export function CustomDrawerContent() {
         <ThemedDivider thickness={2} />
 
         <ThemedText style={styles.version}>
-          Version {Application.nativeApplicationVersion}
+          {t("common.version", {
+            version: Application.nativeApplicationVersion,
+          })}
         </ThemedText>
       </ThemedView>
     </ThemedSafeAreaView>

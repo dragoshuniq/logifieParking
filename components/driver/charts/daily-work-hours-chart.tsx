@@ -3,7 +3,8 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { useFormatDuration } from "@/hooks/useFormat";
 import { WeeklyStats } from "@/utils/compliance";
-import dayjs from "dayjs";
+import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 
@@ -12,12 +13,15 @@ type Props = {
 };
 
 export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
+  const { t, i18n } = useTranslation();
   const { formatDuration } = useFormatDuration();
   const { content2, primary, text } = useThemedColors(
     "content2",
     "primary",
     "text"
   );
+
+  configureDayjsLocale(i18n.language);
 
   const barData = weeklyStats.dailyStats.map((day) => ({
     value: day.drivingHours + day.workHours + day.availabilityHours,
@@ -41,7 +45,7 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
       ]}
     >
       <ThemedText style={styles.chartTitle}>
-        Daily Work Hours
+        {t("driver.dailyWorkHours")}
       </ThemedText>
       {barData.some((d) => d.value > 0) ? (
         <View style={styles.barChartWrapper}>
@@ -68,12 +72,14 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
             }}
             noOfSections={4}
             maxValue={16}
-            yAxisLabelSuffix="h"
+            yAxisLabelSuffix={t("format.hourShort")}
           />
         </View>
       ) : (
         <View style={styles.emptyChart}>
-          <ThemedText style={styles.emptyText}>No data</ThemedText>
+          <ThemedText style={styles.emptyText}>
+            {t("common.noData")}
+          </ThemedText>
         </View>
       )}
     </ThemedView>

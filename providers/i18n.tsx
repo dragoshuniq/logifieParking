@@ -1,5 +1,6 @@
 import de from "@/locales/de.json";
 import en from "@/locales/en.json";
+import { configureDayjsLocale } from "@/utils/dayjs-config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Localization from "expo-localization";
 import * as i18next from "i18next";
@@ -97,6 +98,12 @@ const initI18n = async () => {
     interpolation: {
       escapeValue: false,
     },
+  });
+
+  configureDayjsLocale(language);
+
+  i18next.on("languageChanged", (lng) => {
+    configureDayjsLocale(lng);
   });
 };
 

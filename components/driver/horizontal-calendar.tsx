@@ -1,7 +1,8 @@
 import { ThemedText } from "@/components/ui/themed-text";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import dayjs from "dayjs";
+import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import {
   CalendarProvider,
@@ -19,12 +20,15 @@ export const HorizontalCalendar = ({
   onDateSelect,
   markedDates = [],
 }: Props) => {
+  const { i18n } = useTranslation();
   const { primary, content2, content3, background } = useThemedColors(
     "primary",
     "content2",
     "content3",
     "background"
   );
+
+  configureDayjsLocale(i18n.language);
 
   const calendarTheme = useMemo(
     () => ({

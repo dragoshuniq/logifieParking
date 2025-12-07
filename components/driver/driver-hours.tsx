@@ -21,6 +21,7 @@ import {
   calculateWeeklyStats,
   calculateWeeklyWorkingTimeCompliance,
 } from "@/utils/compliance";
+import dayjs from "@/utils/dayjs-config";
 import {
   Activity,
   addActivity,
@@ -34,7 +35,6 @@ import {
 } from "@/utils/driver-db";
 import { exportToCSV, exportToXLS } from "@/utils/export";
 import { FontAwesome6 } from "@expo/vector-icons";
-import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -136,7 +136,7 @@ export const DriverHours = () => {
       }
       loadActivities();
     } catch {
-      Alert.alert("Error", "Failed to save activity");
+      Alert.alert(t("common.error"), t("driver.errors.saveFailed"));
     }
   };
 

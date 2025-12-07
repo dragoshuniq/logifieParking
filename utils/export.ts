@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs from "@/utils/dayjs-config";
 import { File, Paths } from "expo-file-system";
 import { isAvailableAsync, shareAsync } from "expo-sharing";
 import {

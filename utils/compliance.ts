@@ -1,8 +1,5 @@
-import dayjs from "dayjs";
-import isoWeek from "dayjs/plugin/isoWeek";
+import dayjs from "@/utils/dayjs-config";
 import { Activity, ActivityType } from "./driver-db";
-
-dayjs.extend(isoWeek);
 
 export interface ComplianceStatus {
   isCompliant: boolean;

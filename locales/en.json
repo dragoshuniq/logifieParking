@@ -11,7 +11,9 @@
     "total": "Total",
     "noData": "No data",
     "information": "Information",
-    "noInformation": "No information available"
+    "noInformation": "No information available",
+    "version": "Version {{version}}",
+    "couldNotOpen": "Could not open {{name}}"
   },
   "format": {
     "hourShort": "h",
@@ -25,7 +27,9 @@
     "contact": "Contact Us",
     "getQuote": "Get Quote",
     "termsConditions": "Terms & Conditions",
-    "privacyPolicy": "Privacy Policy"
+    "privacyPolicy": "Privacy Policy",
+    "driver": "Driver",
+    "fuelPrices": "Fuel Prices"
   },
   "driver": {
     "title": "Work Hours Tracking",
@@ -34,6 +38,7 @@
     "weeklyOverview": "Weekly Overview",
     "selectTime": "Select Time",
     "activityDistribution": "Activity Distribution",
+    "dailyWorkHours": "Daily Work Hours",
     "activityTypes": {
       "driving": "Driving",
       "otherWork": "Other Work",
@@ -50,7 +55,8 @@
       "startTime": "Start Time",
       "endTime": "End Time",
       "duration": "Duration (hours)",
-      "timePlaceholder": "HH:MM"
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
     },
     "validation": {
       "title": "Validation",
@@ -101,14 +107,17 @@
     },
     "errors": {
       "deleteFailed": "Failed to delete activity",
-      "exportFailed": "Failed to export {{type}}"
+      "exportFailed": "Failed to export {{type}}",
+      "saveFailed": "Failed to save activity"
     }
   },
   "fuelPrice": {
     "sortBy": "Sort by",
     "noData": "No fuel data available",
     "updated": "Updated: {{date}}",
-    "searchPlaceholder": "Search countries..."
+    "searchPlaceholder": "Search countries...",
+    "petrol": "Petrol",
+    "diesel": "Diesel"
   },
   "sortOptions": {
     "alphaAsc": "A-Z",
@@ -129,6 +138,16 @@
     "postcode": "Postcode",
     "category": "Category",
     "type": "Type"
+  },
+  "location": {
+    "permissionRequired": "Location Permission Required",
+    "permissionMessage": "Location access is required to find your current position. Please enable it in your device settings.",
+    "openSettings": "Open Settings"
+  },
+  "tabs": {
+    "driver": "Driver",
+    "map": "Map",
+    "gas": "Gas"
   },
   "disclaimers": {
     "driver": {

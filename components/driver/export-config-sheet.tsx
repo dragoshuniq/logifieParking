@@ -2,8 +2,7 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets, ExportConfigProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import dayjs from "dayjs";
-import isoWeek from "dayjs/plugin/isoWeek";
+import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -18,8 +17,6 @@ import ActionSheet, {
   useSheetPayload,
 } from "react-native-actions-sheet";
 import { showDatePicker } from "./date-picker-sheet";
-
-dayjs.extend(isoWeek);
 
 export const showExportConfig = (payload: ExportConfigProps) => {
   SheetManager.show(ESheets.ExportConfig, {
@@ -38,13 +35,14 @@ const ExportConfigSheet = () => {
   const payload = useSheetPayload("ExportConfig") as
     | ExportConfigProps
     | undefined;
-  const { t } = useTranslation();
-  const { content1, content2, primary, text } = useThemedColors(
+  const { t, i18n } = useTranslation();
+  const { content1, content2, primary } = useThemedColors(
     "content1",
     "content2",
-    "primary",
-    "text"
+    "primary"
   );
+
+  configureDayjsLocale(i18n.language);
 
   const { onExport, selectedDate } =
     payload || ({} as ExportConfigProps);
@@ -344,7 +342,9 @@ const ExportConfigSheet = () => {
               { backgroundColor: content2.DEFAULT },
             ]}
           >
-            <ThemedText style={styles.buttonText}>Cancel</ThemedText>
+            <ThemedText style={styles.buttonText}>
+              {t("common.cancel")}
+            </ThemedText>
           </TouchableOpacity>
 
           <TouchableOpacity

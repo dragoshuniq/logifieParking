@@ -1,8 +1,8 @@
 import { ThemedText } from "@/components/ui/themed-text";
 import { ActivityFormPayload, ESheets } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
+import dayjs from "@/utils/dayjs-config";
 import { Activity, ActivityType } from "@/utils/driver-db";
-import dayjs from "dayjs";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -378,7 +378,7 @@ const ActivityFormSheet = () => {
               color: startTime ? text : "#999",
             }}
           >
-            {startTime || "HH:MM"}
+            {startTime || t("driver.form.timePlaceholder")}
           </ThemedText>
         </TouchableOpacity>
 
@@ -395,7 +395,7 @@ const ActivityFormSheet = () => {
               value={duration}
               onChangeText={setDuration}
               keyboardType="decimal-pad"
-              placeholder="0.0"
+              placeholder={t("driver.form.durationPlaceholder")}
               placeholderTextColor="#999"
             />
           </View>
