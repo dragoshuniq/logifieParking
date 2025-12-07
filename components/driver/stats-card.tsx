@@ -61,7 +61,7 @@ export const StatsCard = ({
           <MaterialIcons
             name="info"
             size={20}
-            color={primary.DEFAULT}
+            color={warning.DEFAULT}
           />
         </TouchableOpacity>
       )}

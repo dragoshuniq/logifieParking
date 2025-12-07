@@ -18,7 +18,7 @@ export const CustomDrawerHeader = ({
   disclaimer?: InfoSheetProps;
 }) => {
   const { t } = useTranslation();
-  const { primary } = useThemedColors("primary");
+  const { warning } = useThemedColors("warning");
   return (
     <ThemedSafeAreaView style={styles.container}>
       <DrawerToggleButton />
@@ -33,7 +33,7 @@ export const CustomDrawerHeader = ({
         <MaterialIcons
           name="info"
           size={30}
-          color={primary.DEFAULT}
+          color={warning.DEFAULT}
         />
       </ThemedTouchableOpacity>
     </ThemedSafeAreaView>

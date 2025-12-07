@@ -1,5 +1,4 @@
-import { Colors } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useThemedColors } from "@/hooks/use-themed-colors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React from "react";
 import { StyleSheet } from "react-native";
@@ -8,17 +7,15 @@ import { showInfoSheet } from "../ui/info-sheet";
 import { ThemedPressable } from "../ui/themed-pressable";
 
 export const MapDisclaimerButton = () => {
-  const theme = useColorScheme() ?? "light";
+  const { warning } = useThemedColors("warning");
 
   const handlePress = () => {
     showInfoSheet(parkingDisclaimer);
   };
 
-  const iconColor = Colors[theme].primary.DEFAULT;
-
   return (
     <ThemedPressable onPress={handlePress} style={styles.button}>
-      <MaterialIcons name="info" size={24} color={iconColor} />
+      <MaterialIcons name="info" size={24} color={warning.DEFAULT} />
     </ThemedPressable>
   );
 };
