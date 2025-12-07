@@ -93,16 +93,13 @@ const initI18n = async () => {
     compatibilityJSON: "v4",
     resources,
     lng: language,
+    fallbackLng: Languages.EN,
     interpolation: {
       escapeValue: false,
     },
   });
 
   configureDayjsLocale(language);
-
-  i18next.on("languageChanged", (lng) => {
-    configureDayjsLocale(lng);
-  });
 };
 
 initI18n();

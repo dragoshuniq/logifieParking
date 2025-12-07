@@ -7,6 +7,7 @@ import {
   persistLanguage,
   validateLanguage,
 } from "@/providers/i18n";
+import { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useTranslation } from "react-i18next";
 import {
   FlatList,
@@ -50,8 +51,10 @@ export default function LanguagePickerSheet(props: SheetProps) {
 
   const handleLanguageSelect = async (language: Languages) => {
     const validatedLanguage = validateLanguage(language);
-    await persistLanguage(validatedLanguage);
     changeLanguage(validatedLanguage);
+    configureDayjsLocale(validatedLanguage);
+    await persistLanguage(validatedLanguage);
+
     SheetManager.hide(ESheets.LanguagePicker);
   };
 
