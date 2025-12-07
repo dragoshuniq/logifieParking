@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Wybierz język",
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "save": "Zapisz",
+    "delete": "Usuń",
+    "apply": "Zastosuj",
+    "error": "Błąd",
+    "select": "Wybierz",
+    "total": "Suma",
+    "noData": "Brak danych",
+    "information": "Informacje",
+    "noInformation": "Brak dostępnych informacji",
+    "version": "Wersja {{version}}",
+    "couldNotOpen": "Nie można otworzyć {{name}}",
+    "ok": "OK",
+    "violation": "NARUSZENIE",
+    "yes": "TAK",
+    "no": "NIE"
+  },
+  "format": {
+    "hourShort": "h",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Wybierz język"
+  },
+  "drawer": {
+    "home": "Strona główna",
+    "contact": "Kontakt",
+    "getQuote": "Poproś o wycenę",
+    "termsConditions": "Regulamin",
+    "privacyPolicy": "Polityka prywatności",
+    "driver": "Kierowca",
+    "fuelPrices": "Ceny paliw"
+  },
+  "driver": {
+    "title": "Rejestrowanie godzin pracy",
+    "none": "Brak",
+    "noActivities": "Brak aktywności w tym dniu",
+    "weeklyOverview": "Przegląd tygodnia",
+    "selectTime": "Wybierz czas",
+    "activityDistribution": "Rozkład aktywności",
+    "dailyWorkHours": "Dzienne godziny pracy",
+    "activityTypes": {
+      "driving": "Jazda",
+      "otherWork": "Inna praca",
+      "break": "Przerwa",
+      "rest": "Odpoczynek",
+      "availability": "Dyspozycyjność"
+    },
+    "form": {
+      "addActivity": "Dodaj aktywność",
+      "editActivity": "Edytuj aktywność",
+      "activityType": "Rodzaj aktywności",
+      "timeEntry": "Rejestr czasu",
+      "manualEntry": "Wpis ręczny",
+      "startTime": "Czas rozpoczęcia",
+      "endTime": "Czas zakończenia",
+      "duration": "Czas trwania (godz.)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Walidacja",
+      "startTimeRequired": "Wymagany jest czas rozpoczęcia",
+      "durationGreaterThanZero": "Czas trwania musi być większy niż 0",
+      "bothTimesRequired": "Wymagane są oba czasy: start i koniec",
+      "endTimeAfterStart": "Czas zakończenia musi być po czasie rozpoczęcia",
+      "selectStartTimeFirst": "Najpierw wybierz czas rozpoczęcia"
+    },
+    "stats": {
+      "dailyDriving": "Dzienne prowadzenie",
+      "dailyWorking": "Dzienne pracowanie",
+      "breakCompliance": "Zgodność z przerwami",
+      "dailyRest": "Dzienny odpoczynek",
+      "nightWork": "Praca nocna",
+      "weeklyWorking": "Praca tygodniowa",
+      "drivingHours": "Godziny jazdy",
+      "weeklyRest": "Odpoczynek tygodniowy",
+      "restCompensation": "Kompensata odpoczynku",
+      "extendedDaysUsed": "Wykorzystano {{count}}/2 dni wydłużonych (10h)",
+      "dailyDrivingLimit": "10h max 2x/tydz.",
+      "reducedRestLimit": "15h max (odpoczynek 9h)",
+      "regularRestLimit": "15h max",
+      "breaksCount": "{{count}} przerwy",
+      "noBreaks": "Brak przerw",
+      "activityWindow": "Okno {{hours}}h",
+      "nightWorkWindow": "Praca 00:00-07:00",
+      "fourMonthAvg": "Średnio: {{hours}}h (≤48)",
+      "twoWeekTotal": "2 tyg: {{hours}}h/90",
+      "hoursAgo": "{{hours}}h temu",
+      "noWeeklyRest": "Brak odpoczynku tygodniowego",
+      "hoursOwed": "Zaległe {{hours}}h"
+    },
+    "export": {
+      "title": "Konfiguracja eksportu",
+      "exportType": "Typ eksportu",
+      "period": "Okres",
+      "selectedWeek": "Wybrany tydzień",
+      "currentWeek": "Bieżący tydzień",
+      "currentMonth": "Bieżący miesiąc",
+      "customPeriod": "Okres niestandardowy",
+      "customRange": "Okres niestandardowy",
+      "startDate": "Data początkowa",
+      "endDate": "Data końcowa",
+      "export": "Eksportuj",
+      "selectBothDates": "Wybierz obie daty",
+      "startBeforeEnd": "Data początkowa musi być przed końcową",
+      "dialogTitle": "Eksport godzin kierowcy",
+      "headers": {
+        "date": "Data",
+        "startTime": "Czas rozpoczęcia",
+        "endTime": "Czas zakończenia",
+        "duration": "Czas trwania (godz.)",
+        "activityType": "Rodzaj aktywności",
+        "dailyDriving": "Zgodność dziennej jazdy",
+        "breakCompliance": "Zgodność przerw",
+        "dailyRest": "Zgodność dziennego odpoczynku",
+        "nightWork": "Praca nocna",
+        "weeklyRestDeficits": "Deficyty odpoczynku tygodniowego",
+        "weekStart": "Początek tygodnia",
+        "weekEnd": "Koniec tygodnia",
+        "deficitHours": "Godziny deficytu",
+        "compensatedHours": "Godziny skompensowane",
+        "mustCompensateBy": "Do skompensowania do"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Nie udało się usunąć aktywności",
+      "exportFailed": "Nie udało się wyeksportować {{type}}",
+      "saveFailed": "Nie udało się zapisać aktywności"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Sortuj według",
+    "noData": "Brak danych o paliwie",
+    "updated": "Zaktualizowano: {{date}}",
+    "searchPlaceholder": "Szukaj krajów...",
+    "petrol": "Benzyna",
+    "diesel": "Olej napędowy"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Benzyna: rosnąco",
+    "petrolDesc": "Benzyna: malejąco",
+    "dieselAsc": "ON: rosnąco",
+    "dieselDesc": "ON: malejąco"
+  },
+  "parking": {
+    "noLocationDetails": "Brak szczegółów lokalizacji",
+    "location": "Lokalizacja",
+    "city": "Miasto",
+    "suburb": "Dzielnica",
+    "county": "Powiat",
+    "state": "Stan",
+    "country": "Kraj",
+    "postcode": "Kod pocztowy",
+    "category": "Kategoria",
+    "type": "Typ",
+    "facilityTypes": {
+      "parking": "Parking",
+      "gas_station": "Stacja paliw",
+      "parking_space": "Miejsce parkingowe",
+      "truck_stop": "Parking dla ciężarówek",
+      "rest_area": "Miejsce odpoczynku",
+      "motorway_services": "Usługi autostradowe",
+      "car_wash": "Myjnia",
+      "charging_station": "Stacja ładowania",
+      "amenity": "Udogodnienie",
+      "highway_rest_area": "MOP",
+      "highway_services": "Usługi autostrady",
+      "highway": "Autostrada",
+      "fuel_shop": "Sklep z paliwem",
+      "shop": "Sklep",
+      "location": "Lokalizacja"
+    }
+  },
+  "location": {
+    "permissionRequired": "Wymagane uprawnienia do lokalizacji",
+    "permissionMessage": "Dostęp do lokalizacji jest potrzebny, aby znaleźć Twoją obecną pozycję. Włącz go w ustawieniach urządzenia.",
+    "openSettings": "Otwórz ustawienia"
+  },
+  "tabs": {
+    "driver": "Kierowca",
+    "map": "Mapa",
+    "gas": "Paliwa"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Zastrzeżenie",
+      "purpose": {
+        "heading": "Cel aplikacji",
+        "content": "Ta aplikacja jest narzędziem pomocniczym dla zawodowych kierowców. Ma ułatwiać rejestrowanie i przegląd codziennych aktywności oraz pokazywać ich zgodność z przepisami UE dotyczącymi czasu jazdy i pracy."
+      },
+      "noOfficialLogbook": {
+        "heading": "Brak oficjalnego dziennika lub tachografu",
+        "content": "Dane w aplikacji mają charakter informacyjny i NIE zastępują:\n• tachografu ani jego wydruków,\n• oficjalnych dzienników lub rejestrów wymaganych prawem,\n• dokumentacji wymaganej przez organy kontrolne.\nZawsze opieraj się na tachografie i oficjalnych zapisach firmy jako głównym źródle."
+      },
+      "noLegalAdvice": {
+        "heading": "Brak porady prawnej lub zawodowej",
+        "content": "Obliczenia zgodności oparte są na przepisach UE, ale są uproszczone i mogą nie uwzględniać wszystkich regulacji krajowych lub firmowych.\n\nAplikacja nie świadczy usług doradztwa prawnego, podatkowego, HR ani zawodowego. Jesteś odpowiedzialny za sprawdzenie aktualnych przepisów, polityk firmy i wytycznych pracodawcy lub doradcy."
+      },
+      "dataStorage": {
+        "heading": "Przechowywanie danych i prywatność",
+        "content": "Historia aktywności jest przechowywana wyłącznie lokalnie w pamięci podręcznej aplikacji na urządzeniu. Nie przechowujemy danych w zewnętrznej bazie ani na serwerze centralnym.\n\nPonieważ dane są w cache:\n• mogą zostać usunięte po czyszczeniu danych aplikacji, reinstalacji lub zmianie urządzenia,\n• nie możemy przywrócić utraconych danych ani zapewnić kopii zapasowych.\nJeśli potrzebujesz długoterminowych zapisów, użyj eksportu i trzymaj kopie w bezpiecznym miejscu."
+      },
+      "userResponsibility": {
+        "heading": "Odpowiedzialność użytkownika",
+        "content": "Zawsze jesteś odpowiedzialny za:\n• planowanie pracy i odpoczynku,\n• interpretację informacji w aplikacji,\n• przestrzeganie wszystkich obowiązujących przepisów i zasad firmowych.\n\nTraktuj aplikację jako narzędzie pomocnicze, a nie decyzyjne. W razie wątpliwości kieruj się tachografem, wytycznymi firmy i oficjalnymi przepisami."
+      }
+    },
+    "parking": {
+      "title": "Parkingi dla ciężarówek - zastrzeżenie",
+      "sourceInfo": {
+        "heading": "Źródło informacji",
+        "content": "Lokalizacje, udogodnienia i szczegóły parkingów pochodzą ze źródeł publicznych i zewnętrznych (np. dane otwarte, publiczne strony, zgłoszenia użytkowników lub usługi zewnętrzne).\n\nNie prowadzimy tych parkingów i nie kontrolujemy publikowanych danych."
+      },
+      "accuracy": {
+        "heading": "Dokładność i aktualizacje",
+        "content": "Staramy się podawać przydatne i aktualne informacje, ale nie gwarantujemy ich kompletności, poprawności ani aktualności.\n\nPrzykłady zmian bez powiadomienia:\n• godziny otwarcia i zasady dostępu,\n• ceny, metody płatności i wymagania rezerwacyjne,\n• dostępne usługi (prysznice, ochrona, jedzenie, paliwo itd.),\n• liczba miejsc lub czasowe zamknięcie parkingu."
+      },
+      "verifyBefore": {
+        "heading": "Zawsze sprawdzaj przed dojazdem",
+        "content": "Przed wyjazdem na wskazany parking sam zweryfikuj kluczowe informacje:\n• sprawdź lokalizację w nawigacji lub mapach,\n• użyj innych zaufanych aplikacji parkingowych/ciężarowych,\n• odwiedź oficjalną stronę parkingu, jeśli istnieje,\n• skontaktuj się bezpośrednio z operatorem lub gospodarzem, gdy są podane dane kontaktowe.\n\nNie polegaj wyłącznie na informacjach z aplikacji przy planowaniu trasy, odpoczynku czy bezpieczeństwa."
+      },
+      "noEndorsement": {
+        "heading": "Brak rekomendacji ani gwarancji",
+        "content": "Umieszczenie parkingu w aplikacji NIE oznacza, że go rekomendujemy, sprawdzamy lub gwarantujemy.\n\nNie potwierdzamy:\n• poziomu bezpieczeństwa parkingu,\n• dostępności wolnych miejsc w danym momencie,\n• zgodności parkingu z wymaganiami prawnymi lub firmowymi."
+      },
+      "userResponsibility": {
+        "heading": "Odpowiedzialność użytkownika",
+        "content": "Zawsze odpowiadasz za:\n• wybór miejsca postoju i odpoczynku,\n• sprawdzenie, czy parking jest odpowiedni dla pojazdu i ładunku,\n• przestrzeganie zasad czasu jazdy/odpoczynku i wszystkich znaków oraz przepisów drogowych.\n\nTraktuj mapę parkingów jako wsparcie. Zawsze dwukrotnie weryfikuj ważne informacje przed przyjazdem."
+      }
+    },
+    "fuel": {
+      "title": "Ceny paliw - zastrzeżenie",
+      "sourceData": {
+        "heading": "Źródło danych",
+        "content": "Ceny paliw oparte są na publicznych informacjach z źródeł Unii Europejskiej i/lub innych oficjalnych publikacji. Podawane są orientacyjnie i nie są zbierane bezpośrednio przez nas."
+      },
+      "accuracy": {
+        "heading": "Dokładność i aktualność",
+        "content": "Ceny są orientacyjne i mogą różnić się od rzeczywistych cen na stacjach. Często się zmieniają przez podatki, warunki rynkowe, lokalizację i porę dnia. Nie gwarantujemy kompletności, braku błędów ani aktualności."
+      },
+      "howToUse": {
+        "heading": "Jak korzystać",
+        "content": "Traktuj ceny jako przybliżoną referencję. Zawsze sprawdzaj bieżącą cenę na dystrybutorze, stronie stacji lub w innej zaufanej aplikacji przed decyzją."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Dzienny czas jazdy",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "Rozporządzenie (WE) nr 561/2006 - art. 6 (dzienny czas jazdy)."
+      },
+      "rules": {
+        "heading": "Zasady",
+        "content": "• Limit standardowy: maks. 9 godzin jazdy w jednym dobowym okresie pracy.\n• Limit wydłużony: do 10 godzin najwyżej w 2 dniach tygodnia.\n• Czas jazdy liczony jest między kolejnymi odpoczynkami dziennymi lub tygodniowymi."
+      },
+      "example": {
+        "heading": "Przykład",
+        "content": "Jeśli jedziesz 10h w poniedziałek i 10h w środę, w pozostałe dni tego samego tygodnia musisz pozostać na 9h lub mniej."
+      }
+    },
+    "dailyWorking": {
+      "title": "Dzienny czas pracy i rozpiętość",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "Dyrektywa 2002/15/WE (czas pracy pracowników mobilnych) + Rozporządzenie (WE) nr 561/2006 (odpoczynki)."
+      },
+      "whatCounts": {
+        "heading": "Co jest czasem pracy",
+        "content": "• Jazda (faktyczny czas prowadzenia).\n• Inna praca (załadunek, rozładunek, administracja, serwis itp.).\n• Czas pracy NIE obejmuje: przerw, odpoczynków ani okresów dyspozycyjności.\n• Okresy dyspozycyjności są rejestrowane osobno, ale wydłużają dobową „rozpiętość” (czas między odpoczynkami)."
+      },
+      "dailyLimits": {
+        "heading": "Limity dzienne (wpływ odpoczynku)",
+        "content": "• UE nie ustala sztywnego dobowego limitu pracy, ale:\n  • Obowiązują limity tygodniowe: maks. 60h w tygodniu, średnio 48h/tydz. w okresie do 4 miesięcy.\n  • Z uwagi na wymagania odpoczynku dobowego (561/2006):\n    - Przy regularnym odpoczynku 11h maks. rozpiętość to 13h.\n    - Przy skróconym odpoczynku min. 9h (max 3 razy między odpoczynkami tygodniowymi) rozpiętość może wynieść do 15h.\n  • Przy pracy nocnej czas pracy w 24h nie może przekroczyć 10h (patrz karta Praca nocna)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Zgodność z przerwami",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "• Rozporządzenie (WE) nr 561/2006 - art. 7 (przerwy w czasie jazdy).\n• Dyrektywa 2002/15/WE - przerwy w czasie pracy pracowników mobilnych."
+      },
+      "drivingBreaks": {
+        "heading": "Przerwy w czasie jazdy (561/2006)",
+        "content": "• Po maksymalnie 4,5h jazdy musisz wziąć co najmniej 45 min przerwy.\n• Te 45 min można podzielić na:\n  - pierwszą przerwę min. 15 min oraz\n  - drugą przerwę min. 30 min,\n  pod warunkiem że razem dadzą co najmniej 45 min w oknie 4,5h jazdy."
+      },
+      "workingBreaks": {
+        "heading": "Przerwy w czasie pracy (2002/15/WE)",
+        "content": "• Nie wolno pracować więcej niż 6h bez przerwy.\n• Jeśli łączny dzienny czas pracy >6h i ≤9h: co najmniej 30 min łącznie.\n• Jeśli łączny dzienny czas pracy >9h: co najmniej 45 min łącznie.\n• Przerwy można dzielić na okresy min. 15 min.\n• Przy mieszaniu jazdy i innej pracy trzeba spełnić oba zestawy reguł (obowiązuje bardziej rygorystyczna)."
+      },
+      "important": {
+        "heading": "Ważne",
+        "content": "• Przerwy przerywają czas pracy i NIE są nim liczone.\n• Wydłużają jednak dobową rozpiętość (czas między pierwszą a ostatnią aktywnością)."
+      }
+    },
+    "dailyRest": {
+      "title": "Odpoczynek dzienny i okno aktywności",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "Rozporządzenie (WE) nr 561/2006 - art. 8 (odpoczynek dzienny)."
+      },
+      "requirements": {
+        "heading": "Wymogi odpoczynku dziennego",
+        "content": "• Regularny odpoczynek dzienny: co najmniej 11 godzin nieprzerwanie w ciągu 24h od końca poprzedniego odpoczynku dziennego lub tygodniowego.\n• Opcja podziału odpoczynku regularnego: 3h + 9h (pierwsza część min. 3h, druga min. 9h).\n• Skrócony odpoczynek dzienny: min. 9h, ale mniej niż 11h.\n• Maks. 3 skrócone odpoczynki dzienne między dwoma odpoczynkami tygodniowymi."
+      },
+      "activityWindow": {
+        "heading": "Okno aktywności (rozpiętość dobowa)",
+        "content": "• Rozpiętość dobowa = czas od pierwszej aktywności (Jazda/Inna praca/Dyspozycyjność/Przerwa) do ostatniej przed następnym odpoczynkiem dziennym lub tygodniowym.\n• Przy regularnym odpoczynku (11h): maks. 13h rozpiętości w 24h.\n• Przy skróconym odpoczynku (≥9h): maks. 15h, dozwolone najwyżej 3 razy między odpoczynkami tygodniowymi.\n• Cały odpoczynek dzienny musi się zmieścić w odpowiednim 24-godzinnym okresie liczonym od startu dnia pracy."
+      }
+    },
+    "nightWork": {
+      "title": "Praca nocna (czas pracy UE)",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "Dyrektywa 2002/15/WE - praca nocna dla pracowników mobilnych w transporcie drogowym."
+      },
+      "definition": {
+        "heading": "Definicja czasu nocnego",
+        "content": "• Prawo UE definiuje „czas nocny” jako okres co najmniej 4 kolejnych godzin między 00:00 a 07:00.\n• Każde państwo członkowskie ustala dokładne 4h nocne w prawie krajowym.\n• W aplikacji to konfigurowalne okno 4h (np. 00:00-04:00 lub 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Limit pracy nocnej",
+        "content": "• Jeśli jakakolwiek praca (Jazda lub Inna praca) odbywa się w zdefiniowanym oknie nocnym, liczy się jako praca nocna.\n• Przy pracy nocnej łączny czas pracy nie może przekroczyć 10h w dowolnych 24h.\n• Limit 10h dotyczy tylko pracy (Jazda + Inna praca), nie przerw, odpoczynku ani dyspozycyjności.\n• Państwa mogą dodawać dopłaty lub ochronę, ale nie są tu ujęte."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Tygodniowy czas pracy",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "Dyrektywa 2002/15/WE - czas pracy pracowników mobilnych transportu drogowego."
+      },
+      "limits": {
+        "heading": "Limity tygodniowe",
+        "content": "• Średni czas pracy: nie może przekroczyć 48h/tydz., liczony w okresie referencyjnym (do 4 miesięcy).\n• Pojedynczy tydzień: do 60h, o ile średnia 48h/tydz. w okresie referencyjnym nie jest przekroczona.\n• Czas pracy = Jazda + Inna praca.\n• Przerwy, odpoczynki i dyspozycyjność NIE są czasem pracy."
+      },
+      "calculation": {
+        "heading": "Okres obliczeniowy",
+        "content": "• „Tydzień” według przepisów UE to zwykle 7 dni stałych (561/2006: pon. 00:00 - niedz. 24:00).\n• Aplikacja może monitorować ruchome 4 miesiące dla średniej 48h.\n• Jeśli jeden tydzień >60h → natychmiastowe naruszenie czasu pracy.\n• Jeśli średnia ruchoma >48h/tydz. → naruszenie czasu pracy."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Jazda tygodniowa i dwutygodniowa",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "Rozporządzenie (WE) nr 561/2006 - art. 6 (limity jazdy tygodniowej i dwutygodniowej)."
+      },
+      "limits": {
+        "heading": "Limity jazdy",
+        "content": "• Pojedynczy tydzień: maks. 56 godzin jazdy.\n• Dwa kolejne tygodnie: łącznie maks. 90 godzin jazdy.\n• „Tydzień” wg 561/2006: poniedziałek 00:00 - niedziela 24:00."
+      },
+      "example": {
+        "heading": "Przykład",
+        "content": "Tydzień 1: 48h jazdy → Tydzień 2 max 42h (48 + 42 = 90).\nTydzień 2: 42h jazdy → Tydzień 3 max 48h (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Odpoczynek tygodniowy i pauza 45h",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "Rozporządzenie (WE) nr 561/2006 - art. 8 (odpoczynki tygodniowe, w tym Pakiet Mobilności)."
+      },
+      "requirements": {
+        "heading": "Wymogi odpoczynku tygodniowego",
+        "content": "• Nowy odpoczynek tygodniowy musi ROZPOCZĄĆ się najpóźniej 144 godziny (6 × 24h) od KOŃCA poprzedniego odpoczynku tygodniowego.\n• Regularny odpoczynek tygodniowy: co najmniej 45 godzin nieprzerwanie.\n• Skrócony odpoczynek tygodniowy: min. 24h, ale mniej niż 45h.\n• W każdych 2 kolejnych tygodniach muszą być co najmniej 2 odpoczynki tygodniowe, z czego co najmniej 1 regularny (≥45h)."
+      },
+      "compensation": {
+        "heading": "Zasady kompensacji (zarys)",
+        "content": "• Każdy skrócony odpoczynek tygodniowy tworzy deficyt: 45h minus faktyczny czas odpoczynku.\n• Każdy deficyt trzeba skompensować „en bloc” w ciągu 3 tygodni po tygodniu redukcji.\n• Kompensację należy dołączyć do innego odpoczynku min. 9h (dziennego lub tygodniowego)."
+      },
+      "whereRest": {
+        "heading": "Gdzie można odpoczywać",
+        "content": "• Regularnych odpoczynków tygodniowych (≥45h) nie wolno spędzać w pojeździe.\n• Odpoczynki dzienne i skrócone tygodniowe można w pojeździe, jeśli stoi i ma odpowiednie miejsce do spania."
+      },
+      "daysCovered": {
+        "heading": "Dni objęte odpoczynkiem tygodniowym",
+        "content": "• Dni całkowicie objęte kwalifikowanym odpoczynkiem tygodniowym (≥24h) są traktowane jako wolne.\n• Dla kontroli odpoczynku dziennego są automatycznie zgodne."
+      }
+    },
+    "restCompensation": {
+      "title": "Kompensata odpoczynku",
+      "legalBasis": {
+        "heading": "Podstawa prawna",
+        "content": "Rozporządzenie (WE) nr 561/2006 - art. 8(6) (kompensacja skróconego odpoczynku tygodniowego)."
+      },
+      "whenRequired": {
+        "heading": "Kiedy wymagana jest kompensacja",
+        "content": "• Każdy skrócony odpoczynek tygodniowy (24h do <45h) tworzy „deficyt” względem 45h.\n• Deficyt = 45 godzin − faktyczny czas odpoczynku tygodniowego.\n• Przykład: odpoczynek 30h → deficyt 15h do skompensowania później."
+      },
+      "rules": {
+        "heading": "Zasady kompensacji",
+        "content": "• Każdy deficyt trzeba skompensować w ciągu 3 tygodni po tygodniu redukcji.\n• Kompensacja musi być w jednym nieprzerwanym bloku.\n• Musi być dołączona do innego odpoczynku min. 9h (dzienny lub tygodniowy).\n• Nie można dzielić kompensacji na wiele odpoczynków."
+      },
+      "display": {
+        "heading": "Wyświetlanie w aplikacji",
+        "content": "• Pokazuje, ile skróconych odpoczynków tygodniowych wymaga kompensacji.\n• Pokazuje łączną liczbę godzin kompensacji i najpóźniejszy termin jej wykonania."
+      }
+    }
+  }
+}
