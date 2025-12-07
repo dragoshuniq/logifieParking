@@ -52,11 +52,10 @@ dayjs.extend(isoWeek);
 
 export const DriverHours = () => {
   const { t } = useTranslation();
-  const { primary, background, warning } = useThemedColors(
+  const { primary, background } = useThemedColors(
     "primary",
     "content2",
-    "background",
-    "warning"
+    "background"
   );
 
   const [selectedDate, setSelectedDate] = useState(new Date());
