@@ -4,6 +4,7 @@ import {
   ActivityDistributionChart,
   DailyWorkHoursChart,
 } from "@/components/driver/charts";
+import { getComplianceInfo } from "@/components/driver/compliance-info";
 import { showDatePicker } from "@/components/driver/date-picker-sheet";
 import { showExportConfig } from "@/components/driver/export-config-sheet";
 import { HorizontalCalendar } from "@/components/driver/horizontal-calendar";
@@ -237,6 +238,20 @@ export const DriverHours = () => {
     selectedDate
   );
 
+  const dailyWorkingHours =
+    dailyStats.drivingHours + dailyStats.workHours;
+  const maxDailyWorking = nightWork.hasNightWork
+    ? 10
+    : dailyRest.restType === "reduced"
+    ? 15
+    : 13;
+  const dailyWorkingLevel =
+    dailyWorkingHours > maxDailyWorking
+      ? "violation"
+      : dailyWorkingHours > maxDailyWorking - 2
+      ? "warning"
+      : "compliant";
+
   const weeklyWorking = calculateWeeklyWorkingTimeCompliance(
     fourMonthActivities,
     selectedDate
@@ -323,6 +338,24 @@ export const DriverHours = () => {
                 ? `Used ${dailyDriving.extendedDaysThisWeek}/2 extended (10h) days`
                 : "9h daily, 10h max 2×/week"
             }
+            info={getComplianceInfo("dailyDriving")}
+          />
+          <StatsCard
+            title="Daily Working"
+            value={dailyWorkingHours.toFixed(1)}
+            maxValue={maxDailyWorking.toString()}
+            level={
+              dailyWorkingLevel as
+                | "compliant"
+                | "warning"
+                | "violation"
+            }
+            subtitle={
+              dailyRest.restType === "reduced"
+                ? "15h max (9h rest)"
+                : "13h max (11h rest)"
+            }
+            info={getComplianceInfo("dailyWorking")}
           />
           <StatsCard
             title={t("driver.breakCompliance")}
@@ -340,6 +373,7 @@ export const DriverHours = () => {
                 ? `${breakCompliance.breaks.length} breaks`
                 : "No breaks"
             }
+            info={getComplianceInfo("breakCompliance")}
           />
           <StatsCard
             title={t("driver.dailyRest")}
@@ -353,6 +387,7 @@ export const DriverHours = () => {
                   )}h window`
                 : undefined
             }
+            info={getComplianceInfo("dailyRest")}
           />
           {nightWork.hasNightWork && (
             <StatsCard
@@ -361,6 +396,7 @@ export const DriverHours = () => {
               maxValue={nightWork.maxWorkingTime.toString()}
               level={nightWork.level}
               subtitle="00:00-07:00 work"
+              info={getComplianceInfo("nightWork")}
             />
           )}
           <StatsCard
@@ -371,6 +407,7 @@ export const DriverHours = () => {
             subtitle={`Avg: ${weeklyWorking.fourMonthAverage.toFixed(
               1
             )}h (≤48)`}
+            info={getComplianceInfo("weeklyWorking")}
           />
           <StatsCard
             title={t("driver.drivingHours")}
@@ -380,6 +417,7 @@ export const DriverHours = () => {
             subtitle={`2wk: ${weeklyDriving.twoWeekDrivingHours.toFixed(
               1
             )}h/90`}
+            info={getComplianceInfo("weeklyDriving")}
           />
           <StatsCard
             title={t("driver.weeklyRest")}
@@ -397,6 +435,7 @@ export const DriverHours = () => {
                   )}h ago`
                 : "No weekly rest"
             }
+            info={getComplianceInfo("weeklyRest")}
           />
           {restDeficits.length > 0 && (
             <StatsCard
@@ -410,6 +449,7 @@ export const DriverHours = () => {
                   0
                 )
                 .toFixed(1)}h owed`}
+              info={getComplianceInfo("restCompensation")}
             />
           )}
         </ScrollView>

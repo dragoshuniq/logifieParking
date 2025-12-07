@@ -62,5 +62,16 @@ declare module "react-native-actions-sheet" {
       };
       returnValue?: undefined;
     };
+    InfoSheet: {
+      payload: {
+        title: string;
+        icon: string;
+        sections: {
+          heading: string;
+          content: string;
+        }[];
+      };
+      returnValue?: undefined;
+    };
   }
 }

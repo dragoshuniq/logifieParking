@@ -1,15 +1,20 @@
+import { showInfoSheet } from "@/components/ui/info-sheet";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
+import { InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
+import { FontAwesome6 } from "@expo/vector-icons";
 import { StyleSheet, View } from "react-native";
+import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 
-interface StatsCardProps {
+type StatsCardProps = {
   title: string;
   value: string;
   maxValue?: string;
   level?: "compliant" | "warning" | "violation";
   subtitle?: string;
-}
+  info?: InfoSheetProps;
+};
 
 export const StatsCard = ({
   title,
@@ -17,13 +22,16 @@ export const StatsCard = ({
   maxValue,
   level = "compliant",
   subtitle,
+  info,
 }: StatsCardProps) => {
-  const { content2, success, warning, danger } = useThemedColors(
-    "content2",
-    "success",
-    "warning",
-    "danger"
-  );
+  const { content2, success, warning, danger, primary } =
+    useThemedColors(
+      "content2",
+      "success",
+      "warning",
+      "danger",
+      "primary"
+    );
 
   const getColor = () => {
     switch (level) {
@@ -36,10 +44,28 @@ export const StatsCard = ({
     }
   };
 
+  const handleInfoPress = () => {
+    if (info) {
+      showInfoSheet(info);
+    }
+  };
+
   return (
     <ThemedView
       style={[styles.card, { backgroundColor: content2.DEFAULT }]}
     >
+      {info && (
+        <ThemedTouchableOpacity
+          onPress={handleInfoPress}
+          style={styles.infoButton}
+        >
+          <FontAwesome6
+            name="circle-info"
+            size={16}
+            color={primary.DEFAULT}
+          />
+        </ThemedTouchableOpacity>
+      )}
       <ThemedText style={styles.title}>{title}</ThemedText>
       <View style={styles.valueContainer}>
         <ThemedText style={[styles.value, { color: getColor() }]}>
@@ -62,14 +88,22 @@ const styles = StyleSheet.create({
   card: {
     padding: 16,
     borderRadius: 12,
-    minWidth: 100,
+    minWidth: 130,
     alignItems: "center",
+    position: "relative",
   },
   title: {
     fontSize: 12,
     fontWeight: "600",
-    marginBottom: 8,
     textAlign: "center",
+    marginBottom: 8,
+  },
+  infoButton: {
+    position: "absolute",
+    top: 4,
+    right: 4,
+    zIndex: 10,
+    borderRadius: 100,
   },
   valueContainer: {
     flexDirection: "row",
