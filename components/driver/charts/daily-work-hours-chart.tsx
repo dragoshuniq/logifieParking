@@ -20,12 +20,14 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
   );
 
   const barData = weeklyStats.dailyStats.map((day) => ({
-    value: day.drivingHours + day.workHours,
+    value: day.drivingHours + day.workHours + day.availabilityHours,
     label: dayjs(day.date).format("dd"),
     frontColor: primary.DEFAULT,
     topLabelComponent: () => (
       <ThemedText style={{ fontSize: 10, marginBottom: 2 }}>
-        {formatDuration(day.drivingHours + day.workHours)}
+        {formatDuration(
+          day.drivingHours + day.workHours + day.availabilityHours
+        )}
       </ThemedText>
     ),
     spacing: 4,

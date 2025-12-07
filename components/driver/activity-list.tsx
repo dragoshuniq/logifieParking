@@ -2,7 +2,7 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { useFormatTime } from "@/hooks/useFormat";
-import { Activity } from "@/utils/driver-db";
+import { Activity, ActivityType } from "@/utils/driver-db";
 import { FontAwesome6 } from "@expo/vector-icons";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
@@ -30,33 +30,54 @@ export const ActivityList = ({
       "text"
     );
 
-  const getActivityIcon = (type: string) => {
+  const getActivityIcon = (type: ActivityType) => {
     switch (type) {
-      case "driving":
+      case ActivityType.DRIVING:
         return "truck";
-      case "work":
+      case ActivityType.OTHER_WORK:
         return "briefcase";
-      case "break":
+      case ActivityType.AVAILABILITY:
+        return "clock";
+      case ActivityType.BREAK:
         return "coffee";
-      case "rest":
+      case ActivityType.REST:
         return "bed";
       default:
         return "circle";
     }
   };
 
-  const getActivityColor = (type: string) => {
+  const getActivityColor = (type: ActivityType) => {
     switch (type) {
-      case "driving":
+      case ActivityType.DRIVING:
         return primary.DEFAULT;
-      case "work":
+      case ActivityType.OTHER_WORK:
         return warning.DEFAULT;
-      case "break":
+      case ActivityType.AVAILABILITY:
+        return "#f59e0b";
+      case ActivityType.BREAK:
         return success.DEFAULT;
-      case "rest":
+      case ActivityType.REST:
         return "#6366f1";
       default:
         return text;
+    }
+  };
+
+  const getActivityLabel = (type: ActivityType) => {
+    switch (type) {
+      case ActivityType.DRIVING:
+        return t("driver.driving");
+      case ActivityType.OTHER_WORK:
+        return t("driver.work");
+      case ActivityType.AVAILABILITY:
+        return t("driver.availability");
+      case ActivityType.BREAK:
+        return t("driver.break");
+      case ActivityType.REST:
+        return t("driver.rest");
+      default:
+        return type;
     }
   };
 

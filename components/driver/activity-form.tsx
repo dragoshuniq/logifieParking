@@ -51,7 +51,7 @@ const ActivityFormSheet = () => {
     !initialActivity?.startDateTime
   );
   const [activityType, setActivityType] = useState<ActivityType>(
-    initialActivity?.type || "driving"
+    initialActivity?.type || ActivityType.DRIVING
   );
   const [startTime, setStartTime] = useState(
     initialActivity
@@ -68,10 +68,14 @@ const ActivityFormSheet = () => {
   );
 
   const activityTypes: { type: ActivityType; label: string }[] = [
-    { type: "driving", label: t("driver.driving") },
-    { type: "work", label: t("driver.work") },
-    { type: "break", label: t("driver.break") },
-    { type: "rest", label: t("driver.rest") },
+    { type: ActivityType.DRIVING, label: t("driver.driving") },
+    { type: ActivityType.OTHER_WORK, label: t("driver.work") },
+    { type: ActivityType.BREAK, label: t("driver.break") },
+    { type: ActivityType.REST, label: t("driver.rest") },
+    {
+      type: ActivityType.AVAILABILITY,
+      label: t("driver.availability"),
+    },
   ];
 
   const onCloseSheet = () => {

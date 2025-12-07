@@ -33,6 +33,11 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
       label: t("driver.work"),
     },
     {
+      value: dailyStats.availabilityHours,
+      color: "#f59e0b",
+      label: t("driver.availability"),
+    },
+    {
       value: dailyStats.breakHours,
       color: success.DEFAULT,
       label: t("driver.break"),
@@ -47,6 +52,7 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
   const totalHours =
     dailyStats.drivingHours +
     dailyStats.workHours +
+    dailyStats.availabilityHours +
     dailyStats.breakHours +
     dailyStats.restHours;
 

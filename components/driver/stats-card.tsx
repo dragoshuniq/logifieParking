@@ -1,6 +1,6 @@
-import { useThemedColors } from "@/hooks/use-themed-colors";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
+import { useThemedColors } from "@/hooks/use-themed-colors";
 import { StyleSheet, View } from "react-native";
 
 interface StatsCardProps {
@@ -8,9 +8,16 @@ interface StatsCardProps {
   value: string;
   maxValue?: string;
   level?: "compliant" | "warning" | "violation";
+  subtitle?: string;
 }
 
-export const StatsCard = ({ title, value, maxValue, level = "compliant" }: StatsCardProps) => {
+export const StatsCard = ({
+  title,
+  value,
+  maxValue,
+  level = "compliant",
+  subtitle,
+}: StatsCardProps) => {
   const { content2, success, warning, danger } = useThemedColors(
     "content2",
     "success",
@@ -30,14 +37,23 @@ export const StatsCard = ({ title, value, maxValue, level = "compliant" }: Stats
   };
 
   return (
-    <ThemedView style={[styles.card, { backgroundColor: content2.DEFAULT }]}>
+    <ThemedView
+      style={[styles.card, { backgroundColor: content2.DEFAULT }]}
+    >
       <ThemedText style={styles.title}>{title}</ThemedText>
       <View style={styles.valueContainer}>
-        <ThemedText style={[styles.value, { color: getColor() }]}>{value}</ThemedText>
+        <ThemedText style={[styles.value, { color: getColor() }]}>
+          {value}
+        </ThemedText>
         {maxValue && (
-          <ThemedText style={styles.maxValue}>/ {maxValue}</ThemedText>
+          <ThemedText style={styles.maxValue}>
+            / {maxValue}
+          </ThemedText>
         )}
       </View>
+      {subtitle && (
+        <ThemedText style={styles.subtitle}>{subtitle}</ThemedText>
+      )}
     </ThemedView>
   );
 };
@@ -68,5 +84,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     opacity: 0.6,
   },
+  subtitle: {
+    fontSize: 10,
+    opacity: 0.7,
+    marginTop: 4,
+    textAlign: "center",
+  },
 });
-
