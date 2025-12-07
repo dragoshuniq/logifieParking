@@ -1,4 +1,4 @@
-import { Languages } from "@/providers/i18n";
+import { Languages } from "@/types/language";
 import dayjs, { getDayjsLocale } from "@/utils/dayjs-config";
 import { LocaleConfig } from "react-native-calendars";
 

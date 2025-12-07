@@ -1,4 +1,9 @@
 import en from "@/locales/en.json";
+import {
+  LANGUAGE_FLAGS,
+  LANGUAGE_NAMES,
+  Languages,
+} from "@/types/language";
 import { configureCalendarLocale } from "@/utils/calendar-config";
 import { configureDayjsLocale } from "@/utils/dayjs-config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,59 +13,7 @@ import { initReactI18next } from "react-i18next";
 
 const LANGUAGE_STORAGE_KEY = "@language";
 
-export enum Languages {
-  EN = "en",
-  DE = "de",
-  FR = "fr",
-  PL = "pl",
-  UA = "ua",
-  RO = "ro",
-  ES = "es",
-  PT = "pt",
-  IT = "it",
-  NL = "nl",
-  SE = "se",
-  NO = "no",
-  FI = "fi",
-  DK = "dk",
-  TR = "tr",
-}
-
-export const LANGUAGE_NAMES: Record<Languages, string> = {
-  [Languages.EN]: "English",
-  [Languages.DE]: "Deutsch",
-  [Languages.FR]: "Français",
-  [Languages.PL]: "Polski",
-  [Languages.UA]: "Українська",
-  [Languages.RO]: "Română",
-  [Languages.ES]: "Español",
-  [Languages.PT]: "Português",
-  [Languages.IT]: "Italiano",
-  [Languages.NL]: "Nederlands",
-  [Languages.SE]: "Svenska",
-  [Languages.NO]: "Norsk",
-  [Languages.FI]: "Suomi",
-  [Languages.DK]: "Dansk",
-  [Languages.TR]: "Türkçe",
-};
-
-export const LANGUAGE_FLAGS: Record<Languages, string> = {
-  [Languages.EN]: "GB",
-  [Languages.DE]: "DE",
-  [Languages.FR]: "FR",
-  [Languages.PL]: "PL",
-  [Languages.UA]: "UA",
-  [Languages.RO]: "RO",
-  [Languages.ES]: "ES",
-  [Languages.PT]: "PT",
-  [Languages.IT]: "IT",
-  [Languages.NL]: "NL",
-  [Languages.SE]: "SE",
-  [Languages.NO]: "NO",
-  [Languages.FI]: "FI",
-  [Languages.DK]: "DK",
-  [Languages.TR]: "TR",
-};
+export { LANGUAGE_FLAGS, LANGUAGE_NAMES, Languages };
 
 export const validateLanguage = (language: string): Languages => {
   if (Object.values(Languages).includes(language as Languages)) {
