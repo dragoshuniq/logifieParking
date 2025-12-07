@@ -26,11 +26,31 @@ export const AppConstants = {
     companyRegon: "XXX",
     companyKrs: "XXX",
   },
+  store: {
+    iosAppId: "",
+    androidPackageName: "",
+  },
 } as const;
 
 export const DEFAULT_COORDINATES = {
   latitude: 50.2743132,
   longitude: 19.0040024,
+};
+
+export const getAppStoreUrl = (
+  platform: "ios" | "android" | "web"
+) => {
+  const { iosAppId, androidPackageName } = AppConstants.store;
+
+  if (platform === "ios" && iosAppId) {
+    return `https://apps.apple.com/app/id${iosAppId}`;
+  }
+
+  if (platform === "android" && androidPackageName) {
+    return `https://play.google.com/store/apps/details?id=${androidPackageName}`;
+  }
+
+  return AppConstants.companyWebsite;
 };
 
 export const ExternalLinks = (language: Languages) => {

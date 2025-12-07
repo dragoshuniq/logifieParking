@@ -6,18 +6,33 @@ import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/build/MaterialCommunityIcons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <Tabs
+      initialRouteName="index"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         tabBarInactiveTintColor: Colors[colorScheme ?? "light"].icon,
-        // headerShown: false,
       }}
     >
+      <Tabs.Screen
+        name="driver"
+        options={{
+          title: "Driver",
+          header: () => <CustomDrawerHeader title="drawer.driver" />,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              size={28}
+              name="truck-fast"
+              color={color}
+            />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="index"
         options={{

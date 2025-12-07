@@ -10,6 +10,7 @@ import {
   Languages,
   validateLanguage,
 } from "@/providers/i18n";
+import { shareApp } from "@/utils/share-app";
 import { Ionicons } from "@expo/vector-icons";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
@@ -137,26 +138,56 @@ export function CustomDrawerContent() {
         </View>
 
         <ThemedView style={styles.socialContainer}>
-          <ThemedText style={styles.socialTitle}>
-            {t("drawer.followUs")}
-          </ThemedText>
-          <View style={styles.socialButtons}>
-            {SocialNetworksRoutes.map((network) => (
-              <SocialLink key={network.name} network={network}>
-                <ThemedView
-                  style={[
-                    styles.socialButton,
-                    { borderColor: borderColor },
-                  ]}
-                >
-                  <Ionicons
-                    name={network.icon}
-                    size={22}
-                    color={secondaryColors.DEFAULT}
-                  />
-                </ThemedView>
-              </SocialLink>
-            ))}
+          <View style={styles.socialWrapper}>
+            <View style={styles.socialRow}>
+              {SocialNetworksRoutes.slice(0, 4).map((network) => (
+                <SocialLink key={network.name} network={network}>
+                  <ThemedView
+                    style={[
+                      styles.socialButton,
+                      { borderColor: borderColor },
+                    ]}
+                  >
+                    <Ionicons
+                      name={network.icon}
+                      size={22}
+                      color={secondaryColors.DEFAULT}
+                    />
+                  </ThemedView>
+                </SocialLink>
+              ))}
+            </View>
+            <View style={styles.socialRow}>
+              {SocialNetworksRoutes.slice(4, 6).map((network) => (
+                <SocialLink key={network.name} network={network}>
+                  <ThemedView
+                    style={[
+                      styles.socialButton,
+                      { borderColor: borderColor },
+                    ]}
+                  >
+                    <Ionicons
+                      name={network.icon}
+                      size={22}
+                      color={secondaryColors.DEFAULT}
+                    />
+                  </ThemedView>
+                </SocialLink>
+              ))}
+              <ThemedTouchableOpacity
+                onPress={shareApp}
+                style={[
+                  styles.socialButton,
+                  { borderColor: borderColor },
+                ]}
+              >
+                <Ionicons
+                  name="share-social-outline"
+                  size={22}
+                  color={primaryColors.DEFAULT}
+                />
+              </ThemedTouchableOpacity>
+            </View>
           </View>
         </ThemedView>
       </ScrollView>
@@ -262,16 +293,22 @@ const styles = StyleSheet.create({
   socialContainer: {
     gap: 12,
     width: "100%",
+    alignItems: "center",
   },
   socialTitle: {
     fontSize: 14,
     fontWeight: "600",
     opacity: 0.6,
+    alignSelf: "flex-start",
   },
-  socialButtons: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+  socialWrapper: {
     gap: 12,
+    alignItems: "center",
+  },
+  socialRow: {
+    flexDirection: "row",
+    gap: 12,
+    justifyContent: "center",
   },
   socialButton: {
     width: 44,

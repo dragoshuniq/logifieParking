@@ -1,3 +1,4 @@
+import { Activity } from "@/utils/driver-db";
 import "react-native-actions-sheet";
 import { LatLng } from "react-native-maps";
 
@@ -13,6 +14,51 @@ declare module "react-native-actions-sheet" {
       payload: {
         currentSort: SortType;
         onSortChange: (sort: SortType) => void;
+      };
+      returnValue?: undefined;
+    };
+    LanguagePicker: {
+      payload?: undefined;
+      returnValue?: undefined;
+    };
+    TimePicker: {
+      payload: {
+        onCancel?: () => void;
+        onConfirm: (date: Date) => void;
+        value?: Date;
+        maximumDate?: Date;
+        minimumDate?: Date;
+        minuteInterval?: number;
+      };
+      returnValue?: undefined;
+    };
+    ActivityForm: {
+      payload: {
+        onSave: (activity: Activity) => void;
+        onDelete?: () => void;
+        initialActivity?: Activity;
+        selectedDate: Date;
+      };
+      returnValue?: undefined;
+    };
+    DatePicker: {
+      payload: {
+        onCancel?: () => void;
+        onConfirm: (date: string) => void;
+        value?: string;
+        minDate?: string;
+        maxDate?: string;
+      };
+      returnValue?: undefined;
+    };
+    ExportConfig: {
+      payload: {
+        onExport: (
+          type: "csv" | "xls",
+          startDate: Date,
+          endDate: Date
+        ) => void;
+        selectedDate: Date;
       };
       returnValue?: undefined;
     };

@@ -9,12 +9,15 @@ import React, { useRef } from "react";
 import { StyleSheet } from "react-native";
 import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { DrawerToggleButton } from "../drawer/custom-drawer-header";
 import { ThemedView } from "../ui/themed-view";
 import { LocationButton } from "./location-button";
 import { showNavigationOptions } from "./navigation-options";
 
 export const ParkingMap = () => {
   const theme = useColorScheme() ?? "light";
+  const { top } = useSafeAreaInsets();
   const mapRef = useRef<MapView>(null);
   const { data } = useQuery({
     queryKey: ["parkings"],
@@ -50,6 +53,9 @@ export const ParkingMap = () => {
 
   return (
     <ThemedView style={styles.container}>
+      <DrawerToggleButton
+        containerStyle={[styles.drawerToggleButton, { top: top }]}
+      />
       <MapView
         ref={mapRef}
         showsUserLocation
@@ -88,5 +94,10 @@ const styles = StyleSheet.create({
   map: {
     width: "100%",
     height: "100%",
+  },
+  drawerToggleButton: {
+    position: "absolute",
+    left: 16,
+    zIndex: 1000,
   },
 });
