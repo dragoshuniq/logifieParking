@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Taal selecteren",
+    "cancel": "Annuleren",
+    "confirm": "Bevestigen",
+    "save": "Opslaan",
+    "delete": "Verwijderen",
+    "apply": "Toepassen",
+    "error": "Fout",
+    "select": "Selecteer",
+    "total": "Totaal",
+    "noData": "Geen gegevens",
+    "information": "Informatie",
+    "noInformation": "Geen informatie beschikbaar",
+    "version": "Versie {{version}}",
+    "couldNotOpen": "Kon {{name}} niet openen",
+    "ok": "OK",
+    "violation": "OVERTREDING",
+    "yes": "JA",
+    "no": "NEE"
+  },
+  "format": {
+    "hourShort": "u",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Taal selecteren"
+  },
+  "drawer": {
+    "home": "Home",
+    "contact": "Contact",
+    "getQuote": "Offerte aanvragen",
+    "termsConditions": "Algemene voorwaarden",
+    "privacyPolicy": "Privacybeleid",
+    "driver": "Bestuurder",
+    "fuelPrices": "Brandstofprijzen"
+  },
+  "driver": {
+    "title": "Urenregistratie",
+    "none": "Geen",
+    "noActivities": "Geen activiteiten voor deze dag",
+    "weeklyOverview": "Weekoverzicht",
+    "selectTime": "Tijd selecteren",
+    "activityDistribution": "Activiteitenverdeling",
+    "dailyWorkHours": "Dagelijkse werkuren",
+    "activityTypes": {
+      "driving": "Rijden",
+      "otherWork": "Overig werk",
+      "break": "Pauze",
+      "rest": "Rust",
+      "availability": "Beschikbaarheid"
+    },
+    "form": {
+      "addActivity": "Activiteit toevoegen",
+      "editActivity": "Activiteit bewerken",
+      "activityType": "Activiteitstype",
+      "timeEntry": "Tijdregistratie",
+      "manualEntry": "Handmatige invoer",
+      "startTime": "Starttijd",
+      "endTime": "Eindtijd",
+      "duration": "Duur (uren)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validatie",
+      "startTimeRequired": "Starttijd is verplicht",
+      "durationGreaterThanZero": "Duur moet groter zijn dan 0",
+      "bothTimesRequired": "Start- en eindtijd zijn vereist",
+      "endTimeAfterStart": "Eindtijd moet na starttijd liggen",
+      "selectStartTimeFirst": "Selecteer eerst de starttijd"
+    },
+    "stats": {
+      "dailyDriving": "Dagelijks rijden",
+      "dailyWorking": "Dagelijks werken",
+      "breakCompliance": "Pauzenaleving",
+      "dailyRest": "Dagelijkse rust",
+      "nightWork": "Nachtdienst",
+      "weeklyWorking": "Wekelijks werken",
+      "drivingHours": "Rij-uren",
+      "weeklyRest": "Wekelijkse rust",
+      "restCompensation": "Rustcompensatie",
+      "extendedDaysUsed": "{{count}}/2 verlengde (10u) dagen gebruikt",
+      "dailyDrivingLimit": "10u max 2x/week",
+      "reducedRestLimit": "15u max (rust 9u)",
+      "regularRestLimit": "15u max",
+      "breaksCount": "{{count}} pauzes",
+      "noBreaks": "Geen pauzes",
+      "activityWindow": "{{hours}}u venster",
+      "nightWorkWindow": "Werk 00:00-07:00",
+      "fourMonthAvg": "Gem.: {{hours}}u (≤48)",
+      "twoWeekTotal": "2wk: {{hours}}u/90",
+      "hoursAgo": "{{hours}}u geleden",
+      "noWeeklyRest": "Geen wekelijkse rust",
+      "hoursOwed": "{{hours}}u open"
+    },
+    "export": {
+      "title": "Exportconfiguratie",
+      "exportType": "Exporttype",
+      "period": "Periode",
+      "selectedWeek": "Geselecteerde week",
+      "currentWeek": "Huidige week",
+      "currentMonth": "Huidige maand",
+      "customPeriod": "Aangepaste periode",
+      "customRange": "Aangepaste periode",
+      "startDate": "Startdatum",
+      "endDate": "Einddatum",
+      "export": "Exporteren",
+      "selectBothDates": "Selecteer beide datums",
+      "startBeforeEnd": "Startdatum moet vóór einddatum liggen",
+      "dialogTitle": "Rij-uren exporteren",
+      "headers": {
+        "date": "Datum",
+        "startTime": "Starttijd",
+        "endTime": "Eindtijd",
+        "duration": "Duur (uren)",
+        "activityType": "Activiteitstype",
+        "dailyDriving": "Naleving dagelijks rijden",
+        "breakCompliance": "Naleving pauzes",
+        "dailyRest": "Naleving dagelijkse rust",
+        "nightWork": "Nachtdienst",
+        "weeklyRestDeficits": "Tekorten wekelijkse rustcompensatie",
+        "weekStart": "Weekstart",
+        "weekEnd": "Weekeinde",
+        "deficitHours": "Uren tekort",
+        "compensatedHours": "Gecompenseerde uren",
+        "mustCompensateBy": "Compenseren vóór"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Verwijderen van activiteit mislukt",
+      "exportFailed": "Export van {{type}} mislukt",
+      "saveFailed": "Opslaan van activiteit mislukt"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Sorteren op",
+    "noData": "Geen brandstofgegevens beschikbaar",
+    "updated": "Bijgewerkt: {{date}}",
+    "searchPlaceholder": "Landen zoeken...",
+    "petrol": "Benzine",
+    "diesel": "Diesel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Benzine: laag naar hoog",
+    "petrolDesc": "Benzine: hoog naar laag",
+    "dieselAsc": "Diesel: laag naar hoog",
+    "dieselDesc": "Diesel: hoog naar laag"
+  },
+  "parking": {
+    "noLocationDetails": "Geen locatiedetails beschikbaar",
+    "location": "Locatie",
+    "city": "Stad",
+    "suburb": "Buitenwijk",
+    "county": "County",
+    "state": "Staat",
+    "country": "Land",
+    "postcode": "Postcode",
+    "category": "Categorie",
+    "type": "Type",
+    "facilityTypes": {
+      "parking": "Parkeerplaats",
+      "gas_station": "Tankstation",
+      "parking_space": "Parkeerplek",
+      "truck_stop": "Truckstop",
+      "rest_area": "Rustplaats",
+      "motorway_services": "Snelwegservices",
+      "car_wash": "Autowasstraat",
+      "charging_station": "Laadstation",
+      "amenity": "Voorziening",
+      "highway_rest_area": "Snelweg-rustplaats",
+      "highway_services": "Snelwegservices",
+      "highway": "Snelweg",
+      "fuel_shop": "Brandstofshop",
+      "shop": "Winkel",
+      "location": "Locatie"
+    }
+  },
+  "location": {
+    "permissionRequired": "Locatietoestemming vereist",
+    "permissionMessage": "Toegang tot locatie is nodig om je huidige positie te vinden. Schakel dit in via de toestelinstellingen.",
+    "openSettings": "Open instellingen"
+  },
+  "tabs": {
+    "driver": "Bestuurder",
+    "map": "Kaart",
+    "gas": "Brandstof"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Disclaimer",
+      "purpose": {
+        "heading": "Doel van de app",
+        "content": "Deze app is een hulpmiddel voor professionele bestuurders. Het doel is het vastleggen en bekijken van dagelijkse activiteiten te vereenvoudigen en te tonen hoe ze zich verhouden tot EU-regels voor rij- en werktijden."
+      },
+      "noOfficialLogbook": {
+        "heading": "Geen officieel logboek of tachograaf",
+        "content": "De getoonde gegevens zijn informatief en vervangen NIET:\n• de tachograaf of afdrukken daarvan,\n• officiële logboeken of registraties die wettelijk vereist zijn,\n• documentatie die door controleautoriteiten wordt gevraagd.\nVerlaat je altijd op de tachograaf en officiële bedrijfsregistraties als primaire bron."
+      },
+      "noLegalAdvice": {
+        "heading": "Geen juridisch of professioneel advies",
+        "content": "De conformiteitsberekeningen zijn gebaseerd op EU-regels maar zijn vereenvoudigd en dekken mogelijk niet alle nationale of bedrijfsspecifieke regels.\n\nDeze app biedt geen juridisch, fiscaal, HR- of professioneel advies. Je bent zelf verantwoordelijk om huidige wetgeving, bedrijfsbeleid en instructies van werkgever of adviseur te controleren."
+      },
+      "dataStorage": {
+        "heading": "Gegevensopslag en privacy",
+        "content": "Je activiteitsgeschiedenis wordt alleen lokaal op je apparaat in de app-cache opgeslagen. Wij bewaren je gegevens niet in een externe database of centrale server.\n\nOmdat gegevens in cache staan:\n• kunnen ze worden verwijderd bij het wissen van app-gegevens, herinstalleren of toestellwissel,\n• kunnen we verloren gegevens niet herstellen of back-ups leveren.\nAls je langdurige registraties nodig hebt, gebruik de export en bewaar kopieën veilig."
+      },
+      "userResponsibility": {
+        "heading": "Verantwoordelijkheid gebruiker",
+        "content": "Je bent altijd verantwoordelijk voor:\n• hoe je werk en rust plant,\n• hoe je de getoonde informatie interpreteert,\n• naleving van alle toepasselijke wetten en bedrijfsregels.\n\nZie de app als hulpmiddel, niet als beslisser. Bij twijfel volg de tachograaf, bedrijfsrichtlijnen en officiële juridische aanwijzingen."
+      }
+    },
+    "parking": {
+      "title": "Truckparkeren - Disclaimer",
+      "sourceInfo": {
+        "heading": "Bron van informatie",
+        "content": "De parkeerlocaties, voorzieningen en details in de app komen uit publieke en externe bronnen (open data, publieke websites, gebruikersbijdragen of externe diensten).\n\nWij exploiteren deze truckparkings niet en controleren de gepubliceerde data niet."
+      },
+      "accuracy": {
+        "heading": "Nauwkeurigheid en updates",
+        "content": "We proberen nuttige en actuele informatie te tonen, maar kunnen niet garanderen dat deze altijd volledig, correct of actueel is.\n\nVoorbeelden van wijzigingen zonder melding:\n• openingstijden en toegangsregels,\n• prijzen, betaalmethoden en reserveringsvereisten,\n• beschikbare diensten (douches, beveiliging, eten, brandstof, etc.),\n• aantal plaatsen of tijdelijke sluiting."
+      },
+      "verifyBefore": {
+        "heading": "Altijd zelf verifiëren",
+        "content": "Controleer vóór je naar een getoonde parking rijdt zelf de kerngegevens door:\n• locatie te checken in een navigatie- of kaartenapp,\n• andere betrouwbare truck-/parkeerapps te gebruiken,\n• de officiële website te bezoeken als die er is,\n• rechtstreeks contact op te nemen met exploitant of host indien contactgegevens aanwezig zijn.\n\nVerlaat je niet alleen op de informatie in deze app bij route-, rust- of veiligheidsplanning."
+      },
+      "noEndorsement": {
+        "heading": "Geen aanbeveling of garantie",
+        "content": "Het tonen van een parking betekent NIET dat wij die aanbevelen, inspecteren of garanderen.\n\nWij bevestigen niet:\n• veiligheidsniveau van de parking,\n• beschikbaarheid van vrije plaatsen op enig moment,\n• naleving van de parking aan wettelijke of bedrijfsvereisten."
+      },
+      "userResponsibility": {
+        "heading": "Verantwoordelijkheid gebruiker",
+        "content": "Je bent altijd verantwoordelijk voor:\n• keuze van stop- en rustplaats,\n• nagaan of de parking geschikt is voor je voertuig en lading,\n• naleving van regels voor rij-/rusttijden en alle verkeersborden en voorschriften.\n\nGebruik de parkeerkaart als hulpmiddel. Controleer belangrijke details altijd dubbel voor aankomst."
+      }
+    },
+    "fuel": {
+      "title": "Brandstofprijzen - Disclaimer",
+      "sourceData": {
+        "heading": "Bron van gegevens",
+        "content": "Brandstofprijzen zijn gebaseerd op publieke info uit EU-bronnen en/of andere officiële publicaties. Ze worden ter gemak getoond en niet door ons direct verzameld."
+      },
+      "accuracy": {
+        "heading": "Nauwkeurigheid en actualiteit",
+        "content": "Prijzen zijn indicatief en kunnen afwijken van werkelijke prijzen bij stations. Ze wijzigen vaak door belastingen, markt, locatie en tijdstip. We garanderen geen volledigheid, foutloosheid of actualiteit."
+      },
+      "howToUse": {
+        "heading": "Gebruik",
+        "content": "Gebruik de prijzen enkel als ruwe referentie. Controleer altijd de actuele prijs aan de pomp, op de website van het station of in een andere betrouwbare app voor je beslist."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Dagelijkse rijtijd",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "EU-Verordening (EG) nr. 561/2006 - Art. 6 (dagelijkse rijtijd)."
+      },
+      "rules": {
+        "heading": "Regels",
+        "content": "• Standaardlimiet: max 9 uur rijden binnen één dagelijkse werkperiode.\n• Uitgebreide limiet: tot 10 uur op hoogstens 2 dagen per week.\n• Rijtijd telt tussen twee opeenvolgende dagelijkse of wekelijkse rusten."
+      },
+      "example": {
+        "heading": "Voorbeeld",
+        "content": "Rij je 10u op maandag en 10u op woensdag, dan moet je op alle andere dagen van die week op of onder 9u blijven."
+      }
+    },
+    "dailyWorking": {
+      "title": "Dagelijkse werktijd en spreiding",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "EU-Richtlijn 2002/15/EG (werktijd mobiele werknemers) + Verordening (EG) nr. 561/2006 (rust)."
+      },
+      "whatCounts": {
+        "heading": "Wat telt als werktijd",
+        "content": "• Rijden (feitelijke rijtijd).\n• Overig werk (laden, lossen, administratie, onderhoud, etc.).\n• Werktijd is NIET: pauzes, rust of beschikbaarheid.\n• Beschikbaarheid wordt apart bijgehouden, maar verlengt wel de dagelijkse spreiding (tijd tussen rustperiodes)."
+      },
+      "dailyLimits": {
+        "heading": "Dagelijkse grenzen (effect rustregels)",
+        "content": "• De EU stelt geen harde dagelijkse werktijdgrens, maar:\n  • Wekelijkse grenzen gelden: max 60u in één week, met gemiddeld 48u/week over max 4 maanden.\n  • Door dagelijkse rusteisen (Verord. 561/2006):\n    - Bij reguliere dagelijkse rust van 11u is spreiding max 13u.\n    - Bij verkorte dagelijkse rust van min 9u (max 3x tussen weekrusten) kan spreiding tot 15u.\n  • Bij nachtarbeid mag werktijd in 24u niet boven 10u komen (zie kaart Nachtwerk)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Pauzenaleving",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "• EU-Verordening (EG) nr. 561/2006 - Art. 7 (rijtijdpauzes).\n• EU-Richtlijn 2002/15/EG - pauzes voor werktijd van mobiele werknemers."
+      },
+      "drivingBreaks": {
+        "heading": "Rijtijdpauzes (Verord. 561/2006)",
+        "content": "• Na maximaal 4,5 uur rijden moet je minstens 45 minuten pauze nemen.\n• Die 45 minuten mogen worden opgesplitst in:\n  - een eerste pauze van min 15 minuten, en\n  - een tweede pauze van min 30 minuten,\n  mits samen minstens 45 minuten binnen het 4,5u-rijvenster."
+      },
+      "workingBreaks": {
+        "heading": "Werkpauzes (Richtl. 2002/15/EG)",
+        "content": "• Je mag niet meer dan 6 uur aaneengesloten werken zonder pauze.\n• Als totale werktijd >6u en ≤9u: minstens 30 min totaal.\n• Als totale werktijd >9u: minstens 45 min totaal.\n• Pauzes mogen worden gesplitst in delen van min 15 min.\n• Bij combinatie van rijden en ander werk moeten beide regimes worden gevolgd (strengste geldt)."
+      },
+      "important": {
+        "heading": "Belangrijk",
+        "content": "• Pauzes onderbreken werktijd en tellen NIET als werktijd.\n• Ze verlengen wel de dagelijkse spreiding (tijd tussen eerste en laatste activiteit)."
+      }
+    },
+    "dailyRest": {
+      "title": "Dagelijkse rust en activiteitsvenster",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "EU-Verordening (EG) nr. 561/2006 - Art. 8 (dagelijkse rust)."
+      },
+      "requirements": {
+        "heading": "Vereisten dagelijkse rust",
+        "content": "• Reguliere dagelijkse rust: min 11 aaneengesloten uren binnen 24 uur na einde vorige dagelijkse of wekelijkse rust.\n• Gesplitste reguliere rustoptie: 3u + 9u (eerste deel min 3u, tweede min 9u).\n• Verkorte dagelijkse rust: min 9u maar minder dan 11u.\n• Max 3 verkorte dagelijkse rusten tussen twee wekelijkse rusten."
+      },
+      "activityWindow": {
+        "heading": "Activiteitsvenster (dagelijkse spreiding)",
+        "content": "• Dagelijkse spreiding = tijd van eerste activiteit (Rijden/Overig werk/Beschikbaarheid/Pauze) tot de laatste voor de volgende dagelijkse of wekelijkse rust.\n• Met reguliere dagelijkse rust (11u): max 13u spreiding binnen 24u.\n• Met verkorte dagelijkse rust (≥9u): max 15u spreiding, hoogstens 3x tussen weekrusten.\n• De volledige dagelijkse rust moet passen binnen de relevante 24u-periode vanaf start werkdag."
+      }
+    },
+    "nightWork": {
+      "title": "Nachtwerk (EU-werktijd)",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "EU-Richtlijn 2002/15/EG - nachtwerk voor mobiele wegvervoerwerknemers."
+      },
+      "definition": {
+        "heading": "Definitie nachttijd",
+        "content": "• EU-recht definieert “nacht” als een periode van min 4 aaneengesloten uren tussen 00:00 en 07:00.\n• Elke lidstaat bepaalt de exacte 4 nachtuur in nationale wetgeving.\n• In de app als configureerbaar 4-uursvenster (bijv. 00:00-04:00 of 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Limiet voor nachtwerk",
+        "content": "• Als er werk (Rijden of Overig werk) binnen het gedefinieerde nachtraam plaatsvindt, telt dit als nachtwerk.\n• Bij nachtwerk mag totale werktijd in 24u niet boven 10u komen.\n• Die 10u geldt alleen voor werktijd (Rijden + Overig werk), niet voor pauze, rust of beschikbaarheid.\n• Lidstaten kunnen extra toeslagen of bescherming toevoegen, maar die vallen hierbuiten."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Wekelijkse werktijd",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "EU-Richtlijn 2002/15/EG - werktijd van mobiele wegvervoerwerknemers."
+      },
+      "limits": {
+        "heading": "Wekelijkse limieten",
+        "content": "• Gemiddelde werktijd: mag 48 uur per week niet overschrijden, berekend over referentieperiode (tot 4 maanden).\n• Losse week: werktijd mag tot 60 uur, mits gemiddelde 48u/week in referentieperiode niet wordt overschreden.\n• Werktijd = Rijden + Overig werk.\n• Pauzes, rust en beschikbaarheid tellen NIET als werktijd."
+      },
+      "calculation": {
+        "heading": "Berekeningsperiode",
+        "content": "• “Week” in EU-regels is meestal vaste 7 dagen (Verord. 561/2006: maandag 00:00 t/m zondag 24:00).\n• De app kan een rollende 4-maandsperiode volgen voor het 48u-gemiddelde.\n• Als een week >60u → directe werktijd-overtreding.\n• Als rollend gemiddelde >48u/week → werktijd-overtreding."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Wekelijks en tweewekelijks rijden",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "EU-Verordening (EG) nr. 561/2006 - Art. 6 (wekelijkse en tweewekelijkse rijlimieten)."
+      },
+      "limits": {
+        "heading": "Rijlimieten",
+        "content": "• Losse week: max 56 uur rijden.\n• Twee opeenvolgende weken: max 90 uur rijden in totaal.\n• “Week” volgens Verord. 561/2006: maandag 00:00 tot zondag 24:00."
+      },
+      "example": {
+        "heading": "Voorbeeld",
+        "content": "Week 1: 48u rijden → Week 2 max 42u (48 + 42 = 90).\nWeek 2: 42u rijden → Week 3 max 48u (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Wekelijkse rust en 45u-pauze",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "EU-Verordening (EG) nr. 561/2006 - Art. 8 (wekelijkse rust, incl. Mobiliteitspakket)."
+      },
+      "requirements": {
+        "heading": "Vereisten wekelijkse rust",
+        "content": "• Een nieuwe wekelijkse rust moet UITERLIJK 144 uur (6 × 24u) na HET EINDE van de vorige wekelijkse rust BEGINNEN.\n• Reguliere wekelijkse rust: min 45 aaneengesloten uren.\n• Verkorte wekelijkse rust: min 24 uur maar minder dan 45 uur.\n• In 2 opeenvolgende weken moet je min 2 wekelijkse rusten hebben en min 1 daarvan moet regulier zijn (≥45u)."
+      },
+      "compensation": {
+        "heading": "Compensatieregels (overzicht)",
+        "content": "• Elke verkorte wekelijkse rust creëert een tekort: 45u min de werkelijke duur.\n• Elk tekort moet “en bloc” worden gecompenseerd binnen 3 weken na de week van verkorting.\n• Compensatie moet worden toegevoegd aan een andere rust van min 9u (dagelijks of wekelijks)."
+      },
+      "whereRest": {
+        "heading": "Waar rust mag worden genomen",
+        "content": "• Reguliere wekelijkse rust (≥45u) mag NIET in het voertuig worden genomen.\n• Dagelijkse rust en verkorte wekelijkse rust mogen in het voertuig als het stilstaat en geschikte slaapfaciliteiten heeft."
+      },
+      "daysCovered": {
+        "heading": "Dagen gedekt door wekelijkse rust",
+        "content": "• Dagen volledig gedekt door een kwalificerende wekelijkse rust (≥24u) tellen als vrij.\n• Voor dagelijkse-rustcontroles gelden die dagen automatisch als conform."
+      }
+    },
+    "restCompensation": {
+      "title": "Rustcompensatie",
+      "legalBasis": {
+        "heading": "Wettelijke basis",
+        "content": "EU-Verordening (EG) nr. 561/2006 - Art. 8(6) (compensatie voor verkorte wekelijkse rust)."
+      },
+      "whenRequired": {
+        "heading": "Wanneer compensatie nodig is",
+        "content": "• Elke verkorte wekelijkse rust (24u tot <45u) creëert een “tekort” t.o.v. 45u.\n• Tekort = 45 uur − feitelijke duur van de wekelijkse rust.\n• Voorbeeld: 30u rust → 15u tekort dat later moet worden gecompenseerd."
+      },
+      "rules": {
+        "heading": "Compensatieregels",
+        "content": "• Elk tekort moet binnen 3 weken na de week van verkorting worden gecompenseerd.\n• Compensatie moet in één ononderbroken blok gebeuren.\n• Moet worden gekoppeld aan een andere rust van minstens 9 uur (dagelijks of wekelijks).\n• Opsplitsen van compensatie over meerdere rusten is niet toegestaan."
+      },
+      "display": {
+        "heading": "Weergave in de app",
+        "content": "• Toont hoeveel verkorte wekelijkse rusten nog gecompenseerd moeten worden.\n• Toont totale openstaande compensatie-uren en de laatste deadline."
+      }
+    }
+  }
+}
