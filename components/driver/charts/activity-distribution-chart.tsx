@@ -73,6 +73,7 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
             donut
             radius={80}
             innerRadius={50}
+            innerCircleColor={content2.DEFAULT}
             centerLabelComponent={() => (
               <View style={styles.centerLabel}>
                 <ThemedText style={styles.centerLabelValue}>
