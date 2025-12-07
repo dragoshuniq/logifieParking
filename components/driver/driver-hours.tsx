@@ -212,14 +212,6 @@ export const DriverHours = () => {
 
   const dailyStats = calculateDailyStats(activities, selectedDate);
   const weeklyStats = calculateWeeklyStats(weekActivities, weekDates);
-  const fortnightStats = calculateWeeklyStats(
-    fortnightActivities,
-    Array.from({ length: 14 }, (_, i) =>
-      dayjs(selectedDate)
-        .subtract(14 - i, "day")
-        .toDate()
-    )
-  );
 
   const dailyDriving = calculateDailyDrivingCompliance(
     activities,

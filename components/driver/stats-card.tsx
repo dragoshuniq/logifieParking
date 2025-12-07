@@ -23,14 +23,12 @@ export const StatsCard = ({
   subtitle,
   info,
 }: StatsCardProps) => {
-  const { content2, success, warning, danger, primary } =
-    useThemedColors(
-      "content2",
-      "success",
-      "warning",
-      "danger",
-      "primary"
-    );
+  const { content2, success, warning, danger } = useThemedColors(
+    "content2",
+    "success",
+    "warning",
+    "danger"
+  );
 
   const getColor = () => {
     switch (level) {
