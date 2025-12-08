@@ -21,6 +21,9 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const asyncStoragePersister = createAsyncStoragePersister({
   storage: AsyncStorage,
+  serialize: JSON.stringify,
+  deserialize: JSON.parse,
+  throttleTime: 1000,
 });
 
 export const unstable_settings = {
@@ -35,6 +38,12 @@ export default function RootLayout() {
       client={queryClient}
       persistOptions={{
         persister: asyncStoragePersister,
+        dehydrateOptions: {
+          shouldDehydrateQuery: (query) => {
+            const shouldPersist = query.meta?.persist !== false;
+            return shouldPersist;
+          },
+        },
       }}
     >
       <PersistGate>
