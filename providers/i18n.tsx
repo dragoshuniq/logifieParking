@@ -1,4 +1,3 @@
-import en from "@/locales/en.json";
 import {
   LANGUAGE_FLAGS,
   LANGUAGE_NAMES,
@@ -10,6 +9,22 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Localization from "expo-localization";
 import * as i18next from "i18next";
 import { initReactI18next } from "react-i18next";
+
+import de from "@/locales/de.json";
+import dk from "@/locales/dk.json";
+import en from "@/locales/en.json";
+import es from "@/locales/es.json";
+import fi from "@/locales/fi.json";
+import fr from "@/locales/fr.json";
+import it from "@/locales/it.json";
+import nl from "@/locales/nl.json";
+import no from "@/locales/no.json";
+import pl from "@/locales/pl.json";
+import pt from "@/locales/pt.json";
+import ro from "@/locales/ro.json";
+import se from "@/locales/se.json";
+import tr from "@/locales/tr.json";
+import ua from "@/locales/ua.json";
 
 const LANGUAGE_STORAGE_KEY = "@language";
 
@@ -38,6 +53,20 @@ export const loadPersistedLanguage = async (): Promise<Languages> => {
 
 const resources = {
   en: { translation: en },
+  fr: { translation: fr },
+  de: { translation: de },
+  pl: { translation: pl },
+  ua: { translation: ua },
+  ro: { translation: ro },
+  es: { translation: es },
+  pt: { translation: pt },
+  it: { translation: it },
+  nl: { translation: nl },
+  se: { translation: se },
+  no: { translation: no },
+  fi: { translation: fi },
+  dk: { translation: dk },
+  tr: { translation: tr },
 };
 
 const initI18n = async () => {
