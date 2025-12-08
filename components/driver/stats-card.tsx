@@ -1,16 +1,28 @@
-import { useThemedColors } from "@/hooks/use-themed-colors";
+import { showInfoSheet } from "@/components/ui/info-sheet";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
-import { StyleSheet, View } from "react-native";
+import { InfoSheetProps } from "@/constants/sheets";
+import { useThemedColors } from "@/hooks/use-themed-colors";
+import { MaterialIcons } from "@expo/vector-icons";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
-interface StatsCardProps {
+type StatsCardProps = {
   title: string;
   value: string;
   maxValue?: string;
   level?: "compliant" | "warning" | "violation";
-}
+  subtitle?: string;
+  info?: InfoSheetProps;
+};
 
-export const StatsCard = ({ title, value, maxValue, level = "compliant" }: StatsCardProps) => {
+export const StatsCard = ({
+  title,
+  value,
+  maxValue,
+  level = "compliant",
+  subtitle,
+  info,
+}: StatsCardProps) => {
   const { content2, success, warning, danger } = useThemedColors(
     "content2",
     "success",
@@ -29,15 +41,42 @@ export const StatsCard = ({ title, value, maxValue, level = "compliant" }: Stats
     }
   };
 
+  const handleInfoPress = () => {
+    if (info) {
+      showInfoSheet(info);
+    }
+  };
+
   return (
-    <ThemedView style={[styles.card, { backgroundColor: content2.DEFAULT }]}>
+    <ThemedView
+      style={[styles.card, { backgroundColor: content2.DEFAULT }]}
+    >
+      {info && (
+        <TouchableOpacity
+          onPress={handleInfoPress}
+          style={styles.infoButton}
+        >
+          <MaterialIcons
+            name="info"
+            size={24}
+            color={warning.DEFAULT}
+          />
+        </TouchableOpacity>
+      )}
       <ThemedText style={styles.title}>{title}</ThemedText>
       <View style={styles.valueContainer}>
-        <ThemedText style={[styles.value, { color: getColor() }]}>{value}</ThemedText>
+        <ThemedText style={[styles.value, { color: getColor() }]}>
+          {value}
+        </ThemedText>
         {maxValue && (
-          <ThemedText style={styles.maxValue}>/ {maxValue}</ThemedText>
+          <ThemedText style={styles.maxValue}>
+            / {maxValue}
+          </ThemedText>
         )}
       </View>
+      {subtitle && (
+        <ThemedText style={styles.subtitle}>{subtitle}</ThemedText>
+      )}
     </ThemedView>
   );
 };
@@ -46,14 +85,22 @@ const styles = StyleSheet.create({
   card: {
     padding: 16,
     borderRadius: 12,
-    minWidth: 100,
+    minWidth: 160,
     alignItems: "center",
+    position: "relative",
   },
   title: {
     fontSize: 12,
     fontWeight: "600",
-    marginBottom: 8,
     textAlign: "center",
+    marginBottom: 8,
+  },
+  infoButton: {
+    position: "absolute",
+    top: -8,
+    right: -8,
+    zIndex: 10,
+    borderRadius: 100,
   },
   valueContainer: {
     flexDirection: "row",
@@ -68,5 +115,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     opacity: 0.6,
   },
+  subtitle: {
+    fontSize: 10,
+    opacity: 0.7,
+    marginTop: 4,
+    textAlign: "center",
+  },
 });
-

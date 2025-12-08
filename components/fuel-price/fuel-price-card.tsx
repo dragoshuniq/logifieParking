@@ -1,6 +1,7 @@
 import { IFuelPrice } from "@/api/fuel";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import CountryFlag from "react-native-country-flag";
 import { ThemedText } from "../ui/themed-text";
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export const FuelPriceCard = ({ country }: Props) => {
+  const { t } = useTranslation();
   const { primary: primaryColors, default: defaultColors } =
     useThemedColors("primary", "default");
   const borderColor = defaultColors[400];
@@ -31,7 +33,9 @@ export const FuelPriceCard = ({ country }: Props) => {
 
       <View style={styles.pricesContainer}>
         <View style={styles.priceSection}>
-          <ThemedText style={styles.fuelType}>Petrol</ThemedText>
+          <ThemedText style={styles.fuelType}>
+            {t("fuelPrice.petrol")}
+          </ThemedText>
           <ThemedText
             style={[
               styles.priceEur,
@@ -50,7 +54,9 @@ export const FuelPriceCard = ({ country }: Props) => {
         <View style={styles.divider} />
 
         <View style={styles.priceSection}>
-          <ThemedText style={styles.fuelType}>Diesel</ThemedText>
+          <ThemedText style={styles.fuelType}>
+            {t("fuelPrice.diesel")}
+          </ThemedText>
           <ThemedText
             style={[
               styles.priceEur,

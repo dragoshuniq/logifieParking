@@ -2,8 +2,11 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { DatePickerProps, ESheets } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import dayjs from "dayjs";
-import { useMemo, useRef, useState } from "react";
+import { Languages } from "@/providers/i18n";
+import { configureCalendarLocale } from "@/utils/calendar-config";
+import dayjs from "@/utils/dayjs-config";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import ActionSheet, {
   ActionSheetRef,
@@ -22,6 +25,7 @@ const DatePickerSheet = () => {
   const payload = useSheetPayload("DatePicker") as
     | DatePickerProps
     | undefined;
+  const { t, i18n } = useTranslation();
   const { content1, content2, primary, content3, background } =
     useThemedColors(
       "content1",
@@ -46,6 +50,10 @@ const DatePickerSheet = () => {
   );
   const actionSheetRef = useRef<ActionSheetRef>(null);
 
+  useEffect(() => {
+    configureCalendarLocale(i18n.language as Languages);
+  }, [i18n.language]);
+
   const onCloseSheet = () => {
     actionSheetRef?.current?.hide();
   };
@@ -63,7 +71,7 @@ const DatePickerSheet = () => {
   const calendarTheme = useMemo(
     () => ({
       backgroundColor: background,
-      calendarBackground: background,
+      calendarBackground: "transparent",
       textSectionTitleColor: content3.foreground,
       dayTextColor: content2.foreground,
       todayTextColor: primary.DEFAULT,
@@ -106,6 +114,7 @@ const DatePickerSheet = () => {
         ]}
       >
         <Calendar
+          key={i18n.language}
           firstDay={1}
           minDate={minDate}
           maxDate={maxDate}
@@ -123,7 +132,9 @@ const DatePickerSheet = () => {
               { backgroundColor: content2.DEFAULT },
             ]}
           >
-            <ThemedText style={styles.buttonText}>Cancel</ThemedText>
+            <ThemedText style={styles.buttonText}>
+              {t("common.cancel")}
+            </ThemedText>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -139,7 +150,7 @@ const DatePickerSheet = () => {
                 { color: primary.foreground },
               ]}
             >
-              Confirm
+              {t("common.confirm")}
             </ThemedText>
           </TouchableOpacity>
         </View>

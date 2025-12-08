@@ -1,9 +1,10 @@
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import { useFormatDuration } from "@/hooks/useFormat";
+import { useFormatDate, useFormatDuration } from "@/hooks/useFormat";
 import { WeeklyStats } from "@/utils/compliance";
-import dayjs from "dayjs";
+import { configureDayjsLocale } from "@/utils/dayjs-config";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 
@@ -12,20 +13,26 @@ type Props = {
 };
 
 export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
+  const { t, i18n } = useTranslation();
   const { formatDuration } = useFormatDuration();
+  const { formatDate } = useFormatDate();
   const { content2, primary, text } = useThemedColors(
     "content2",
     "primary",
     "text"
   );
 
+  configureDayjsLocale(i18n.language);
+
   const barData = weeklyStats.dailyStats.map((day) => ({
-    value: day.drivingHours + day.workHours,
-    label: dayjs(day.date).format("dd"),
+    value: day.drivingHours + day.workHours + day.availabilityHours,
+    label: formatDate(day.date, { weekday: "short" }),
     frontColor: primary.DEFAULT,
     topLabelComponent: () => (
       <ThemedText style={{ fontSize: 10, marginBottom: 2 }}>
-        {formatDuration(day.drivingHours + day.workHours)}
+        {formatDuration(
+          day.drivingHours + day.workHours + day.availabilityHours
+        )}
       </ThemedText>
     ),
     spacing: 4,
@@ -39,7 +46,7 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
       ]}
     >
       <ThemedText style={styles.chartTitle}>
-        Daily Work Hours
+        {t("driver.dailyWorkHours")}
       </ThemedText>
       {barData.some((d) => d.value > 0) ? (
         <View style={styles.barChartWrapper}>
@@ -66,12 +73,14 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
             }}
             noOfSections={4}
             maxValue={16}
-            yAxisLabelSuffix="h"
+            yAxisLabelSuffix={t("format.hourShort")}
           />
         </View>
       ) : (
         <View style={styles.emptyChart}>
-          <ThemedText style={styles.emptyText}>No data</ThemedText>
+          <ThemedText style={styles.emptyText}>
+            {t("common.noData")}
+          </ThemedText>
         </View>
       )}
     </ThemedView>

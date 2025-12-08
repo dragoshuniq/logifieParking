@@ -4,6 +4,7 @@ import { useColorScheme } from "@/hooks/use-color-scheme";
 import { ONE_WEEK } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
 import React, { useCallback, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ActivityIndicator,
   FlatList,
@@ -20,6 +21,7 @@ import { FuelPriceHeader } from "./fuel-price-header";
 export const FuelPrice = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState<SortType>(SortType.None);
+  const { t } = useTranslation();
   const theme = useColorScheme() ?? "light";
   const colors = Colors[theme];
 
@@ -31,6 +33,9 @@ export const FuelPrice = () => {
       return getStaleTimeForFuelData(lastDate);
     },
     gcTime: ONE_WEEK,
+    retry: 3,
+    retryDelay: (attemptIndex) =>
+      Math.min(1000 * 2 ** attemptIndex, 30000),
   });
 
   const handleFilterPress = useCallback(() => {
@@ -65,7 +70,7 @@ export const FuelPrice = () => {
 
     return (
       <View style={styles.centerContainer}>
-        <ThemedText>No fuel data available</ThemedText>
+        <ThemedText>{t("fuelPrice.noData")}</ThemedText>
       </View>
     );
   };

@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Seleziona lingua",
+    "cancel": "Annulla",
+    "confirm": "Conferma",
+    "save": "Salva",
+    "delete": "Elimina",
+    "apply": "Applica",
+    "error": "Errore",
+    "select": "Seleziona",
+    "total": "Totale",
+    "noData": "Nessun dato",
+    "information": "Informazioni",
+    "noInformation": "Nessuna informazione disponibile",
+    "version": "Versione {{version}}",
+    "couldNotOpen": "Impossibile aprire {{name}}",
+    "ok": "OK",
+    "violation": "INFRAZIONE",
+    "yes": "SÌ",
+    "no": "NO"
+  },
+  "format": {
+    "hourShort": "h",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Seleziona lingua"
+  },
+  "drawer": {
+    "home": "Home",
+    "contact": "Contattaci",
+    "getQuote": "Richiedi preventivo",
+    "termsConditions": "Termini e condizioni",
+    "privacyPolicy": "Privacy",
+    "driver": "Autista",
+    "fuelPrices": "Prezzi carburante"
+  },
+  "driver": {
+    "title": "Monitoraggio ore di lavoro",
+    "none": "Nessuna",
+    "noActivities": "Nessuna attività per questo giorno",
+    "weeklyOverview": "Panoramica settimanale",
+    "selectTime": "Seleziona ora",
+    "activityDistribution": "Distribuzione attività",
+    "dailyWorkHours": "Ore lavorative giornaliere",
+    "activityTypes": {
+      "driving": "Guida",
+      "otherWork": "Altro lavoro",
+      "break": "Pausa",
+      "rest": "Riposo",
+      "availability": "Disponibilità"
+    },
+    "form": {
+      "addActivity": "Aggiungi attività",
+      "editActivity": "Modifica attività",
+      "activityType": "Tipo di attività",
+      "timeEntry": "Registrazione oraria",
+      "manualEntry": "Inserimento manuale",
+      "startTime": "Ora di inizio",
+      "endTime": "Ora di fine",
+      "duration": "Durata (ore)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validazione",
+      "startTimeRequired": "L'ora di inizio è obbligatoria",
+      "durationGreaterThanZero": "La durata deve essere maggiore di 0",
+      "bothTimesRequired": "Sono richieste ora di inizio e fine",
+      "endTimeAfterStart": "L'ora di fine deve essere dopo l'inizio",
+      "selectStartTimeFirst": "Seleziona prima l'ora di inizio"
+    },
+    "stats": {
+      "dailyDriving": "Guida giornaliera",
+      "dailyWorking": "Lavoro giornaliero",
+      "breakCompliance": "Rispetto pause",
+      "dailyRest": "Riposo giornaliero",
+      "nightWork": "Lavoro notturno",
+      "weeklyWorking": "Lavoro settimanale",
+      "drivingHours": "Ore di guida",
+      "weeklyRest": "Riposo settimanale",
+      "restCompensation": "Compensazione riposo",
+      "extendedDaysUsed": "Usati {{count}}/2 giorni estesi (10h)",
+      "dailyDrivingLimit": "10h max 2x/settimana",
+      "reducedRestLimit": "15h max (riposo 9h)",
+      "regularRestLimit": "15h max",
+      "breaksCount": "{{count}} pause",
+      "noBreaks": "Nessuna pausa",
+      "activityWindow": "Finestra di {{hours}}h",
+      "nightWorkWindow": "Lavoro 00:00-07:00",
+      "fourMonthAvg": "Media: {{hours}}h (≤48)",
+      "twoWeekTotal": "2sett: {{hours}}h/90",
+      "hoursAgo": "{{hours}}h fa",
+      "noWeeklyRest": "Nessun riposo settimanale",
+      "hoursOwed": "{{hours}}h dovute"
+    },
+    "export": {
+      "title": "Configurazione esportazione",
+      "exportType": "Tipo di esportazione",
+      "period": "Periodo",
+      "selectedWeek": "Settimana selezionata",
+      "currentWeek": "Settimana corrente",
+      "currentMonth": "Mese corrente",
+      "customPeriod": "Periodo personalizzato",
+      "customRange": "Periodo personalizzato",
+      "startDate": "Data inizio",
+      "endDate": "Data fine",
+      "export": "Esporta",
+      "selectBothDates": "Seleziona entrambe le date",
+      "startBeforeEnd": "La data di inizio deve precedere la data di fine",
+      "dialogTitle": "Esporta ore autista",
+      "headers": {
+        "date": "Data",
+        "startTime": "Ora di inizio",
+        "endTime": "Ora di fine",
+        "duration": "Durata (ore)",
+        "activityType": "Tipo di attività",
+        "dailyDriving": "Conformità guida giornaliera",
+        "breakCompliance": "Conformità pause",
+        "dailyRest": "Conformità riposo giornaliero",
+        "nightWork": "Lavoro notturno",
+        "weeklyRestDeficits": "Deficit compensazione riposo settimanale",
+        "weekStart": "Inizio settimana",
+        "weekEnd": "Fine settimana",
+        "deficitHours": "Ore di deficit",
+        "compensatedHours": "Ore compensate",
+        "mustCompensateBy": "Da compensare entro"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Impossibile eliminare l'attività",
+      "exportFailed": "Impossibile esportare {{type}}",
+      "saveFailed": "Impossibile salvare l'attività"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Ordina per",
+    "noData": "Nessun dato carburante",
+    "updated": "Aggiornato: {{date}}",
+    "searchPlaceholder": "Cerca paesi...",
+    "petrol": "Benzina",
+    "diesel": "Diesel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Benzina: dal min al max",
+    "petrolDesc": "Benzina: dal max al min",
+    "dieselAsc": "Diesel: dal min al max",
+    "dieselDesc": "Diesel: dal max al min"
+  },
+  "parking": {
+    "noLocationDetails": "Nessun dettaglio sulla posizione",
+    "location": "Posizione",
+    "city": "Città",
+    "suburb": "Periferia",
+    "county": "Provincia",
+    "state": "Stato",
+    "country": "Paese",
+    "postcode": "CAP",
+    "category": "Categoria",
+    "type": "Tipo",
+    "facilityTypes": {
+      "parking": "Parcheggio",
+      "gas_station": "Stazione di servizio",
+      "parking_space": "Posto auto",
+      "truck_stop": "Area camion",
+      "rest_area": "Area di sosta",
+      "motorway_services": "Servizi autostradali",
+      "car_wash": "Autolavaggio",
+      "charging_station": "Stazione di ricarica",
+      "amenity": "Servizio",
+      "highway_rest_area": "Area di sosta autostrada",
+      "highway_services": "Servizi autostrada",
+      "highway": "Autostrada",
+      "fuel_shop": "Negozio carburante",
+      "shop": "Negozio",
+      "location": "Posizione"
+    }
+  },
+  "location": {
+    "permissionRequired": "Autorizzazione posizione necessaria",
+    "permissionMessage": "L'accesso alla posizione è necessario per trovare la tua posizione attuale. Abilitalo nelle impostazioni del dispositivo.",
+    "openSettings": "Apri impostazioni"
+  },
+  "tabs": {
+    "driver": "Autista",
+    "map": "Mappa",
+    "gas": "Carburante"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Avvertenza",
+      "purpose": {
+        "heading": "Scopo dell'app",
+        "content": "Questa app è uno strumento di supporto per autisti professionisti. Il suo scopo è facilitare la registrazione e revisione delle attività quotidiane e mostrare come si relazionano alle norme UE su guida e tempi di lavoro."
+      },
+      "noOfficialLogbook": {
+        "heading": "Non è un registro ufficiale o tachigrafo",
+        "content": "I dati mostrati sono solo informativi e NON sostituiscono:\n• il tachigrafo o le sue stampe,\n• registri ufficiali o altri documenti richiesti per legge,\n• documentazione richiesta dalle autorità di controllo.\nFai sempre riferimento al tachigrafo e ai registri ufficiali dell'azienda come fonte principale."
+      },
+      "noLegalAdvice": {
+        "heading": "Nessuna consulenza legale o professionale",
+        "content": "I calcoli di conformità si basano su normative UE ma sono una semplificazione e possono non coprire tutte le regole nazionali o aziendali.\n\nQuesta app non fornisce consulenza legale, fiscale, HR o professionale. Sei responsabile di verificare la normativa vigente, le policy aziendali e le istruzioni del datore di lavoro o consulente."
+      },
+      "dataStorage": {
+        "heading": "Archiviazione dati e privacy",
+        "content": "La cronologia delle attività è memorizzata solo localmente sul dispositivo nella cache dell'app. Non archiviamo i tuoi dati in database esterni o su un server centrale.\n\nPoiché i dati sono in cache:\n• possono essere eliminati se si puliscono i dati dell'app, si reinstalla o si cambia dispositivo,\n• non possiamo ripristinare dati persi né fornire backup.\nSe servono registrazioni a lungo termine, usa l'esportazione e conserva copie in un luogo sicuro."
+      },
+      "userResponsibility": {
+        "heading": "Responsabilità dell'utente",
+        "content": "Sei sempre responsabile di:\n• come pianifichi lavoro e riposo,\n• come interpreti le informazioni mostrate nell'app,\n• mantenere la conformità a tutte le leggi e regole aziendali applicabili.\n\nConsidera l'app uno strumento di supporto, non un decisore. In caso di dubbi, segui tachigrafo, direttive aziendali e linee guida ufficiali."
+      }
+    },
+    "parking": {
+      "title": "Parcheggi camion - Avvertenza",
+      "sourceInfo": {
+        "heading": "Fonte delle informazioni",
+        "content": "Le posizioni, i servizi e i dettagli dei parcheggi provengono da fonti pubbliche e di terzi (open data, siti pubblici, contributi degli utenti o servizi esterni).\n\nNon gestiamo questi parcheggi né controlliamo i dati pubblicati."
+      },
+      "accuracy": {
+        "heading": "Accuratezza e aggiornamenti",
+        "content": "Cerchiamo di mostrare informazioni utili e aggiornate, ma non garantiamo completezza, correttezza o attualità in ogni momento.\n\nEsempi di possibili variazioni senza preavviso:\n• orari e regole di accesso,\n• prezzi, metodi di pagamento e requisiti di prenotazione,\n• servizi disponibili (docce, sicurezza, cibo, carburante, ecc.),\n• numero di posti o chiusure temporanee."
+      },
+      "verifyBefore": {
+        "heading": "Verifica sempre prima di andare",
+        "content": "Prima di raggiungere un parcheggio mostrato, verifica tu stesso i dettagli chiave:\n• controlla la posizione su un'app di navigazione o mappe,\n• usa altre app affidabili per parcheggi/camion,\n• visita il sito ufficiale del parcheggio, se disponibile,\n• contatta direttamente l'operatore o l'host quando sono disponibili contatti.\n\nNon fare affidamento solo sulle informazioni dell'app per pianificare percorso, riposo o sicurezza."
+      },
+      "noEndorsement": {
+        "heading": "Nessuna raccomandazione o garanzia",
+        "content": "L'inserimento di un parcheggio nell'app NON significa che lo raccomandiamo, ispezioniamo o garantiamo.\n\nNon confermiamo:\n• livello di sicurezza del parcheggio,\n• disponibilità di posti liberi in qualunque momento,\n• conformità del parcheggio a requisiti legali o aziendali."
+      },
+      "userResponsibility": {
+        "heading": "Responsabilità dell'utente",
+        "content": "Sei sempre responsabile di:\n• scegliere dove fermarti e riposare,\n• verificare che il parcheggio sia adatto al tuo veicolo e carico,\n• rispettare le regole su guida/riposo e tutta la segnaletica e normative stradali.\n\nUsa la mappa parcheggi come supporto. Verifica due volte i dettagli importanti prima di arrivare."
+      }
+    },
+    "fuel": {
+      "title": "Prezzi carburante - Avvertenza",
+      "sourceData": {
+        "heading": "Fonte dei dati",
+        "content": "I prezzi del carburante si basano su informazioni pubbliche da fonti dell'Unione Europea e/o altre pubblicazioni ufficiali. Sono mostrati per comodità e non vengono raccolti direttamente da noi."
+      },
+      "accuracy": {
+        "heading": "Accuratezza e attualità",
+        "content": "I prezzi sono indicativi e possono differire da quelli reali nelle singole stazioni. Cambiano spesso per tasse, mercato, posizione e ora del giorno. Non garantiamo completezza, assenza di errori o aggiornamento."
+      },
+      "howToUse": {
+        "heading": "Come usare",
+        "content": "Usa questi prezzi solo come riferimento approssimativo. Controlla sempre il prezzo attuale alla pompa, sul sito della stazione o in un'altra app affidabile prima di decidere."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Tempo di guida giornaliero",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "Regolamento (CE) n. 561/2006 - Art. 6 (tempo di guida giornaliero)."
+      },
+      "rules": {
+        "heading": "Regole",
+        "content": "• Limite standard: max 9 ore di guida in un periodo lavorativo giornaliero.\n• Limite esteso: fino a 10 ore in al massimo 2 giorni a settimana.\n• Il tempo di guida è conteggiato tra due riposi giornalieri o settimanali consecutivi."
+      },
+      "example": {
+        "heading": "Esempio",
+        "content": "Se guidi 10h lunedì e 10h mercoledì, negli altri giorni della stessa settimana devi restare a 9h o meno."
+      }
+    },
+    "dailyWorking": {
+      "title": "Tempo di lavoro giornaliero e ampiezza",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "Direttiva 2002/15/CE (tempo di lavoro dei lavoratori mobili) + Regolamento (CE) n. 561/2006 (periodi di riposo)."
+      },
+      "whatCounts": {
+        "heading": "Cosa è tempo di lavoro",
+        "content": "• Guida (tempo effettivo di guida).\n• Altro lavoro (carico, scarico, amministrazione, manutenzione, ecc.).\n• Il tempo di lavoro NON include: pause, riposi o periodi di disponibilità.\n• I periodi di disponibilità sono tracciati a parte ma estendono comunque l'ampiezza giornaliera (tempo tra riposi)."
+      },
+      "dailyLimits": {
+        "heading": "Limiti giornalieri (effetto riposo)",
+        "content": "• L'UE non fissa un tetto giornaliero rigido, ma:\n  • Si applicano limiti settimanali: max 60h in una settimana, media 48h/settimana su fino a 4 mesi.\n  • Per via dei requisiti di riposo giornaliero (Reg. 561/2006):\n    - Con riposo giornaliero regolare di 11h, ampiezza max 13h.\n    - Con riposo giornaliero ridotto di almeno 9h (max 3 volte tra riposi settimanali) ampiezza fino a 15h.\n  • Se c'è lavoro notturno, il tempo di lavoro in 24h non deve superare 10h (vedi carta Lavoro notturno)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Rispetto delle pause",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "• Regolamento (CE) n. 561/2006 - Art. 7 (pause di guida).\n• Direttiva 2002/15/CE - pause per i lavoratori mobili."
+      },
+      "drivingBreaks": {
+        "heading": "Pause di guida (Reg. 561/2006)",
+        "content": "• Dopo massimo 4,5 ore di guida, devi fare almeno 45 minuti di pausa.\n• Questi 45 minuti possono essere suddivisi in:\n  - una prima pausa di almeno 15 minuti, e\n  - una seconda di almeno 30 minuti,\n  purché insieme totalizzino almeno 45 minuti nella finestra di 4,5h di guida."
+      },
+      "workingBreaks": {
+        "heading": "Pause di lavoro (Dir. 2002/15/CE)",
+        "content": "• Non si deve lavorare più di 6 ore consecutive senza pausa.\n• Se il tempo di lavoro giornaliero totale è >6h e ≤9h: almeno 30 minuti in totale.\n• Se >9h: almeno 45 minuti in totale.\n• Le pause possono essere suddivise in periodi di almeno 15 minuti.\n• Quando si combinano guida e altro lavoro, vanno rispettate entrambe le regole (vale la più restrittiva)."
+      },
+      "important": {
+        "heading": "Importante",
+        "content": "• Le pause interrompono il tempo di lavoro e NON sono conteggiate come lavoro.\n• Tuttavia estendono l'ampiezza giornaliera (tempo tra prima e ultima attività)."
+      }
+    },
+    "dailyRest": {
+      "title": "Riposo giornaliero e finestra di attività",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "Regolamento (CE) n. 561/2006 - Art. 8 (riposo giornaliero)."
+      },
+      "requirements": {
+        "heading": "Requisiti di riposo giornaliero",
+        "content": "• Riposo giornaliero regolare: almeno 11 ore consecutive entro 24 ore dalla fine dell'ultimo riposo giornaliero o settimanale.\n• Opzione riposo regolare frazionato: 3h + 9h (prima parte almeno 3h, seconda almeno 9h).\n• Riposo giornaliero ridotto: almeno 9h ma meno di 11h.\n• Puoi prendere al massimo 3 riposi giornalieri ridotti tra due riposi settimanali."
+      },
+      "activityWindow": {
+        "heading": "Finestra di attività (ampiezza giornaliera)",
+        "content": "• Ampiezza giornaliera = tempo dalla prima attività (Guida/Altro lavoro/Disponibilità/Pausa) all'ultima prima del successivo riposo giornaliero o settimanale.\n• Con riposo giornaliero regolare (11h): max 13h di ampiezza entro 24h.\n• Con riposo giornaliero ridotto (≥9h): max 15h di ampiezza, consentito al massimo 3 volte tra riposi settimanali.\n• L'intero riposo giornaliero deve rientrare nel relativo periodo di 24h dal inizio della giornata lavorativa."
+      }
+    },
+    "nightWork": {
+      "title": "Lavoro notturno (orario UE)",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "Direttiva 2002/15/CE - lavoro notturno per lavoratori mobili del trasporto su strada."
+      },
+      "definition": {
+        "heading": "Definizione di periodo notturno",
+        "content": "• Il diritto UE definisce la “notte” come un periodo di almeno 4 ore consecutive tra 00:00 e 07:00.\n• Ogni Stato membro fissa esattamente le 4 ore notturne nella legge nazionale.\n• Nell'app è una finestra configurabile di 4 ore (es. 00:00-04:00 o 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Limite per lavoro notturno",
+        "content": "• Se si svolge lavoro (Guida o Altro lavoro) nella finestra notturna definita, è considerato lavoro notturno.\n• Con lavoro notturno, il tempo totale di lavoro non deve superare 10 ore in qualsiasi periodo di 24h.\n• Questo limite di 10h si applica solo al lavoro (Guida + Altro lavoro), non a pause, riposo o disponibilità.\n• Gli Stati possono prevedere indennità o tutele aggiuntive, non incluse qui."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Tempo di lavoro settimanale",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "Direttiva 2002/15/CE - tempo di lavoro dei lavoratori mobili del trasporto su strada."
+      },
+      "limits": {
+        "heading": "Limiti settimanali",
+        "content": "• Tempo di lavoro medio: non deve superare 48 ore a settimana, calcolato su un periodo di riferimento (fino a 4 mesi).\n• Settimana singola: può arrivare a 60 ore, purché la media di 48h/settimana nel periodo non sia superata.\n• Tempo di lavoro = Guida + Altro lavoro.\n• Pause, riposi e disponibilità NON sono tempo di lavoro."
+      },
+      "calculation": {
+        "heading": "Periodo di calcolo",
+        "content": "• “Settimana” nelle regole UE è di solito un periodo fisso di 7 giorni (Reg. 561/2006: lunedì 00:00 - domenica 24:00).\n• L'app può monitorare un periodo mobile di 4 mesi per la media di 48h.\n• Se una singola settimana >60h → violazione immediata del tempo di lavoro.\n• Se la media mobile >48h/settimana → violazione del tempo di lavoro."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Guida settimanale e bisettimanale",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "Regolamento (CE) n. 561/2006 - Art. 6 (limiti di guida settimanali e su due settimane)."
+      },
+      "limits": {
+        "heading": "Limiti di guida",
+        "content": "• Settimana singola: massimo 56 ore di guida.\n• Due settimane consecutive: massimo 90 ore di guida totali.\n• “Settimana” secondo Reg. 561/2006: lunedì 00:00 - domenica 24:00."
+      },
+      "example": {
+        "heading": "Esempio",
+        "content": "Settimana 1: 48h guida → Settimana 2 max 42h (48 + 42 = 90).\nSettimana 2: 42h guida → Settimana 3 max 48h (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Riposo settimanale e pausa di 45h",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "Regolamento (CE) n. 561/2006 - Art. 8 (riposi settimanali, incluso Pacchetto Mobilità)."
+      },
+      "requirements": {
+        "heading": "Requisiti di riposo settimanale",
+        "content": "• Un nuovo riposo settimanale deve INIZIARE entro 144 ore (6 × 24h) dalla FINE dell'ultimo riposo settimanale.\n• Riposo settimanale regolare: almeno 45 ore consecutive.\n• Riposo settimanale ridotto: almeno 24 ore ma meno di 45.\n• In qualunque 2 settimane consecutive devi avere almeno 2 riposi settimanali e almeno 1 deve essere regolare (≥45h)."
+      },
+      "compensation": {
+        "heading": "Regole di compensazione (sintesi)",
+        "content": "• Ogni riposo settimanale ridotto crea un deficit: 45h meno la durata effettiva.\n• Ogni deficit deve essere compensato “en bloc” entro 3 settimane dopo la settimana di riduzione.\n• La compensazione deve essere aggiunta a un altro riposo di almeno 9h (giornaliero o settimanale)."
+      },
+      "whereRest": {
+        "heading": "Dove può essere svolto il riposo",
+        "content": "• I riposi settimanali regolari (≥45h) NON possono essere svolti nel veicolo.\n• I riposi giornalieri e settimanali ridotti possono essere svolti nel veicolo se è fermo e dotato di cuccette adeguate."
+      },
+      "daysCovered": {
+        "heading": "Giorni coperti dal riposo settimanale",
+        "content": "• I giorni completamente coperti da un riposo settimanale qualificante (≥24h) sono considerati fuori servizio.\n• Per i controlli di riposo giornaliero, tali giorni sono automaticamente conformi."
+      }
+    },
+    "restCompensation": {
+      "title": "Compensazione del riposo",
+      "legalBasis": {
+        "heading": "Base legale",
+        "content": "Regolamento (CE) n. 561/2006 - Art. 8(6) (compensazione per riposo settimanale ridotto)."
+      },
+      "whenRequired": {
+        "heading": "Quando è richiesta la compensazione",
+        "content": "• Ogni riposo settimanale ridotto (24h a <45h) genera un “deficit” rispetto a 45h.\n• Deficit = 45 ore − durata effettiva del riposo settimanale.\n• Esempio: riposo di 30h → deficit di 15h da compensare successivamente."
+      },
+      "rules": {
+        "heading": "Regole di compensazione",
+        "content": "• Ogni deficit deve essere compensato entro 3 settimane dopo la settimana di riduzione.\n• La compensazione deve avvenire in un unico blocco continuo.\n• Deve essere agganciata a un altro riposo di almeno 9 ore (giornaliero o settimanale).\n• Non si può suddividere la compensazione su più riposi."
+      },
+      "display": {
+        "heading": "Visualizzazione in app",
+        "content": "• Mostra quanti riposi settimanali ridotti restano da compensare.\n• Mostra il totale delle ore di compensazione pendenti e la scadenza ultima per effettuarla."
+      }
+    }
+  }
+}

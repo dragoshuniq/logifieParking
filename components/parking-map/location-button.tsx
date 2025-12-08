@@ -3,6 +3,7 @@ import { useColorScheme } from "@/hooks/use-color-scheme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import * as Location from "expo-location";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Alert, Linking, Platform, StyleSheet } from "react-native";
 import { ThemedPressable } from "../ui/themed-pressable";
 
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export const LocationButton = ({ onLocationFound }: Props) => {
+  const { t } = useTranslation();
   const theme = useColorScheme() ?? "light";
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,15 +25,15 @@ export const LocationButton = ({ onLocationFound }: Props) => {
 
       if (existingStatus === "denied") {
         Alert.alert(
-          "Location Permission Required",
-          "Location access is required to find your current position. Please enable it in your device settings.",
+          t("location.permissionRequired"),
+          t("location.permissionMessage"),
           [
             {
-              text: "Cancel",
+              text: t("common.cancel"),
               style: "cancel",
             },
             {
-              text: "Open Settings",
+              text: t("location.openSettings"),
               onPress: () => {
                 if (Platform.OS === "ios") {
                   Linking.openURL("app-settings:");

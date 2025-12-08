@@ -4,8 +4,11 @@ import {
   LANGUAGE_FLAGS,
   LANGUAGE_NAMES,
   Languages,
+  persistLanguage,
   validateLanguage,
 } from "@/providers/i18n";
+import { configureCalendarLocale } from "@/utils/calendar-config";
+import { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useTranslation } from "react-i18next";
 import {
   FlatList,
@@ -47,8 +50,13 @@ export default function LanguagePickerSheet(props: SheetProps) {
     default: defaultColors,
   } = useThemedColors("primary", "content2", "default");
 
-  const handleLanguageSelect = (language: Languages) => {
-    changeLanguage(validateLanguage(language));
+  const handleLanguageSelect = async (language: Languages) => {
+    const validatedLanguage = validateLanguage(language);
+    changeLanguage(validatedLanguage);
+    configureDayjsLocale(validatedLanguage);
+    configureCalendarLocale(validatedLanguage);
+    await persistLanguage(validatedLanguage);
+
     SheetManager.hide(ESheets.LanguagePicker);
   };
 
@@ -101,7 +109,7 @@ export default function LanguagePickerSheet(props: SheetProps) {
     >
       <View style={styles.header}>
         <ThemedText type="subtitle">
-          {t("common.selectLanguage")}
+          {t("language.selectLanguage")}
         </ThemedText>
       </View>
       <FlatList

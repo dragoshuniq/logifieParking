@@ -1,7 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useColorScheme as useRNColorScheme } from "react-native";
 import { useEffect, useState } from "react";
-import { Appearance } from "react-native";
+import {
+  Appearance,
+  useColorScheme as useRNColorScheme,
+} from "react-native";
 
 const THEME_STORAGE_KEY = "@theme";
 
@@ -35,4 +37,3 @@ export function useThemeToggle() {
     isDark: currentTheme === "dark",
   };
 }
-

@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Velg språk",
+    "cancel": "Avbryt",
+    "confirm": "Bekreft",
+    "save": "Lagre",
+    "delete": "Slett",
+    "apply": "Bruk",
+    "error": "Feil",
+    "select": "Velg",
+    "total": "Totalt",
+    "noData": "Ingen data",
+    "information": "Informasjon",
+    "noInformation": "Ingen informasjon tilgjengelig",
+    "version": "Versjon {{version}}",
+    "couldNotOpen": "Kunne ikke åpne {{name}}",
+    "ok": "OK",
+    "violation": "BRUDD",
+    "yes": "JA",
+    "no": "NEI"
+  },
+  "format": {
+    "hourShort": "t",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Velg språk"
+  },
+  "drawer": {
+    "home": "Hjem",
+    "contact": "Kontakt oss",
+    "getQuote": "Få tilbud",
+    "termsConditions": "Vilkår",
+    "privacyPolicy": "Personvern",
+    "driver": "Sjåfør",
+    "fuelPrices": "Drivstoffpriser"
+  },
+  "driver": {
+    "title": "Registrering av arbeidstid",
+    "none": "Ingen",
+    "noActivities": "Ingen aktiviteter for denne dagen",
+    "weeklyOverview": "Ukentlig oversikt",
+    "selectTime": "Velg tid",
+    "activityDistribution": "Aktivitetsfordeling",
+    "dailyWorkHours": "Daglige arbeidstimer",
+    "activityTypes": {
+      "driving": "Kjøring",
+      "otherWork": "Annet arbeid",
+      "break": "Pause",
+      "rest": "Hvile",
+      "availability": "Tilgjengelighet"
+    },
+    "form": {
+      "addActivity": "Legg til aktivitet",
+      "editActivity": "Rediger aktivitet",
+      "activityType": "Aktivitetstype",
+      "timeEntry": "Tidsregistrering",
+      "manualEntry": "Manuell registrering",
+      "startTime": "Starttid",
+      "endTime": "Sluttid",
+      "duration": "Varighet (timer)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validering",
+      "startTimeRequired": "Starttid er påkrevd",
+      "durationGreaterThanZero": "Varighet må være større enn 0",
+      "bothTimesRequired": "Både start- og sluttid er påkrevd",
+      "endTimeAfterStart": "Sluttid må være etter starttid",
+      "selectStartTimeFirst": "Velg starttid først"
+    },
+    "stats": {
+      "dailyDriving": "Daglig kjøring",
+      "dailyWorking": "Daglig arbeid",
+      "breakCompliance": "Pauseregel-etterlevelse",
+      "dailyRest": "Daglig hvile",
+      "nightWork": "Nattarbeid",
+      "weeklyWorking": "Ukentlig arbeid",
+      "drivingHours": "Kjøretimer",
+      "weeklyRest": "Ukentlig hvile",
+      "restCompensation": "Hvilekompensasjon",
+      "extendedDaysUsed": "{{count}}/2 utvidede (10t) dager brukt",
+      "dailyDrivingLimit": "10t maks 2x/uke",
+      "reducedRestLimit": "15t maks (hvile 9t)",
+      "regularRestLimit": "15t maks",
+      "breaksCount": "{{count}} pauser",
+      "noBreaks": "Ingen pauser",
+      "activityWindow": "{{hours}}t vindu",
+      "nightWorkWindow": "Arbeid 00:00-07:00",
+      "fourMonthAvg": "Snitt: {{hours}}t (≤48)",
+      "twoWeekTotal": "2uker: {{hours}}t/90",
+      "hoursAgo": "{{hours}}t siden",
+      "noWeeklyRest": "Ingen ukentlig hvile",
+      "hoursOwed": "{{hours}}t utestående"
+    },
+    "export": {
+      "title": "Eksportoppsett",
+      "exportType": "Eksporttype",
+      "period": "Periode",
+      "selectedWeek": "Valgt uke",
+      "currentWeek": "Nåværende uke",
+      "currentMonth": "Nåværende måned",
+      "customPeriod": "Egendefinert periode",
+      "customRange": "Egendefinert periode",
+      "startDate": "Startdato",
+      "endDate": "Sluttdato",
+      "export": "Eksporter",
+      "selectBothDates": "Velg både start- og sluttdato",
+      "startBeforeEnd": "Startdato må være før sluttdato",
+      "dialogTitle": "Eksporter sjåførtimer",
+      "headers": {
+        "date": "Dato",
+        "startTime": "Starttid",
+        "endTime": "Sluttid",
+        "duration": "Varighet (timer)",
+        "activityType": "Aktivitetstype",
+        "dailyDriving": "Etterlevelse daglig kjøring",
+        "breakCompliance": "Etterlevelse pauser",
+        "dailyRest": "Etterlevelse daglig hvile",
+        "nightWork": "Nattarbeid",
+        "weeklyRestDeficits": "Manglende kompensasjon ukentlig hvile",
+        "weekStart": "Uke start",
+        "weekEnd": "Uke slutt",
+        "deficitHours": "Timer i underskudd",
+        "compensatedHours": "Kompenserte timer",
+        "mustCompensateBy": "Må kompenseres innen"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Kunne ikke slette aktivitet",
+      "exportFailed": "Kunne ikke eksportere {{type}}",
+      "saveFailed": "Kunne ikke lagre aktivitet"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Sorter etter",
+    "noData": "Ingen drivstoffdata",
+    "updated": "Oppdatert: {{date}}",
+    "searchPlaceholder": "Søk land...",
+    "petrol": "Bensin",
+    "diesel": "Diesel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Bensin: lav til høy",
+    "petrolDesc": "Bensin: høy til lav",
+    "dieselAsc": "Diesel: lav til høy",
+    "dieselDesc": "Diesel: høy til lav"
+  },
+  "parking": {
+    "noLocationDetails": "Ingen plasseringsdetaljer tilgjengelig",
+    "location": "Plassering",
+    "city": "By",
+    "suburb": "Forstad",
+    "county": "County",
+    "state": "Stat",
+    "country": "Land",
+    "postcode": "Postnummer",
+    "category": "Kategori",
+    "type": "Type",
+    "facilityTypes": {
+      "parking": "Parkering",
+      "gas_station": "Bensinstasjon",
+      "parking_space": "Parkeringsplass",
+      "truck_stop": "Lastebilstopp",
+      "rest_area": "Rastplass",
+      "motorway_services": "Motorveitjenester",
+      "car_wash": "Bilvask",
+      "charging_station": "Ladestasjon",
+      "amenity": "Fasilitet",
+      "highway_rest_area": "Vei-rastplass",
+      "highway_services": "Veitjenester",
+      "highway": "Motorvei",
+      "fuel_shop": "Drivstoffbutikk",
+      "shop": "Butikk",
+      "location": "Plassering"
+    }
+  },
+  "location": {
+    "permissionRequired": "Plasseringstillatelse kreves",
+    "permissionMessage": "Tilgang til plassering er nødvendig for å finne din posisjon. Aktiver dette i enhetsinnstillingene.",
+    "openSettings": "Åpne innstillinger"
+  },
+  "tabs": {
+    "driver": "Sjåfør",
+    "map": "Kart",
+    "gas": "Drivstoff"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Ansvarsfraskrivelse",
+      "purpose": {
+        "heading": "Formål med appen",
+        "content": "Denne appen er et hjelpemiddel for profesjonelle sjåfører. Den skal gjøre det enklere å registrere og se over daglige aktiviteter og vise hvordan de relaterer til EUs regler for kjøre- og arbeidstid."
+      },
+      "noOfficialLogbook": {
+        "heading": "Ingen offisiell loggbok eller fartsskriver",
+        "content": "Dataene i appen er kun informative og erstatter IKKE:\n• fartsskriver eller utskrifter,\n• offisielle loggbøker eller registreringer som kreves ved lov,\n• dokumentasjon som etterspørres av kontrollmyndigheter.\nStol alltid på fartsskriver og offisielle bedriftsregistre som hovedkilde."
+      },
+      "noLegalAdvice": {
+        "heading": "Ingen juridisk eller faglig rådgivning",
+        "content": "Etterlevelsesberegningene bygger på EU-regler men er forenklet og kan mangle nasjonale eller bedrifts­spesifikke regler.\n\nAppen gir ikke juridisk, skattemessig, HR- eller faglig rådgivning. Du er selv ansvarlig for å kontrollere gjeldende lovverk, bedrifts­regler og instrukser fra arbeidsgiver eller rådgiver."
+      },
+      "dataStorage": {
+        "heading": "Datagrunnlag og personvern",
+        "content": "Aktivitets­historikken lagres kun lokalt på enheten i appens cache. Vi lagrer ikke dataene dine i ekstern database eller sentral server.\n\nSiden data ligger i cache:\n• kan de slettes ved rydding av appdata, reinstallasjon eller enhetsbytte,\n• kan vi ikke gjenopprette tapte data eller levere sikkerhetskopier.\nHvis du trenger langtids­registre, eksporter og lagre kopier trygt."
+      },
+      "userResponsibility": {
+        "heading": "Brukeransvar",
+        "content": "Du er alltid ansvarlig for:\n• hvordan du planlegger arbeid og hvile,\n• hvordan du tolker informasjonen i appen,\n• å følge alle gjeldende lover og bedrifts­regler.\n\nBruk appen som et støtteverktøy, ikke som beslutningstaker. Ved tvil, følg fartsskriver, bedrifts­instrukser og offisielle juridiske råd."
+      }
+    },
+    "parking": {
+      "title": "Lastebilparkering - Ansvar",
+      "sourceInfo": {
+        "heading": "Kilde til informasjon",
+        "content": "Plasseringer, fasiliteter og detaljer i appen kommer fra offentlige og tredjepartskilder (åpne data, offentlige nettsteder, brukerbidrag eller eksterne tjenester).\n\nVi drifter ikke disse parkeringene og kontrollerer ikke publiserte data."
+      },
+      "accuracy": {
+        "heading": "Nøyaktighet og oppdateringer",
+        "content": "Vi prøver å vise nyttig og oppdatert informasjon, men kan ikke garantere at den alltid er komplett, korrekt eller aktuell.\n\nEksempler på endringer uten varsel:\n• åpningstider og adgangsregler,\n• priser, betalings­metoder og reservasjons­krav,\n• tilgjengelige tjenester (dusj, sikkerhet, mat, drivstoff osv.),\n• antall plasser eller midlertidig stenging."
+      },
+      "verifyBefore": {
+        "heading": "Verifiser alltid før du kjører",
+        "content": "Før du kjører til en parkering i appen, verifiser nøkkeldetaljer ved å:\n• sjekke plasseringen i en navigasjons- eller kartapp,\n• bruke andre pålitelige lastebil-/parkerings­apper,\n• besøke parkeringens offisielle nettsted om det finnes,\n• kontakte operatør eller vert direkte når kontaktinfo er oppgitt.\n\nStol ikke bare på app-informasjonen når du planlegger rute, hvile eller sikkerhet."
+      },
+      "noEndorsement": {
+        "heading": "Ingen anbefaling eller garanti",
+        "content": "At en parkering vises i appen betyr IKKE at vi anbefaler, inspiserer eller garanterer den.\n\nVi bekrefter ikke:\n• sikkerhetsnivået på parkeringen,\n• tilgjengelighet av ledige plasser til enhver tid,\n• at parkeringen oppfyller juridiske eller bedrifts­krav."
+      },
+      "userResponsibility": {
+        "heading": "Brukeransvar",
+        "content": "Du er alltid ansvarlig for:\n• valg av stopp- og hvileplass,\n• å sjekke at parkeringen passer ditt kjøretøy og last,\n• å følge regler for kjøre-/hviletid og alle trafikkregler.\n\nBruk parkeringskartet som støtte. Dobbelt­sjekk viktige detaljer før ankomst."
+      }
+    },
+    "fuel": {
+      "title": "Drivstoffpriser - Ansvar",
+      "sourceData": {
+        "heading": "Datakilde",
+        "content": "Drivstoffpriser baseres på offentlig informasjon fra EU-kilder og/eller andre offisielle publikasjoner. De vises som referanse og samles ikke inn direkte av oss."
+      },
+      "accuracy": {
+        "heading": "Nøyaktighet og aktualitet",
+        "content": "Prisene er veiledende og kan avvike fra faktiske priser på stasjoner. De endres ofte pga. avgifter, marked, lokasjon og tidspunkt. Vi garanterer ikke fullstendighet, feilfrihet eller aktualitet."
+      },
+      "howToUse": {
+        "heading": "Bruk",
+        "content": "Bruk prisene kun som en grov referanse. Sjekk alltid aktuell pris ved pumpen, på stasjonens nettsted eller i en annen pålitelig app før du beslutter."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Daglig kjøretid",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "EU-forordning (EF) nr. 561/2006 - Art. 6 (daglig kjøretid)."
+      },
+      "rules": {
+        "heading": "Regler",
+        "content": "• Standardgrense: maks 9 timers kjøring i én daglig arbeidsperiode.\n• Utvidet grense: opptil 10 timer i høyst 2 dager i uken.\n• Kjøretid regnes mellom to påfølgende daglige eller ukentlige hviler."
+      },
+      "example": {
+        "heading": "Eksempel",
+        "content": "Hvis du kjører 10t mandag og 10t onsdag, må du holde deg på 9t eller mindre de andre dagene samme uke."
+      }
+    },
+    "dailyWorking": {
+      "title": "Daglig arbeidstid og spenn",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "EU-direktiv 2002/15/EF (arbeidstid for mobile arbeidstakere) + Forordning (EF) nr. 561/2006 (hvileperioder)."
+      },
+      "whatCounts": {
+        "heading": "Hva regnes som arbeidstid",
+        "content": "• Kjøring (faktisk kjøretid).\n• Annet arbeid (lasting, lossing, administrasjon, vedlikehold osv.).\n• Arbeidstid inkluderer IKKE: pauser, hvile eller tilgjengelighet.\n• Tilgjengelighet registreres separat men forlenger det daglige spennet (tid mellom hviler)."
+      },
+      "dailyLimits": {
+        "heading": "Daglige grenser (hvileeffekt)",
+        "content": "• EU setter ingen hard daglig arbeidstidsgrense, men:\n  • Ukentlige grenser gjelder: maks 60t i en uke, med snitt 48t/uke over opptil 4 mnd.\n  • Pga. krav om daglig hvile (561/2006):\n    - Med ordinær daglig hvile 11t er maks spenn 13t.\n    - Med redusert daglig hvile min 9t (maks 3 ganger mellom ukehviler) kan spennet være opp til 15t.\n  • Ved nattarbeid må arbeidstid i 24t ikke overskride 10t (se Nattarbeid)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Etterlevelse av pauser",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "• EU-forordning (EF) nr. 561/2006 - Art. 7 (kjøretidspauser).\n• EU-direktiv 2002/15/EF - pauser for mobile arbeidstakere."
+      },
+      "drivingBreaks": {
+        "heading": "Kjøretidspauser (561/2006)",
+        "content": "• Etter maks 4,5 timers kjøring må du ta minst 45 minutter pause.\n• Disse 45 minuttene kan deles i:\n  - en første pause på minst 15 minutter, og\n  - en andre pause på minst 30 minutter,\n  forutsatt at de sammen blir minst 45 minutter innen 4,5t-kjøringsvinduet."
+      },
+      "workingBreaks": {
+        "heading": "Arbeidspauser (2002/15/EF)",
+        "content": "• Du må ikke arbeide mer enn 6 timer i strekk uten pause.\n• Hvis total daglig arbeidstid er >6t og ≤9t: minst 30 minutter totalt.\n• Hvis >9t: minst 45 minutter totalt.\n• Pauser kan deles i perioder på minst 15 minutter.\n• Ved blanding av kjøring og annet arbeid må begge pauseregler følges (strengeste gjelder)."
+      },
+      "important": {
+        "heading": "Viktig",
+        "content": "• Pauser avbryter arbeidstid og regnes IKKE som arbeidstid.\n• De forlenger likevel det daglige spennet (tid mellom første og siste aktivitet)."
+      }
+    },
+    "dailyRest": {
+      "title": "Daglig hvile og aktivitetsvindu",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "EU-forordning (EF) nr. 561/2006 - Art. 8 (daglig hvile)."
+      },
+      "requirements": {
+        "heading": "Krav til daglig hvile",
+        "content": "• Ordinær daglig hvile: minst 11 sammenhengende timer innen 24 timer fra slutten av forrige daglige eller ukentlige hvile.\n• Delt ordinær hvile: 3t + 9t (første del minst 3t, andre minst 9t).\n• Redusert daglig hvile: minst 9t men mindre enn 11t.\n• Høyst 3 reduserte daglige hviler mellom to ukehviler."
+      },
+      "activityWindow": {
+        "heading": "Aktivitetsvindu (daglig spenn)",
+        "content": "• Daglig spenn = tid fra første aktivitet (Kjøring/Annet arbeid/Tilgjengelighet/Pause) til siste før neste daglige eller ukentlige hvile.\n• Med ordinær daglig hvile (11t): maks 13t spenn innen 24t.\n• Med redusert daglig hvile (≥9t): maks 15t spenn, tillatt maks 3 ganger mellom ukehviler.\n• Hele daglige hvilen må få plass i relevant 24t-periode fra arbeidsdagens start."
+      }
+    },
+    "nightWork": {
+      "title": "Nattarbeid (EU-arbeidstid)",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "EU-direktiv 2002/15/EF - nattarbeid for mobile arbeidstakere innen veitransport."
+      },
+      "definition": {
+        "heading": "Definisjon av natt",
+        "content": "• EU-retten definerer “natt” som en periode på minst 4 sammenhengende timer mellom 00:00 og 07:00.\n• Hver medlemsstat fastsetter de nøyaktige 4 natt-timene i nasjonal lov.\n• I appen er dette et konfigurerbart 4-timersvindu (f.eks. 00:00-04:00 eller 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Grense for nattarbeid",
+        "content": "• Hvis arbeid (Kjøring eller Annet arbeid) utføres i det definerte nattvinduet, regnes det som nattarbeid.\n• Ved nattarbeid må total arbeidstid ikke overstige 10t i løpet av 24t.\n• 10t-grensen gjelder kun arbeidstid (Kjøring + Annet arbeid), ikke pauser, hvile eller tilgjengelighet.\n• Medlemsstater kan legge til tillegg eller vern, men det omfattes ikke her."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Ukentlig arbeidstid",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "EU-direktiv 2002/15/EF - arbeidstid for mobile veitransportarbeidere."
+      },
+      "limits": {
+        "heading": "Ukentlige grenser",
+        "content": "• Gjennomsnittlig arbeidstid: må ikke overstige 48 timer per uke, beregnet over en referanseperiode (opptil 4 måneder).\n• Enkeltuke: arbeidstid kan nå 60 timer, forutsatt at snittet 48t/uke ikke overskrides i referanseperioden.\n• Arbeidstid = Kjøring + Annet arbeid.\n• Pauser, hvile og tilgjengelighet regnes IKKE som arbeidstid."
+      },
+      "calculation": {
+        "heading": "Beregningperiode",
+        "content": "• “Uke” i EU-regler er vanligvis en fast 7-dagersperiode (561/2006: mandag 00:00 til søndag 24:00).\n• Appen kan overvåke en rullerende 4-måneders periode for 48t-snittet.\n• Hvis en uke >60t → umiddelbart brudd på arbeidstid.\n• Hvis rullerende snitt >48t/uke → arbeidstidsbrudd."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Ukentlig og to-ukers kjøring",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "EU-forordning (EF) nr. 561/2006 - Art. 6 (grenser for ukentlig og to-ukers kjøring)."
+      },
+      "limits": {
+        "heading": "Kjøregrenser",
+        "content": "• Enkeltuke: maks 56 timer kjøring.\n• To påfølgende uker: maks 90 timer kjøring totalt.\n• “Uke” iht. 561/2006: mandag 00:00 til søndag 24:00."
+      },
+      "example": {
+        "heading": "Eksempel",
+        "content": "Uke 1: 48t kjøring → Uke 2 kan ha maks 42t (48 + 42 = 90).\nUke 2: 42t kjøring → Uke 3 kan ha maks 48t (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Ukentlig hvile og 45t-pause",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "EU-forordning (EF) nr. 561/2006 - Art. 8 (ukentlige hvileperioder, inkl. mobilitetspakken)."
+      },
+      "requirements": {
+        "heading": "Krav til ukentlig hvile",
+        "content": "• En ny ukentlig hvile må STARTE senest 144 timer (6 × 24t) etter SLUTTEN på forrige ukehvile.\n• Ordinær ukehvile: minst 45 sammenhengende timer.\n• Redusert ukehvile: minst 24 timer men under 45 timer.\n• I to påfølgende uker må du ha minst 2 ukehviler og minst én må være ordinær (≥45t)."
+      },
+      "compensation": {
+        "heading": "Kompensasjonsregler (oversikt)",
+        "content": "• Hver redusert ukehvile skaper et underskudd: 45t minus faktisk hvile.\n• Hvert underskudd må kompenseres “en bloc” innen 3 uker etter reduksjonsuken.\n• Kompensasjon må legges til en annen hvile på minst 9t (daglig eller ukentlig)."
+      },
+      "whereRest": {
+        "heading": "Hvor hvile kan tas",
+        "content": "• Ordinære ukehviler (≥45t) kan IKKE tas i kjøretøyet.\n• Daglig hvile og redusert ukehvile kan tas i kjøretøyet hvis det står stille og har egnet soveplass."
+      },
+      "daysCovered": {
+        "heading": "Dager dekket av ukehvile",
+        "content": "• Dager helt dekket av kvalifiserende ukehvile (≥24t) regnes som fridager.\n• For daglig-hvilekontroller anses disse dagene automatisk som etterlevd."
+      }
+    },
+    "restCompensation": {
+      "title": "Hvilekompensasjon",
+      "legalBasis": {
+        "heading": "Rettslig grunnlag",
+        "content": "EU-forordning (EF) nr. 561/2006 - Art. 8(6) (kompensasjon for redusert ukehvile)."
+      },
+      "whenRequired": {
+        "heading": "Når kompensasjon kreves",
+        "content": "• Hver redusert ukehvile (24t til <45t) skaper et “underskudd” mot 45t.\n• Underskudd = 45 timer − faktisk varighet av ukehvilen.\n• Eksempel: 30t hvile → 15t underskudd som må kompenseres senere."
+      },
+      "rules": {
+        "heading": "Kompensasjonsregler",
+        "content": "• Hvert underskudd må kompenseres innen 3 uker etter reduksjonsuken.\n• Kompensasjon må skje i én sammenhengende blokk.\n• Må knyttes til en annen hvile på minst 9 timer (daglig eller ukentlig).\n• Kompensasjon kan ikke deles opp på flere hviler."
+      },
+      "display": {
+        "heading": "Visning i appen",
+        "content": "• Viser hvor mange reduserte ukehviler som gjenstår å kompensere.\n• Viser totale utestående kompenseringstimer og siste frist."
+      }
+    }
+  }
+}

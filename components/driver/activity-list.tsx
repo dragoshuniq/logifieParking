@@ -2,11 +2,12 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { useFormatTime } from "@/hooks/useFormat";
-import { Activity } from "@/utils/driver-db";
+import dayjs from "@/utils/dayjs-config";
+import { Activity, ActivityType } from "@/utils/driver-db";
 import { FontAwesome6 } from "@expo/vector-icons";
-import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { FormattedHours } from "./formatted-hours";
 
 interface ActivityListProps {
   activities: Activity[];
@@ -30,30 +31,51 @@ export const ActivityList = ({
       "text"
     );
 
-  const getActivityIcon = (type: string) => {
+  const getActivityTranslationKey = (type: ActivityType): string => {
     switch (type) {
-      case "driving":
-        return "truck";
-      case "work":
-        return "briefcase";
-      case "break":
-        return "coffee";
-      case "rest":
+      case ActivityType.DRIVING:
+        return "driving";
+      case ActivityType.OTHER_WORK:
+        return "otherWork";
+      case ActivityType.BREAK:
+        return "break";
+      case ActivityType.REST:
+        return "rest";
+      case ActivityType.AVAILABILITY:
+        return "availability";
+      default:
+        return "driving";
+    }
+  };
+
+  const getActivityIcon = (type: ActivityType) => {
+    switch (type) {
+      case ActivityType.DRIVING:
+        return "circle-dot";
+      case ActivityType.OTHER_WORK:
+        return "hammer";
+      case ActivityType.AVAILABILITY:
+        return "bed";
+      case ActivityType.BREAK:
+        return "bed";
+      case ActivityType.REST:
         return "bed";
       default:
         return "circle";
     }
   };
 
-  const getActivityColor = (type: string) => {
+  const getActivityColor = (type: ActivityType) => {
     switch (type) {
-      case "driving":
+      case ActivityType.DRIVING:
         return primary.DEFAULT;
-      case "work":
+      case ActivityType.OTHER_WORK:
         return warning.DEFAULT;
-      case "break":
+      case ActivityType.AVAILABILITY:
+        return "#f59e0b";
+      case ActivityType.BREAK:
         return success.DEFAULT;
-      case "rest":
+      case ActivityType.REST:
         return "#6366f1";
       default:
         return text;
@@ -84,7 +106,7 @@ export const ActivityList = ({
               { color: primary.foreground },
             ]}
           >
-            {t("driver.addActivity")}
+            {t("driver.form.addActivity")}
           </ThemedText>
         </TouchableOpacity>
       </View>
@@ -124,10 +146,20 @@ export const ActivityList = ({
                       dayjs(item.endDateTime).format("HH:mm")
                     )}
                   </ThemedText>
-                  <ThemedText style={styles.activityTime}>
-                    {t(`driver.${item.type}`)} •{" "}
-                    {item.duration.toFixed(1)}h
-                  </ThemedText>
+                  <View style={styles.activityTimeRow}>
+                    <ThemedText style={styles.activityTime}>
+                      {t(
+                        `driver.activityTypes.${getActivityTranslationKey(
+                          item.type
+                        )}`
+                      )}{" "}
+                      •{" "}
+                    </ThemedText>
+                    <FormattedHours
+                      hours={item.duration}
+                      style={styles.activityTime}
+                    />
+                  </View>
                 </View>
               </ThemedView>
             </TouchableOpacity>
@@ -146,7 +178,7 @@ export const ActivityList = ({
               opacity={0.3}
             />
             <ThemedText style={styles.emptyText}>
-              No activities for this day
+              {t("driver.noActivities")}
             </ThemedText>
           </ThemedView>
         )}
@@ -210,6 +242,10 @@ const styles = StyleSheet.create({
   activityTime: {
     fontSize: 12,
     opacity: 0.6,
+    marginTop: 2,
+  },
+  activityTimeRow: {
+    flexDirection: "row",
     marginTop: 2,
   },
   activityDuration: {

@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Dil seçin",
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "apply": "Uygula",
+    "error": "Hata",
+    "select": "Seç",
+    "total": "Toplam",
+    "noData": "Veri yok",
+    "information": "Bilgi",
+    "noInformation": "Bilgi yok",
+    "version": "Sürüm {{version}}",
+    "couldNotOpen": "{{name}} açılamadı",
+    "ok": "OK",
+    "violation": "İHLAL",
+    "yes": "EVET",
+    "no": "HAYIR"
+  },
+  "format": {
+    "hourShort": "s",
+    "minuteShort": "d"
+  },
+  "language": {
+    "selectLanguage": "Dil seçin"
+  },
+  "drawer": {
+    "home": "Ana sayfa",
+    "contact": "Bize ulaşın",
+    "getQuote": "Teklif al",
+    "termsConditions": "Şartlar",
+    "privacyPolicy": "Gizlilik politikası",
+    "driver": "Sürücü",
+    "fuelPrices": "Yakıt fiyatları"
+  },
+  "driver": {
+    "title": "Çalışma saatleri takibi",
+    "none": "Yok",
+    "noActivities": "Bu gün için aktivite yok",
+    "weeklyOverview": "Haftalık görünüm",
+    "selectTime": "Saat seç",
+    "activityDistribution": "Aktivite dağılımı",
+    "dailyWorkHours": "Günlük çalışma saatleri",
+    "activityTypes": {
+      "driving": "Sürüş",
+      "otherWork": "Diğer çalışma",
+      "break": "Mola",
+      "rest": "Dinlenme",
+      "availability": "Hazır bekleme"
+    },
+    "form": {
+      "addActivity": "Aktivite ekle",
+      "editActivity": "Aktiviteyi düzenle",
+      "activityType": "Aktivite tipi",
+      "timeEntry": "Zaman girişi",
+      "manualEntry": "Manuel giriş",
+      "startTime": "Başlangıç saati",
+      "endTime": "Bitiş saati",
+      "duration": "Süre (saat)",
+      "timePlaceholder": "SS:DD",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Doğrulama",
+      "startTimeRequired": "Başlangıç saati gerekli",
+      "durationGreaterThanZero": "Süre 0'dan büyük olmalı",
+      "bothTimesRequired": "Hem başlangıç hem bitiş saati gerekli",
+      "endTimeAfterStart": "Bitiş saati başlangıçtan sonra olmalı",
+      "selectStartTimeFirst": "Önce başlangıç saatini seçin"
+    },
+    "stats": {
+      "dailyDriving": "Günlük sürüş",
+      "dailyWorking": "Günlük çalışma",
+      "breakCompliance": "Mola uyumu",
+      "dailyRest": "Günlük dinlenme",
+      "nightWork": "Gece çalışması",
+      "weeklyWorking": "Haftalık çalışma",
+      "drivingHours": "Sürüş saatleri",
+      "weeklyRest": "Haftalık dinlenme",
+      "restCompensation": "Dinlenme telafisi",
+      "extendedDaysUsed": "{{count}}/2 uzatılmış (10s) gün kullanıldı",
+      "dailyDrivingLimit": "10s max haftada 2x",
+      "reducedRestLimit": "15s max (dinlenme 9s)",
+      "regularRestLimit": "15s max",
+      "breaksCount": "{{count}} mola",
+      "noBreaks": "Mola yok",
+      "activityWindow": "{{hours}}s pencere",
+      "nightWorkWindow": "Çalışma 00:00-07:00",
+      "fourMonthAvg": "Ort: {{hours}}s (≤48)",
+      "twoWeekTotal": "2hf: {{hours}}s/90",
+      "hoursAgo": "{{hours}}s önce",
+      "noWeeklyRest": "Haftalık dinlenme yok",
+      "hoursOwed": "{{hours}}s borç"
+    },
+    "export": {
+      "title": "Dışa aktarma ayarları",
+      "exportType": "Dışa aktarma türü",
+      "period": "Dönem",
+      "selectedWeek": "Seçili hafta",
+      "currentWeek": "Mevcut hafta",
+      "currentMonth": "Mevcut ay",
+      "customPeriod": "Özel dönem",
+      "customRange": "Özel dönem",
+      "startDate": "Başlangıç tarihi",
+      "endDate": "Bitiş tarihi",
+      "export": "Dışa aktar",
+      "selectBothDates": "Lütfen iki tarihi de seçin",
+      "startBeforeEnd": "Başlangıç tarihi bitişten önce olmalı",
+      "dialogTitle": "Sürücü saatlerini dışa aktar",
+      "headers": {
+        "date": "Tarih",
+        "startTime": "Başlangıç saati",
+        "endTime": "Bitiş saati",
+        "duration": "Süre (saat)",
+        "activityType": "Aktivite tipi",
+        "dailyDriving": "Günlük sürüş uyumu",
+        "breakCompliance": "Mola uyumu",
+        "dailyRest": "Günlük dinlenme uyumu",
+        "nightWork": "Gece çalışması",
+        "weeklyRestDeficits": "Haftalık dinlenme telafi eksikleri",
+        "weekStart": "Hafta başlangıcı",
+        "weekEnd": "Hafta sonu",
+        "deficitHours": "Eksik saatler",
+        "compensatedHours": "Telafi edilmiş saatler",
+        "mustCompensateBy": "Şu tarihe kadar telafi edilmeli"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Aktivite silinemedi",
+      "exportFailed": "{{type}} dışa aktarılamadı",
+      "saveFailed": "Aktivite kaydedilemedi"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Sırala",
+    "noData": "Yakıt verisi yok",
+    "updated": "Güncellendi: {{date}}",
+    "searchPlaceholder": "Ülke ara...",
+    "petrol": "Benzin",
+    "diesel": "Dizel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Benzin: düşükten yükseğe",
+    "petrolDesc": "Benzin: yüksekten düşüğe",
+    "dieselAsc": "Dizel: düşükten yükseğe",
+    "dieselDesc": "Dizel: yüksekten düşüğe"
+  },
+  "parking": {
+    "noLocationDetails": "Konum bilgisi yok",
+    "location": "Konum",
+    "city": "Şehir",
+    "suburb": "Banliyö",
+    "county": "İlçe",
+    "state": "Eyalet",
+    "country": "Ülke",
+    "postcode": "Posta kodu",
+    "category": "Kategori",
+    "type": "Tip",
+    "facilityTypes": {
+      "parking": "Park",
+      "gas_station": "Akaryakıt istasyonu",
+      "parking_space": "Park alanı",
+      "truck_stop": "Kamyon durağı",
+      "rest_area": "Dinlenme alanı",
+      "motorway_services": "Otoyol hizmetleri",
+      "car_wash": "Araç yıkama",
+      "charging_station": "Şarj istasyonu",
+      "amenity": "Hizmet",
+      "highway_rest_area": "Karayolu dinlenme alanı",
+      "highway_services": "Karayolu hizmetleri",
+      "highway": "Karayolu",
+      "fuel_shop": "Yakıt mağazası",
+      "shop": "Mağaza",
+      "location": "Konum"
+    }
+  },
+  "location": {
+    "permissionRequired": "Konum izni gerekli",
+    "permissionMessage": "Konumunuzu bulmak için konum erişimi gerekli. Lütfen cihaz ayarlarından etkinleştirin.",
+    "openSettings": "Ayarları aç"
+  },
+  "tabs": {
+    "driver": "Sürücü",
+    "map": "Harita",
+    "gas": "Yakıt"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Sorumluluk reddi",
+      "purpose": {
+        "heading": "Uygulamanın amacı",
+        "content": "Bu uygulama profesyonel sürücüler için bir yardımcı araçtır. Günlük aktiviteleri kaydetmeyi ve gözden geçirmeyi kolaylaştırır ve bunların AB sürüş ve çalışma süresi kurallarıyla ilişkisini gösterir."
+      },
+      "noOfficialLogbook": {
+        "heading": "Resmi günlük veya takograf değildir",
+        "content": "Uygulamadaki veriler bilgilendirme amaçlıdır ve ŞUNLARIN yerini ALMAZ:\n• takograf veya takograf çıktıları,\n• kanunen gereken resmi günlükler veya kayıtlar,\n• denetim makamlarının talep ettiği belgeler.\nBirincil kaynak olarak her zaman takograf ve resmi şirket kayıtlarına güvenin."
+      },
+      "noLegalAdvice": {
+        "heading": "Hukuki veya profesyonel tavsiye değildir",
+        "content": "Uyum hesaplamaları AB düzenlemelerine dayanır ancak basitleştirilmiştir ve tüm ulusal veya şirket kurallarını kapsamayabilir.\n\nBu uygulama hukuki, mali, İK veya profesyonel danışmanlık sağlamaz. Güncel mevzuat, şirket politikaları ve işveren/ danışman talimatlarını kontrol etmek sizin sorumluluğunuzdadır."
+      },
+      "dataStorage": {
+        "heading": "Veri saklama ve gizlilik",
+        "content": "Aktivite geçmişiniz yalnızca cihazınızdaki uygulama önbelleğinde yerel olarak saklanır. Verilerinizi harici bir veritabanında veya merkezi bir sunucuda tutmuyoruz.\n\nÖnbellekte olduğu için:\n• uygulama verilerini temizlediğinizde, yeniden yüklediğinizde veya cihaz değiştiğinde silinebilir,\n• kaybolan verileri geri getiremeyiz veya yedek sağlayamayız.\nUzun vadeli kayıtlar gerekiyorsa, dışa aktarın ve kopyaları güvenli yerde saklayın."
+      },
+      "userResponsibility": {
+        "heading": "Kullanıcı sorumluluğu",
+        "content": "Şunlardan daima siz sorumlusunuz:\n• çalışma ve dinlenme planlamanızdan,\n• uygulamadaki bilgileri nasıl yorumladığınızdan,\n• tüm geçerli yasa ve şirket kurallarına uymaktan.\n\nUygulamayı karar verici değil, destek aracı olarak görün. Şüphe durumunda takografı, şirket talimatlarını ve resmi hukuki rehberi takip edin."
+      }
+    },
+    "parking": {
+      "title": "Kamyon parkı - Sorumluluk reddi",
+      "sourceInfo": {
+        "heading": "Bilgi kaynağı",
+        "content": "Uygulamada gösterilen park yerleri, hizmetler ve detaylar kamuya açık ve üçüncü taraf kaynaklardan (açık veri, kamu siteleri, kullanıcı katkıları veya harici servisler) gelir.\n\nBu parkları işletmiyor ve yayımlanan verileri kontrol etmiyoruz."
+      },
+      "accuracy": {
+        "heading": "Doğruluk ve güncellik",
+        "content": "Kullanışlı ve güncel bilgi sunmaya çalışıyoruz ancak her zaman eksiksiz, doğru veya güncel olacağını garanti edemeyiz.\n\nBildirim olmadan değişebilecek örnekler:\n• çalışma saatleri ve giriş kuralları,\n• fiyatlar, ödeme yöntemleri ve rezervasyon gereksinimleri,\n• mevcut hizmetler (duş, güvenlik, yiyecek, yakıt vb.),\n• yer sayısı veya geçici kapanma."
+      },
+      "verifyBefore": {
+        "heading": "Sürmeden önce doğrulayın",
+        "content": "Uygulamadaki herhangi bir parka gitmeden önce önemli detayları kendiniz doğrulayın:\n• konumu bir navigasyon veya harita uygulamasında kontrol edin,\n• diğer güvenilir park / kamyon uygulamalarını kullanın,\n• varsa parkın resmi web sitesini ziyaret edin,\n• iletişim bilgisi verilmişse işletici veya ev sahibiyle doğrudan iletişime geçin.\n\nRota, dinlenme veya güvenlik planında yalnızca bu uygulamadaki bilgilere güvenmeyin."
+      },
+      "noEndorsement": {
+        "heading": "Onay veya garanti yok",
+        "content": "Bir parkın listelenmesi, onu tavsiye ettiğimiz, denetlediğimiz veya garanti ettiğimiz anlamına GELMEZ.\n\nŞunları teyit etmiyoruz:\n• parkın güvenlik seviyesi,\n• herhangi bir anda boş yer olup olmadığı,\n• parkın hukuki veya şirket gerekliliklerine uyumu."
+      },
+      "userResponsibility": {
+        "heading": "Kullanıcı sorumluluğu",
+        "content": "Şunlardan daima siz sorumlusunuz:\n• nerede durup dinleneceğinizden,\n• parkın aracınıza ve yükünüze uygunluğunu kontrol etmekten,\n• sürüş/dinlenme kuralları ve tüm trafik kurallarına uymaktan.\n\nPark haritasını destek aracı olarak kullanın. Varıştan önce kritik bilgileri iki kez kontrol edin."
+      }
+    },
+    "fuel": {
+      "title": "Yakıt fiyatları - Sorumluluk reddi",
+      "sourceData": {
+        "heading": "Veri kaynağı",
+        "content": "Yakıt fiyatları Avrupa Birliği kaynakları ve/veya diğer resmi yayınlardan alınan kamu bilgilerine dayanır. Sadece referans amaçlı gösterilir, tarafımızdan doğrudan toplanmaz."
+      },
+      "accuracy": {
+        "heading": "Doğruluk ve zamanlama",
+        "content": "Fiyatlar gösterge niteliğindedir ve istasyonlardaki gerçek fiyatlardan farklı olabilir. Vergiler, piyasa, konum ve günün saatine bağlı olarak sık değişir. Tamlık, hatasızlık veya güncellik garanti etmiyoruz."
+      },
+      "howToUse": {
+        "heading": "Nasıl kullanılır",
+        "content": "Bu fiyatları sadece yaklaşık referans olarak kullanın. Karar vermeden önce pompadaki güncel fiyatı, istasyonun web sitesini veya başka güvenilir bir uygulamayı kontrol edin."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Günlük sürüş süresi",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "AB Tüzüğü (AT) 561/2006 - Mad. 6 (günlük sürüş süresi)."
+      },
+      "rules": {
+        "heading": "Kurallar",
+        "content": "• Standart sınır: tek günlük çalışma döneminde en fazla 9 saat sürüş.\n• Genişletilmiş sınır: haftada en fazla 2 günde 10 saate kadar.\n• Sürüş süresi, ardışık iki günlük veya haftalık dinlenme arasında sayılır."
+      },
+      "example": {
+        "heading": "Örnek",
+        "content": "Pazartesi 10s ve Çarşamba 10s sürersen aynı haftanın diğer günlerinde 9s veya altında kalmalısın."
+      }
+    },
+    "dailyWorking": {
+      "title": "Günlük çalışma süresi ve yayılım",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "AB Direktifi 2002/15/EC (hareketli çalışanların çalışma süresi) + Tüzük (AT) 561/2006 (dinlenme dönemleri)."
+      },
+      "whatCounts": {
+        "heading": "Çalışma süresi sayılanlar",
+        "content": "• Sürüş (gerçek sürüş zamanı).\n• Diğer iş (yükleme, boşaltma, idari, bakım vb.).\n• Çalışma süresine DAHİL DEĞİL: molalar, dinlenme veya hazır bekleme.\n• Hazır bekleme ayrı takip edilir ancak yine de günlük yayılımı (dinlenmeler arası süreyi) uzatır."
+      },
+      "dailyLimits": {
+        "heading": "Günlük sınırlar (dinlenme etkisi)",
+        "content": "• AB katı bir günlük çalışma sınırı koymaz, ancak:\n  • Haftalık sınırlar geçerli: tek haftada maks 60s, 4 aya kadar ortalama 48s/hafta.\n  • Günlük dinlenme gereği (561/2006):\n    - Normal günlük dinlenme 11s ile yayılım en fazla 13s.\n    - En az 9s’lik azaltılmış günlük dinlenme (hafta dinlenmeleri arasında en fazla 3 kez) ile yayılım en çok 15s.\n  • Gece çalışması varsa 24s içinde çalışma süresi 10s’i aşmamalı (bkz. Gece çalışması)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Mola uyumu",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "• AB Tüzüğü (AT) 561/2006 - Mad. 7 (sürüş molaları).\n• AB Direktifi 2002/15/EC - hareketli çalışanların çalışma süresi molaları."
+      },
+      "drivingBreaks": {
+        "heading": "Sürüş molaları (561/2006)",
+        "content": "• En fazla 4,5 saat sürüşten sonra en az 45 dakika mola almalısın.\n• Bu 45 dakika şu şekilde bölünebilir:\n  - ilk mola en az 15 dakika,\n  - ikinci mola en az 30 dakika,\n  birlikte 4,5s sürüş penceresinde en az 45 dakika olacak şekilde."
+      },
+      "workingBreaks": {
+        "heading": "Çalışma molaları (2002/15/EC)",
+        "content": "• 6 saatten fazla kesintisiz çalışmamalısın.\n• Günlük toplam çalışma >6s ve ≤9s ise: en az 30 dakika toplam.\n• >9s ise: en az 45 dakika toplam.\n• Molalar en az 15 dakikalık parçalara bölünebilir.\n• Sürüş ve başka iş karıştığında, iki kural da (o anda hangisi sıkıysa) uygulanmalıdır."
+      },
+      "important": {
+        "heading": "Önemli",
+        "content": "• Molalar çalışma süresini keser ve çalışma süresi sayılmaz.\n• Yine de günlük yayılımı (ilk ve son aktivite arası süreyi) uzatır."
+      }
+    },
+    "dailyRest": {
+      "title": "Günlük dinlenme ve aktivite penceresi",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "AB Tüzüğü (AT) 561/2006 - Mad. 8 (günlük dinlenme)."
+      },
+      "requirements": {
+        "heading": "Günlük dinlenme gereklilikleri",
+        "content": "• Normal günlük dinlenme: önceki günlük veya haftalık dinlenme sonundan itibaren 24 saat içinde en az 11 ardışık saat.\n• Bölünmüş normal dinlenme: 3s + 9s (ilk bölüm en az 3s, ikinci en az 9s).\n• Azaltılmış günlük dinlenme: en az 9s ama 11s’ten az.\n• İki haftalık dinlenme arasında en fazla 3 azaltılmış günlük dinlenme alabilirsin."
+      },
+      "activityWindow": {
+        "heading": "Aktivite penceresi (günlük yayılım)",
+        "content": "• Günlük yayılım = ilk aktiviteden (Sürüş/Diğer iş/Hazır bekleme/Mola) bir sonraki günlük veya haftalık dinlenmeden önceki son aktiviteye kadar süre.\n• Normal günlük dinlenme (11s): 24s içinde en fazla 13s yayılım.\n• Azaltılmış günlük dinlenme (≥9s): en fazla 15s yayılım, haftalık dinlenmeler arasında en fazla 3 kez.\n• Tüm günlük dinlenme, iş gününün başlangıcından sayılan ilgili 24s döneme sığmalıdır."
+      }
+    },
+    "nightWork": {
+      "title": "Gece çalışması (AB çalışma süresi)",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "AB Direktifi 2002/15/EC - karayolu taşımacılığında hareketli çalışanlar için gece çalışması."
+      },
+      "definition": {
+        "heading": "Gece zamanının tanımı",
+        "content": "• AB hukuku, “gece”yi 00:00-07:00 arasında en az 4 ardışık saat olarak tanımlar.\n• Her Üye Devlet bu 4 saati ulusal hukukta belirler.\n• Uygulamada bu, yapılandırılabilir 4 saatlik pencere olarak görünür (örn. 00:00-04:00 veya 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Gece çalışması sınırı",
+        "content": "• Tanımlı gece penceresinde herhangi bir çalışma (Sürüş veya Diğer iş) yapılırsa gece çalışması sayılır.\n• Gece çalışması olduğunda 24s içinde toplam çalışma süresi 10s’i aşmamalı.\n• Bu 10s sınırı sadece çalışma süresi (Sürüş + Diğer iş) için geçerli, mola, dinlenme veya hazır bekleme için değil.\n• Ülkeler ek ödeme/koruma ekleyebilir, bunlar burada yer almaz."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Haftalık çalışma süresi",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "AB Direktifi 2002/15/EC - karayolu taşımacılığı hareketli çalışanlarının çalışma süresi."
+      },
+      "limits": {
+        "heading": "Haftalık sınırlar",
+        "content": "• Ortalama çalışma süresi: 4 aya kadar referans dönemde haftada 48 saati aşmamalı.\n• Tek hafta: çalışma 60 saate çıkabilir, ancak 48s/hafta ortalaması aşılmamalı.\n• Çalışma süresi = Sürüş + Diğer iş.\n• Molalar, dinlenme ve hazır bekleme çalışma süresi sayılmaz."
+      },
+      "calculation": {
+        "heading": "Hesaplama dönemi",
+        "content": "• AB kurallarında “hafta” genellikle sabit 7 gün (561/2006: Pazartesi 00:00 - Pazar 24:00).\n• Uygulama 48s ortalama için kayan 4 aylık dönemi izleyebilir.\n• Tek hafta >60s → anında çalışma süresi ihlali.\n• Kayan ortalama >48s/hafta → çalışma süresi ihlali."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Haftalık ve iki haftalık sürüş",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "AB Tüzüğü (AT) 561/2006 - Mad. 6 (haftalık ve iki haftalık sürüş sınırları)."
+      },
+      "limits": {
+        "heading": "Sürüş sınırları",
+        "content": "• Tek hafta: en fazla 56 saat sürüş.\n• Ardışık iki hafta: toplam en fazla 90 saat sürüş.\n• 561/2006’ya göre “hafta”: Pazartesi 00:00 - Pazar 24:00."
+      },
+      "example": {
+        "heading": "Örnek",
+        "content": "Hafta 1: 48s sürüş → Hafta 2 en fazla 42s (48 + 42 = 90).\nHafta 2: 42s sürüş → Hafta 3 en fazla 48s (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Haftalık dinlenme ve 45s ara",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "AB Tüzüğü (AT) 561/2006 - Mad. 8 (haftalık dinlenme, Mobilite Paketi dahil)."
+      },
+      "requirements": {
+        "heading": "Haftalık dinlenme gereklilikleri",
+        "content": "• Yeni haftalık dinlenme, önceki haftalık dinlenmenin BİTİŞİNDEN en geç 144 saat (6 × 24s) içinde BAŞLAMALIDIR.\n• Normal haftalık dinlenme: en az 45 ardışık saat.\n• Azaltılmış haftalık dinlenme: en az 24 saat ama 45 saatten az.\n• Herhangi iki ardışık haftada en az 2 haftalık dinlenme olmalı ve en az 1'i normal (≥45s) olmalı."
+      },
+      "compensation": {
+        "heading": "Telafi kuralları (özet)",
+        "content": "• Her azaltılmış haftalık dinlenme bir açık oluşturur: 45s eksi gerçek dinlenme süresi.\n• Her açık, azaltma haftasından sonraki 3 hafta içinde “blok” halinde telafi edilmelidir.\n• Telafi, en az 9s’lik başka bir dinlenmeye (günlük veya haftalık) eklenmelidir."
+      },
+      "whereRest": {
+        "heading": "Dinlenme nerede yapılabilir",
+        "content": "• Normal haftalık dinlenme (≥45s) ARAÇTA yapılamaz.\n• Günlük ve azaltılmış haftalık dinlenme, araç sabitse ve uygun yataklıysa araçta yapılabilir."
+      },
+      "daysCovered": {
+        "heading": "Haftalık dinlenmenin kapsadığı günler",
+        "content": "• Nitelikli haftalık dinlenmenin (≥24s) tamamen kapladığı günler izinli sayılır.\n• Günlük dinlenme kontrollerinde bu günler otomatik olarak uygun kabul edilir."
+      }
+    },
+    "restCompensation": {
+      "title": "Dinlenme telafisi",
+      "legalBasis": {
+        "heading": "Hukuki dayanak",
+        "content": "AB Tüzüğü (AT) 561/2006 - Mad. 8(6) (azaltılmış haftalık dinlenme telafisi)."
+      },
+      "whenRequired": {
+        "heading": "Ne zaman telafi gerekir",
+        "content": "• Her azaltılmış haftalık dinlenme (24s - <45s) 45s’e kıyasla bir “açık” yaratır.\n• Açık = 45 saat − gerçek haftalık dinlenme süresi.\n• Örnek: 30s haftalık dinlenme → 15s açık, daha sonra telafi edilmeli."
+      },
+      "rules": {
+        "heading": "Telafi kuralları",
+        "content": "• Her açık, azaltma haftasından sonraki 3 hafta içinde telafi edilmeli.\n• Telafi tek blok halinde yapılmalı.\n• En az 9 saatlik başka bir dinlenmeye (günlük veya haftalık) eklenmeli.\n• Telafi birden çok dinlenmeye bölünemez."
+      },
+      "display": {
+        "heading": "Uygulamada gösterim",
+        "content": "• Kaç azaltılmış haftalık dinlenmenin telafi beklediğini gösterir.\n• Toplam açık saatleri ve telafi için son tarihi gösterir."
+      }
+    }
+  }
+}

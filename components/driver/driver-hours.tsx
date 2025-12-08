@@ -4,29 +4,37 @@ import {
   ActivityDistributionChart,
   DailyWorkHoursChart,
 } from "@/components/driver/charts";
+import { getComplianceInfo } from "@/components/driver/compliance-info";
 import { showDatePicker } from "@/components/driver/date-picker-sheet";
 import { showExportConfig } from "@/components/driver/export-config-sheet";
 import { HorizontalCalendar } from "@/components/driver/horizontal-calendar";
 import { StatsCard } from "@/components/driver/stats-card";
-import { getComplianceLevel } from "@/components/driver/utils";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
+  calculateBreakCompliance,
+  calculateDailyDrivingCompliance,
+  calculateDailyRestCompliance,
   calculateDailyStats,
+  calculateNightWorkCompliance,
+  calculateWeeklyDrivingCompliance,
+  calculateWeeklyRestCompliance,
   calculateWeeklyStats,
+  calculateWeeklyWorkingTimeCompliance,
 } from "@/utils/compliance";
+import dayjs from "@/utils/dayjs-config";
 import {
   Activity,
   addActivity,
   deleteActivity,
   getActivitiesByDate,
   getActivitiesByDateRange,
+  getWeeklyRestDeficits,
   initDatabase,
   updateActivity,
+  WeeklyRestDeficit,
 } from "@/utils/driver-db";
 import { exportToCSV, exportToXLS } from "@/utils/export";
 import { FontAwesome6 } from "@expo/vector-icons";
-import dayjs from "dayjs";
-import isoWeek from "dayjs/plugin/isoWeek";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -38,8 +46,6 @@ import {
 } from "react-native";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedView } from "../ui/themed-view";
-
-dayjs.extend(isoWeek);
 
 export const DriverHours = () => {
   const { t } = useTranslation();
@@ -57,6 +63,12 @@ export const DriverHours = () => {
   );
   const [fortnightActivities, setFortnightActivities] = useState<
     Activity[]
+  >([]);
+  const [fourMonthActivities, setFourMonthActivities] = useState<
+    Activity[]
+  >([]);
+  const [restDeficits, setRestDeficits] = useState<
+    WeeklyRestDeficit[]
   >([]);
 
   const updateWeekDates = useCallback((date: Date) => {
@@ -91,6 +103,16 @@ export const DriverHours = () => {
       endOfFortnight
     );
     setFortnightActivities(fortnightActs);
+
+    const fourMonthsAgo = current.subtract(4, "month").toDate();
+    const fourMonthActs = await getActivitiesByDateRange(
+      fourMonthsAgo,
+      endOfWeek
+    );
+    setFourMonthActivities(fourMonthActs);
+
+    const deficits = await getWeeklyRestDeficits();
+    setRestDeficits(deficits);
   }, [selectedDate]);
 
   useEffect(() => {
@@ -111,7 +133,7 @@ export const DriverHours = () => {
       }
       loadActivities();
     } catch {
-      Alert.alert("Error", "Failed to save activity");
+      Alert.alert(t("common.error"), t("driver.errors.saveFailed"));
     }
   };
 
@@ -126,7 +148,10 @@ export const DriverHours = () => {
           await deleteActivity(activity.id);
           loadActivities();
         } catch {
-          Alert.alert("Error", "Failed to delete activity");
+          Alert.alert(
+            t("common.error"),
+            t("driver.errors.deleteFailed")
+          );
         }
       },
     });
@@ -163,15 +188,18 @@ export const DriverHours = () => {
             startDate,
             endDate
           );
+          const deficits = await getWeeklyRestDeficits();
           if (type === "csv") {
-            await exportToCSV(activities);
+            await exportToCSV(activities, deficits, t);
           } else {
-            await exportToXLS(activities);
+            await exportToXLS(activities, deficits, t);
           }
         } catch {
           Alert.alert(
-            "Error",
-            `Failed to export ${type.toUpperCase()}`
+            t("common.error"),
+            t("driver.errors.exportFailed", {
+              type: type.toUpperCase(),
+            })
           );
         }
       },
@@ -180,31 +208,56 @@ export const DriverHours = () => {
 
   const dailyStats = calculateDailyStats(activities, selectedDate);
   const weeklyStats = calculateWeeklyStats(weekActivities, weekDates);
-  const fortnightStats = calculateWeeklyStats(
+
+  const dailyDriving = calculateDailyDrivingCompliance(
+    activities,
+    selectedDate,
+    weekActivities
+  );
+
+  const breakCompliance = calculateBreakCompliance(
+    activities,
+    selectedDate
+  );
+
+  const dailyRest = calculateDailyRestCompliance(
+    activities,
+    selectedDate,
+    weekActivities
+  );
+
+  const nightWork = calculateNightWorkCompliance(
+    activities,
+    selectedDate
+  );
+
+  const dailyWorkingHours =
+    dailyStats.drivingHours + dailyStats.workHours;
+  const maxDailyWorking = nightWork.hasNightWork
+    ? 10
+    : dailyRest.restType === "reduced"
+    ? 15
+    : 13;
+  const dailyWorkingLevel =
+    dailyWorkingHours > maxDailyWorking
+      ? "violation"
+      : dailyWorkingHours > maxDailyWorking - 2
+      ? "warning"
+      : "compliant";
+
+  const weeklyWorking = calculateWeeklyWorkingTimeCompliance(
+    fourMonthActivities,
+    selectedDate
+  );
+
+  const weeklyDriving = calculateWeeklyDrivingCompliance(
     fortnightActivities,
-    Array.from({ length: 14 }, (_, i) =>
-      dayjs(selectedDate)
-        .subtract(14 - i, "day")
-        .toDate()
-    )
+    selectedDate
   );
 
-  const weeklyWorkLevel = getComplianceLevel(
-    weeklyStats.totalWorkHours,
-    48,
-    44
-  );
-
-  const weeklyDrivingLevel = getComplianceLevel(
-    weeklyStats.totalDrivingHours,
-    56,
-    52
-  );
-
-  const fortnightDrivingLevel = getComplianceLevel(
-    fortnightStats.totalDrivingHours,
-    90,
-    85
+  const weeklyRest = calculateWeeklyRestCompliance(
+    fourMonthActivities,
+    selectedDate
   );
 
   return (
@@ -269,31 +322,136 @@ export const DriverHours = () => {
           contentContainerStyle={styles.statsScroll}
         >
           <StatsCard
-            title={t("driver.dailyHours")}
-            value={dailyStats.totalHours.toFixed(1)}
-            maxValue="13"
-            level={
-              dailyStats.totalHours > 13 ? "violation" : "compliant"
+            title={t("driver.stats.dailyDriving")}
+            value={dailyDriving.drivingHours.toFixed(1)}
+            maxValue={"9"}
+            level={dailyDriving.level}
+            subtitle={
+              dailyDriving.extendedDaysThisWeek > 0
+                ? t("driver.stats.extendedDaysUsed", {
+                    count: dailyDriving.extendedDaysThisWeek,
+                  })
+                : t("driver.stats.dailyDrivingLimit")
             }
+            info={getComplianceInfo("dailyDriving")}
           />
           <StatsCard
-            title={t("driver.weeklyHours")}
-            value={weeklyStats.totalWorkHours.toFixed(1)}
-            maxValue="48"
-            level={weeklyWorkLevel}
+            title={t("driver.stats.dailyWorking")}
+            value={dailyWorkingHours.toFixed(1)}
+            maxValue={maxDailyWorking.toString()}
+            level={
+              dailyWorkingLevel as
+                | "compliant"
+                | "warning"
+                | "violation"
+            }
+            subtitle={
+              dailyRest.restType === "reduced"
+                ? t("driver.stats.reducedRestLimit")
+                : t("driver.stats.regularRestLimit")
+            }
+            info={getComplianceInfo("dailyWorking")}
           />
           <StatsCard
-            title={t("driver.drivingHours")}
-            value={weeklyStats.totalDrivingHours.toFixed(1)}
+            title={t("driver.stats.breakCompliance")}
+            value={`${Math.floor(
+              breakCompliance.totalBreakMinutes
+            )}m`}
+            maxValue={
+              breakCompliance.requiredBreakMinutes > 0
+                ? `${breakCompliance.requiredBreakMinutes}m`
+                : undefined
+            }
+            level={breakCompliance.level}
+            subtitle={
+              breakCompliance.breaks.length > 0
+                ? t("driver.stats.breaksCount", {
+                    count: breakCompliance.breaks.length,
+                  })
+                : t("driver.stats.noBreaks")
+            }
+            info={getComplianceInfo("breakCompliance")}
+          />
+          <StatsCard
+            title={t("driver.stats.dailyRest")}
+            value={dailyRest.restHours.toFixed(1)}
+            maxValue="11"
+            level={dailyRest.level}
+            subtitle={
+              dailyRest.activityWindowHours > 0
+                ? t("driver.stats.activityWindow", {
+                    hours: dailyRest.activityWindowHours.toFixed(1),
+                  })
+                : undefined
+            }
+            info={getComplianceInfo("dailyRest")}
+          />
+          {nightWork.hasNightWork && (
+            <StatsCard
+              title={t("driver.stats.nightWork")}
+              value={nightWork.actualWorkingTime.toFixed(1)}
+              maxValue={nightWork.maxWorkingTime.toString()}
+              level={nightWork.level}
+              subtitle={t("driver.stats.nightWorkWindow")}
+              info={getComplianceInfo("nightWork")}
+            />
+          )}
+          <StatsCard
+            title={t("driver.stats.weeklyWorking")}
+            value={weeklyWorking.weeklyHours.toFixed(1)}
+            maxValue="60"
+            level={weeklyWorking.level}
+            subtitle={t("driver.stats.fourMonthAvg", {
+              hours: weeklyWorking.fourMonthAverage.toFixed(1),
+            })}
+            info={getComplianceInfo("weeklyWorking")}
+          />
+          <StatsCard
+            title={t("driver.stats.drivingHours")}
+            value={weeklyDriving.weeklyDrivingHours.toFixed(1)}
             maxValue="56"
-            level={weeklyDrivingLevel}
+            level={weeklyDriving.level}
+            subtitle={t("driver.stats.twoWeekTotal", {
+              hours: weeklyDriving.twoWeekDrivingHours.toFixed(1),
+            })}
+            info={getComplianceInfo("weeklyDriving")}
           />
           <StatsCard
-            title={t("driver.fortnightHours")}
-            value={fortnightStats.totalDrivingHours.toFixed(1)}
-            maxValue="90"
-            level={fortnightDrivingLevel}
+            title={t("driver.stats.weeklyRest")}
+            value={
+              weeklyRest.lastRestHours > 0
+                ? `${weeklyRest.lastRestHours.toFixed(0)}h`
+                : t("driver.none")
+            }
+            maxValue="45"
+            level={weeklyRest.level}
+            subtitle={
+              weeklyRest.lastRestEnd
+                ? t("driver.stats.hoursAgo", {
+                    hours:
+                      weeklyRest.hoursSinceLastWeeklyRest.toFixed(0),
+                  })
+                : t("driver.stats.noWeeklyRest")
+            }
+            info={getComplianceInfo("weeklyRest")}
           />
+          {restDeficits.length > 0 && (
+            <StatsCard
+              title={t("driver.stats.restCompensation")}
+              value={`${restDeficits.length}`}
+              level="warning"
+              subtitle={t("driver.stats.hoursOwed", {
+                hours: restDeficits
+                  .reduce(
+                    (sum, d) =>
+                      sum + (d.deficitHours - d.compensatedHours),
+                    0
+                  )
+                  .toFixed(1),
+              })}
+              info={getComplianceInfo("restCompensation")}
+            />
+          )}
         </ScrollView>
 
         <ThemedView style={{ padding: 16 }}>
@@ -304,7 +462,7 @@ export const DriverHours = () => {
               marginBottom: 16,
             }}
           >
-            Weekly Overview
+            {t("driver.weeklyOverview")}
           </ThemedText>
           <View style={{ gap: 20 }}>
             <ActivityDistributionChart dailyStats={dailyStats} />
@@ -351,6 +509,6 @@ const styles = StyleSheet.create({
   statsScroll: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    gap: 8,
+    gap: 12,
   },
 });

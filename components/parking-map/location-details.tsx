@@ -1,10 +1,15 @@
-import { fetchLocationDetails, LocationDetails } from "@/api/parking";
+import {
+  fetchLocationDetails,
+  getFacilityType,
+  LocationDetails,
+} from "@/api/parking";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import CountryFlag from "react-native-country-flag";
 
@@ -17,13 +22,14 @@ export const LocationDetailsComponent = ({
   lat,
   lng,
 }: LocationDetailsComponentProps) => {
+  const { t, i18n } = useTranslation();
   const colorScheme = useColorScheme() ?? "light";
   const themeColors = Colors[colorScheme as "light" | "dark"];
 
   const { data: locationDetails, isFetching } =
     useQuery<LocationDetails | null>({
-      queryKey: ["locationDetails", lat, lng],
-      queryFn: () => fetchLocationDetails(lat, lng),
+      queryKey: ["locationDetails", lat, lng, i18n.language],
+      queryFn: () => fetchLocationDetails(lat, lng, i18n.language),
     });
 
   if (isFetching) {
@@ -45,7 +51,7 @@ export const LocationDetailsComponent = ({
           darkColor={Colors.dark.text}
           style={styles.errorText}
         >
-          No location details available
+          {t("parking.noLocationDetails")}
         </ThemedText>
       </ThemedView>
     );
@@ -53,6 +59,11 @@ export const LocationDetailsComponent = ({
 
   const address = locationDetails.address;
   const city = address?.city || address?.town || address?.village;
+  const facilityType = getFacilityType(
+    locationDetails.category,
+    locationDetails.type,
+    locationDetails.extratags
+  );
 
   return (
     <ThemedView style={styles.container}>
@@ -64,7 +75,7 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            Location:
+            {t("parking.location")}:
           </ThemedText>
           <ThemedText
             lightColor={Colors.light.text}
@@ -83,7 +94,7 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            City:
+            {t("parking.city")}:
           </ThemedText>
           <ThemedText
             lightColor={Colors.light.text}
@@ -102,7 +113,7 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            Suburb:
+            {t("parking.suburb")}:
           </ThemedText>
           <ThemedText
             lightColor={Colors.light.text}
@@ -121,7 +132,7 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            County:
+            {t("parking.county")}:
           </ThemedText>
           <ThemedText
             lightColor={Colors.light.text}
@@ -140,7 +151,7 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            State:
+            {t("parking.state")}:
           </ThemedText>
           <ThemedText
             lightColor={Colors.light.text}
@@ -159,7 +170,7 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            Country:
+            {t("parking.country")}:
           </ThemedText>
           <ThemedView style={styles.countryValue}>
             {address.country_code && (
@@ -187,7 +198,7 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            Postcode:
+            {t("parking.postcode")}:
           </ThemedText>
           <ThemedText
             lightColor={Colors.light.text}
@@ -206,7 +217,7 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            Category:
+            {t("parking.category")}:
           </ThemedText>
           <ThemedText
             lightColor={Colors.light.text}
@@ -225,14 +236,15 @@ export const LocationDetailsComponent = ({
             type="defaultSemiBold"
             style={styles.label}
           >
-            Type:
+            {t("parking.type")}:
           </ThemedText>
           <ThemedText
             lightColor={Colors.light.text}
             darkColor={Colors.dark.text}
             style={styles.value}
           >
-            {locationDetails.type}
+            {facilityType.icon}{" "}
+            {t(`parking.facilityTypes.${facilityType.type}`)}
           </ThemedText>
         </ThemedView>
       )}

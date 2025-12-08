@@ -2,8 +2,8 @@ import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets, ExportConfigProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import dayjs from "dayjs";
-import isoWeek from "dayjs/plugin/isoWeek";
+import { useFormatDate } from "@/hooks/useFormat";
+import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -19,8 +19,6 @@ import ActionSheet, {
 } from "react-native-actions-sheet";
 import { showDatePicker } from "./date-picker-sheet";
 
-dayjs.extend(isoWeek);
-
 export const showExportConfig = (payload: ExportConfigProps) => {
   SheetManager.show(ESheets.ExportConfig, {
     payload,
@@ -28,24 +26,32 @@ export const showExportConfig = (payload: ExportConfigProps) => {
 };
 
 type ExportType = "csv" | "xls";
-type PeriodType = "selectedWeek" | "currentWeek" | "currentMonth" | "custom";
+type PeriodType =
+  | "selectedWeek"
+  | "currentWeek"
+  | "currentMonth"
+  | "custom";
 
 const ExportConfigSheet = () => {
   const payload = useSheetPayload("ExportConfig") as
     | ExportConfigProps
     | undefined;
-  const { t } = useTranslation();
-  const { content1, content2, primary, text } = useThemedColors(
+  const { t, i18n } = useTranslation();
+  const { formatDate } = useFormatDate();
+  const { content1, content2, primary } = useThemedColors(
     "content1",
     "content2",
-    "primary",
-    "text"
+    "primary"
   );
 
-  const { onExport, selectedDate } = payload || ({} as ExportConfigProps);
+  configureDayjsLocale(i18n.language);
+
+  const { onExport, selectedDate } =
+    payload || ({} as ExportConfigProps);
 
   const [exportType, setExportType] = useState<ExportType>("csv");
-  const [periodType, setPeriodType] = useState<PeriodType>("selectedWeek");
+  const [periodType, setPeriodType] =
+    useState<PeriodType>("selectedWeek");
   const [customStartDate, setCustomStartDate] = useState<string>("");
   const [customEndDate, setCustomEndDate] = useState<string>("");
 
@@ -73,14 +79,20 @@ const ExportConfigSheet = () => {
       endDate = current.endOf("month").toDate();
     } else {
       if (!customStartDate || !customEndDate) {
-        Alert.alert("Error", "Please select both start and end dates");
+        Alert.alert(
+          t("common.error"),
+          t("driver.export.selectBothDates")
+        );
         return;
       }
       startDate = dayjs(customStartDate).startOf("day").toDate();
       endDate = dayjs(customEndDate).endOf("day").toDate();
 
       if (startDate > endDate) {
-        Alert.alert("Error", "Start date must be before end date");
+        Alert.alert(
+          t("common.error"),
+          t("driver.export.startBeforeEnd")
+        );
         return;
       }
     }
@@ -119,12 +131,19 @@ const ExportConfigSheet = () => {
       ]}
     >
       <ThemedView
-        style={[styles.content, { backgroundColor: content1.DEFAULT }]}
+        style={[
+          styles.content,
+          { backgroundColor: content1.DEFAULT },
+        ]}
       >
-        <ThemedText style={styles.title}>Export Configuration</ThemedText>
+        <ThemedText style={styles.title}>
+          {t("driver.export.title")}
+        </ThemedText>
 
         <View style={styles.section}>
-          <ThemedText style={styles.sectionLabel}>Export Type</ThemedText>
+          <ThemedText style={styles.sectionLabel}>
+            {t("driver.export.exportType")}
+          </ThemedText>
           <View style={styles.typeButtons}>
             <TouchableOpacity
               onPress={() => setExportType("csv")}
@@ -141,7 +160,9 @@ const ExportConfigSheet = () => {
               <ThemedText
                 style={[
                   styles.typeButtonText,
-                  exportType === "csv" && { color: primary.foreground },
+                  exportType === "csv" && {
+                    color: primary.foreground,
+                  },
                 ]}
               >
                 CSV
@@ -162,7 +183,9 @@ const ExportConfigSheet = () => {
               <ThemedText
                 style={[
                   styles.typeButtonText,
-                  exportType === "xls" && { color: primary.foreground },
+                  exportType === "xls" && {
+                    color: primary.foreground,
+                  },
                 ]}
               >
                 XLS
@@ -172,7 +195,9 @@ const ExportConfigSheet = () => {
         </View>
 
         <View style={styles.section}>
-          <ThemedText style={styles.sectionLabel}>Period</ThemedText>
+          <ThemedText style={styles.sectionLabel}>
+            {t("driver.export.period")}
+          </ThemedText>
           <View style={styles.periodButtons}>
             <TouchableOpacity
               onPress={() => setPeriodType("selectedWeek")}
@@ -194,7 +219,7 @@ const ExportConfigSheet = () => {
                   },
                 ]}
               >
-                Selected Week
+                {t("driver.export.selectedWeek")}
               </ThemedText>
             </TouchableOpacity>
             <TouchableOpacity
@@ -217,7 +242,7 @@ const ExportConfigSheet = () => {
                   },
                 ]}
               >
-                Current Week
+                {t("driver.export.currentWeek")}
               </ThemedText>
             </TouchableOpacity>
             <TouchableOpacity
@@ -240,7 +265,7 @@ const ExportConfigSheet = () => {
                   },
                 ]}
               >
-                Current Month
+                {t("driver.export.currentMonth")}
               </ThemedText>
             </TouchableOpacity>
             <TouchableOpacity
@@ -258,10 +283,12 @@ const ExportConfigSheet = () => {
               <ThemedText
                 style={[
                   styles.periodButtonText,
-                  periodType === "custom" && { color: primary.foreground },
+                  periodType === "custom" && {
+                    color: primary.foreground,
+                  },
                 ]}
               >
-                Custom Period
+                {t("driver.export.customPeriod")}
               </ThemedText>
             </TouchableOpacity>
           </View>
@@ -270,7 +297,7 @@ const ExportConfigSheet = () => {
         {periodType === "custom" && (
           <View style={styles.section}>
             <ThemedText style={styles.sectionLabel}>
-              Custom Period
+              {t("driver.export.customRange")}
             </ThemedText>
             <View style={styles.dateInputs}>
               <TouchableOpacity
@@ -281,12 +308,16 @@ const ExportConfigSheet = () => {
                 ]}
               >
                 <ThemedText style={styles.dateInputLabel}>
-                  Start Date
+                  {t("driver.export.startDate")}
                 </ThemedText>
                 <ThemedText style={styles.dateInputValue}>
                   {customStartDate
-                    ? dayjs(customStartDate).format("MMM DD, YYYY")
-                    : "Select"}
+                    ? formatDate(customStartDate, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })
+                    : t("common.select")}
                 </ThemedText>
               </TouchableOpacity>
               <TouchableOpacity
@@ -297,12 +328,16 @@ const ExportConfigSheet = () => {
                 ]}
               >
                 <ThemedText style={styles.dateInputLabel}>
-                  End Date
+                  {t("driver.export.endDate")}
                 </ThemedText>
                 <ThemedText style={styles.dateInputValue}>
                   {customEndDate
-                    ? dayjs(customEndDate).format("MMM DD, YYYY")
-                    : "Select"}
+                    ? formatDate(customEndDate, {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })
+                    : t("common.select")}
                 </ThemedText>
               </TouchableOpacity>
             </View>
@@ -312,19 +347,30 @@ const ExportConfigSheet = () => {
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
             onPress={onCloseSheet}
-            style={[styles.button, { backgroundColor: content2.DEFAULT }]}
+            style={[
+              styles.button,
+              { backgroundColor: content2.DEFAULT },
+            ]}
           >
-            <ThemedText style={styles.buttonText}>Cancel</ThemedText>
+            <ThemedText style={styles.buttonText}>
+              {t("common.cancel")}
+            </ThemedText>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={handleExport}
-            style={[styles.button, { backgroundColor: primary.DEFAULT }]}
+            style={[
+              styles.button,
+              { backgroundColor: primary.DEFAULT },
+            ]}
           >
             <ThemedText
-              style={[styles.buttonText, { color: primary.foreground }]}
+              style={[
+                styles.buttonText,
+                { color: primary.foreground },
+              ]}
             >
-              Export
+              {t("driver.export.export")}
             </ThemedText>
           </TouchableOpacity>
         </View>
@@ -415,4 +461,3 @@ const styles = StyleSheet.create({
 });
 
 export default ExportConfigSheet;
-

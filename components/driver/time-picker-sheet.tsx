@@ -83,7 +83,7 @@ const TimePickerSheet = () => {
         ]}
       >
         <ThemedText style={styles.title}>
-          {t("driver.selectTime", "Select Time")}
+          {t("driver.selectTime")}
         </ThemedText>
 
         <View style={styles.pickerWrapper}>
@@ -118,7 +118,7 @@ const TimePickerSheet = () => {
             ]}
           >
             <ThemedText style={styles.buttonText}>
-              {t("driver.cancel")}
+              {t("common.cancel")}
             </ThemedText>
           </TouchableOpacity>
 
@@ -135,7 +135,7 @@ const TimePickerSheet = () => {
                 { color: primary.foreground },
               ]}
             >
-              {t("driver.confirm", "Confirm")}
+              {t("common.confirm")}
             </ThemedText>
           </TouchableOpacity>
         </View>

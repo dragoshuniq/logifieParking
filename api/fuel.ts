@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs from "@/utils/dayjs-config";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
@@ -55,9 +55,23 @@ export const getStaleTimeForFuelData = (
 
   if (lastDataDate) {
     const dataDate = dayjs(lastDataDate);
-    const daysSinceUpdate = now.diff(dataDate, "day");
 
-    if (daysSinceUpdate < 7) {
+    const mostRecentThursday = now
+      .day(4)
+      .hour(12)
+      .minute(0)
+      .second(0)
+      .millisecond(0);
+
+    const adjustedMostRecentThursday = mostRecentThursday.isAfter(now)
+      ? mostRecentThursday.subtract(1, "week")
+      : mostRecentThursday;
+
+    const isDataFromMostRecentThursday =
+      dataDate.isSame(adjustedMostRecentThursday, "day") ||
+      dataDate.isAfter(adjustedMostRecentThursday);
+
+    if (isDataFromMostRecentThursday) {
       const nextThursday = now
         .day(4)
         .hour(12)

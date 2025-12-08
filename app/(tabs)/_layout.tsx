@@ -1,7 +1,12 @@
 import { Tabs } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { CustomDrawerHeader } from "@/components/drawer/custom-drawer-header";
+import {
+  driverDisclaimer,
+  fuelPricesDisclaimer,
+} from "@/components/drawer/disclaimers";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -9,6 +14,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/build/MaterialCommunityIcons";
 
 export default function TabLayout() {
+  const { t } = useTranslation();
   const colorScheme = useColorScheme();
 
   return (
@@ -22,8 +28,13 @@ export default function TabLayout() {
       <Tabs.Screen
         name="driver"
         options={{
-          title: "Driver",
-          header: () => <CustomDrawerHeader title="drawer.driver" />,
+          title: t("tabs.driver"),
+          header: () => (
+            <CustomDrawerHeader
+              title="drawer.driver"
+              disclaimer={driverDisclaimer}
+            />
+          ),
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               size={28}
@@ -36,7 +47,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Map",
+          title: t("tabs.map"),
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <MaterialIcons size={28} name="map" color={color} />
@@ -46,9 +57,12 @@ export default function TabLayout() {
       <Tabs.Screen
         name="gas"
         options={{
-          title: "Gas",
+          title: t("tabs.gas"),
           header: () => (
-            <CustomDrawerHeader title="drawer.fuelPrices" />
+            <CustomDrawerHeader
+              title="drawer.fuelPrices"
+              disclaimer={fuelPricesDisclaimer}
+            />
           ),
           tabBarIcon: ({ color }) => (
             <FontAwesome6 size={28} name="gas-pump" color={color} />

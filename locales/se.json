@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Välj språk",
+    "cancel": "Avbryt",
+    "confirm": "Bekräfta",
+    "save": "Spara",
+    "delete": "Ta bort",
+    "apply": "Verkställ",
+    "error": "Fel",
+    "select": "Välj",
+    "total": "Totalt",
+    "noData": "Inga data",
+    "information": "Information",
+    "noInformation": "Ingen information tillgänglig",
+    "version": "Version {{version}}",
+    "couldNotOpen": "Kunde inte öppna {{name}}",
+    "ok": "OK",
+    "violation": "ÖVERTRÄDELSE",
+    "yes": "JA",
+    "no": "NEJ"
+  },
+  "format": {
+    "hourShort": "h",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Välj språk"
+  },
+  "drawer": {
+    "home": "Hem",
+    "contact": "Kontakta oss",
+    "getQuote": "Begär offert",
+    "termsConditions": "Villkor",
+    "privacyPolicy": "Integritetspolicy",
+    "driver": "Förare",
+    "fuelPrices": "Bränslepriser"
+  },
+  "driver": {
+    "title": "Registrering av arbetstid",
+    "none": "Ingen",
+    "noActivities": "Inga aktiviteter för denna dag",
+    "weeklyOverview": "Veckoöversikt",
+    "selectTime": "Välj tid",
+    "activityDistribution": "Aktivitetsfördelning",
+    "dailyWorkHours": "Dagliga arbetstimmar",
+    "activityTypes": {
+      "driving": "Körning",
+      "otherWork": "Annat arbete",
+      "break": "Paus",
+      "rest": "Vila",
+      "availability": "Tillgänglighet"
+    },
+    "form": {
+      "addActivity": "Lägg till aktivitet",
+      "editActivity": "Redigera aktivitet",
+      "activityType": "Aktivitetstyp",
+      "timeEntry": "Tidsregistrering",
+      "manualEntry": "Manuell inmatning",
+      "startTime": "Starttid",
+      "endTime": "Sluttid",
+      "duration": "Varaktighet (timmar)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validering",
+      "startTimeRequired": "Starttid krävs",
+      "durationGreaterThanZero": "Varaktigheten måste vara större än 0",
+      "bothTimesRequired": "Start- och sluttid krävs",
+      "endTimeAfterStart": "Sluttid måste vara efter starttid",
+      "selectStartTimeFirst": "Välj starttid först"
+    },
+    "stats": {
+      "dailyDriving": "Daglig körning",
+      "dailyWorking": "Dagligt arbete",
+      "breakCompliance": "Efterlevnad av pauser",
+      "dailyRest": "Daglig vila",
+      "nightWork": "Nattarbete",
+      "weeklyWorking": "Veckoarbete",
+      "drivingHours": "Körtimmar",
+      "weeklyRest": "Veckovila",
+      "restCompensation": "Kompensation vila",
+      "extendedDaysUsed": "{{count}}/2 utökade (10h) dagar använda",
+      "dailyDrivingLimit": "10h max 2ggr/vecka",
+      "reducedRestLimit": "15h max (vila 9h)",
+      "regularRestLimit": "15h max",
+      "breaksCount": "{{count}} pauser",
+      "noBreaks": "Inga pauser",
+      "activityWindow": "{{hours}}h fönster",
+      "nightWorkWindow": "Arbete 00:00-07:00",
+      "fourMonthAvg": "Snitt: {{hours}}h (≤48)",
+      "twoWeekTotal": "2v: {{hours}}h/90",
+      "hoursAgo": "{{hours}}h sedan",
+      "noWeeklyRest": "Ingen veckovila",
+      "hoursOwed": "{{hours}}h återstår"
+    },
+    "export": {
+      "title": "Exportinställningar",
+      "exportType": "Exporttyp",
+      "period": "Period",
+      "selectedWeek": "Vald vecka",
+      "currentWeek": "Nuvarande vecka",
+      "currentMonth": "Nuvarande månad",
+      "customPeriod": "Anpassad period",
+      "customRange": "Anpassad period",
+      "startDate": "Startdatum",
+      "endDate": "Slutdatum",
+      "export": "Exportera",
+      "selectBothDates": "Välj både start- och slutdatum",
+      "startBeforeEnd": "Startdatum måste vara före slutdatum",
+      "dialogTitle": "Exportera förartimmar",
+      "headers": {
+        "date": "Datum",
+        "startTime": "Starttid",
+        "endTime": "Sluttid",
+        "duration": "Varaktighet (timmar)",
+        "activityType": "Aktivitetstyp",
+        "dailyDriving": "Efterlevnad daglig körning",
+        "breakCompliance": "Efterlevnad pauser",
+        "dailyRest": "Efterlevnad daglig vila",
+        "nightWork": "Nattarbete",
+        "weeklyRestDeficits": "Brist på kompensation veckovila",
+        "weekStart": "Veckostart",
+        "weekEnd": "Veckoslut",
+        "deficitHours": "Bristtimmar",
+        "compensatedHours": "Kompade timmar",
+        "mustCompensateBy": "Måste kompenseras senast"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Kunde inte ta bort aktivitet",
+      "exportFailed": "Kunde inte exportera {{type}}",
+      "saveFailed": "Kunde inte spara aktivitet"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Sortera efter",
+    "noData": "Inga bränsledata",
+    "updated": "Uppdaterad: {{date}}",
+    "searchPlaceholder": "Sök länder...",
+    "petrol": "Bensin",
+    "diesel": "Diesel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Bensin: lägst till högst",
+    "petrolDesc": "Bensin: högst till lägst",
+    "dieselAsc": "Diesel: lägst till högst",
+    "dieselDesc": "Diesel: högst till lägst"
+  },
+  "parking": {
+    "noLocationDetails": "Inga platsdetaljer tillgängliga",
+    "location": "Plats",
+    "city": "Stad",
+    "suburb": "Förort",
+    "county": "County",
+    "state": "Stat",
+    "country": "Land",
+    "postcode": "Postnummer",
+    "category": "Kategori",
+    "type": "Typ",
+    "facilityTypes": {
+      "parking": "Parkering",
+      "gas_station": "Bensinstation",
+      "parking_space": "Parkeringsplats",
+      "truck_stop": "Lastbilsstopp",
+      "rest_area": "Rastplats",
+      "motorway_services": "Motorvägstjänster",
+      "car_wash": "Biltvätt",
+      "charging_station": "Laddstation",
+      "amenity": "Facilitet",
+      "highway_rest_area": "Väg-rastplats",
+      "highway_services": "Vägtjänster",
+      "highway": "Väg",
+      "fuel_shop": "Bränslebutik",
+      "shop": "Butik",
+      "location": "Plats"
+    }
+  },
+  "location": {
+    "permissionRequired": "Platsbehörighet krävs",
+    "permissionMessage": "Platsåtkomst krävs för att hitta din aktuella position. Aktivera detta i enhetens inställningar.",
+    "openSettings": "Öppna inställningar"
+  },
+  "tabs": {
+    "driver": "Förare",
+    "map": "Karta",
+    "gas": "Bränsle"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Ansvarsfriskrivning",
+      "purpose": {
+        "heading": "Syftet med appen",
+        "content": "Denna app är ett hjälpmedel för yrkesförare. Syftet är att underlätta registrering och översikt av dagliga aktiviteter och visa hur de förhåller sig till EU:s regler för kör- och arbetstid."
+      },
+      "noOfficialLogbook": {
+        "heading": "Ingen officiell loggbok eller färdskrivare",
+        "content": "Data i appen är endast informativa och ersätter INTE:\n• färdskrivaren eller dess utskrifter,\n• officiella loggböcker eller register som krävs enligt lag,\n• dokumentation som kontrollmyndigheter begär.\nFörlita dig alltid på färdskrivaren och företagets officiella register som primär källa."
+      },
+      "noLegalAdvice": {
+        "heading": "Ingen juridisk eller professionell rådgivning",
+        "content": "Efterlevnadsberäkningarna bygger på EU-regler men är förenklade och kanske inte täcker alla nationella eller företagsspecifika regler.\n\nAppen ger ingen juridisk, skattemässig, HR- eller professionell rådgivning. Du ansvarar för att kontrollera gällande lagstiftning, företagspolicy och instruktioner från arbetsgivare eller rådgivare."
+      },
+      "dataStorage": {
+        "heading": "Datarlagring och integritet",
+        "content": "Din aktivitets­historik lagras endast lokalt på enheten i appens cache. Vi lagrar inte dina data i en extern databas eller central server.\n\nEftersom data ligger i cache:\n• kan de raderas när appdata rensas, vid ominstallation eller byte av enhet,\n• kan vi inte återställa förlorad data eller ge säkerhetskopior.\nBehöver du långsiktiga register, exportera och lagra kopior på säker plats."
+      },
+      "userResponsibility": {
+        "heading": "Användarens ansvar",
+        "content": "Du ansvarar alltid för:\n• hur du planerar arbete och vila,\n• hur du tolkar informationen i appen,\n• att följa alla tillämpliga lagar och företagsregler.\n\nSe appen som ett stödverktyg, inte en beslutsfattare. Vid tvekan, följ färdskrivaren, företagets instruktioner och officiell juridisk vägledning."
+      }
+    },
+    "parking": {
+      "title": "Lastbilsparkering - Ansvar",
+      "sourceInfo": {
+        "heading": "Informationskälla",
+        "content": "Platser, faciliteter och detaljer i appen kommer från offentliga och tredjepartskällor (t.ex. öppna data, offentliga webbplatser, användarbidrag eller externa tjänster).\n\nVi driver inte dessa parkeringar och kontrollerar inte de publicerade uppgifterna."
+      },
+      "accuracy": {
+        "heading": "Noggrannhet och uppdateringar",
+        "content": "Vi försöker visa användbar och uppdaterad information men kan inte garantera att den alltid är fullständig, korrekt eller aktuell.\n\nExempel på saker som kan ändras utan avisering:\n• öppettider och åtkomstregler,\n• priser, betalningsmetoder och bokningskrav,\n• tillgängliga tjänster (dusch, säkerhet, mat, bränsle m.m.),\n• antal platser eller tillfällig stängning."
+      },
+      "verifyBefore": {
+        "heading": "Verifiera alltid före resa",
+        "content": "Innan du kör till en parkering i appen, verifiera nyckeldetaljer genom att:\n• kontrollera platsen i en navigations- eller kartapp,\n• använda andra pålitliga park-/lastbilsappar,\n• besöka den officiella webbplatsen om den finns,\n• kontakta operatören eller värden direkt om kontaktuppgifter finns.\n\nLita inte enbart på informationen i appen vid planering av rutt, vila eller säkerhet."
+      },
+      "noEndorsement": {
+        "heading": "Ingen rekommendation eller garanti",
+        "content": "Att lista en parkering betyder INTE att vi rekommenderar, inspekterar eller garanterar den.\n\nVi bekräftar inte:\n• säkerhetsnivån på parkeringen,\n• tillgången på lediga platser vid varje tidpunkt,\n• att parkeringen uppfyller juridiska eller företagskrav."
+      },
+      "userResponsibility": {
+        "heading": "Användarens ansvar",
+        "content": "Du ansvarar alltid för:\n• var du väljer att stanna och vila,\n• att kontrollera att parkeringen passar ditt fordon och last,\n• att följa regler för kör-/vilotider och alla trafikregler.\n\nSe parkeringskartan som ett stöd. Dubbelkolla viktiga detaljer innan du anländer."
+      }
+    },
+    "fuel": {
+      "title": "Bränslepriser - Ansvar",
+      "sourceData": {
+        "heading": "Datakälla",
+        "content": "Bränslepriser baseras på offentlig information från EU-källor och/eller andra officiella publikationer. De visas som referens och samlas inte in direkt av oss."
+      },
+      "accuracy": {
+        "heading": "Noggrannhet och aktualitet",
+        "content": "Priser är indikativa och kan skilja sig från faktiska priser på stationer. De ändras ofta p.g.a. skatt, marknad, läge och tid på dygnet. Vi garanterar inte fullständighet, felfrihet eller aktualitet."
+      },
+      "howToUse": {
+        "heading": "Användning",
+        "content": "Använd priserna endast som grov referens. Kontrollera alltid aktuellt pris vid pumpen, på stationens webbplats eller i en annan pålitlig app innan du beslutar."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Daglig körtid",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "EU-förordning (EG) nr 561/2006 - Art. 6 (daglig körtid)."
+      },
+      "rules": {
+        "heading": "Regler",
+        "content": "• Standardgräns: max 9 timmars körning inom en daglig arbetsperiod.\n• Utökad gräns: upp till 10 timmar högst 2 dagar per vecka.\n• Körtid räknas mellan två på varandra följande dagliga eller veckovilor."
+      },
+      "example": {
+        "heading": "Exempel",
+        "content": "Om du kör 10h på måndag och 10h på onsdag måste du hålla dig vid 9h eller mindre resten av veckan."
+      }
+    },
+    "dailyWorking": {
+      "title": "Daglig arbetstid och spann",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "EU-direktiv 2002/15/EG (arbetstid för mobila arbetstagare) + Förordning (EG) nr 561/2006 (vilo­perioder)."
+      },
+      "whatCounts": {
+        "heading": "Vad räknas som arbetstid",
+        "content": "• Körning (faktisk körtid).\n• Annat arbete (lastning, lossning, admin, underhåll m.m.).\n• Arbetstid inkluderar INTE: pauser, vila eller tillgänglighet.\n• Tillgänglighet registreras separat men förlänger ändå det dagliga spannet (tid mellan vilor)."
+      },
+      "dailyLimits": {
+        "heading": "Dagliga gränser (viloreglernas effekt)",
+        "content": "• EU sätter ingen strikt daglig arbetstidsgräns, men:\n  • Veckogränser gäller: max 60h i en vecka, med 48h/vecka i snitt över upp till 4 månader.\n  • På grund av dagliga vilokrav (561/2006):\n    - Med ordinarie daglig vila 11h är max spann 13h.\n    - Med reducerad daglig vila minst 9h (max 3 ggr mellan veckovilor) kan spannet vara upp till 15h.\n  • Vid nattarbete får arbetstid under 24h inte överstiga 10h (se Nattarbete)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Efterlevnad av pauser",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "• EU-förordning (EG) nr 561/2006 - Art. 7 (körtidspauser).\n• EU-direktiv 2002/15/EG - pauser för arbetstid för mobila arbetstagare."
+      },
+      "drivingBreaks": {
+        "heading": "Körtidspauser (561/2006)",
+        "content": "• Efter max 4,5 timmars körning måste du ta minst 45 min paus.\n• Dessa 45 min kan delas i:\n  - en första paus på minst 15 min, och\n  - en andra paus på minst 30 min,\n  förutsatt att de tillsammans blir minst 45 min inom 4,5h-körningsfönstret."
+      },
+      "workingBreaks": {
+        "heading": "Arbetspauser (2002/15/EG)",
+        "content": "• Du får inte arbeta mer än 6 timmar i följd utan paus.\n• Om total daglig arbetstid är >6h och ≤9h: minst 30 min totalt.\n• Om total daglig arbetstid är >9h: minst 45 min totalt.\n• Pauser kan delas i perioder om minst 15 min.\n• Vid blandning av körning och annat arbete måste båda pausregler följas (den striktare gäller)."
+      },
+      "important": {
+        "heading": "Viktigt",
+        "content": "• Pauser avbryter arbetstid och räknas INTE som arbetstid.\n• De förlänger ändå det dagliga spannet (tid mellan första och sista aktivitet)."
+      }
+    },
+    "dailyRest": {
+      "title": "Daglig vila och aktivitetsfönster",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "EU-förordning (EG) nr 561/2006 - Art. 8 (daglig vila)."
+      },
+      "requirements": {
+        "heading": "Krav på daglig vila",
+        "content": "• Ordinarie daglig vila: minst 11 sammanhängande timmar inom 24h från slutet av senaste dagliga eller veckovila.\n• Delad ordinarie vila: 3h + 9h (första delen minst 3h, andra minst 9h).\n• Reducerad daglig vila: minst 9h men mindre än 11h.\n• Högst 3 reducerade dagliga vilor mellan två veckovilor."
+      },
+      "activityWindow": {
+        "heading": "Aktivitetsfönster (dagligt spann)",
+        "content": "• Dagligt spann = tid från första aktivitet (Körning/Annat arbete/Tillgänglighet/Paus) till sista före nästa dagliga eller veckovila.\n• Med ordinarie daglig vila (11h): max 13h spann inom 24h.\n• Med reducerad daglig vila (≥9h): max 15h spann, tillåtet högst 3 ggr mellan veckovilor.\n• Hela den dagliga vilan måste rymmas inom relevant 24h-period räknat från arbetsdagens start."
+      }
+    },
+    "nightWork": {
+      "title": "Nattarbete (EU-arbetstid)",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "EU-direktiv 2002/15/EG - nattarbete för mobila arbetstagare inom vägtransport."
+      },
+      "definition": {
+        "heading": "Definition av nattid",
+        "content": "• EU-rätten definierar “nattid” som minst 4 sammanhängande timmar mellan 00:00 och 07:00.\n• Varje medlemsstat fastställer de exakta 4 natt­ timmarna i nationell lag.\n• I appen visas detta som ett konfigurerbart 4-timmarsfönster (t.ex. 00:00-04:00 eller 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Gräns för nattarbete",
+        "content": "• Om arbete (Körning eller Annat arbete) sker inom det definierade nattfönstret räknas det som nattarbete.\n• Vid nattarbete får total arbetstid inte överstiga 10h under 24h.\n• Denna 10h-gräns gäller endast arbetstid (Körning + Annat arbete), inte pauser, vila eller tillgänglighet.\n• Medlemsstater kan lägga till ersättning eller skydd, men ingår inte här."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Veckoarbetstid",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "EU-direktiv 2002/15/EG - arbetstid för mobila vägtransportarbetare."
+      },
+      "limits": {
+        "heading": "Veckogränser",
+        "content": "• Genomsnittlig arbetstid: får inte överstiga 48 timmar per vecka, beräknat över en referensperiod (upp till 4 månader).\n• Enskild vecka: arbetstid kan nå 60 timmar, under förutsättning att snittet 48h/vecka i referensperioden inte överskrids.\n• Arbetstid = Körning + Annat arbete.\n• Pauser, vila och tillgänglighet räknas INTE som arbetstid."
+      },
+      "calculation": {
+        "heading": "Beräkningsperiod",
+        "content": "• “Vecka” i EU-regler är oftast en fast 7-dagarsperiod (561/2006: måndag 00:00 till söndag 24:00).\n• Appen kan följa en rullande 4-månadersperiod för 48h-snittet.\n• Om en vecka >60h → omedelbar överträdelse av arbetstid.\n• Om rullande snitt >48h/vecka → överträdelse av arbetstid."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Vecko- och tvåveckors körning",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "EU-förordning (EG) nr 561/2006 - Art. 6 (gränser för vecko- och tvåveckors körning)."
+      },
+      "limits": {
+        "heading": "Körgränser",
+        "content": "• Enskild vecka: max 56 timmars körning.\n• Två på varandra följande veckor: max 90 timmars körning totalt.\n• “Vecka” enligt 561/2006: måndag 00:00 till söndag 24:00."
+      },
+      "example": {
+        "heading": "Exempel",
+        "content": "Vecka 1: 48h körning → Vecka 2 max 42h (48 + 42 = 90).\nVecka 2: 42h körning → Vecka 3 max 48h (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Veckovila och 45h-paus",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "EU-förordning (EG) nr 561/2006 - Art. 8 (veckovilor, inkl. Mobilitetspaketet)."
+      },
+      "requirements": {
+        "heading": "Krav för veckovila",
+        "content": "• En ny veckovila måste BÖRJA senast 144 timmar (6 × 24h) efter SLUTET av föregående veckovila.\n• Ordinarie veckovila: minst 45 sammanhängande timmar.\n• Reducerad veckovila: minst 24 timmar men mindre än 45 timmar.\n• Under 2 på varandra följande veckor måste du ha minst 2 veckovilor och minst 1 måste vara ordinarie (≥45h)."
+      },
+      "compensation": {
+        "heading": "Kompensationsregler (översikt)",
+        "content": "• Varje reducerad veckovila skapar ett underskott: 45h minus faktisk vilotid.\n• Varje underskott måste kompenseras “en bloc” inom 3 veckor efter reduktionsveckan.\n• Kompensationen ska läggas till en annan vila på minst 9h (daglig eller veckovila)."
+      },
+      "whereRest": {
+        "heading": "Var vila kan tas",
+        "content": "• Ordinarie veckovilor (≥45h) får INTE tas i fordonet.\n• Daglig vila och reducerad veckovila får tas i fordonet om det står stilla och har lämpliga sovplatser."
+      },
+      "daysCovered": {
+        "heading": "Dagar täckta av veckovila",
+        "content": "• Dagar som helt täcks av kvalificerande veckovila (≥24h) räknas som lediga.\n• För daglig-vilokontroller anses dessa dagar automatiskt uppfylla kraven."
+      }
+    },
+    "restCompensation": {
+      "title": "Kompensation för vila",
+      "legalBasis": {
+        "heading": "Rättslig grund",
+        "content": "EU-förordning (EG) nr 561/2006 - Art. 8(6) (kompensation för reducerad veckovila)."
+      },
+      "whenRequired": {
+        "heading": "När kompensation krävs",
+        "content": "• Varje reducerad veckovila (24h till <45h) skapar ett “underskott” jämfört med 45h.\n• Underskott = 45 timmar − faktisk varaktighet av veckovilan.\n• Exempel: 30h veckovila → 15h underskott som måste kompenseras senare."
+      },
+      "rules": {
+        "heading": "Kompensationsregler",
+        "content": "• Varje underskott måste kompenseras inom 3 veckor efter reduktionsveckan.\n• Kompensation måste ske i ett sammanhängande block.\n• Den ska kopplas till en annan vila på minst 9 timmar (daglig eller veckovila).\n• Kompensation får inte delas upp på flera viloperioder."
+      },
+      "display": {
+        "heading": "Visning i appen",
+        "content": "• Visar hur många reducerade veckovilor som återstår att kompensera.\n• Visar totala återstående timmar att kompensera och sista deadline."
+      }
+    }
+  }
+}

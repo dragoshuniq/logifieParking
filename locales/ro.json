@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Selectează limba",
+    "cancel": "Anulează",
+    "confirm": "Confirmă",
+    "save": "Salvează",
+    "delete": "Șterge",
+    "apply": "Aplică",
+    "error": "Eroare",
+    "select": "Selectează",
+    "total": "Total",
+    "noData": "Nu există date",
+    "information": "Informații",
+    "noInformation": "Nu există informații disponibile",
+    "version": "Versiunea {{version}}",
+    "couldNotOpen": "Nu s-a putut deschide {{name}}",
+    "ok": "OK",
+    "violation": "ABATERE",
+    "yes": "DA",
+    "no": "NU"
+  },
+  "format": {
+    "hourShort": "h",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Selectează limba"
+  },
+  "drawer": {
+    "home": "Acasă",
+    "contact": "Contactează-ne",
+    "getQuote": "Cere ofertă",
+    "termsConditions": "Termeni și condiții",
+    "privacyPolicy": "Politica de confidențialitate",
+    "driver": "Șofer",
+    "fuelPrices": "Prețuri carburant"
+  },
+  "driver": {
+    "title": "Monitorizare ore de lucru",
+    "none": "Niciunul",
+    "noActivities": "Nicio activitate pentru această zi",
+    "weeklyOverview": "Prezentare săptămânală",
+    "selectTime": "Selectează ora",
+    "activityDistribution": "Distribuția activităților",
+    "dailyWorkHours": "Ore de lucru zilnice",
+    "activityTypes": {
+      "driving": "Conducere",
+      "otherWork": "Alte activități",
+      "break": "Pauză",
+      "rest": "Odihnă",
+      "availability": "Disponibilitate"
+    },
+    "form": {
+      "addActivity": "Adaugă activitate",
+      "editActivity": "Editează activitatea",
+      "activityType": "Tip activitate",
+      "timeEntry": "Înregistrare timp",
+      "manualEntry": "Introducere manuală",
+      "startTime": "Ora de început",
+      "endTime": "Ora de sfârșit",
+      "duration": "Durată (ore)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validare",
+      "startTimeRequired": "Ora de început este obligatorie",
+      "durationGreaterThanZero": "Durata trebuie să fie mai mare de 0",
+      "bothTimesRequired": "Sunt necesare atât ora de început, cât și cea de sfârșit",
+      "endTimeAfterStart": "Ora de sfârșit trebuie să fie după ora de început",
+      "selectStartTimeFirst": "Selectează mai întâi ora de început"
+    },
+    "stats": {
+      "dailyDriving": "Conducere zilnică",
+      "dailyWorking": "Lucru zilnic",
+      "breakCompliance": "Respectarea pauzelor",
+      "dailyRest": "Odihnă zilnică",
+      "nightWork": "Muncă de noapte",
+      "weeklyWorking": "Lucru săptămânal",
+      "drivingHours": "Ore de conducere",
+      "weeklyRest": "Odihnă săptămânală",
+      "restCompensation": "Compensare odihnă",
+      "extendedDaysUsed": "Folosite {{count}}/2 zile extinse (10h)",
+      "dailyDrivingLimit": "10h max 2x/săptămână",
+      "reducedRestLimit": "15h max (odihnă 9h)",
+      "regularRestLimit": "15h max",
+      "breaksCount": "{{count}} pauze",
+      "noBreaks": "Fără pauze",
+      "activityWindow": "Fereastră de {{hours}}h",
+      "nightWorkWindow": "Lucru 00:00-07:00",
+      "fourMonthAvg": "Medie: {{hours}}h (≤48)",
+      "twoWeekTotal": "2săpt: {{hours}}h/90",
+      "hoursAgo": "{{hours}}h în urmă",
+      "noWeeklyRest": "Fără odihnă săptămânală",
+      "hoursOwed": "{{hours}}h datorate"
+    },
+    "export": {
+      "title": "Configurare export",
+      "exportType": "Tip export",
+      "period": "Perioadă",
+      "selectedWeek": "Săptămâna selectată",
+      "currentWeek": "Săptămâna curentă",
+      "currentMonth": "Luna curentă",
+      "customPeriod": "Perioadă personalizată",
+      "customRange": "Perioadă personalizată",
+      "startDate": "Dată început",
+      "endDate": "Dată sfârșit",
+      "export": "Exportă",
+      "selectBothDates": "Selectează atât data de început, cât și pe cea de sfârșit",
+      "startBeforeEnd": "Data de început trebuie să fie înainte de data de sfârșit",
+      "dialogTitle": "Export ore șofer",
+      "headers": {
+        "date": "Dată",
+        "startTime": "Ora de început",
+        "endTime": "Ora de sfârșit",
+        "duration": "Durată (ore)",
+        "activityType": "Tip activitate",
+        "dailyDriving": "Conformitate conducere zilnică",
+        "breakCompliance": "Conformitate pauze",
+        "dailyRest": "Conformitate odihnă zilnică",
+        "nightWork": "Muncă de noapte",
+        "weeklyRestDeficits": "Deficite compensare odihnă săptămânală",
+        "weekStart": "Început săptămână",
+        "weekEnd": "Sfârșit săptămână",
+        "deficitHours": "Ore deficit",
+        "compensatedHours": "Ore compensate",
+        "mustCompensateBy": "Trebuie compensate până la"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Ștergerea activității a eșuat",
+      "exportFailed": "Exportul {{type}} a eșuat",
+      "saveFailed": "Salvarea activității a eșuat"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Sortează după",
+    "noData": "Nu există date despre carburant",
+    "updated": "Actualizat: {{date}}",
+    "searchPlaceholder": "Caută țări...",
+    "petrol": "Benzină",
+    "diesel": "Motorină"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Benzină: de la mic la mare",
+    "petrolDesc": "Benzină: de la mare la mic",
+    "dieselAsc": "Motorină: de la mic la mare",
+    "dieselDesc": "Motorină: de la mare la mic"
+  },
+  "parking": {
+    "noLocationDetails": "Nu există detalii despre locație",
+    "location": "Locație",
+    "city": "Oraș",
+    "suburb": "Cartier",
+    "county": "Județ",
+    "state": "Stat",
+    "country": "Țară",
+    "postcode": "Cod poștal",
+    "category": "Categorie",
+    "type": "Tip",
+    "facilityTypes": {
+      "parking": "Parcare",
+      "gas_station": "Stație de carburant",
+      "parking_space": "Loc de parcare",
+      "truck_stop": "Popas pentru camioane",
+      "rest_area": "Zonă de odihnă",
+      "motorway_services": "Servicii autostradă",
+      "car_wash": "Spălătorie auto",
+      "charging_station": "Stație de încărcare",
+      "amenity": "Facilitate",
+      "highway_rest_area": "Zonă de odihnă autostradă",
+      "highway_services": "Servicii autostradă",
+      "highway": "Autostradă",
+      "fuel_shop": "Magazin carburant",
+      "shop": "Magazin",
+      "location": "Locație"
+    }
+  },
+  "location": {
+    "permissionRequired": "Permisiune de localizare necesară",
+    "permissionMessage": "Accesul la locație este necesar pentru a găsi poziția curentă. Te rugăm să îl activezi în setările dispozitivului.",
+    "openSettings": "Deschide setările"
+  },
+  "tabs": {
+    "driver": "Șofer",
+    "map": "Hartă",
+    "gas": "Carburanți"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Declarație de responsabilitate",
+      "purpose": {
+        "heading": "Scopul aplicației",
+        "content": "Această aplicație este concepută ca un instrument de asistență pentru șoferii profesioniști. Scopul principal este să faciliteze înregistrarea și revizuirea activităților zilnice și să arate vizual cum se raportează la regulile UE privind conducerea și timpul de lucru."
+      },
+      "noOfficialLogbook": {
+        "heading": "Nu este jurnal oficial sau tahograf",
+        "content": "Datele afișate în aplicație sunt doar informative și NU înlocuiesc:\n• tahograful sau printurile de tahograf,\n• registrele oficiale sau alte evidențe cerute de lege,\n• documentația solicitată de autoritățile de control.\nBazează-te întotdeauna pe tahograf și pe evidențele oficiale ale companiei ca sursă principală."
+      },
+      "noLegalAdvice": {
+        "heading": "Nu oferă consultanță juridică sau profesională",
+        "content": "Calculul de conformitate din aplicație se bazează pe reglementările UE, dar reprezintă o simplificare și poate să nu acopere toate regulile naționale sau specifice companiei.\n\nAceastă aplicație nu oferă consultanță juridică, fiscală, de resurse umane sau profesională. Ești responsabil să verifici legislația curentă, politicile companiei și instrucțiunile de la angajator sau consilier."
+      },
+      "dataStorage": {
+        "heading": "Stocare date și confidențialitate",
+        "content": "Istoricul activităților tale este stocat doar local pe dispozitiv, în memoria cache a aplicației. Nu îți stocăm datele într-o bază de date externă sau pe un server central.\n\nPentru că datele sunt păstrate în cache:\n• pot fi șterse când golești datele aplicației, reinstalezi aplicația sau schimbi dispozitivul,\n• nu putem restaura datele pierdute și nu îți putem furniza copii de rezervă.\nDacă ai nevoie de evidențe pe termen lung, folosește funcția de export și păstrează copiile într-un loc sigur."
+      },
+      "userResponsibility": {
+        "heading": "Responsabilitatea utilizatorului",
+        "content": "Ești întotdeauna responsabil pentru:\n• modul în care îți planifici munca și odihna,\n• modul în care interpretezi informațiile afișate în aplicație,\n• menținerea conformității cu toate legile și regulile companiei aplicabile.\n\nTratează aplicația ca pe un instrument de sprijin, nu ca pe un factor de decizie. În caz de dubiu, urmează tahograful, instrucțiunile companiei și ghidurile legale oficiale."
+      }
+    },
+    "parking": {
+      "title": "Parcări camioane - Declarație",
+      "sourceInfo": {
+        "heading": "Sursa informațiilor",
+        "content": "Locațiile de parcare, facilitățile și detaliile afișate în aplicație provin din surse publice și terțe (de exemplu date deschise, site-uri publice, contribuții ale utilizatorilor sau servicii externe).\n\nNu operăm aceste parcări pentru camioane și nu controlăm datele pe care le publică."
+      },
+      "accuracy": {
+        "heading": "Acuratețe și actualizări",
+        "content": "Încercăm să afișăm informații utile și actualizate, dar nu putem garanta că sunt complete, corecte sau la zi în orice moment.\n\nExemple de lucruri care se pot schimba fără notificare:\n• programul și regulile de acces,\n• prețuri, metode de plată și cerințe de rezervare,\n• servicii disponibile (dușuri, securitate, mâncare, carburant etc.),\n• numărul de locuri sau dacă parcarea este temporar închisă."
+      },
+      "verifyBefore": {
+        "heading": "Verifică întotdeauna înainte să conduci",
+        "content": "Înainte să mergi către orice parcare afișată în aplicație, verifică singur detaliile esențiale prin:\n• verificarea locației într-o aplicație de navigație sau hărți,\n• folosirea altor aplicații de parcare / camioane de încredere,\n• vizitarea site-ului oficial al parcării, dacă există,\n• contactarea directă a operatorului sau gazdei atunci când există date de contact.\n\nNu te baza doar pe informațiile afișate în aplicație când îți planifici ruta, odihna sau siguranța."
+      },
+      "noEndorsement": {
+        "heading": "Fără recomandare sau garanție",
+        "content": "Listarea unei parcări în aplicație NU înseamnă că o recomandăm, inspectăm sau garantăm.\n\nNu confirmăm:\n• nivelul de siguranță sau securitate al parcării,\n• disponibilitatea locurilor libere în orice moment,\n• conformitatea parcării cu cerințele legale sau ale companiei."
+      },
+      "userResponsibility": {
+        "heading": "Responsabilitatea utilizatorului",
+        "content": "Ești întotdeauna responsabil pentru:\n• alegerea locului unde oprești și te odihnești,\n• verificarea faptului că parcarea este potrivită pentru vehiculul și marfa ta,\n• respectarea regulilor de conducere/odihnă și a tuturor semnelor și reglementărilor rutiere.\n\nTratează harta parcărilor ca pe un instrument de sprijin. Verifică de două ori detaliile importante înainte de a ajunge."
+      }
+    },
+    "fuel": {
+      "title": "Prețuri carburant - Declarație",
+      "sourceData": {
+        "heading": "Sursa datelor",
+        "content": "Prețurile carburantului se bazează pe informații publice din surse ale Uniunii Europene și/sau alte publicații oficiale. Sunt afișate doar pentru comoditate și nu sunt colectate direct de noi."
+      },
+      "accuracy": {
+        "heading": "Acuratețe și moment",
+        "content": "Prețurile sunt orientative și pot diferi de prețurile reale de la stațiile individuale. Se pot schimba frecvent din cauza taxelor, condițiilor de piață, locației și momentului zilei. Nu garantăm că prețurile din aplicație sunt complete, fără erori sau la zi."
+      },
+      "howToUse": {
+        "heading": "Cum se utilizează",
+        "content": "Folosește prețurile doar ca referință aproximativă. Verifică întotdeauna prețul curent la pompă, pe site-ul stației sau într-o altă aplicație de încredere înainte de a lua decizii."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Timp de conducere zilnic",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "Regulamentul (CE) nr. 561/2006 - art. 6 (timp de conducere zilnic)."
+      },
+      "rules": {
+        "heading": "Reguli",
+        "content": "• Limită standard: maximum 9 ore de conducere într-o perioadă zilnică de lucru.\n• Limită extinsă: până la 10 ore în cel mult 2 zile din săptămână.\n• Timpul de conducere se calculează între două perioade consecutive de odihnă zilnică sau săptămânală."
+      },
+      "example": {
+        "heading": "Exemplu",
+        "content": "Dacă conduci 10h luni și 10h miercuri, trebuie să rămâi la sau sub 9h de conducere în toate celelalte zile din aceeași săptămână."
+      }
+    },
+    "dailyWorking": {
+      "title": "Timp de lucru zilnic și întindere",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "Directiva 2002/15/CE (timpul de lucru al lucrătorilor mobili) + Regulamentul (CE) nr. 561/2006 (perioade de odihnă)."
+      },
+      "whatCounts": {
+        "heading": "Ce se consideră timp de lucru",
+        "content": "• Conducere (timp efectiv de condus).\n• Alte activități (încărcare, descărcare, administrativ, mentenanță etc.).\n• Timpul de lucru NU include: pauze, perioade de odihnă sau perioade de disponibilitate.\n• Perioadele de disponibilitate sunt urmărite separat, dar prelungesc totuși „întinderea” zilnică (timpul dintre perioadele de odihnă)."
+      },
+      "dailyLimits": {
+        "heading": "Limite zilnice (efectul regulilor de odihnă)",
+        "content": "• Regulile UE nu stabilesc un plafon strict al timpului de lucru zilnic, dar:\n  • Trebuie respectate limitele săptămânale: maximum 60h într-o singură săptămână, cu o medie de 48h/săptămână pe o perioadă de până la 4 luni.\n  • Din cauza cerințelor de odihnă zilnică conform Reg. 561/2006:\n    - Cu odihnă zilnică regulată de 11h, „întinderea” maximă între perioadele de odihnă este 13h.\n    - Cu odihnă zilnică redusă de minimum 9h (maximum 3 ori între odihne săptămânale), întinderea poate fi până la 15h.\n  • Dacă se efectuează muncă de noapte, timpul de lucru în orice perioadă de 24h nu trebuie să depășească 10h (vezi cardul Muncă de noapte)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Respectarea pauzelor",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "• Regulamentul (CE) nr. 561/2006 - art. 7 (pauze pentru timp de conducere).\n• Directiva 2002/15/CE - pauze pentru timpul de lucru al lucrătorilor mobili."
+      },
+      "drivingBreaks": {
+        "heading": "Pauze pentru timpul de conducere (Reg. 561/2006)",
+        "content": "• După maximum 4,5 ore de conducere, trebuie să iei cel puțin 45 de minute de pauză.\n• Această pauză de 45 de minute poate fi împărțită în:\n  - o primă pauză de cel puțin 15 minute, și\n  - o a doua pauză de cel puțin 30 de minute,\n  cu condiția ca ambele să fie luate astfel încât împreună să însumeze cel puțin 45 de minute în fereastra de conducere de 4,5h."
+      },
+      "workingBreaks": {
+        "heading": "Pauze pentru timpul de lucru (Dir. 2002/15/CE)",
+        "content": "• Nu trebuie să lucrezi mai mult de 6 ore consecutive fără pauză.\n• Dacă timpul total de lucru zilnic este >6h și ≤9h: cel puțin 30 de minute de pauză în total.\n• Dacă timpul total de lucru zilnic este >9h: cel puțin 45 de minute de pauză în total.\n• Aceste pauze pot fi împărțite în perioade de minimum 15 minute.\n• Când conduci și efectuezi alte activități, trebuie respectate atât regulile pentru pauze de conducere, cât și cele pentru pauze de lucru (regula mai strictă la acel moment primează)."
+      },
+      "important": {
+        "heading": "Important",
+        "content": "• Pauzele întrerup timpul de lucru și NU se consideră timp de lucru.\n• Pauzele totuși prelungesc întinderea zilnică (timpul dintre prima și ultima activitate)."
+      }
+    },
+    "dailyRest": {
+      "title": "Odihnă zilnică și fereastră de activitate",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "Regulamentul (CE) nr. 561/2006 - art. 8 (perioade de odihnă zilnică)."
+      },
+      "requirements": {
+        "heading": "Cerințe pentru odihna zilnică",
+        "content": "• Odihnă zilnică regulată: minimum 11 ore consecutive în 24 de ore de la sfârșitul ultimei odihne zilnice sau săptămânale.\n• Opțiune de odihnă regulată împărțită: 3h + 9h (prima parte cel puțin 3h, a doua parte cel puțin 9h).\n• Odihnă zilnică redusă: minimum 9 ore, dar mai puțin de 11 ore.\n• Poți lua cel mult 3 odihne zilnice reduse între două perioade de odihnă săptămânală."
+      },
+      "activityWindow": {
+        "heading": "Fereastra de activitate (întindere zilnică)",
+        "content": "• Întinderea zilnică = timpul dintre prima activitate (Conducere/Alte activități/Disponibilitate/Pauză) și ultima înainte de următoarea odihnă zilnică sau săptămânală.\n• Cu odihnă zilnică regulată (11h): maxim 13h întindere în fereastra de 24h.\n• Cu odihnă zilnică redusă (≥9h): maxim 15h întindere, permisă cel mult de 3 ori între odihne săptămânale.\n• Întreaga odihnă zilnică trebuie să se încadreze în perioada relevantă de 24h calculată de la începutul zilei de lucru."
+      }
+    },
+    "nightWork": {
+      "title": "Muncă de noapte (timp de lucru UE)",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "Directiva 2002/15/CE - muncă de noapte pentru lucrătorii mobili din transportul rutier."
+      },
+      "definition": {
+        "heading": "Definiția intervalului de noapte",
+        "content": "• Legea UE definește „timpul de noapte” ca o perioadă de cel puțin 4 ore consecutive între 00:00 și 07:00.\n• Fiecare stat membru stabilește exact cele 4 ore de noapte în legislația națională.\n• În aplicație, aceasta apare ca o fereastră configurabilă de 4 ore (de ex. 00:00-04:00 sau 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Limită pentru munca de noapte",
+        "content": "• Dacă se desfășoară orice timp de lucru (Conducere sau Alte activități) în intervalul de noapte definit, aceasta este considerată muncă de noapte.\n• Când se efectuează muncă de noapte, timpul total de lucru nu trebuie să depășească 10 ore în orice perioadă de 24h.\n• Această limită de 10h se aplică doar timpului de lucru (Conducere + Alte activități), nu pauzelor, odihnei sau perioadelor de disponibilitate.\n• Statele membre pot adăuga sporuri sau protecții suplimentare, dar acestea nu fac parte din acest profil strict UE."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Timp de lucru săptămânal",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "Directiva 2002/15/CE - timpul de lucru al lucrătorilor mobili din transportul rutier."
+      },
+      "limits": {
+        "heading": "Limite săptămânale",
+        "content": "• Medie a timpului de lucru: nu trebuie să depășească 48 de ore pe săptămână, calculată pe o perioadă de referință (până la 4 luni).\n• Săptămână individuală: timpul de lucru poate ajunge până la 60 de ore, cu condiția ca media de 48h/săptămână pe perioada de referință să nu fie depășită.\n• Timp de lucru = Conducere + Alte activități.\n• Pauzele, perioadele de odihnă și perioadele de disponibilitate NU se consideră timp de lucru."
+      },
+      "calculation": {
+        "heading": "Perioada de calcul",
+        "content": "• „Săptămâna” în regulile UE este de obicei o perioadă fixă de 7 zile (Reg. 561/2006 folosește luni 00:00 - duminică 24:00).\n• Aplicația poate monitoriza o perioadă de referință glisantă de 4 luni pentru media de 48h.\n• Dacă o singură săptămână depășește 60h → abatere imediată de timp de lucru.\n• Dacă media glisantă depășește 48h/săptămână → abatere de timp de lucru."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Conducere săptămânală și bisăptămânală",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "Regulamentul (CE) nr. 561/2006 - art. 6 (limite de conducere săptămânale și pe două săptămâni)."
+      },
+      "limits": {
+        "heading": "Limite de conducere",
+        "content": "• Săptămână unică: maximum 56 de ore de conducere.\n• Orice două săptămâni consecutive: maximum 90 de ore de conducere în total.\n• „Săptămână” conform Reg. 561/2006: luni 00:00 - duminică 24:00."
+      },
+      "example": {
+        "heading": "Exemplu",
+        "content": "Săptămâna 1: 48h conducere → Săptămâna 2 poate avea cel mult 42h (48 + 42 = 90).\nSăptămâna 2: 42h conducere → Săptămâna 3 poate avea cel mult 48h (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Odihnă săptămânală și pauza de 45h",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "Regulamentul (CE) nr. 561/2006 - art. 8 (perioade de odihnă săptămânală, inclusiv modificările din Pachetul Mobilitate)."
+      },
+      "requirements": {
+        "heading": "Cerințe pentru odihna săptămânală",
+        "content": "• O nouă perioadă de odihnă săptămânală trebuie să ÎNCEAPĂ cel târziu la 144 de ore (6 × 24h) de la SFÂRȘITUL ultimei odihne săptămânale.\n• Odihnă săptămânală regulată: cel puțin 45 de ore consecutive.\n• Odihnă săptămânală redusă: cel puțin 24 de ore, dar mai puțin de 45 de ore.\n• În orice două săptămâni consecutive, trebuie să ai cel puțin 2 perioade de odihnă săptămânală și cel puțin una trebuie să fie regulată (≥45h)."
+      },
+      "compensation": {
+        "heading": "Reguli de compensare (rezumat)",
+        "content": "• Fiecare odihnă săptămânală redusă creează un deficit: 45h minus durata efectivă a odihnei.\n• Fiecare deficit trebuie compensat „în bloc” (într-un segment continuu) în termen de 3 săptămâni de la săptămâna în care s-a produs reducerea.\n• Compensarea trebuie adăugată unei alte perioade de odihnă de cel puțin 9h (odihnă zilnică sau săptămânală)."
+      },
+      "whereRest": {
+        "heading": "Unde poate fi luată odihna",
+        "content": "• Perioadele de odihnă săptămânală regulată (≥45h) NU pot fi efectuate în vehicul.\n• Odihnele zilnice și odihnele săptămânale reduse pot fi luate în vehicul dacă acesta este staționat și dotat cu locuri de dormit adecvate."
+      },
+      "daysCovered": {
+        "heading": "Zile acoperite de odihna săptămânală",
+        "content": "• Zilele acoperite integral de o odihnă săptămânală calificată (≥24h) sunt tratate ca zile libere.\n• Pentru verificările de odihnă zilnică, aceste zile sunt considerate automat conforme."
+      }
+    },
+    "restCompensation": {
+      "title": "Compensare pentru odihnă",
+      "legalBasis": {
+        "heading": "Baza legală",
+        "content": "Regulamentul (CE) nr. 561/2006 - art. 8(6) (compensarea pentru odihna săptămânală redusă)."
+      },
+      "whenRequired": {
+        "heading": "Când este necesară compensarea",
+        "content": "• Fiecare odihnă săptămânală redusă (24h până la <45h) generează un „deficit” față de 45h.\n• Deficit = 45 de ore − durata efectivă a odihnei săptămânale.\n• Exemplu: odihnă săptămânală de 30h → deficit de 15h care trebuie compensat ulterior."
+      },
+      "rules": {
+        "heading": "Reguli de compensare",
+        "content": "• Fiecare deficit trebuie compensat în termen de 3 săptămâni de la săptămâna în care s-a produs reducerea.\n• Compensarea trebuie făcută într-un singur bloc continuu (în bloc).\n• Trebuie atașată unei alte perioade de odihnă de cel puțin 9 ore (odihnă zilnică sau săptămânală).\n• Compensarea nu poate fi împărțită în mai multe perioade de odihnă."
+      },
+      "display": {
+        "heading": "Afișare în aplicație",
+        "content": "• Arată câte odihne săptămânale reduse mai necesită compensare.\n• Arată totalul orelor de compensare restante și cel mai târziu termen până la care trebuie efectuată."
+      }
+    }
+  }
+}

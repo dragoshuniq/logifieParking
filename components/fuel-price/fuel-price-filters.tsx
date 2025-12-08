@@ -3,6 +3,7 @@ import { ThemedTouchableOpacity } from "@/components/ui/themed-touchable-opacity
 import { ESheets } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import ActionSheet, {
   ActionSheetRef,
@@ -35,16 +36,17 @@ export const showFuelPriceFilters = (
 };
 
 const SORT_OPTIONS = [
-  { label: "A-Z", value: SortType.AlphaAsc },
-  { label: "Z-A", value: SortType.AlphaDesc },
-  { label: "Petrol: Low to High", value: SortType.PetrolAsc },
-  { label: "Petrol: High to Low", value: SortType.PetrolDesc },
-  { label: "Diesel: Low to High", value: SortType.DieselAsc },
-  { label: "Diesel: High to Low", value: SortType.DieselDesc },
+  { label: "sortOptions.alphaAsc", value: SortType.AlphaAsc },
+  { label: "sortOptions.alphaDesc", value: SortType.AlphaDesc },
+  { label: "sortOptions.petrolAsc", value: SortType.PetrolAsc },
+  { label: "sortOptions.petrolDesc", value: SortType.PetrolDesc },
+  { label: "sortOptions.dieselAsc", value: SortType.DieselAsc },
+  { label: "sortOptions.dieselDesc", value: SortType.DieselDesc },
 ];
 
 export const FuelPriceFilters = () => {
   const payload = useSheetPayload(ESheets.FuelPriceFilters);
+  const { t } = useTranslation();
   const { currentSort, onSortChange } = payload || {};
   const [selectedSort, setSelectedSort] = useState<SortType>(
     currentSort || SortType.None
@@ -73,12 +75,14 @@ export const FuelPriceFilters = () => {
       useBottomSafeAreaPadding
     >
       <View style={styles.content}>
-        <ThemedText style={styles.title}>Sort by</ThemedText>
+        <ThemedText style={styles.title}>
+          {t("fuelPrice.sortBy")}
+        </ThemedText>
 
         {SORT_OPTIONS.map((option, index) => (
           <SortOption
             key={option.value}
-            label={option.label}
+            label={t(option.label)}
             isSelected={selectedSort === option.value}
             onPress={() => handleSortSelect(option.value)}
             isLast={index === SORT_OPTIONS.length - 1}
@@ -97,7 +101,7 @@ export const FuelPriceFilters = () => {
             lightColor="#fff"
             darkColor="#fff"
           >
-            Apply
+            {t("common.apply")}
           </ThemedText>
         </ThemedTouchableOpacity>
       </View>

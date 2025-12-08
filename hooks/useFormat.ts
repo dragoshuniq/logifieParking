@@ -1,7 +1,5 @@
 import { TIMEZONE } from "@/constants/app.const";
-import dayjs from "dayjs";
-import "dayjs/locale/de";
-import "dayjs/locale/en";
+import dayjs, { getDayjsLocale } from "@/utils/dayjs-config";
 import duration from "dayjs/plugin/duration";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { useTranslation } from "react-i18next";
@@ -14,11 +12,13 @@ export const useFormatDate = () => {
     i18n: { language },
   } = useTranslation();
 
+  const locale = getDayjsLocale(language);
+
   const formatDate = (
     date: string | Date,
     options: Intl.DateTimeFormatOptions = {}
   ) => {
-    return new Intl.DateTimeFormat(language, {
+    return new Intl.DateTimeFormat(locale, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -35,11 +35,13 @@ export const useFormatCurrency = () => {
     i18n: { language },
   } = useTranslation();
 
+  const locale = getDayjsLocale(language);
+
   const formatCurrency = (
     amount: number,
     currency: string = "EUR"
   ) => {
-    return new Intl.NumberFormat(language, {
+    return new Intl.NumberFormat(locale, {
       style: "currency",
       currency,
     }).format(amount);
@@ -53,13 +55,15 @@ export const useFormatTime = () => {
     i18n: { language },
   } = useTranslation();
 
+  const locale = getDayjsLocale(language);
+
   const formatTime = (time: string) => {
     const [hours, minutes] = time.split(":");
     const date = new Date();
     date.setHours(parseInt(hours, 10));
     date.setMinutes(parseInt(minutes, 10));
 
-    return new Intl.DateTimeFormat(language, {
+    return new Intl.DateTimeFormat(locale, {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
@@ -72,21 +76,23 @@ export const useFormatTime = () => {
 export const useFormatDuration = () => {
   const {
     i18n: { language },
+    t,
   } = useTranslation();
 
+  const locale = getDayjsLocale(language);
+
   const formatDuration = (hours: number) => {
-    dayjs.locale(language);
+    dayjs.locale(locale);
     const dur = dayjs.duration(hours, "hours");
     const h = Math.floor(dur.asHours());
     const m = dur.minutes();
 
-    const hourLabel = language === "de" ? "Std" : "h";
-    const minuteLabel = language === "de" ? "Min" : "m";
-
     if (m === 0) {
-      return `${h}${hourLabel}`;
+      return `${h}${t("format.hourShort")}`;
     }
-    return `${h}${hourLabel} ${m}${minuteLabel}`;
+    return `${h}${t("format.hourShort")} ${m}${t(
+      "format.minuteShort"
+    )}`;
   };
 
   return { formatDuration };

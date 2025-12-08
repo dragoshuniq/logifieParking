@@ -14,7 +14,7 @@ import { CustomDrawerContent } from "@/components/drawer/custom-drawer-content";
 import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import "@/providers/i18n";
-import { ONE_WEEK, queryClient } from "@/providers/query";
+import { queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
 import { Drawer } from "expo-router/drawer";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -35,7 +35,6 @@ export default function RootLayout() {
       client={queryClient}
       persistOptions={{
         persister: asyncStoragePersister,
-        maxAge: ONE_WEEK,
       }}
     >
       <PersistGate>

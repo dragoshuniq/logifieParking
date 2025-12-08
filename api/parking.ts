@@ -96,9 +96,92 @@ export type LocationDetails = {
   };
 };
 
+export type FacilityType = {
+  type: string;
+  icon: string;
+};
+
+export const getFacilityType = (
+  category?: string,
+  type?: string,
+  extratags?: { [key: string]: string }
+): FacilityType => {
+  if (!category) return { type: "parking", icon: "🅿️" };
+  switch (category) {
+    case "amenity":
+      switch (type) {
+        case "fuel":
+          return {
+            type: "gas_station",
+            icon: "⛽",
+          };
+        case "parking":
+          return {
+            type: "parking",
+            icon: "🅿️",
+          };
+        case "parking_space":
+          return {
+            type: "parking_space",
+            icon: "🅿️",
+          };
+        case "truck_stop":
+          return {
+            type: "truck_stop",
+            icon: "🚚",
+          };
+        case "rest_area":
+          return {
+            type: "rest_area",
+            icon: "🛋️",
+          };
+        case "motorway_services":
+          return {
+            type: "motorway_services",
+            icon: "🏪",
+          };
+        case "car_wash":
+          return { type: "car_wash", icon: "🚿" };
+        case "charging_station":
+          return {
+            type: "charging_station",
+            icon: "🔋",
+          };
+        default:
+          return { type: "amenity", icon: "🏢" };
+      }
+    case "highway":
+      switch (type) {
+        case "rest_area":
+          return {
+            type: "highway_rest_area",
+            icon: "🛣️",
+          };
+        case "services":
+          return {
+            type: "highway_services",
+            icon: "🏪",
+          };
+        default:
+          return { type: "highway", icon: "🛣️" };
+      }
+    case "shop":
+      if (type === "fuel") {
+        return {
+          type: "fuel_shop",
+          icon: "🏪",
+        };
+      }
+      return { type: "shop", icon: "🛒" };
+    default:
+      return { type: "location", icon: "📍" };
+  }
+};
+
 export const fetchLocationDetails = async (
   lat: number,
-  lng: number
+  lng: number,
+  language?: string
 ): Promise<LocationDetails | null> => {
   try {
     const response = await fetch(
@@ -106,6 +189,7 @@ export const fetchLocationDetails = async (
       {
         headers: {
           "User-Agent": "Logifie-Parking-App/1.0",
+          ...(language && { "Accept-Language": language }),
         },
       }
     );

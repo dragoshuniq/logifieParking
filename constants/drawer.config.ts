@@ -36,7 +36,7 @@ export const DRAWER_LINKS: DrawerLinkConfig[] = [
   {
     id: "termsAndConditions",
     icon: "document-text-outline",
-    translationKey: "drawer.termsAndConditions",
+    translationKey: "drawer.termsConditions",
     urlKey: "TermsAndConditions",
   },
   {

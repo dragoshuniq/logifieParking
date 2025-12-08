@@ -1,0 +1,407 @@
+{
+  "common": {
+    "selectLanguage": "Seleccionar idioma",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "apply": "Aplicar",
+    "error": "Error",
+    "select": "Seleccionar",
+    "total": "Total",
+    "noData": "Sin datos",
+    "information": "Información",
+    "noInformation": "No hay información disponible",
+    "version": "Versión {{version}}",
+    "couldNotOpen": "No se pudo abrir {{name}}",
+    "ok": "OK",
+    "violation": "INFRACCIÓN",
+    "yes": "SÍ",
+    "no": "NO"
+  },
+  "format": {
+    "hourShort": "h",
+    "minuteShort": "m"
+  },
+  "language": {
+    "selectLanguage": "Seleccionar idioma"
+  },
+  "drawer": {
+    "home": "Inicio",
+    "contact": "Contáctanos",
+    "getQuote": "Solicitar presupuesto",
+    "termsConditions": "Términos y condiciones",
+    "privacyPolicy": "Política de privacidad",
+    "driver": "Conductor",
+    "fuelPrices": "Precios del combustible"
+  },
+  "driver": {
+    "title": "Registro de horas laborales",
+    "none": "Ninguna",
+    "noActivities": "No hay actividades para este día",
+    "weeklyOverview": "Resumen semanal",
+    "selectTime": "Seleccionar hora",
+    "activityDistribution": "Distribución de actividades",
+    "dailyWorkHours": "Horas de trabajo diarias",
+    "activityTypes": {
+      "driving": "Conducción",
+      "otherWork": "Otro trabajo",
+      "break": "Pausa",
+      "rest": "Descanso",
+      "availability": "Disponibilidad"
+    },
+    "form": {
+      "addActivity": "Agregar actividad",
+      "editActivity": "Editar actividad",
+      "activityType": "Tipo de actividad",
+      "timeEntry": "Registro de tiempo",
+      "manualEntry": "Entrada manual",
+      "startTime": "Hora de inicio",
+      "endTime": "Hora de fin",
+      "duration": "Duración (horas)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validación",
+      "startTimeRequired": "La hora de inicio es obligatoria",
+      "durationGreaterThanZero": "La duración debe ser mayor que 0",
+      "bothTimesRequired": "Se requieren hora de inicio y fin",
+      "endTimeAfterStart": "La hora de fin debe ser posterior a la de inicio",
+      "selectStartTimeFirst": "Selecciona primero la hora de inicio"
+    },
+    "stats": {
+      "dailyDriving": "Conducción diaria",
+      "dailyWorking": "Trabajo diario",
+      "breakCompliance": "Cumplimiento de pausas",
+      "dailyRest": "Descanso diario",
+      "nightWork": "Trabajo nocturno",
+      "weeklyWorking": "Trabajo semanal",
+      "drivingHours": "Horas de conducción",
+      "weeklyRest": "Descanso semanal",
+      "restCompensation": "Compensación de descanso",
+      "extendedDaysUsed": "Usados {{count}}/2 días extendidos (10h)",
+      "dailyDrivingLimit": "10h máx 2x/sem",
+      "reducedRestLimit": "15h máx (descanso 9h)",
+      "regularRestLimit": "15h máx",
+      "breaksCount": "{{count}} pausas",
+      "noBreaks": "Sin pausas",
+      "activityWindow": "Ventana de {{hours}}h",
+      "nightWorkWindow": "Trabajo 00:00-07:00",
+      "fourMonthAvg": "Prom.: {{hours}}h (≤48)",
+      "twoWeekTotal": "2sem: {{hours}}h/90",
+      "hoursAgo": "Hace {{hours}}h",
+      "noWeeklyRest": "Sin descanso semanal",
+      "hoursOwed": "{{hours}}h pendientes"
+    },
+    "export": {
+      "title": "Configuración de exportación",
+      "exportType": "Tipo de exportación",
+      "period": "Período",
+      "selectedWeek": "Semana seleccionada",
+      "currentWeek": "Semana actual",
+      "currentMonth": "Mes actual",
+      "customPeriod": "Período personalizado",
+      "customRange": "Período personalizado",
+      "startDate": "Fecha de inicio",
+      "endDate": "Fecha de fin",
+      "export": "Exportar",
+      "selectBothDates": "Selecciona ambas fechas",
+      "startBeforeEnd": "La fecha de inicio debe ser anterior a la de fin",
+      "dialogTitle": "Exportar horas del conductor",
+      "headers": {
+        "date": "Fecha",
+        "startTime": "Hora de inicio",
+        "endTime": "Hora de fin",
+        "duration": "Duración (horas)",
+        "activityType": "Tipo de actividad",
+        "dailyDriving": "Cumplimiento conducción diaria",
+        "breakCompliance": "Cumplimiento de pausas",
+        "dailyRest": "Cumplimiento descanso diario",
+        "nightWork": "Trabajo nocturno",
+        "weeklyRestDeficits": "Déficits de compensación de descanso semanal",
+        "weekStart": "Inicio de semana",
+        "weekEnd": "Fin de semana",
+        "deficitHours": "Horas de déficit",
+        "compensatedHours": "Horas compensadas",
+        "mustCompensateBy": "Debe compensarse antes de"
+      }
+    },
+    "errors": {
+      "deleteFailed": "No se pudo eliminar la actividad",
+      "exportFailed": "No se pudo exportar {{type}}",
+      "saveFailed": "No se pudo guardar la actividad"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Ordenar por",
+    "noData": "No hay datos de combustible",
+    "updated": "Actualizado: {{date}}",
+    "searchPlaceholder": "Buscar países...",
+    "petrol": "Gasolina",
+    "diesel": "Diésel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Gasolina: de menor a mayor",
+    "petrolDesc": "Gasolina: de mayor a menor",
+    "dieselAsc": "Diésel: de menor a mayor",
+    "dieselDesc": "Diésel: de mayor a menor"
+  },
+  "parking": {
+    "noLocationDetails": "No hay detalles de ubicación",
+    "location": "Ubicación",
+    "city": "Ciudad",
+    "suburb": "Suburbio",
+    "county": "Condado",
+    "state": "Estado",
+    "country": "País",
+    "postcode": "Código postal",
+    "category": "Categoría",
+    "type": "Tipo",
+    "facilityTypes": {
+      "parking": "Aparcamiento",
+      "gas_station": "Gasolinera",
+      "parking_space": "Plaza de aparcamiento",
+      "truck_stop": "Área para camiones",
+      "rest_area": "Área de descanso",
+      "motorway_services": "Servicios de autopista",
+      "car_wash": "Lavado de coches",
+      "charging_station": "Estación de carga",
+      "amenity": "Servicio",
+      "highway_rest_area": "Área de descanso en autopista",
+      "highway_services": "Servicios en autopista",
+      "highway": "Autopista",
+      "fuel_shop": "Tienda de combustible",
+      "shop": "Tienda",
+      "location": "Ubicación"
+    }
+  },
+  "location": {
+    "permissionRequired": "Se requiere permiso de ubicación",
+    "permissionMessage": "El acceso a la ubicación es necesario para encontrar tu posición actual. Actívalo en los ajustes del dispositivo.",
+    "openSettings": "Abrir ajustes"
+  },
+  "tabs": {
+    "driver": "Conductor",
+    "map": "Mapa",
+    "gas": "Combustible"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Aviso legal",
+      "purpose": {
+        "heading": "Propósito de la app",
+        "content": "Esta app es una herramienta de apoyo para conductores profesionales. Su objetivo es facilitar el registro y revisión de tus actividades diarias y mostrar cómo se relacionan con las normas de la UE sobre conducción y tiempo de trabajo."
+      },
+      "noOfficialLogbook": {
+        "heading": "No es un cuaderno oficial ni un tacógrafo",
+        "content": "Los datos mostrados son solo informativos y NO sustituyen:\n• el tacógrafo ni sus impresiones,\n• los libros o registros oficiales exigidos por ley,\n• la documentación solicitada por autoridades de control.\nConfía siempre en tu tacógrafo y registros oficiales de la empresa como fuente principal."
+      },
+      "noLegalAdvice": {
+        "heading": "Sin asesoramiento legal o profesional",
+        "content": "Los cálculos de cumplimiento se basan en la normativa de la UE pero son una simplificación y pueden no cubrir todas las reglas nacionales o de empresa.\n\nEsta app no ofrece asesoramiento legal, fiscal, laboral ni profesional. Eres responsable de verificar la legislación vigente, las políticas de la empresa y las instrucciones de tu empleador o asesor."
+      },
+      "dataStorage": {
+        "heading": "Almacenamiento de datos y privacidad",
+        "content": "Tu historial de actividades se guarda solo localmente en la caché de la app en tu dispositivo. No almacenamos tus datos en una base externa ni en un servidor central.\n\nAl estar en caché:\n• pueden borrarse al limpiar datos, reinstalar la app o cambiar de dispositivo,\n• no podemos restaurar datos perdidos ni proporcionar copias de seguridad.\nSi necesitas registros a largo plazo, usa la exportación y guarda copias en un lugar seguro."
+      },
+      "userResponsibility": {
+        "heading": "Responsabilidad del usuario",
+        "content": "Siempre eres responsable de:\n• cómo planificas tu trabajo y descanso,\n• cómo interpretas la información mostrada en la app,\n• cumplir todas las leyes y normas de la empresa aplicables.\n\nTrata la app como una herramienta de apoyo, no como un decisor. En caso de duda, sigue el tacógrafo, las directrices de la empresa y la orientación legal oficial."
+      }
+    },
+    "parking": {
+      "title": "Aparcamientos de camiones - Aviso",
+      "sourceInfo": {
+        "heading": "Fuente de información",
+        "content": "Las ubicaciones, servicios y detalles de aparcamiento provienen de fuentes públicas y de terceros (datos abiertos, sitios públicos, aportes de usuarios o servicios externos).\n\nNo operamos estos aparcamientos ni controlamos los datos publicados."
+      },
+      "accuracy": {
+        "heading": "Exactitud y actualizaciones",
+        "content": "Intentamos mostrar información útil y actualizada, pero no garantizamos que sea completa, correcta o vigente en todo momento.\n\nEjemplos de cambios sin aviso:\n• horarios y normas de acceso,\n• precios, métodos de pago y requisitos de reserva,\n• servicios disponibles (duchas, seguridad, comida, combustible, etc.),\n• número de plazas o cierres temporales."
+      },
+      "verifyBefore": {
+        "heading": "Verifica siempre antes de ir",
+        "content": "Antes de desplazarte a cualquier aparcamiento mostrado, verifica tú mismo los datos clave:\n• comprueba la ubicación en una app de navegación o mapas,\n• usa otras apps fiables de aparcamiento/camiones,\n• visita la web oficial del aparcamiento, si existe,\n• contacta directamente con el operador o anfitrión cuando haya datos de contacto.\n\nNo dependas solo de la información de esta app para planificar ruta, descanso o seguridad."
+      },
+      "noEndorsement": {
+        "heading": "Sin recomendación ni garantía",
+        "content": "Listar un aparcamiento en la app NO implica que lo recomendemos, inspeccionemos o garanticemos.\n\nNo confirmamos:\n• nivel de seguridad del aparcamiento,\n• disponibilidad de plazas libres en cualquier momento,\n• cumplimiento del aparcamiento con requisitos legales o de empresa."
+      },
+      "userResponsibility": {
+        "heading": "Responsabilidad del usuario",
+        "content": "Siempre eres responsable de:\n• elegir dónde parar y descansar,\n• comprobar que el aparcamiento es adecuado para tu vehículo y carga,\n• cumplir las reglas de conducción/descanso y todas las señales y normativas de tráfico.\n\nUsa el mapa de aparcamientos como apoyo. Verifica dos veces la información importante antes de llegar."
+      }
+    },
+    "fuel": {
+      "title": "Precios del combustible - Aviso",
+      "sourceData": {
+        "heading": "Fuente de datos",
+        "content": "Los precios del combustible se basan en información pública de fuentes de la Unión Europea y/u otras publicaciones oficiales. Se muestran como referencia y no son recopilados directamente por nosotros."
+      },
+      "accuracy": {
+        "heading": "Exactitud y vigencia",
+        "content": "Los precios son orientativos y pueden diferir de los reales en cada estación. Cambian con frecuencia por impuestos, mercado, ubicación y hora. No garantizamos que sean completos, sin errores o actualizados."
+      },
+      "howToUse": {
+        "heading": "Cómo usar",
+        "content": "Usa estos precios solo como referencia aproximada. Comprueba siempre el precio actual en la bomba, en la web de la estación o en otra app fiable antes de decidir."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Tiempo de conducción diario",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "Reglamento (CE) nº 561/2006 - Art. 6 (tiempo de conducción diario)."
+      },
+      "rules": {
+        "heading": "Reglas",
+        "content": "• Límite estándar: máx 9 horas de conducción en un período laboral diario.\n• Límite ampliado: hasta 10 horas en como máximo 2 días de la semana.\n• El tiempo de conducción se cuenta entre dos descansos diarios o semanales consecutivos."
+      },
+      "example": {
+        "heading": "Ejemplo",
+        "content": "Si conduces 10h el lunes y 10h el miércoles, el resto de días de la misma semana debes mantenerte en 9h o menos."
+      }
+    },
+    "dailyWorking": {
+      "title": "Tiempo de trabajo diario y amplitud",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "Directiva 2002/15/CE (tiempo de trabajo de los trabajadores móviles) + Reglamento (CE) nº 561/2006 (períodos de descanso)."
+      },
+      "whatCounts": {
+        "heading": "Qué cuenta como tiempo de trabajo",
+        "content": "• Conducción (tiempo efectivo al volante).\n• Otro trabajo (carga, descarga, tareas administrativas, mantenimiento, etc.).\n• El tiempo de trabajo NO incluye: pausas, descansos ni períodos de disponibilidad.\n• Los períodos de disponibilidad se registran por separado pero amplían la “amplitud” diaria (tiempo entre descansos)."
+      },
+      "dailyLimits": {
+        "heading": "Límites diarios (efecto del descanso)",
+        "content": "• La UE no fija un tope diario estricto, pero:\n  • Se aplican límites semanales: máx 60h en una semana, con media de 48h/sem en hasta 4 meses.\n  • Por los requisitos de descanso diario (Reg. 561/2006):\n    - Con descanso diario regular de 11h, la amplitud máxima es 13h.\n    - Con descanso diario reducido de al menos 9h (máx 3 veces entre descansos semanales) la amplitud puede ser de hasta 15h.\n  • Si hay trabajo nocturno, el tiempo de trabajo en cualquier 24h no debe exceder 10h (ver tarjeta Trabajo nocturno)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Cumplimiento de pausas",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "• Reglamento (CE) nº 561/2006 - Art. 7 (pausas de conducción).\n• Directiva 2002/15/CE - pausas para trabajadores móviles."
+      },
+      "drivingBreaks": {
+        "heading": "Pausas de conducción (Reg. 561/2006)",
+        "content": "• Tras un máximo de 4,5 horas de conducción debes tomar al menos 45 minutos de pausa.\n• Estos 45 minutos pueden dividirse en:\n  - una primera pausa de al menos 15 minutos, y\n  - una segunda de al menos 30 minutos,\n  siempre que juntas sumen 45 minutos dentro de la ventana de 4,5h de conducción."
+      },
+      "workingBreaks": {
+        "heading": "Pausas de trabajo (Dir. 2002/15/CE)",
+        "content": "• No debes trabajar más de 6 horas seguidas sin pausa.\n• Si el tiempo total de trabajo diario es >6h y ≤9h: al menos 30 minutos en total.\n• Si es >9h: al menos 45 minutos en total.\n• Estas pausas pueden dividirse en períodos de al menos 15 minutos.\n• Al combinar conducción y otro trabajo, se deben cumplir ambas reglas (manda la más estricta)."
+      },
+      "important": {
+        "heading": "Importante",
+        "content": "• Las pausas interrumpen el tiempo de trabajo y NO cuentan como trabajo.\n• Aun así, amplían la amplitud diaria (tiempo entre primera y última actividad)."
+      }
+    },
+    "dailyRest": {
+      "title": "Descanso diario y ventana de actividad",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "Reglamento (CE) nº 561/2006 - Art. 8 (descanso diario)."
+      },
+      "requirements": {
+        "heading": "Requisitos de descanso diario",
+        "content": "• Descanso diario regular: al menos 11 horas consecutivas dentro de las 24h desde el fin del último descanso diario o semanal.\n• Opción de descanso regular fraccionado: 3h + 9h (primera parte al menos 3h, segunda al menos 9h).\n• Descanso diario reducido: al menos 9h pero menos de 11h.\n• Puedes tomar como máximo 3 descansos diarios reducidos entre dos descansos semanales."
+      },
+      "activityWindow": {
+        "heading": "Ventana de actividad (amplitud diaria)",
+        "content": "• Amplitud diaria = tiempo desde la primera actividad (Conducción/Otro trabajo/Disponibilidad/Pausa) hasta la última antes del siguiente descanso diario o semanal.\n• Con descanso diario regular (11h): máx 13h de amplitud en 24h.\n• Con descanso diario reducido (≥9h): máx 15h de amplitud, permitido como máximo 3 veces entre descansos semanales.\n• Todo el descanso diario debe caber en el período de 24h contado desde el inicio de la jornada."
+      }
+    },
+    "nightWork": {
+      "title": "Trabajo nocturno (tiempo de trabajo UE)",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "Directiva 2002/15/CE - trabajo nocturno para trabajadores móviles del transporte por carretera."
+      },
+      "definition": {
+        "heading": "Definición de tiempo nocturno",
+        "content": "• La legislación de la UE define la «noche» como un período de al menos 4 horas consecutivas entre las 00:00 y las 07:00.\n• Cada Estado miembro fija exactamente esas 4h en su legislación nacional.\n• En la app aparece como ventana configurable de 4h (p. ej., 00:00-04:00 o 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Límite de trabajo nocturno",
+        "content": "• Si se realiza trabajo (Conducción u Otro trabajo) en la ventana nocturna definida, se considera trabajo nocturno.\n• Con trabajo nocturno, el tiempo total de trabajo no debe superar 10h en cualquier período de 24h.\n• Este límite de 10h aplica solo al trabajo (Conducción + Otro trabajo), no a pausas, descanso o disponibilidad.\n• Los Estados pueden añadir pluses o protecciones adicionales, no incluidas aquí."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Tiempo de trabajo semanal",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "Directiva 2002/15/CE - tiempo de trabajo de trabajadores móviles del transporte por carretera."
+      },
+      "limits": {
+        "heading": "Límites semanales",
+        "content": "• Tiempo de trabajo medio: no debe superar 48 horas por semana, calculado en un período de referencia (hasta 4 meses).\n• Semana individual: puede llegar a 60h, siempre que la media de 48h/sem en el período no se exceda.\n• Tiempo de trabajo = Conducción + Otro trabajo.\n• Pausas, descansos y disponibilidad NO cuentan como trabajo."
+      },
+      "calculation": {
+        "heading": "Período de cálculo",
+        "content": "• «Semana» según la UE suele ser un período fijo de 7 días (Reg. 561/2006: lunes 00:00 a domingo 24:00).\n• La app puede vigilar un período móvil de 4 meses para la media de 48h.\n• Si una semana supera 60h → infracción inmediata de tiempo de trabajo.\n• Si la media móvil supera 48h/sem → infracción de tiempo de trabajo."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Conducción semanal y bisemanal",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "Reglamento (CE) nº 561/2006 - Art. 6 (límites de conducción semanal y de dos semanas)."
+      },
+      "limits": {
+        "heading": "Límites de conducción",
+        "content": "• Semana única: máximo 56 horas de conducción.\n• Dos semanas consecutivas: máximo 90 horas de conducción en total.\n• «Semana» según el Reg. 561/2006: lunes 00:00 a domingo 24:00."
+      },
+      "example": {
+        "heading": "Ejemplo",
+        "content": "Semana 1: 48h de conducción → Semana 2 puede tener máx 42h (48 + 42 = 90).\nSemana 2: 42h de conducción → Semana 3 puede tener máx 48h (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Descanso semanal y pausa de 45h",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "Reglamento (CE) nº 561/2006 - Art. 8 (descansos semanales, incluido el Paquete de Movilidad)."
+      },
+      "requirements": {
+        "heading": "Requisitos de descanso semanal",
+        "content": "• Un nuevo descanso semanal debe COMENZAR como máximo 144 horas (6 × 24h) después de que FINALICE el último descanso semanal.\n• Descanso semanal regular: al menos 45 horas consecutivas.\n• Descanso semanal reducido: al menos 24 horas pero menos de 45.\n• En cualquier 2 semanas consecutivas debes tener al menos 2 descansos semanales y al menos 1 debe ser regular (≥45h)."
+      },
+      "compensation": {
+        "heading": "Reglas de compensación (resumen)",
+        "content": "• Cada descanso semanal reducido genera un déficit: 45h menos la duración real.\n• Cada déficit debe compensarse «en bloque» dentro de las 3 semanas posteriores a la semana de reducción.\n• La compensación debe añadirse a otro descanso de al menos 9h (diario o semanal)."
+      },
+      "whereRest": {
+        "heading": "Dónde puede tomarse el descanso",
+        "content": "• Los descansos semanales regulares (≥45h) NO pueden tomarse en el vehículo.\n• Los descansos diarios y semanales reducidos pueden tomarse en el vehículo si está estacionado y con literas adecuadas."
+      },
+      "daysCovered": {
+        "heading": "Días cubiertos por el descanso semanal",
+        "content": "• Los días totalmente cubiertos por un descanso semanal cualificado (≥24h) se consideran fuera de servicio.\n• Para controles de descanso diario, esos días se consideran automáticamente conformes."
+      }
+    },
+    "restCompensation": {
+      "title": "Compensación de descanso",
+      "legalBasis": {
+        "heading": "Base legal",
+        "content": "Reglamento (CE) nº 561/2006 - Art. 8(6) (compensación por descanso semanal reducido)."
+      },
+      "whenRequired": {
+        "heading": "Cuándo se requiere compensar",
+        "content": "• Cada descanso semanal reducido (24h a <45h) genera un «déficit» frente a 45h.\n• Déficit = 45 horas − duración real del descanso semanal.\n• Ejemplo: descanso de 30h → déficit de 15h que debe compensarse después."
+      },
+      "rules": {
+        "heading": "Reglas de compensación",
+        "content": "• Cada déficit debe compensarse dentro de las 3 semanas posteriores a la semana de reducción.\n• La compensación debe hacerse en un solo bloque continuo.\n• Debe unirse a otro descanso de al menos 9 horas (diario o semanal).\n• No se puede dividir la compensación en varios descansos."
+      },
+      "display": {
+        "heading": "Visualización en la app",
+        "content": "• Muestra cuántos descansos semanales reducidos siguen pendientes de compensar.\n• Muestra las horas totales pendientes y la fecha límite más tardía para compensarlas."
+      }
+    }
+  }
+}

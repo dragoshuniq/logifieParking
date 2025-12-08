@@ -1,67 +1,407 @@
 {
   "common": {
+    "selectLanguage": "Select Language",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "apply": "Apply",
+    "error": "Error",
+    "select": "Select",
+    "total": "Total",
+    "noData": "No data",
+    "information": "Information",
+    "noInformation": "No information available",
+    "version": "Version {{version}}",
+    "couldNotOpen": "Could not open {{name}}",
+    "ok": "OK",
+    "violation": "VIOLATION",
+    "yes": "YES",
+    "no": "NO"
+  },
+  "format": {
+    "hourShort": "h",
+    "minuteShort": "m"
+  },
+  "language": {
     "selectLanguage": "Select Language"
   },
   "drawer": {
     "home": "Home",
     "contact": "Contact Us",
     "getQuote": "Get Quote",
-    "followUs": "Follow Us",
-    "driver": "Driver Hours",
-    "fuelPrices": "Fuel Prices",
-    "rateApp": "Rate Our App",
-    "shareApp": "Share App"
+    "termsConditions": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "driver": "Driver",
+    "fuelPrices": "Fuel Prices"
   },
   "driver": {
     "title": "Work Hours Tracking",
-    "today": "Today",
-    "week": "Week",
-    "fortnight": "Fortnight",
-    "addActivity": "Add Activity",
-    "editActivity": "Edit Activity",
-    "startTime": "Start Time",
-    "endTime": "End Time",
-    "duration": "Duration (hours)",
-    "manualEntry": "Manual Entry",
-    "timeEntry": "Time Entry",
-    "activityType": "Activity Type",
-    "driving": "Driving",
-    "work": "Other Work",
-    "break": "Break",
-    "rest": "Rest",
-    "save": "Save",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "export": "Export Data",
-    "compliance": "Compliance Status",
-    "compliant": "Compliant",
-    "warning": "Warning",
-    "violation": "Violation",
-    "dailyHours": "Daily Hours",
-    "weeklyHours": "Weekly Hours",
-    "fortnightHours": "Fortnight Hours",
-    "drivingHours": "Driving Hours",
-    "workHours": "Work Hours",
-    "breakHours": "Break Hours",
-    "restHours": "Rest Hours",
-    "hoursRemaining": "Hours Remaining",
-    "weeklyLimit": "Weekly Limit: 48h avg, 56h max driving",
-    "fortnightLimit": "Fortnight Limit: 90h driving",
+    "none": "None",
+    "noActivities": "No activities for this day",
+    "weeklyOverview": "Weekly Overview",
     "selectTime": "Select Time",
-    "confirm": "Confirm",
-    "validation": "Validation",
-    "startTimeRequired": "Start time is required",
-    "durationRequired": "Duration must be greater than 0",
-    "timesRequired": "Both start and end times are required",
-    "endTimeEarlier": "End time must be after start time",
-    "selectStartFirst": "Please select start time first",
-    "alerts": {
-      "weeklyWorkExceeded": "Weekly work hours exceeded 48h average",
-      "weeklyDrivingExceeded": "Weekly driving hours exceeded 56h",
-      "fortnightDrivingExceeded": "Fortnight driving hours exceeded 90h",
-      "dailyWorkExceeded": "Daily work hours exceeded recommended limit",
-      "missingBreaks": "Mandatory breaks missing",
-      "missingRest": "Mandatory rest period missing"
+    "activityDistribution": "Activity Distribution",
+    "dailyWorkHours": "Daily Work Hours",
+    "activityTypes": {
+      "driving": "Driving",
+      "otherWork": "Other Work",
+      "break": "Break",
+      "rest": "Rest",
+      "availability": "Availability"
+    },
+    "form": {
+      "addActivity": "Add Activity",
+      "editActivity": "Edit Activity",
+      "activityType": "Activity Type",
+      "timeEntry": "Time Entry",
+      "manualEntry": "Manual Entry",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "duration": "Duration (hours)",
+      "timePlaceholder": "HH:MM",
+      "durationPlaceholder": "0.0"
+    },
+    "validation": {
+      "title": "Validation",
+      "startTimeRequired": "Start time is required",
+      "durationGreaterThanZero": "Duration must be greater than 0",
+      "bothTimesRequired": "Both start and end times are required",
+      "endTimeAfterStart": "End time must be after start time",
+      "selectStartTimeFirst": "Please select start time first"
+    },
+    "stats": {
+      "dailyDriving": "Daily Driving",
+      "dailyWorking": "Daily Working",
+      "breakCompliance": "Break Compliance",
+      "dailyRest": "Daily Rest",
+      "nightWork": "Night Work",
+      "weeklyWorking": "Weekly Working",
+      "drivingHours": "Driving Hours",
+      "weeklyRest": "Weekly Rest",
+      "restCompensation": "Rest Compensation",
+      "extendedDaysUsed": "Used {{count}}/2 extended (10h) days",
+      "dailyDrivingLimit": "10h max 2x/week",
+      "reducedRestLimit": "15h max (9h rest)",
+      "regularRestLimit": "15h max",
+      "breaksCount": "{{count}} breaks",
+      "noBreaks": "No breaks",
+      "activityWindow": "{{hours}}h window",
+      "nightWorkWindow": "00:00-07:00 work",
+      "fourMonthAvg": "Avg: {{hours}}h (≤48)",
+      "twoWeekTotal": "2wk: {{hours}}h/90",
+      "hoursAgo": "{{hours}}h ago",
+      "noWeeklyRest": "No weekly rest",
+      "hoursOwed": "{{hours}}h owed"
+    },
+    "export": {
+      "title": "Export Configuration",
+      "exportType": "Export Type",
+      "period": "Period",
+      "selectedWeek": "Selected Week",
+      "currentWeek": "Current Week",
+      "currentMonth": "Current Month",
+      "customPeriod": "Custom Period",
+      "customRange": "Custom Period",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "export": "Export",
+      "selectBothDates": "Please select both start and end dates",
+      "startBeforeEnd": "Start date must be before end date",
+      "dialogTitle": "Export Driver Hours",
+      "headers": {
+        "date": "Date",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "duration": "Duration (hours)",
+        "activityType": "Activity Type",
+        "dailyDriving": "Daily Driving Compliance",
+        "breakCompliance": "Break Compliance",
+        "dailyRest": "Daily Rest Compliance",
+        "nightWork": "Night Work",
+        "weeklyRestDeficits": "Weekly Rest Compensation Deficits",
+        "weekStart": "Week Start",
+        "weekEnd": "Week End",
+        "deficitHours": "Deficit Hours",
+        "compensatedHours": "Compensated Hours",
+        "mustCompensateBy": "Must Compensate By"
+      }
+    },
+    "errors": {
+      "deleteFailed": "Failed to delete activity",
+      "exportFailed": "Failed to export {{type}}",
+      "saveFailed": "Failed to save activity"
+    }
+  },
+  "fuelPrice": {
+    "sortBy": "Sort by",
+    "noData": "No fuel data available",
+    "updated": "Updated: {{date}}",
+    "searchPlaceholder": "Search countries...",
+    "petrol": "Petrol",
+    "diesel": "Diesel"
+  },
+  "sortOptions": {
+    "alphaAsc": "A-Z",
+    "alphaDesc": "Z-A",
+    "petrolAsc": "Petrol: Low to High",
+    "petrolDesc": "Petrol: High to Low",
+    "dieselAsc": "Diesel: Low to High",
+    "dieselDesc": "Diesel: High to Low"
+  },
+  "parking": {
+    "noLocationDetails": "No location details available",
+    "location": "Location",
+    "city": "City",
+    "suburb": "Suburb",
+    "county": "County",
+    "state": "State",
+    "country": "Country",
+    "postcode": "Postcode",
+    "category": "Category",
+    "type": "Type",
+    "facilityTypes": {
+      "parking": "Parking",
+      "gas_station": "Gas Station",
+      "parking_space": "Parking Space",
+      "truck_stop": "Truck Stop",
+      "rest_area": "Rest Area",
+      "motorway_services": "Motorway Services",
+      "car_wash": "Car Wash",
+      "charging_station": "Charging Station",
+      "amenity": "Amenity",
+      "highway_rest_area": "Highway Rest Area",
+      "highway_services": "Highway Services",
+      "highway": "Highway",
+      "fuel_shop": "Fuel Shop",
+      "shop": "Shop",
+      "location": "Location"
+    }
+  },
+  "location": {
+    "permissionRequired": "Location Permission Required",
+    "permissionMessage": "Location access is required to find your current position. Please enable it in your device settings.",
+    "openSettings": "Open Settings"
+  },
+  "tabs": {
+    "driver": "Driver",
+    "map": "Map",
+    "gas": "Gas"
+  },
+  "disclaimers": {
+    "driver": {
+      "title": "Disclaimer",
+      "purpose": {
+        "heading": "Purpose of This App",
+        "content": "This app is designed as a helper tool for professional drivers. Its main purpose is to make it easier to record and review your daily activities and to visualise how they relate to EU driving and working-time rules."
+      },
+      "noOfficialLogbook": {
+        "heading": "No Official Logbook or Tachograph",
+        "content": "The data shown in the app is for information only and does NOT replace:\n• the tachograph or tachograph printouts,\n• official logbooks or records required by law,\n• documentation requested by control authorities.\nAlways rely on your tachograph and official company records as the primary source of truth."
+      },
+      "noLegalAdvice": {
+        "heading": "No Legal or Professional Advice",
+        "content": "The compliance calculations in this app are based on EU regulations, but they are a simplification and may not cover every national or company-specific rule.\n\nThis app does not provide legal, tax, HR, or professional advice. You are responsible for checking current legislation, company policies, and instructions from your employer or advisor."
+      },
+      "dataStorage": {
+        "heading": "Data Storage & Privacy",
+        "content": "Your activity history is stored only locally on your device in the app cache. We do not store your data in an external database or central server.\n\nBecause data is kept in cache:\n• It may be deleted when you clear app data, reinstall the app, or change device.\n• We cannot restore lost data or provide you with backups.\nIf you need long-term records, use the export function and keep copies in a safe place."
+      },
+      "userResponsibility": {
+        "heading": "User Responsibility",
+        "content": "You are always responsible for:\n• how you plan your work and rest,\n• how you interpret the information shown in the app,\n• staying compliant with all applicable laws and company rules.\n\nTreat the app as a support tool, not as a decision-maker. In case of doubt, follow your tachograph, company instructions, and official legal guidance."
+      }
+    },
+    "parking": {
+      "title": "Truck Parking - Disclaimer",
+      "sourceInfo": {
+        "heading": "Source of Information",
+        "content": "Parking locations, facilities and details shown in this app come from public and third-party sources (for example open data, public websites, user submissions or external services).\n\nWe do not operate these truck parks and we do not control the data they publish."
+      },
+      "accuracy": {
+        "heading": "Accuracy & Updates",
+        "content": "We try to display useful and up-to-date information, but we cannot guarantee that it is complete, correct or current at all times.\n\nExamples of things that may change without notice:\n• opening hours and access rules,\n• prices, payment methods and reservation requirements,\n• available services (showers, security, food, fuel, etc.),\n• number of spaces or whether the parking is temporarily closed."
+      },
+      "verifyBefore": {
+        "heading": "Always Verify Before You Drive",
+        "content": "Before you drive to any parking shown in the app, always verify the key details yourself by:\n• checking the location in a navigation or map app,\n• using other trusted third-party parking / truck apps,\n• visiting the official website of the parking, if available,\n• contacting the operator or host directly when contact details are provided.\n\nDo not rely only on the information displayed in this app when planning your route, rest or security."
+      },
+      "noEndorsement": {
+        "heading": "No Endorsement or Guarantee",
+        "content": "Listing a parking place in the app does NOT mean we recommend, inspect or guarantee it.\n\nWe do not confirm:\n• safety or security level of the parking,\n• availability of free spaces at any moment,\n• compliance of the parking with legal or company requirements."
+      },
+      "userResponsibility": {
+        "heading": "User Responsibility",
+        "content": "You are always responsible for:\n• choosing where to stop and rest,\n• checking that the parking is suitable for your vehicle and cargo,\n• complying with driving/rest-time rules and all road signs and regulations.\n\nTreat the parking map as a support tool only. Always double-check important details before you arrive."
+      }
+    },
+    "fuel": {
+      "title": "Fuel Prices - Disclaimer",
+      "sourceData": {
+        "heading": "Source of Data",
+        "content": "Fuel prices are based on public information from European Union sources and/or other official publications. They are shown for convenience only and are not collected directly by us."
+      },
+      "accuracy": {
+        "heading": "Accuracy & Timing",
+        "content": "Prices are indicative and may differ from actual prices at individual stations. They can change frequently due to taxes, market conditions, location and time of day. We do not guarantee that the prices in the app are complete, error-free or up to date."
+      },
+      "howToUse": {
+        "heading": "How to Use",
+        "content": "Use the prices as a rough reference only. Always check the current price at the station pump, on the station's website or in another trusted app before making decisions."
+      }
+    }
+  },
+  "complianceInfo": {
+    "dailyDriving": {
+      "title": "Daily Driving Time",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "EU Regulation (EC) No 561/2006 - Art. 6 (daily driving time)."
+      },
+      "rules": {
+        "heading": "Rules",
+        "content": "• Standard limit: max 9 hours of driving within one daily work period.\n• Extended limit: up to 10 hours on at most 2 days in a week.\n• Driving time is counted between two consecutive daily or weekly rest periods."
+      },
+      "example": {
+        "heading": "Example",
+        "content": "If you drive 10h on Monday and 10h on Wednesday, you must stay at or below 9h of driving on all other days in that same week."
+      }
+    },
+    "dailyWorking": {
+      "title": "Daily Working Time & Spread",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "EU Directive 2002/15/EC (working time of mobile workers) + Regulation (EC) No 561/2006 (rest periods)."
+      },
+      "whatCounts": {
+        "heading": "What Counts as Working Time",
+        "content": "• Driving (actual driving time).\n• Other Work (loading, unloading, admin, maintenance, etc.).\n• Working time does NOT include: breaks, rest periods, or periods of availability.\n• Periods of Availability are tracked separately but still extend the daily 'spread' (time between rest periods)."
+      },
+      "dailyLimits": {
+        "heading": "Daily Limits (Effect of Rest Rules)",
+        "content": "• The EU rules do not set a strict daily working-time cap, but:\n  • You must respect weekly limits: max 60h in any single week, with a 48h/week average over up to 4 months.\n  • Because of daily rest requirements under Reg. 561/2006:\n    - With regular daily rest of 11h, the maximum 'spread' between rest periods is 13h.\n    - With reduced daily rest of at least 9h (max 3 times between weekly rests), the spread can be up to 15h.\n  • If night work is performed, working time in any 24h period must not exceed 10h (see Night Work card)."
+      }
+    },
+    "breakCompliance": {
+      "title": "Break Compliance",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "• EU Regulation (EC) No 561/2006 - Art. 7 (driving-time breaks).\n• EU Directive 2002/15/EC - working-time breaks for mobile workers."
+      },
+      "drivingBreaks": {
+        "heading": "Driving-Time Breaks (Reg. 561/2006)",
+        "content": "• After a maximum of 4.5 hours of driving, you must take at least 45 minutes of break.\n• This 45-minute break can be split into:\n  - a first break of at least 15 minutes, and\n  - a second break of at least 30 minutes,\n  provided both are taken so that together they add up to at least 45 minutes within the 4.5h driving window."
+      },
+      "workingBreaks": {
+        "heading": "Working-Time Breaks (Dir. 2002/15/EC)",
+        "content": "• You must not work more than 6 consecutive hours without a break.\n• If total daily working time is >6h and ≤9h: at least 30 minutes of break in total.\n• If total daily working time is >9h: at least 45 minutes of break in total.\n• These working-time breaks may be split into periods of at least 15 minutes.\n• When driving and other work are mixed, both driving-time and working-time break rules must be satisfied (the stricter rule at that moment wins)."
+      },
+      "important": {
+        "heading": "Important",
+        "content": "• Breaks interrupt working time and do NOT count as working time.\n• Breaks still extend the daily spread (time between first and last duty activity)."
+      }
+    },
+    "dailyRest": {
+      "title": "Daily Rest & Activity Window",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "EU Regulation (EC) No 561/2006 - Art. 8 (daily rest periods)."
+      },
+      "requirements": {
+        "heading": "Daily Rest Requirements",
+        "content": "• Regular daily rest: at least 11 consecutive hours within 24 hours of the end of the previous daily or weekly rest.\n• Split regular rest option: 3h + 9h (first part at least 3h, second part at least 9h).\n• Reduced daily rest: at least 9 hours but less than 11 hours.\n• You may take at most 3 reduced daily rests between any two weekly rest periods."
+      },
+      "activityWindow": {
+        "heading": "Activity Window (Daily Spread)",
+        "content": "• Daily spread = time from first duty activity (Driving/Other Work/Availability/Break) to the last one before the next daily or weekly rest.\n• With regular daily rest (11h): max 13h spread within the 24h window.\n• With reduced daily rest (≥9h): max 15h spread, allowed at most 3 times between weekly rests.\n• The full daily rest must fit inside the relevant 24h period counted from the start of the working day."
+      }
+    },
+    "nightWork": {
+      "title": "Night Work (EU Working Time)",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "EU Directive 2002/15/EC - night work for mobile road transport workers."
+      },
+      "definition": {
+        "heading": "Night Time Definition",
+        "content": "• EU law defines 'night time' as a period of at least 4 consecutive hours between 00:00 and 07:00.\n• Each Member State sets the exact 4h night period in its national law.\n• In the app, this appears as a configurable 4-hour window (e.g. 00:00-04:00 or 01:00-05:00)."
+      },
+      "limit": {
+        "heading": "Night Work Limit",
+        "content": "• If any working time (Driving or Other Work) is performed during the defined night-time window, this counts as night work.\n• When night work is performed, total working time must not exceed 10 hours in any 24-hour period.\n• This 10h cap applies to working time only (Driving + Other Work), not to breaks, rest or pure availability.\n• Individual Member States may add extra pay or protections, but those are not part of this EU-only profile."
+      }
+    },
+    "weeklyWorking": {
+      "title": "Weekly Working Time",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "EU Directive 2002/15/EC - working time of mobile road transport workers."
+      },
+      "limits": {
+        "heading": "Weekly Limits",
+        "content": "• Average working time: must not exceed 48 hours per week, calculated over a reference period (up to 4 months).\n• Single week: working time may reach up to 60 hours, provided that the 48h/week average over the reference period is not exceeded.\n• Working time = Driving + Other Work.\n• Breaks, rest periods and periods of availability do NOT count as working time."
+      },
+      "calculation": {
+        "heading": "Calculation Period",
+        "content": "• 'Week' in EU rules is usually a fixed 7-day period (Reg. 561/2006 uses Monday 00:00 to Sunday 24:00).\n• The app can monitor a rolling 4-month reference period for the 48h average.\n• If a single week >60h → immediate working-time violation.\n• If the rolling average >48h/week → working-time violation."
+      }
+    },
+    "weeklyDriving": {
+      "title": "Weekly & Fortnightly Driving",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "EU Regulation (EC) No 561/2006 - Art. 6 (weekly and two-week driving limits)."
+      },
+      "limits": {
+        "heading": "Driving Limits",
+        "content": "• Single week: maximum 56 hours of driving.\n• Any two consecutive weeks: maximum 90 hours of driving in total.\n• 'Week' under Reg. 561/2006: Monday 00:00 to Sunday 24:00."
+      },
+      "example": {
+        "heading": "Example",
+        "content": "Week 1: 48h driving → Week 2 can have at most 42h (48 + 42 = 90).\nWeek 2: 42h driving → Week 3 can have at most 48h (42 + 48 = 90)."
+      }
+    },
+    "weeklyRest": {
+      "title": "Weekly Rest & 45h Pause",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "EU Regulation (EC) No 561/2006 - Art. 8 (weekly rest periods, including Mobility Package amendments)."
+      },
+      "requirements": {
+        "heading": "Weekly Rest Requirements",
+        "content": "• A new weekly rest must START no later than 144 hours (6 × 24h) from the END of the previous weekly rest.\n• Regular weekly rest: at least 45 consecutive hours.\n• Reduced weekly rest: at least 24 hours but less than 45 hours.\n• In any 2 consecutive weeks, you must have at least 2 weekly rest periods and at least 1 of them must be regular (≥45h)."
+      },
+      "compensation": {
+        "heading": "Compensation Rules (Overview)",
+        "content": "• Every reduced weekly rest creates a deficit: 45h minus the actual rest duration.\n• Each deficit must be compensated 'en bloc' (in one continuous block) within 3 weeks after the week of the reduction.\n• Compensation must be added to another rest period of at least 9h (daily or weekly rest)."
+      },
+      "whereRest": {
+        "heading": "Where Rest Can Be Taken",
+        "content": "• Regular weekly rest periods (≥45h) may NOT be taken in the vehicle.\n• Daily rests and reduced weekly rests may be taken in the vehicle if it is stationary and fitted with suitable sleeping facilities."
+      },
+      "daysCovered": {
+        "heading": "Days Covered by Weekly Rest",
+        "content": "• Days fully covered by a qualifying weekly rest (≥24h) are treated as off-duty.\n• For daily-rest checks, those days are considered automatically compliant."
+      }
+    },
+    "restCompensation": {
+      "title": "Rest Compensation",
+      "legalBasis": {
+        "heading": "Legal Basis",
+        "content": "EU Regulation (EC) No 561/2006 - Art. 8(6) (compensation for reduced weekly rest)."
+      },
+      "whenRequired": {
+        "heading": "When Compensation Is Required",
+        "content": "• Every reduced weekly rest (24h to <45h) creates a 'deficit' compared to 45h.\n• Deficit = 45 hours − actual weekly rest duration.\n• Example: 30h weekly rest → 15h deficit that must be compensated later."
+      },
+      "rules": {
+        "heading": "Compensation Rules",
+        "content": "• Each deficit must be compensated within 3 weeks following the week of the reduction.\n• Compensation must be taken as one continuous block (en bloc).\n• It must be attached to another rest period of at least 9 hours (daily or weekly rest).\n• Compensation cannot be split across multiple rest periods."
+      },
+      "display": {
+        "heading": "Display in the App",
+        "content": "• Shows how many reduced weekly rests still need compensation.\n• Shows total hours of outstanding compensation and the latest deadline by which it must be taken."
+      }
     }
   }
 }

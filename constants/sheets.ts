@@ -8,6 +8,7 @@ export enum ESheets {
   ActivityForm = "ActivityForm",
   DatePicker = "DatePicker",
   ExportConfig = "ExportConfig",
+  InfoSheet = "InfoSheet",
 }
 
 export interface TimePickerProps {
@@ -42,3 +43,13 @@ export interface ExportConfigProps {
   ) => void;
   selectedDate: Date;
 }
+
+export type InfoSection = {
+  heading: string;
+  content: string;
+};
+
+export type InfoSheetProps = {
+  title: string;
+  sections: InfoSection[];
+};
