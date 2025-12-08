@@ -20,26 +20,24 @@ export const getAllParkings = async (
   limit: number = 100000,
   countryCode?: string
 ): Promise<ParkingData> => {
-  try {
-    const params = new URLSearchParams({
-      page: page.toString(),
-      limit: limit.toString(),
-    });
-    if (countryCode) {
-      params.append("countryCode", countryCode);
-    }
-    const response = await fetch(
-      `${API_URL}/api/parking?${params.toString()}`
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch parkings");
-    }
-    const data = await response.json();
-    return data;
-  } catch (e) {
-    console.error(e);
-    return { parkings: [], totalParkings: 0, totalPages: 0 };
+  const params = new URLSearchParams({
+    page: page.toString(),
+    limit: limit.toString(),
+  });
+  if (countryCode) {
+    params.append("countryCode", countryCode);
   }
+  const response = await fetch(
+    `${API_URL}/api/parking?${params.toString()}`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch parkings");
+  }
+  const data = await response.json();
+  if (!data?.parkings?.length) {
+    throw new Error("No parkings returned");
+  }
+  return data;
 };
 
 export const getParkingById = async (

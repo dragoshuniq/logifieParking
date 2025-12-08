@@ -2,7 +2,7 @@ import { getAllParkings, IParking } from "@/api/parking";
 import { AppConstants } from "@/constants/app.const";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
-import { TWO_WEEKS } from "@/providers/query";
+import { ONE_MINUTE, TWO_WEEKS } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
 import * as Location from "expo-location";
 import React, { useRef } from "react";
@@ -23,7 +23,23 @@ export const ParkingMap = () => {
   const { data } = useQuery({
     queryKey: ["parkings"],
     queryFn: () => getAllParkings(),
-    staleTime: TWO_WEEKS,
+    staleTime: (query) => {
+      const parkingData = query.state.data;
+      const hasNoData =
+        !parkingData?.parkings?.length ||
+        parkingData?.totalParkings === 0;
+      return hasNoData ? ONE_MINUTE : TWO_WEEKS;
+    },
+    refetchOnMount: (query) => {
+      const parkingData = query.state.data;
+      const hasNoData =
+        !parkingData?.parkings?.length ||
+        parkingData?.totalParkings === 0;
+      return hasNoData;
+    },
+    retry: 5,
+    retryDelay: (attemptIndex) =>
+      Math.min(1000 * 2 ** attemptIndex, 30000),
     gcTime: TWO_WEEKS,
   });
 
