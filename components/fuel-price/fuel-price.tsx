@@ -33,7 +33,7 @@ export const FuelPrice = () => {
       return getStaleTimeForFuelData(lastDate);
     },
     gcTime: ONE_WEEK,
-    retry: 3,
+    retry: 5,
     retryDelay: (attemptIndex) =>
       Math.min(1000 * 2 ** attemptIndex, 30000),
   });
