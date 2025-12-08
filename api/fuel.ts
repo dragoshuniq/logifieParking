@@ -23,20 +23,15 @@ export interface IFuel {
 export const getFuelData = async (
   date?: string
 ): Promise<IFuel | null> => {
-  try {
-    const url = date
-      ? `${API_URL}/api/fuel?date=${date}`
-      : `${API_URL}/api/fuel`;
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to fetch fuel data");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return null;
+  const url = date
+    ? `${API_URL}/api/fuel?date=${date}`
+    : `${API_URL}/api/fuel`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Failed to fetch fuel data");
   }
+  const data = await response.json();
+  return data;
 };
 
 export const getStaleTimeForFuelData = (
