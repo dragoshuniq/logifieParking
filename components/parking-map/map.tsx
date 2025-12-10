@@ -5,7 +5,7 @@ import { useColorScheme } from "@/hooks/use-color-scheme";
 import { ONE_MINUTE, TWO_WEEKS } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
 import * as Location from "expo-location";
-import React, { useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { StyleSheet } from "react-native";
 import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
@@ -14,6 +14,7 @@ import { DrawerToggleButton } from "../drawer/custom-drawer-header";
 import { ThemedView } from "../ui/themed-view";
 import { LocationButton } from "./location-button";
 import { MapDisclaimerButton } from "./map-disclaimer";
+import { getDarkMapStyle } from "./map-style";
 import { showNavigationOptions } from "./navigation-options";
 
 export const ParkingMap = () => {
@@ -46,6 +47,16 @@ export const ParkingMap = () => {
   const clusterColor = Colors[theme].primary.DEFAULT;
   const clusterTextColor = Colors[theme].primary.foreground;
 
+  const mapStyle = useMemo(() => {
+    return theme === "dark" ? getDarkMapStyle() : [];
+  }, [theme]);
+
+  useEffect(() => {
+    if (mapRef.current) {
+      (mapRef.current as any)?.setMapStyle?.(mapStyle);
+    }
+  }, [mapStyle]);
+
   const handleMarkerSelect = (parking: IParking) => {
     showNavigationOptions({
       destination: {
@@ -77,6 +88,7 @@ export const ParkingMap = () => {
         ref={mapRef}
         showsUserLocation
         style={styles.map}
+        customMapStyle={mapStyle}
         initialRegion={{
           latitude: AppConstants.coordinates.latitude,
           longitude: AppConstants.coordinates.longitude,

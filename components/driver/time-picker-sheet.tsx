@@ -28,7 +28,7 @@ export const showTimePicker = (payload: TimePickerProps) => {
 
 const TimePickerSheet = () => {
   const payload = useSheetPayload("TimePicker");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const colorScheme = useColorScheme();
   const { content1, content2, primary, text } = useThemedColors(
     "content1",
@@ -88,9 +88,10 @@ const TimePickerSheet = () => {
 
         <View style={styles.pickerWrapper}>
           <DateTimePicker
+            locale={i18n.language}
             value={localTime}
             mode="time"
-            display={Platform.OS === "ios" ? "spinner" : "default"}
+            display={Platform.OS === "ios" ? "spinner" : "clock"}
             onChange={(
               event: DateTimePickerEvent,
               selectedDate?: Date
