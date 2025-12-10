@@ -3,22 +3,15 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets, TimePickerProps } from "@/constants/sheets";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useThemedColors } from "@/hooks/use-themed-colors";
-import DateTimePicker, {
-  type DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Platform,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import ActionSheet, {
   ActionSheetRef,
   SheetManager,
   useSheetPayload,
 } from "react-native-actions-sheet";
+import DatePicker from "react-native-date-picker";
 
 export const showTimePicker = (payload: TimePickerProps) => {
   SheetManager.show(ESheets.TimePicker, {
@@ -30,7 +23,7 @@ const TimePickerSheet = () => {
   const payload = useSheetPayload("TimePicker");
   const { t, i18n } = useTranslation();
   const colorScheme = useColorScheme();
-  const { content1, content2, primary, text } = useThemedColors(
+  const { content1, content2, primary } = useThemedColors(
     "content1",
     "content2",
     "primary",
@@ -87,26 +80,15 @@ const TimePickerSheet = () => {
         </ThemedText>
 
         <View style={styles.pickerWrapper}>
-          <DateTimePicker
-            locale={i18n.language}
-            value={localTime}
+          <DatePicker
+            date={localTime}
             mode="time"
-            display={Platform.OS === "ios" ? "spinner" : "clock"}
-            onChange={(
-              event: DateTimePickerEvent,
-              selectedDate?: Date
-            ) => {
-              if (selectedDate) {
-                setLocalTime(selectedDate);
-              }
-            }}
+            theme={colorScheme === "dark" ? "dark" : "light"}
+            onDateChange={setLocalTime}
             maximumDate={maximumDate}
             minimumDate={minimumDate}
-            minuteInterval={minuteInterval as any}
-            {...(Platform.OS === "ios" && {
-              textColor: text,
-              themeVariant: colorScheme,
-            })}
+            minuteInterval={minuteInterval}
+            locale={i18n.language}
           />
         </View>
 

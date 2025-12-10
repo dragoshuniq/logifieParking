@@ -28,7 +28,7 @@ declare module "react-native-actions-sheet" {
         value?: Date;
         maximumDate?: Date;
         minimumDate?: Date;
-        minuteInterval?: number;
+        minuteInterval?: MinuteInterval;
       };
       returnValue?: undefined;
     };
