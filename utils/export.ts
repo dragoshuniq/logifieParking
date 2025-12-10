@@ -127,11 +127,12 @@ export const exportToCSV = async (
   }
 
   const fileName = `driver_hours_${dayjs().format(
-    "YYYY-MM-DD_HH-mm"
+    "YYYY-MM-DD_HH-mm-ss"
   )}.csv`;
 
   try {
-    const file = new File(Paths.document, fileName);
+    const file = new File(Paths.cache, fileName);
+
     file.create();
     file.write(csvContent);
 
@@ -300,11 +301,12 @@ export const exportToXLS = async (
   const xlsContent = xmlHeader + xlsHeader + worksheet + xlsFooter;
 
   const fileName = `driver_hours_${dayjs().format(
-    "YYYY-MM-DD_HH-mm"
+    "YYYY-MM-DD_HH-mm-ss"
   )}.xls`;
 
   try {
-    const file = new File(Paths.document, fileName);
+    const file = new File(Paths.cache, fileName);
+
     file.create();
     file.write(xlsContent);
 
@@ -320,6 +322,7 @@ export const exportToXLS = async (
     await shareAsync(file.uri, {
       mimeType: "application/vnd.ms-excel",
       dialogTitle: t("driver.export.dialogTitle"),
+      UTI: "com.microsoft.excel.xls",
     });
 
     requestStoreReviewAfterAction();
