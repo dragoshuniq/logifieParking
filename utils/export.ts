@@ -53,9 +53,8 @@ const generateFileName = (extension: string): string => {
 /**
  * Clean up a file from the file system (best effort, no error thrown)
  */
-const cleanupFile = async (filePath: string): Promise<void> => {
+const cleanupFile = async (file: File): Promise<void> => {
   try {
-    const file = new File(Paths.cache, filePath);
     if (file.exists) {
       await file.delete();
     }
@@ -101,15 +100,26 @@ const prepareActivityData = (
     );
 
     return {
-      [t("driver.export.headers.date")]: startDate.format("YYYY-MM-DD"),
-      [t("driver.export.headers.startTime")]: startDate.format("HH:mm"),
+      [t("driver.export.headers.date")]:
+        startDate.format("YYYY-MM-DD"),
+      [t("driver.export.headers.startTime")]:
+        startDate.format("HH:mm"),
       [t("driver.export.headers.endTime")]: endDate.format("HH:mm"),
-      [t("driver.export.headers.duration")]: activity.duration.toFixed(2),
-      [t("driver.export.headers.activityType")]: getActivityTypeLabel(activity.type, t),
-      [t("driver.export.headers.dailyDriving")]: drivingCompliance.isCompliant ? "OK" : "VIOLATION",
-      [t("driver.export.headers.breakCompliance")]: breakCompliance.isCompliant ? "OK" : "VIOLATION",
-      [t("driver.export.headers.dailyRest")]: restCompliance.isCompliant ? "OK" : "VIOLATION",
-      [t("driver.export.headers.nightWork")]: nightWork.hasNightWork ? "YES" : "NO",
+      [t("driver.export.headers.duration")]:
+        activity.duration.toFixed(2),
+      [t("driver.export.headers.activityType")]: getActivityTypeLabel(
+        activity.type,
+        t
+      ),
+      [t("driver.export.headers.dailyDriving")]:
+        drivingCompliance.isCompliant ? "OK" : "VIOLATION",
+      [t("driver.export.headers.breakCompliance")]:
+        breakCompliance.isCompliant ? "OK" : "VIOLATION",
+      [t("driver.export.headers.dailyRest")]:
+        restCompliance.isCompliant ? "OK" : "VIOLATION",
+      [t("driver.export.headers.nightWork")]: nightWork.hasNightWork
+        ? "YES"
+        : "NO",
     };
   });
 };
@@ -122,17 +132,25 @@ const prepareDeficitData = (
   t: TranslateFunction
 ): Array<Record<string, string>> => {
   return deficits.map((deficit) => ({
-    [t("driver.export.headers.weekStart")]: dayjs(deficit.weekStart).format("YYYY-MM-DD"),
-    [t("driver.export.headers.weekEnd")]: dayjs(deficit.weekEnd).format("YYYY-MM-DD"),
-    [t("driver.export.headers.deficitHours")]: deficit.deficitHours.toFixed(2),
-    [t("driver.export.headers.compensatedHours")]: deficit.compensatedHours.toFixed(2),
-    [t("driver.export.headers.mustCompensateBy")]: dayjs(deficit.mustCompensateBy).format("YYYY-MM-DD"),
+    [t("driver.export.headers.weekStart")]: dayjs(
+      deficit.weekStart
+    ).format("YYYY-MM-DD"),
+    [t("driver.export.headers.weekEnd")]: dayjs(
+      deficit.weekEnd
+    ).format("YYYY-MM-DD"),
+    [t("driver.export.headers.deficitHours")]:
+      deficit.deficitHours.toFixed(2),
+    [t("driver.export.headers.compensatedHours")]:
+      deficit.compensatedHours.toFixed(2),
+    [t("driver.export.headers.mustCompensateBy")]: dayjs(
+      deficit.mustCompensateBy
+    ).format("YYYY-MM-DD"),
   }));
 };
 
 /**
  * Export driver activities to CSV format using PapaParse
- * 
+ *
  * @param activities - Array of activities to export
  * @param deficits - Array of weekly rest deficits (optional)
  * @param t - Translation function
@@ -147,12 +165,12 @@ export const exportToCSV = async (
     throw new Error("No activities to export");
   }
 
-  let fileUri: string | null = null;
+  let file: File | null = null;
 
   try {
     // Prepare activity data
     const activitiesData = prepareActivityData(activities, t);
-    
+
     // Generate CSV for activities
     let csvContent = Papa.unparse(activitiesData, {
       quotes: true,
@@ -162,24 +180,23 @@ export const exportToCSV = async (
     // Add deficits section if available
     if (deficits && deficits.length > 0) {
       csvContent += "\n\n";
-      csvContent += t("driver.export.headers.weeklyRestDeficits") + "\n";
-      
+      csvContent +=
+        t("driver.export.headers.weeklyRestDeficits") + "\n";
+
       const deficitsData = prepareDeficitData(deficits, t);
       const deficitsCSV = Papa.unparse(deficitsData, {
         quotes: true,
         header: true,
       });
-      
+
       csvContent += deficitsCSV;
     }
 
-    // Generate unique filename
+    // Generate unique filename and create file
     const fileName = generateFileName("csv");
-    const file = new File(Paths.cache, fileName);
-    fileUri = file.uri;
+    file = new File(Paths.cache, fileName);
 
-    // Write file to filesystem
-    await file.create();
+    // Write CSV content to file (File.write accepts strings directly)
     await file.write(csvContent);
 
     // Verify file was created
@@ -194,7 +211,7 @@ export const exportToCSV = async (
     }
 
     // Share the file
-    await shareAsync(fileUri, {
+    await shareAsync(file.uri, {
       mimeType: "text/csv",
       dialogTitle: t("driver.export.dialogTitle"),
       UTI: "public.comma-separated-values-text",
@@ -204,16 +221,13 @@ export const exportToCSV = async (
     requestStoreReviewAfterAction();
 
     // Clean up file after sharing
-    await cleanupFile(fileName);
+    await cleanupFile(file);
   } catch (error) {
     // Clean up file on error
-    if (fileUri) {
-      const fileName = fileUri.split('/').pop();
-      if (fileName) {
-        await cleanupFile(fileName);
-      }
+    if (file) {
+      await cleanupFile(file);
     }
-    
+
     console.error("Export error:", error);
     throw error;
   }
@@ -221,7 +235,7 @@ export const exportToCSV = async (
 
 /**
  * Export driver activities to Excel format using XLSX library
- * 
+ *
  * @param activities - Array of activities to export
  * @param deficits - Array of weekly rest deficits (optional)
  * @param t - Translation function
@@ -236,7 +250,7 @@ export const exportToXLS = async (
     throw new Error("No activities to export");
   }
 
-  let fileUri: string | null = null;
+  let file: File | null = null;
 
   try {
     // Create new workbook
@@ -245,13 +259,21 @@ export const exportToXLS = async (
     // Prepare and add activities sheet
     const activitiesData = prepareActivityData(activities, t);
     const activitiesSheet = XLSX.utils.json_to_sheet(activitiesData);
-    XLSX.utils.book_append_sheet(workbook, activitiesSheet, "Driver Hours");
+    XLSX.utils.book_append_sheet(
+      workbook,
+      activitiesSheet,
+      "Driver Hours"
+    );
 
     // Add deficits sheet if available
     if (deficits && deficits.length > 0) {
       const deficitsData = prepareDeficitData(deficits, t);
       const deficitsSheet = XLSX.utils.json_to_sheet(deficitsData);
-      XLSX.utils.book_append_sheet(workbook, deficitsSheet, "Rest Deficits");
+      XLSX.utils.book_append_sheet(
+        workbook,
+        deficitsSheet,
+        "Rest Deficits"
+      );
     }
 
     // Generate Excel file as base64
@@ -260,14 +282,19 @@ export const exportToXLS = async (
       bookType: "xlsx",
     });
 
-    // Generate unique filename
+    // Generate unique filename and create file
     const fileName = generateFileName("xlsx");
-    const file = new File(Paths.cache, fileName);
-    fileUri = file.uri;
+    file = new File(Paths.cache, fileName);
 
-    // Write file to filesystem (xlsx generates binary data as base64)
-    await file.create();
-    await file.write(excelBase64);
+    // Decode base64 to binary (Uint8Array) for Excel file
+    const binaryString = atob(excelBase64);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+
+    // Write binary content to file
+    await file.write(bytes);
 
     // Verify file was created
     if (!file.exists) {
@@ -281,8 +308,9 @@ export const exportToXLS = async (
     }
 
     // Share the file
-    await shareAsync(fileUri, {
-      mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    await shareAsync(file.uri, {
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       dialogTitle: t("driver.export.dialogTitle"),
       UTI: "org.openxmlformats.spreadsheetml.sheet",
     });
@@ -291,16 +319,13 @@ export const exportToXLS = async (
     requestStoreReviewAfterAction();
 
     // Clean up file after sharing
-    await cleanupFile(fileName);
+    await cleanupFile(file);
   } catch (error) {
     // Clean up file on error
-    if (fileUri) {
-      const fileName = fileUri.split('/').pop();
-      if (fileName) {
-        await cleanupFile(fileName);
-      }
+    if (file) {
+      await cleanupFile(file);
     }
-    
+
     console.error("Export error:", error);
     throw error;
   }
