@@ -3,11 +3,11 @@ import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { useFormatDate } from "@/hooks/useFormat";
+import { useDatabase } from "@/providers/driver-database";
 import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
 import {
   getActivitiesByDateRange,
   getWeeklyRestDeficits,
-  initDatabase,
 } from "@/utils/driver-db";
 import { exportToCSV, exportToXLS } from "@/utils/export";
 import { useRef, useState } from "react";
@@ -53,6 +53,7 @@ const ExportConfigSheet = () => {
     "content2",
     "primary"
   );
+  const db = useDatabase();
 
   configureDayjsLocale(i18n.language);
 
@@ -109,13 +110,12 @@ const ExportConfigSheet = () => {
     onCloseSheet();
 
     try {
-      await initDatabase();
-
       const activities = await getActivitiesByDateRange(
+        db,
         startDate,
         endDate
       );
-      const deficits = await getWeeklyRestDeficits();
+      const deficits = await getWeeklyRestDeficits(db);
 
       if (exportType === "csv") {
         await exportToCSV(activities, deficits, t);

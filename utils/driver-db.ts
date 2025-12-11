@@ -1,4 +1,3 @@
-import { DATABASE_NAME } from "@/providers/driver-database";
 import dayjs from "@/utils/dayjs-config";
 import * as SQLite from "expo-sqlite";
 
@@ -31,29 +30,11 @@ export interface WeeklyRestDeficit {
   updatedAt?: number;
 }
 
-let db: SQLite.SQLiteDatabase | null = null;
-
-export const initDatabase = async () => {
-  // If db exists, check if it's still valid
-  if (db) {
-    try {
-      // Test the connection with a PRAGMA query (recommended by SQLite docs)
-      await db.getFirstAsync<{ user_version: number }>(
-        "PRAGMA user_version"
-      );
-      return db;
-    } catch (error) {
-      // Connection is stale, reset it
-      console.warn(
-        "Database connection was stale, reinitializing:",
-        error
-      );
-      db = null;
-    }
-  }
-
-  db = await SQLite.openDatabaseAsync(DATABASE_NAME);
-
+/**
+ * Initialize database schema
+ * Call this once when the app starts or use SQLiteProvider's onInit
+ */
+export const initializeSchema = async (db: SQLite.SQLiteDatabase) => {
   // Enable WAL mode for better performance and concurrency
   await db.execAsync(`
     PRAGMA journal_mode = WAL;
@@ -83,16 +64,14 @@ export const initDatabase = async () => {
     CREATE INDEX IF NOT EXISTS idx_activities_type ON activities(type);
     CREATE INDEX IF NOT EXISTS idx_deficits_week ON weekly_rest_deficits(weekStart);
   `);
-
-  return db;
 };
 
 export const addActivity = async (
+  db: SQLite.SQLiteDatabase,
   activity: Activity
 ): Promise<number> => {
-  const database = await initDatabase();
   const now = Date.now();
-  const result = await database.runAsync(
+  const result = await db.runAsync(
     "INSERT INTO activities (startDateTime, endDateTime, duration, type, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)",
     activity.startDateTime,
     activity.endDateTime,
@@ -105,11 +84,11 @@ export const addActivity = async (
 };
 
 export const updateActivity = async (
+  db: SQLite.SQLiteDatabase,
   activity: Activity
 ): Promise<void> => {
-  const database = await initDatabase();
   const now = Date.now();
-  await database.runAsync(
+  await db.runAsync(
     "UPDATE activities SET startDateTime = ?, endDateTime = ?, duration = ?, type = ?, updatedAt = ? WHERE id = ?",
     activity.startDateTime,
     activity.endDateTime,
@@ -120,19 +99,21 @@ export const updateActivity = async (
   );
 };
 
-export const deleteActivity = async (id: number): Promise<void> => {
-  const database = await initDatabase();
-  await database.runAsync("DELETE FROM activities WHERE id = ?", id);
+export const deleteActivity = async (
+  db: SQLite.SQLiteDatabase,
+  id: number
+): Promise<void> => {
+  await db.runAsync("DELETE FROM activities WHERE id = ?", id);
 };
 
 export const getActivitiesByDate = async (
+  db: SQLite.SQLiteDatabase,
   date: Date
 ): Promise<Activity[]> => {
-  const database = await initDatabase();
   const startOfDay = dayjs(date).startOf("day").valueOf();
   const endOfDay = dayjs(date).endOf("day").valueOf();
 
-  const result = await database.getAllAsync<Activity>(
+  const result = await db.getAllAsync<Activity>(
     "SELECT * FROM activities WHERE startDateTime >= ? AND startDateTime <= ? ORDER BY startDateTime",
     startOfDay,
     endOfDay
@@ -141,14 +122,14 @@ export const getActivitiesByDate = async (
 };
 
 export const getActivitiesByDateRange = async (
+  db: SQLite.SQLiteDatabase,
   startDate: Date,
   endDate: Date
 ): Promise<Activity[]> => {
-  const database = await initDatabase();
   const start = dayjs(startDate).startOf("day").valueOf();
   const end = dayjs(endDate).endOf("day").valueOf();
 
-  const result = await database.getAllAsync<Activity>(
+  const result = await db.getAllAsync<Activity>(
     "SELECT * FROM activities WHERE startDateTime >= ? AND startDateTime <= ? ORDER BY startDateTime",
     start,
     end
@@ -156,20 +137,21 @@ export const getActivitiesByDateRange = async (
   return result;
 };
 
-export const getAllActivities = async (): Promise<Activity[]> => {
-  const database = await initDatabase();
-  const result = await database.getAllAsync<Activity>(
+export const getAllActivities = async (
+  db: SQLite.SQLiteDatabase
+): Promise<Activity[]> => {
+  const result = await db.getAllAsync<Activity>(
     "SELECT * FROM activities ORDER BY startDateTime DESC"
   );
   return result;
 };
 
 export const addWeeklyRestDeficit = async (
+  db: SQLite.SQLiteDatabase,
   deficit: WeeklyRestDeficit
 ): Promise<number> => {
-  const database = await initDatabase();
   const now = Date.now();
-  const result = await database.runAsync(
+  const result = await db.runAsync(
     "INSERT INTO weekly_rest_deficits (weekStart, weekEnd, deficitHours, compensatedHours, mustCompensateBy, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)",
     deficit.weekStart,
     deficit.weekEnd,
@@ -183,11 +165,11 @@ export const addWeeklyRestDeficit = async (
 };
 
 export const updateWeeklyRestDeficit = async (
+  db: SQLite.SQLiteDatabase,
   deficit: WeeklyRestDeficit
 ): Promise<void> => {
-  const database = await initDatabase();
   const now = Date.now();
-  await database.runAsync(
+  await db.runAsync(
     "UPDATE weekly_rest_deficits SET compensatedHours = ?, updatedAt = ? WHERE id = ?",
     deficit.compensatedHours,
     now,
@@ -195,24 +177,23 @@ export const updateWeeklyRestDeficit = async (
   );
 };
 
-export const getWeeklyRestDeficits = async (): Promise<
-  WeeklyRestDeficit[]
-> => {
-  const database = await initDatabase();
-  const result = await database.getAllAsync<WeeklyRestDeficit>(
+export const getWeeklyRestDeficits = async (
+  db: SQLite.SQLiteDatabase
+): Promise<WeeklyRestDeficit[]> => {
+  const result = await db.getAllAsync<WeeklyRestDeficit>(
     "SELECT * FROM weekly_rest_deficits WHERE compensatedHours < deficitHours ORDER BY mustCompensateBy ASC"
   );
   return result;
 };
 
 export const getWeeklyRestDeficitsByDateRange = async (
+  db: SQLite.SQLiteDatabase,
   startDate: Date,
   endDate: Date
 ): Promise<WeeklyRestDeficit[]> => {
-  const database = await initDatabase();
   const start = dayjs(startDate).valueOf();
   const end = dayjs(endDate).valueOf();
-  const result = await database.getAllAsync<WeeklyRestDeficit>(
+  const result = await db.getAllAsync<WeeklyRestDeficit>(
     "SELECT * FROM weekly_rest_deficits WHERE weekStart >= ? AND weekEnd <= ? ORDER BY weekStart",
     start,
     end
