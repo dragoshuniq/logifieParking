@@ -18,14 +18,23 @@ import { FuelPriceCard } from "./fuel-price-card";
 import { showFuelPriceFilters, SortType } from "./fuel-price-filters";
 import { FuelPriceHeader } from "./fuel-price-header";
 
+export type UnitType = "per1000L" | "perLiter";
+
 export const FuelPrice = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState<SortType>(SortType.None);
+  const [unit, setUnit] = useState<UnitType>("per1000L");
   const { t } = useTranslation();
   const theme = useColorScheme() ?? "light";
   const colors = Colors[theme];
 
-  const { data, isFetching, refetch } = useQuery({
+  const toggleUnit = useCallback(() => {
+    setUnit((prev) =>
+      prev === "per1000L" ? "perLiter" : "per1000L"
+    );
+  }, []);
+
+  const { data, isFetching, isLoading, refetch } = useQuery({
     queryKey: ["fuel-prices"],
     queryFn: () => getFuelData(),
     staleTime: (query) => {
@@ -37,6 +46,8 @@ export const FuelPrice = () => {
     retryDelay: (attemptIndex) =>
       Math.min(1000 * 2 ** attemptIndex, 30000),
   });
+
+  console.log({ data, isFetching });
 
   const handleFilterPress = useCallback(() => {
     showFuelPriceFilters({
@@ -54,13 +65,23 @@ export const FuelPrice = () => {
         onSearchChange={setSearchQuery}
         sortType={sortType}
         onFilterPress={handleFilterPress}
+        unit={unit}
+        onToggleUnit={toggleUnit}
       />
     ),
-    [data, colors, searchQuery, sortType, handleFilterPress]
+    [
+      data,
+      colors,
+      searchQuery,
+      sortType,
+      handleFilterPress,
+      unit,
+      toggleUnit,
+    ]
   );
 
   const renderEmpty = () => {
-    if (isFetching) {
+    if (isLoading) {
       return (
         <View style={styles.centerContainer}>
           <ActivityIndicator size="large" />
@@ -113,7 +134,9 @@ export const FuelPrice = () => {
       <FlatList
         data={countries}
         keyExtractor={(item) => item.countryCode}
-        renderItem={({ item }) => <FuelPriceCard country={item} />}
+        renderItem={({ item }) => (
+          <FuelPriceCard country={item} unit={unit} />
+        )}
         ListHeaderComponent={ListHeader}
         ListEmptyComponent={renderEmpty}
         contentContainerStyle={styles.listContent}

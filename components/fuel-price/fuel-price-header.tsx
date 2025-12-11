@@ -3,10 +3,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React, { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, TextInput, View } from "react-native";
+import { ThemedPressable } from "../ui/themed-pressable";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 import { ThemedView } from "../ui/themed-view";
 import { SortType } from "./fuel-price-filters";
+
+type UnitType = "per1000L" | "perLiter";
 
 type FuelPriceHeaderProps = {
   data: { date: string } | undefined | null;
@@ -15,6 +18,8 @@ type FuelPriceHeaderProps = {
   onSearchChange: (query: string) => void;
   sortType: SortType;
   onFilterPress: () => void;
+  unit: UnitType;
+  onToggleUnit: () => void;
 };
 
 export const FuelPriceHeader = memo(function FuelPriceHeader({
@@ -24,17 +29,38 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
   onSearchChange,
   sortType,
   onFilterPress,
+  unit,
+  onToggleUnit,
 }: FuelPriceHeaderProps) {
   const { t, i18n } = useTranslation();
 
   if (!data) return null;
   return (
     <ThemedView style={styles.header}>
-      <ThemedText style={styles.date}>
-        {t("fuelPrice.updated", {
-          date: new Date(data.date).toLocaleDateString(i18n.language),
-        })}
-      </ThemedText>
+      <View style={styles.topRow}>
+        <ThemedText style={styles.date}>
+          {t("fuelPrice.updated", {
+            date: new Date(data.date).toLocaleDateString(
+              i18n.language
+            ),
+          })}
+        </ThemedText>
+
+        <ThemedPressable
+          onPress={onToggleUnit}
+          style={({ pressed }) => [
+            styles.unitButton,
+            {
+              backgroundColor: colors.primary[50],
+              opacity: pressed ? 0.7 : 1,
+            },
+          ]}
+        >
+          <ThemedText>
+            {unit === "per1000L" ? "/ 1000L" : "/ L"}
+          </ThemedText>
+        </ThemedPressable>
+      </View>
 
       <View style={styles.searchContainer}>
         <MaterialIcons
@@ -101,9 +127,23 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 8,
   },
+  topRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 16,
+  },
   date: {
     fontSize: 16,
-    marginBottom: 16,
+  },
+  unitButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+  },
+  unitButtonText: {
+    fontSize: 12,
+    fontWeight: "600",
   },
   searchContainer: {
     flexDirection: "row",

@@ -1,5 +1,6 @@
 import { IFuelPrice } from "@/api/fuel";
 import { useThemedColors } from "@/hooks/use-themed-colors";
+import { useFormatCurrency } from "@/hooks/useFormat";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
@@ -7,15 +8,25 @@ import CountryFlag from "react-native-country-flag";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedView } from "../ui/themed-view";
 
+type UnitType = "per1000L" | "perLiter";
+
 type Props = {
   country: IFuelPrice;
+  unit: UnitType;
 };
 
-export const FuelPriceCard = ({ country }: Props) => {
+export const FuelPriceCard = ({ country, unit }: Props) => {
   const { t } = useTranslation();
   const { primary: primaryColors, default: defaultColors } =
     useThemedColors("primary", "default");
+  const { formatCurrency } = useFormatCurrency();
   const borderColor = defaultColors[400];
+
+  const getPriceValue = (price: number) => {
+    return unit === "per1000L" ? price : price / 1000;
+  };
+
+  const decimalPlaces = unit === "per1000L" ? 2 : 3;
 
   return (
     <ThemedView style={[styles.card, { borderColor }]}>
@@ -42,11 +53,21 @@ export const FuelPriceCard = ({ country }: Props) => {
               { color: primaryColors.DEFAULT },
             ]}
           >
-            €{country.petrol.toFixed(2)}
+            {formatCurrency(getPriceValue(country.petrol), "EUR", {
+              minimumFractionDigits: decimalPlaces,
+              maximumFractionDigits: decimalPlaces,
+            })}
           </ThemedText>
           {country.currencyHome && country.petrolHome && (
             <ThemedText style={styles.priceHome}>
-              {country.currencyHome} {country.petrolHome.toFixed(2)}
+              {formatCurrency(
+                getPriceValue(country.petrolHome),
+                country.currencyHome,
+                {
+                  minimumFractionDigits: decimalPlaces,
+                  maximumFractionDigits: decimalPlaces,
+                }
+              )}
             </ThemedText>
           )}
         </View>
@@ -63,11 +84,21 @@ export const FuelPriceCard = ({ country }: Props) => {
               { color: primaryColors.DEFAULT },
             ]}
           >
-            €{country.diesel.toFixed(2)}
+            {formatCurrency(getPriceValue(country.diesel), "EUR", {
+              minimumFractionDigits: decimalPlaces,
+              maximumFractionDigits: decimalPlaces,
+            })}
           </ThemedText>
           {country.currencyHome && country.dieselHome && (
             <ThemedText style={styles.priceHome}>
-              {country.currencyHome} {country.dieselHome.toFixed(2)}
+              {formatCurrency(
+                getPriceValue(country.dieselHome),
+                country.currencyHome,
+                {
+                  minimumFractionDigits: decimalPlaces,
+                  maximumFractionDigits: decimalPlaces,
+                }
+              )}
             </ThemedText>
           )}
         </View>
