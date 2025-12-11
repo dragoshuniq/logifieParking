@@ -196,7 +196,10 @@ export const exportToCSV = async (
     const fileName = generateFileName("csv");
     file = new File(Paths.cache, fileName);
 
-    // Write CSV content to file (File.write accepts strings directly)
+    // Create file (overwrite if exists)
+    await file.create({ overwrite: true });
+
+    // Write CSV content to file
     await file.write(csvContent);
 
     // Verify file was created
@@ -285,6 +288,9 @@ export const exportToXLS = async (
     // Generate unique filename and create file
     const fileName = generateFileName("xlsx");
     file = new File(Paths.cache, fileName);
+
+    // Create file (overwrite if exists)
+    await file.create({ overwrite: true });
 
     // Decode base64 to binary (Uint8Array) for Excel file
     const binaryString = atob(excelBase64);
