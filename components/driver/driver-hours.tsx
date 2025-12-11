@@ -116,8 +116,11 @@ export const DriverHours = () => {
   }, [selectedDate]);
 
   useEffect(() => {
-    initDatabase();
-    updateWeekDates(selectedDate);
+    const init = async () => {
+      await initDatabase();
+      updateWeekDates(selectedDate);
+    };
+    init();
   }, [selectedDate, updateWeekDates]);
 
   useEffect(() => {
@@ -194,7 +197,8 @@ export const DriverHours = () => {
           } else {
             await exportToXLS(activities, deficits, t);
           }
-        } catch {
+        } catch (error) {
+          console.error(error);
           Alert.alert(
             t("common.error"),
             t("driver.errors.exportFailed", {
