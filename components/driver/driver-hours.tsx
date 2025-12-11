@@ -33,7 +33,6 @@ import {
   updateActivity,
   WeeklyRestDeficit,
 } from "@/utils/driver-db";
-import { exportToCSV, exportToXLS } from "@/utils/export";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -181,32 +180,6 @@ export const DriverHours = () => {
   const handleExport = () => {
     showExportConfig({
       selectedDate,
-      onExport: async (
-        type: "csv" | "xls",
-        startDate: Date,
-        endDate: Date
-      ) => {
-        try {
-          const activities = await getActivitiesByDateRange(
-            startDate,
-            endDate
-          );
-          const deficits = await getWeeklyRestDeficits();
-          if (type === "csv") {
-            await exportToCSV(activities, deficits, t);
-          } else {
-            await exportToXLS(activities, deficits, t);
-          }
-        } catch (error) {
-          console.error(error);
-          Alert.alert(
-            t("common.error"),
-            t("driver.errors.exportFailed", {
-              type: type.toUpperCase(),
-            })
-          );
-        }
-      },
     });
   };
 

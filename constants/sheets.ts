@@ -35,15 +35,6 @@ export interface DatePickerProps {
   maxDate?: string;
 }
 
-export interface ExportConfigProps {
-  onExport: (
-    type: "csv" | "xls",
-    startDate: Date,
-    endDate: Date
-  ) => void;
-  selectedDate: Date;
-}
-
 export type InfoSection = {
   heading: string;
   content: string;
