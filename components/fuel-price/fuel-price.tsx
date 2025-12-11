@@ -47,8 +47,6 @@ export const FuelPrice = () => {
       Math.min(1000 * 2 ** attemptIndex, 30000),
   });
 
-  console.log({ data, isFetching });
-
   const handleFilterPress = useCallback(() => {
     showFuelPriceFilters({
       currentSort: sortType,
