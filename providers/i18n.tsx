@@ -46,9 +46,12 @@ export const loadPersistedLanguage = async (): Promise<Languages> => {
   if (stored) {
     return validateLanguage(stored);
   }
-  return validateLanguage(
-    Localization.getLocales()[0]?.languageCode || Languages.EN
+
+  const systemLanguage = validateLanguage(
+    Localization?.getLocales?.()?.[0]?.languageCode || Languages.EN
   );
+  await persistLanguage(systemLanguage);
+  return systemLanguage;
 };
 
 const resources = {
