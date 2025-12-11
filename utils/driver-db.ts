@@ -1,3 +1,4 @@
+import { DATABASE_NAME } from "@/providers/driver-database";
 import dayjs from "@/utils/dayjs-config";
 import * as SQLite from "expo-sqlite";
 
@@ -33,11 +34,30 @@ export interface WeeklyRestDeficit {
 let db: SQLite.SQLiteDatabase | null = null;
 
 export const initDatabase = async () => {
-  if (db) return db;
+  // If db exists, check if it's still valid
+  if (db) {
+    try {
+      // Test the connection with a PRAGMA query (recommended by SQLite docs)
+      await db.getFirstAsync<{ user_version: number }>(
+        "PRAGMA user_version"
+      );
+      return db;
+    } catch (error) {
+      // Connection is stale, reset it
+      console.warn(
+        "Database connection was stale, reinitializing:",
+        error
+      );
+      db = null;
+    }
+  }
 
-  db = await SQLite.openDatabaseAsync("driver_hours.db");
+  db = await SQLite.openDatabaseAsync(DATABASE_NAME);
 
+  // Enable WAL mode for better performance and concurrency
   await db.execAsync(`
+    PRAGMA journal_mode = WAL;
+    
     CREATE TABLE IF NOT EXISTS activities (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       startDateTime INTEGER NOT NULL,
