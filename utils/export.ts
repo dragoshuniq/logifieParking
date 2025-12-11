@@ -112,14 +112,20 @@ const prepareActivityData = (
         t
       ),
       [t("driver.export.headers.dailyDriving")]:
-        drivingCompliance.isCompliant ? "OK" : "VIOLATION",
+        drivingCompliance.isCompliant
+          ? t("common.ok")
+          : t("common.violation"),
       [t("driver.export.headers.breakCompliance")]:
-        breakCompliance.isCompliant ? "OK" : "VIOLATION",
+        breakCompliance.isCompliant
+          ? t("common.ok")
+          : t("common.violation"),
       [t("driver.export.headers.dailyRest")]:
-        restCompliance.isCompliant ? "OK" : "VIOLATION",
+        restCompliance.isCompliant
+          ? t("common.ok")
+          : t("common.violation"),
       [t("driver.export.headers.nightWork")]: nightWork.hasNightWork
-        ? "YES"
-        : "NO",
+        ? t("common.yes")
+        : t("common.no"),
     };
   });
 };
