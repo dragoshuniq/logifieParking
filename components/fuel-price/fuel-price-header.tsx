@@ -3,7 +3,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React, { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, TextInput, View } from "react-native";
-import { ThemedPressable } from "../ui/themed-pressable";
 import { ThemedText } from "../ui/themed-text";
 import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 import { ThemedView } from "../ui/themed-view";
@@ -46,20 +45,16 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
           })}
         </ThemedText>
 
-        <ThemedPressable
+        <ThemedTouchableOpacity
+          lightColor={colors.primary.DEFAULT}
+          darkColor={colors.primary.DEFAULT}
           onPress={onToggleUnit}
-          style={({ pressed }) => [
-            styles.unitButton,
-            {
-              backgroundColor: colors.primary[50],
-              opacity: pressed ? 0.7 : 1,
-            },
-          ]}
+          style={styles.unitButton}
         >
           <ThemedText>
-            {unit === "per1000L" ? "/ 1000L" : "/ L"}
+            {unit === "per1000L" ? "/ 1000L" : "/ 1L"}
           </ThemedText>
-        </ThemedPressable>
+        </ThemedTouchableOpacity>
       </View>
 
       <View style={styles.searchContainer}>
@@ -140,6 +135,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   unitButtonText: {
     fontSize: 12,
