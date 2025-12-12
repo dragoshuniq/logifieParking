@@ -26,7 +26,7 @@ export async function registerForPushNotificationsAsync() {
         name: "Daily Reminders",
         importance: Notifications.AndroidImportance.DEFAULT,
         vibrationPattern: [0, 250, 250, 250],
-        lightColor: "#FF231F7C",
+        lightColor: "#e63946",
       }
     );
   }
