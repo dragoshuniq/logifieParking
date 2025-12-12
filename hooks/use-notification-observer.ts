@@ -4,8 +4,6 @@ import { useEffect } from "react";
 
 export function useNotificationObserver() {
   useEffect(() => {
-    let isMounted = true;
-
     function redirect(notification: Notifications.Notification) {
       const url = notification.request.content.data?.url;
       if (typeof url === "string") {
@@ -13,14 +11,10 @@ export function useNotificationObserver() {
       }
     }
 
-    Notifications.getLastNotificationResponseAsync().then(
-      (response) => {
-        if (!isMounted || !response?.notification) {
-          return;
-        }
-        redirect(response.notification);
-      }
-    );
+    const response = Notifications.getLastNotificationResponse();
+    if (response?.notification) {
+      redirect(response.notification);
+    }
 
     const subscription =
       Notifications.addNotificationResponseReceivedListener(
@@ -30,7 +24,6 @@ export function useNotificationObserver() {
       );
 
     return () => {
-      isMounted = false;
       subscription.remove();
     };
   }, []);
