@@ -67,5 +67,15 @@ declare module "react-native-actions-sheet" {
       };
       returnValue?: undefined;
     };
+    NotificationPermission: {
+      payload: {
+        mode: "request" | "settings";
+        context: "value_moment" | "feature_gate";
+        onPrimary: () => void;
+        onSecondary: () => void;
+        onClose: () => void;
+      };
+      returnValue?: undefined;
+    };
   }
 }

@@ -1,6 +1,8 @@
+import { showNotificationPermissionDialog } from "@/components/notifications/notification-permission-dialog";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets } from "@/constants/sheets";
+import { useNotificationPermission } from "@/hooks/use-notification-permission";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { useFormatDate } from "@/hooks/useFormat";
 import { useDatabase } from "@/providers/driver-database";
@@ -10,7 +12,7 @@ import {
   getWeeklyRestDeficits,
 } from "@/utils/driver-db";
 import { exportToCSV, exportToXLS } from "@/utils/export";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -58,6 +60,16 @@ const ExportConfigSheet = () => {
   configureDayjsLocale(i18n.language);
 
   const { selectedDate } = payload || ({} as ExportConfigPayload);
+
+  const {
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    openPermissionDialog,
+    closePermissionDialog,
+    primaryAction,
+    secondaryAction,
+  } = useNotificationPermission();
 
   const [exportType, setExportType] = useState<ExportType>("csv");
   const [periodType, setPeriodType] =
@@ -122,6 +134,9 @@ const ExportConfigSheet = () => {
       } else {
         await exportToXLS(activities, deficits, t);
       }
+
+      // Show notification permission dialog after successful export
+      openPermissionDialog("value_moment");
     } catch (error) {
       console.error(error);
       Alert.alert(
@@ -152,6 +167,26 @@ const ExportConfigSheet = () => {
       },
     });
   };
+
+  // Show notification permission dialog when needed
+  useEffect(() => {
+    if (showPermissionDialog) {
+      showNotificationPermissionDialog({
+        mode: dialogMode,
+        context: dialogContext,
+        onPrimary: primaryAction,
+        onSecondary: secondaryAction,
+        onClose: closePermissionDialog,
+      });
+    }
+  }, [
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    primaryAction,
+    secondaryAction,
+    closePermissionDialog,
+  ]);
 
   return (
     <ActionSheet

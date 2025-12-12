@@ -1,9 +1,16 @@
 import { getFuelData, getStaleTimeForFuelData } from "@/api/fuel";
+import { showNotificationPermissionDialog } from "@/components/notifications/notification-permission-dialog";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useNotificationPermission } from "@/hooks/use-notification-permission";
 import { ONE_WEEK } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
-import React, { useCallback, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import {
   ActivityIndicator,
@@ -34,6 +41,16 @@ export const FuelPrice = () => {
     );
   }, []);
 
+  const {
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    openPermissionDialog,
+    closePermissionDialog,
+    primaryAction,
+    secondaryAction,
+  } = useNotificationPermission();
+
   const { data, isFetching, isLoading, refetch } = useQuery({
     queryKey: ["fuel-prices"],
     queryFn: () => getFuelData(),
@@ -47,12 +64,39 @@ export const FuelPrice = () => {
       Math.min(1000 * 2 ** attemptIndex, 30000),
   });
 
+  // Show notification permission dialog after successful data fetch
+  useEffect(() => {
+    if (data && !isLoading) {
+      openPermissionDialog("value_moment");
+    }
+  }, [data, isLoading]);
+
   const handleFilterPress = useCallback(() => {
     showFuelPriceFilters({
       currentSort: sortType,
       onSortChange: (sort) => setSortType(sort),
     });
   }, [sortType]);
+
+  // Show notification permission dialog when needed
+  useEffect(() => {
+    if (showPermissionDialog) {
+      showNotificationPermissionDialog({
+        mode: dialogMode,
+        context: dialogContext,
+        onPrimary: primaryAction,
+        onSecondary: secondaryAction,
+        onClose: closePermissionDialog,
+      });
+    }
+  }, [
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    primaryAction,
+    secondaryAction,
+    closePermissionDialog,
+  ]);
 
   const ListHeader = useMemo(
     () => (
