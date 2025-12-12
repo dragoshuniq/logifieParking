@@ -1,3 +1,4 @@
+import {} from "@/services/notifications";
 import dayjs from "@/utils/dayjs-config";
 import { File, Paths } from "expo-file-system";
 import { isAvailableAsync, shareAsync } from "expo-sharing";
@@ -227,7 +228,7 @@ export const exportToCSV = async (
     });
 
     // Request app store review after successful export
-    requestStoreReviewAfterAction();
+    await requestStoreReviewAfterAction();
 
     // Clean up file after sharing
     await cleanupFile(file);
@@ -328,7 +329,7 @@ export const exportToXLS = async (
     });
 
     // Request app store review after successful export
-    requestStoreReviewAfterAction();
+    await requestStoreReviewAfterAction();
 
     // Clean up file after sharing
     await cleanupFile(file);

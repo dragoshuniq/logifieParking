@@ -1,3 +1,4 @@
+import * as Notifications from "expo-notifications";
 import { Tabs } from "expo-router";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -9,6 +10,7 @@ import {
 } from "@/components/drawer/disclaimers";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { scheduleTestNotification } from "@/services/notifications/test";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/build/MaterialCommunityIcons";
@@ -57,6 +59,20 @@ export default function TabLayout() {
       }
     })();
   }, [t]);
+
+  useEffect(() => {
+    (async () => {
+      // Ensure permissions are checking before testing
+      const { status } = await Notifications.getPermissionsAsync();
+      console.log("Notification permission status:", status);
+      if (status === "granted") {
+        await scheduleTestNotification("Test", "Tap to open Driver", {
+          color: "#e63946",
+          url: "/(tabs)/driver",
+        });
+      }
+    })();
+  }, []);
 
   return (
     <Tabs

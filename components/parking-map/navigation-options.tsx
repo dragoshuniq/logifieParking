@@ -9,6 +9,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import ActionSheet, {
   ActionSheetRef,
@@ -52,10 +53,17 @@ export const NavigationOptions = () => {
       })();
   }, [destination]);
 
+  const { t } = useTranslation();
+
   const renderAvailableMap = useCallback(
     ({ item }: { item: GetAppsResponse }) => {
       return (
-        <TouchableOpacity key={item.id} onPress={() => item.open()}>
+        <TouchableOpacity
+          key={item.id}
+          onPress={() => {
+            item.open();
+          }}
+        >
           <ThemedText
             lightColor={Colors.light.text}
             darkColor={Colors.dark.text}
@@ -66,7 +74,7 @@ export const NavigationOptions = () => {
         </TouchableOpacity>
       );
     },
-    []
+    [t]
   );
 
   const themeColors = Colors[colorScheme as "light" | "dark"];

@@ -25,9 +25,9 @@ import ActionSheet, {
 } from "react-native-actions-sheet";
 import { showDatePicker } from "./date-picker-sheet";
 
-export interface ExportConfigPayload {
+export type ExportConfigPayload = {
   selectedDate: Date;
-}
+};
 
 export const showExportConfig = (payload: ExportConfigPayload) => {
   SheetManager.show(ESheets.ExportConfig, {

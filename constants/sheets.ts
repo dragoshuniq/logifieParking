@@ -9,6 +9,7 @@ export enum ESheets {
   DatePicker = "DatePicker",
   ExportConfig = "ExportConfig",
   InfoSheet = "InfoSheet",
+  NotificationPermission = "NotificationPermission",
 }
 
 export interface TimePickerProps {
@@ -44,3 +45,11 @@ export type InfoSheetProps = {
   title: string;
   sections: InfoSection[];
 };
+
+export interface NotificationPermissionPayload {
+  mode: "request" | "settings";
+  context: "value_moment" | "feature_gate";
+  onPrimary: () => void;
+  onSecondary: () => void;
+  onClose: () => void;
+}

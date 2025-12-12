@@ -1,3 +1,5 @@
+import * as Notifications from "expo-notifications";
+
 export async function scheduleTestNotification(
   title: string,
   body: string,
@@ -15,7 +17,9 @@ export async function scheduleTestNotification(
       data: { url: options.url }, // Include url in data
     },
     trigger: {
+      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
       seconds: 5,
+      repeats: false,
     },
   });
 }
