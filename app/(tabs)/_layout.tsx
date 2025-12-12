@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { CustomDrawerHeader } from "@/components/drawer/custom-drawer-header";
@@ -13,9 +13,50 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/build/MaterialCommunityIcons";
 
+import {
+  registerForPushNotificationsAsync,
+  scheduleDailyNotifications,
+} from "../../services/notifications";
+
+import { useNotificationObserver } from "../../hooks/use-notification-observer";
+
 export default function TabLayout() {
   const { t } = useTranslation();
   const colorScheme = useColorScheme();
+
+  useNotificationObserver();
+
+  useEffect(() => {
+    (async () => {
+      const hasPermission = await registerForPushNotificationsAsync();
+      if (hasPermission) {
+        await scheduleDailyNotifications(
+          {
+            driver: t(
+              "notifications.driver",
+              "Don't forget to use the Driver Assistant!"
+            ),
+            fuel: t(
+              "notifications.fuel",
+              "Check today's fuel prices!"
+            ),
+            parking: t(
+              "notifications.parking",
+              "Evening parking reminder."
+            ),
+          },
+          {
+            color: Colors.light.primary.DEFAULT,
+            urls: {
+              driver: "/(tabs)/driver",
+              fuel: "/(tabs)/gas",
+              parking: "/",
+            },
+          }
+        );
+      }
+    })();
+  }, [t]);
 
   return (
     <Tabs
