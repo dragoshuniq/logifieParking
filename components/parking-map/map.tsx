@@ -2,11 +2,12 @@ import { getAllParkings, IParking } from "@/api/parking";
 import { AppConstants } from "@/constants/app.const";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useThemedColors } from "@/hooks/use-themed-colors";
 import { ONE_MINUTE, TWO_WEEKS } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
 import * as Location from "expo-location";
 import React, { useEffect, useMemo, useRef } from "react";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -17,10 +18,14 @@ import { MapDisclaimerButton } from "./map-disclaimer";
 import { getDarkMapStyle } from "./map-style";
 import { showNavigationOptions } from "./navigation-options";
 
+import { ClusterMarker } from "./cluster-marker"; // [NEW] Import ClusterMarker
+
 export const ParkingMap = () => {
   const theme = useColorScheme() ?? "light";
   const { top } = useSafeAreaInsets();
   const mapRef = useRef<MapView>(null);
+  const { primary } = useThemedColors("primary");
+
   const { data } = useQuery({
     queryKey: ["parkings"],
     queryFn: () => getAllParkings(),
@@ -98,8 +103,29 @@ export const ParkingMap = () => {
         }}
         clusterColor={clusterColor}
         clusterTextColor={clusterTextColor}
-        minPoints={10}
+        minPoints={Platform.OS === "android" ? 5 : 10}
         animationEnabled
+        {...Platform.select({
+          android: {
+            renderCluster: (cluster) => {
+              const { id, geometry, onPress, properties } = cluster;
+              const points = properties.point_count;
+
+              return (
+                <ClusterMarker
+                  key={`cluster-${id}`}
+                  id={id}
+                  coordinate={{
+                    longitude: geometry.coordinates[0],
+                    latitude: geometry.coordinates[1],
+                  }}
+                  onPress={onPress}
+                  points={points}
+                />
+              );
+            },
+          },
+        })}
       >
         {data?.parkings?.map((parking) => (
           <Marker
