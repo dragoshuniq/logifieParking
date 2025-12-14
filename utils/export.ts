@@ -1,4 +1,3 @@
-import {} from "@/services/notifications";
 import dayjs from "@/utils/dayjs-config";
 import { File, Paths } from "expo-file-system";
 import { isAvailableAsync, shareAsync } from "expo-sharing";
@@ -19,9 +18,6 @@ import { requestStoreReviewAfterAction } from "./store-review";
 
 type TranslateFunction = (key: string) => string;
 
-/**
- * Get the localized label for an activity type
- */
 const getActivityTypeLabel = (
   type: ActivityType,
   t: TranslateFunction
@@ -42,36 +38,26 @@ const getActivityTypeLabel = (
   }
 };
 
-/**
- * Generate a unique filename with timestamp and random component
- */
 const generateFileName = (extension: string): string => {
   const timestamp = dayjs().format("YYYY-MM-DD_HH-mm-ss");
   const random = Math.random().toString(36).substring(2, 8);
   return `driver_hours_${timestamp}_${random}.${extension}`;
 };
 
-/**
- * Clean up a file from the file system (best effort, no error thrown)
- */
 const cleanupFile = async (file: File): Promise<void> => {
   try {
     if (file.exists) {
       await file.delete();
     }
   } catch (error) {
-    // Silent cleanup failure - not critical
     console.warn("Failed to cleanup file:", error);
   }
 };
 
-/**
- * Prepare activity data for export with compliance calculations
- */
 const prepareActivityData = (
   activities: Activity[],
   t: TranslateFunction
-): Array<Record<string, string>> => {
+): Record<string, string>[] => {
   return activities.map((activity) => {
     const startDate = dayjs(activity.startDateTime);
     const endDate = dayjs(activity.endDateTime);
@@ -131,13 +117,10 @@ const prepareActivityData = (
   });
 };
 
-/**
- * Prepare deficit data for export
- */
 const prepareDeficitData = (
   deficits: WeeklyRestDeficit[],
   t: TranslateFunction
-): Array<Record<string, string>> => {
+): Record<string, string>[] => {
   return deficits.map((deficit) => ({
     [t("driver.export.headers.weekStart")]: dayjs(
       deficit.weekStart
@@ -155,14 +138,6 @@ const prepareDeficitData = (
   }));
 };
 
-/**
- * Export driver activities to CSV format using PapaParse
- *
- * @param activities - Array of activities to export
- * @param deficits - Array of weekly rest deficits (optional)
- * @param t - Translation function
- * @throws Error if no activities provided or sharing fails
- */
 export const exportToCSV = async (
   activities: Activity[],
   deficits: WeeklyRestDeficit[] | undefined,
@@ -175,16 +150,13 @@ export const exportToCSV = async (
   let file: File | null = null;
 
   try {
-    // Prepare activity data
     const activitiesData = prepareActivityData(activities, t);
 
-    // Generate CSV for activities
     let csvContent = Papa.unparse(activitiesData, {
       quotes: true,
       header: true,
     });
 
-    // Add deficits section if available
     if (deficits && deficits.length > 0) {
       csvContent += "\n\n";
       csvContent +=
@@ -199,41 +171,32 @@ export const exportToCSV = async (
       csvContent += deficitsCSV;
     }
 
-    // Generate unique filename and create file
     const fileName = generateFileName("csv");
     file = new File(Paths.cache, fileName);
 
-    // Create file (overwrite if exists)
     await file.create({ overwrite: true });
 
-    // Write CSV content to file
     await file.write(csvContent);
 
-    // Verify file was created
     if (!file.exists) {
       throw new Error("File was not created successfully");
     }
 
-    // Check if sharing is available
     const isAvailable = await isAvailableAsync();
     if (!isAvailable) {
       throw new Error("Sharing is not available on this device");
     }
 
-    // Share the file
     await shareAsync(file.uri, {
       mimeType: "text/csv",
       dialogTitle: t("driver.export.dialogTitle"),
       UTI: "public.comma-separated-values-text",
     });
 
-    // Request app store review after successful export
     await requestStoreReviewAfterAction();
 
-    // Clean up file after sharing
     await cleanupFile(file);
   } catch (error) {
-    // Clean up file on error
     if (file) {
       await cleanupFile(file);
     }
@@ -243,14 +206,6 @@ export const exportToCSV = async (
   }
 };
 
-/**
- * Export driver activities to Excel format using XLSX library
- *
- * @param activities - Array of activities to export
- * @param deficits - Array of weekly rest deficits (optional)
- * @param t - Translation function
- * @throws Error if no activities provided or sharing fails
- */
 export const exportToXLS = async (
   activities: Activity[],
   deficits: WeeklyRestDeficit[] | undefined,
@@ -263,10 +218,8 @@ export const exportToXLS = async (
   let file: File | null = null;
 
   try {
-    // Create new workbook
     const workbook = XLSX.utils.book_new();
 
-    // Prepare and add activities sheet
     const activitiesData = prepareActivityData(activities, t);
     const activitiesSheet = XLSX.utils.json_to_sheet(activitiesData);
     XLSX.utils.book_append_sheet(
@@ -275,7 +228,6 @@ export const exportToXLS = async (
       "Driver Hours"
     );
 
-    // Add deficits sheet if available
     if (deficits && deficits.length > 0) {
       const deficitsData = prepareDeficitData(deficits, t);
       const deficitsSheet = XLSX.utils.json_to_sheet(deficitsData);
@@ -286,41 +238,33 @@ export const exportToXLS = async (
       );
     }
 
-    // Generate Excel file as base64
     const excelBase64 = XLSX.write(workbook, {
       type: "base64",
       bookType: "xlsx",
     });
 
-    // Generate unique filename and create file
     const fileName = generateFileName("xlsx");
     file = new File(Paths.cache, fileName);
 
-    // Create file (overwrite if exists)
     await file.create({ overwrite: true });
 
-    // Decode base64 to binary (Uint8Array) for Excel file
     const binaryString = atob(excelBase64);
     const bytes = new Uint8Array(binaryString.length);
     for (let i = 0; i < binaryString.length; i++) {
       bytes[i] = binaryString.charCodeAt(i);
     }
 
-    // Write binary content to file
     await file.write(bytes);
 
-    // Verify file was created
     if (!file.exists) {
       throw new Error("File was not created successfully");
     }
 
-    // Check if sharing is available
     const isAvailable = await isAvailableAsync();
     if (!isAvailable) {
       throw new Error("Sharing is not available on this device");
     }
 
-    // Share the file
     await shareAsync(file.uri, {
       mimeType:
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -328,13 +272,10 @@ export const exportToXLS = async (
       UTI: "org.openxmlformats.spreadsheetml.sheet",
     });
 
-    // Request app store review after successful export
     await requestStoreReviewAfterAction();
 
-    // Clean up file after sharing
     await cleanupFile(file);
   } catch (error) {
-    // Clean up file on error
     if (file) {
       await cleanupFile(file);
     }
