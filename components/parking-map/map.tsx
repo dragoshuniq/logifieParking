@@ -85,6 +85,7 @@ export const ParkingMap = () => {
         containerStyle={[styles.drawerToggleButton, { top: top }]}
       />
       <MapView
+        toolbarEnabled={false}
         ref={mapRef}
         showsUserLocation
         style={styles.map}
