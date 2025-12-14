@@ -103,7 +103,6 @@ export const ParkingMap = () => {
       >
         {data?.parkings?.map((parking) => (
           <Marker
-            tracksViewChanges={false}
             key={parking._id}
             coordinate={{
               latitude: parking.latitude || 0,
