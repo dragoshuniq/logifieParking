@@ -403,5 +403,19 @@
         "content": "• Visar hur många reducerade veckovilor som återstår att kompensera.\n• Visar totala återstående timmar att kompensera och sista deadline."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Arbetstid",
+      "body": "Kom ihåg att logga din dagliga aktivitet!"
+    },
+    "fuel": {
+      "title": "Bränslepriser",
+      "body": "Kolla dagens bränslepriser!"
+    },
+    "parking": {
+      "title": "Lastbilsparkering",
+      "body": "Hitta en säker parkeringsplats för natten!"
+    }
   }
 }

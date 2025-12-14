@@ -10,13 +10,9 @@ import {
 import { configureCalendarLocale } from "@/utils/calendar-config";
 import { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useTranslation } from "react-i18next";
-import {
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import ActionSheet, {
+  FlatList,
   SheetManager,
   SheetProps,
 } from "react-native-actions-sheet";

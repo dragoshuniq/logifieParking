@@ -403,5 +403,19 @@
         "content": "• Mostra quanti riposi settimanali ridotti restano da compensare.\n• Mostra il totale delle ore di compensazione pendenti e la scadenza ultima per effettuarla."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Ore di lavoro",
+      "body": "Ricordati di registrare la tua attività giornaliera!"
+    },
+    "fuel": {
+      "title": "Prezzi carburante",
+      "body": "Controlla i prezzi del carburante di oggi!"
+    },
+    "parking": {
+      "title": "Parcheggio camion",
+      "body": "Trova un parcheggio sicuro per stasera!"
+    }
   }
 }

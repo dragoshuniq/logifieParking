@@ -403,5 +403,19 @@
         "content": "• Muestra cuántos descansos semanales reducidos siguen pendientes de compensar.\n• Muestra las horas totales pendientes y la fecha límite más tardía para compensarlas."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Horas de trabajo",
+      "body": "¡Recuerda registrar tu actividad diaria!"
+    },
+    "fuel": {
+      "title": "Precios del combustible",
+      "body": "¡Consulta los precios del combustible de hoy!"
+    },
+    "parking": {
+      "title": "Aparcamiento de camiones",
+      "body": "¡Encuentra un lugar seguro para aparcar esta noche!"
+    }
   }
 }

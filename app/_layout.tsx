@@ -15,6 +15,7 @@ import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { DriverDatabaseProvider } from "@/providers/driver-database";
 import "@/providers/i18n";
+import { NotificationProvider } from "@/providers/notification-provider";
 import { queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
 import { Drawer } from "expo-router/drawer";
@@ -49,23 +50,29 @@ export default function RootLayout() {
     >
       <PersistGate>
         <DriverDatabaseProvider>
-          <ThemeProvider
-            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-          >
-            <SheetProvider>
-              <SafeAreaProvider>
-                <Drawer drawerContent={() => <CustomDrawerContent />}>
-                  <Drawer.Screen
-                    name="(tabs)"
-                    options={{
-                      headerShown: false,
-                    }}
-                  />
-                </Drawer>
-              </SafeAreaProvider>
-              <StatusBar style="auto" />
-            </SheetProvider>
-          </ThemeProvider>
+          <NotificationProvider>
+            <ThemeProvider
+              value={
+                colorScheme === "dark" ? DarkTheme : DefaultTheme
+              }
+            >
+              <SheetProvider>
+                <SafeAreaProvider>
+                  <Drawer
+                    drawerContent={() => <CustomDrawerContent />}
+                  >
+                    <Drawer.Screen
+                      name="(tabs)"
+                      options={{
+                        headerShown: false,
+                      }}
+                    />
+                  </Drawer>
+                </SafeAreaProvider>
+                <StatusBar style="auto" />
+              </SheetProvider>
+            </ThemeProvider>
+          </NotificationProvider>
         </DriverDatabaseProvider>
       </PersistGate>
     </PersistQueryClientProvider>

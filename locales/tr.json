@@ -403,5 +403,19 @@
         "content": "• Kaç azaltılmış haftalık dinlenmenin telafi beklediğini gösterir.\n• Toplam açık saatleri ve telafi için son tarihi gösterir."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Çalışma Saatleri",
+      "body": "Günlük aktivitenizi kaydetmeyi unutmayın!"
+    },
+    "fuel": {
+      "title": "Yakıt Fiyatları",
+      "body": "Bugünün yakıt fiyatlarını kontrol edin!"
+    },
+    "parking": {
+      "title": "Kamyon Parkı",
+      "body": "Bu gece için güvenli bir park yeri bulun!"
+    }
   }
 }

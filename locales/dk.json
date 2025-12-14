@@ -403,5 +403,19 @@
         "content": "• Viser hvor mange reducerede ugentlige hviler der mangler at blive kompenseret.\n• Viser det samlede antal manglende kompensationstimer og seneste frist."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Arbejdstid",
+      "body": "Husk at registrere din daglige aktivitet!"
+    },
+    "fuel": {
+      "title": "Brændstofpriser",
+      "body": "Tjek dagens brændstofpriser!"
+    },
+    "parking": {
+      "title": "Lastbilparkering",
+      "body": "Find en sikker parkeringsplads i nat!"
+    }
   }
 }

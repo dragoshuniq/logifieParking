@@ -403,5 +403,19 @@
         "content": "• Näyttää, kuinka monta lyhennettyä viikkolepoa on korvaamatta.\n• Näyttää korvaamatta olevien tuntien kokonaismäärän ja viimeisen määräajan."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Työajat",
+      "body": "Muista kirjata päivittäinen toimintasi!"
+    },
+    "fuel": {
+      "title": "Polttoainehinnat",
+      "body": "Tarkista tämän päivän polttoainehinnat!"
+    },
+    "parking": {
+      "title": "Rekkaparkki",
+      "body": "Etsi turvallinen pysäköintipaikka yöksi!"
+    }
   }
 }

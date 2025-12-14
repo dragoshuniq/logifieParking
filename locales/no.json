@@ -403,5 +403,19 @@
         "content": "• Viser hvor mange reduserte ukehviler som gjenstår å kompensere.\n• Viser totale utestående kompenseringstimer og siste frist."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Arbeidstid",
+      "body": "Husk å loggføre din daglige aktivitet!"
+    },
+    "fuel": {
+      "title": "Drivstoffpriser",
+      "body": "Sjekk dagens drivstoffpriser!"
+    },
+    "parking": {
+      "title": "Lastebilparkering",
+      "body": "Finn en trygg parkeringsplass for kvelden!"
+    }
   }
 }

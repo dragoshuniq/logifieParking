@@ -403,5 +403,19 @@
         "content": "• Shows how many reduced weekly rests still need compensation.\n• Shows total hours of outstanding compensation and the latest deadline by which it must be taken."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Work Hours",
+      "body": "Remember to log your daily activity!"
+    },
+    "fuel": {
+      "title": "Fuel Prices",
+      "body": "Check today's fuel prices!"
+    },
+    "parking": {
+      "title": "Truck Parking",
+      "body": "Find a safe parking spot for tonight!"
+    }
   }
 }

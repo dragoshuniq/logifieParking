@@ -403,5 +403,19 @@
         "content": "• Toont hoeveel verkorte wekelijkse rusten nog gecompenseerd moeten worden.\n• Toont totale openstaande compensatie-uren en de laatste deadline."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Werkuren",
+      "body": "Vergeet niet je dagelijkse activiteit te loggen!"
+    },
+    "fuel": {
+      "title": "Brandstofprijzen",
+      "body": "Bekijk de brandstofprijzen van vandaag!"
+    },
+    "parking": {
+      "title": "Vrachtwagenparkeren",
+      "body": "Vind een veilige parkeerplaats voor vannacht!"
+    }
   }
 }

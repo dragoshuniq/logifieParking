@@ -403,5 +403,19 @@
         "content": "• Indique combien de repos hebdomadaires réduits restent à compenser.\n• Indique le total des heures de compensation restantes et la date limite la plus tardive."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Heures de travail",
+      "body": "N'oubliez pas d'enregistrer votre activité quotidienne !"
+    },
+    "fuel": {
+      "title": "Prix du carburant",
+      "body": "Vérifiez les prix du carburant d'aujourd'hui !"
+    },
+    "parking": {
+      "title": "Parking Poids Lourds",
+      "body": "Trouvez un parking sécurisé pour ce soir !"
+    }
   }
 }

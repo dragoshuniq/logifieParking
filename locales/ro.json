@@ -403,5 +403,19 @@
         "content": "• Arată câte odihne săptămânale reduse mai necesită compensare.\n• Arată totalul orelor de compensare restante și cel mai târziu termen până la care trebuie efectuată."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Program de Lucru",
+      "body": "Nu uita să îți înregistrezi activitatea zilnică!"
+    },
+    "fuel": {
+      "title": "Prețuri Carburant",
+      "body": "Verifică prețurile la carburant de astăzi!"
+    },
+    "parking": {
+      "title": "Parcare Camioane",
+      "body": "Găsește un loc de parcare sigur pentru diseară!"
+    }
   }
 }

@@ -403,5 +403,19 @@
         "content": "• Pokazuje, ile skróconych odpoczynków tygodniowych wymaga kompensacji.\n• Pokazuje łączną liczbę godzin kompensacji i najpóźniejszy termin jej wykonania."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Godziny pracy",
+      "body": "Pamiętaj o rejestrowaniu codziennej aktywności!"
+    },
+    "fuel": {
+      "title": "Ceny paliw",
+      "body": "Sprawdź dzisiejsze ceny paliw!"
+    },
+    "parking": {
+      "title": "Parking dla ciężarówek",
+      "body": "Znajdź bezpieczne miejsce parkingowe na noc!"
+    }
   }
 }

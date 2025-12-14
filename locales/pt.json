@@ -403,5 +403,19 @@
         "content": "• Mostra quantos descansos semanais reduzidos ainda precisam de compensação.\n• Mostra o total de horas em falta e a data limite mais tardia para compensar."
       }
     }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Horas de trabalho",
+      "body": "Lembre-se de registar a sua atividade diária!"
+    },
+    "fuel": {
+      "title": "Preços do combustível",
+      "body": "Verifique os preços do combustível de hoje!"
+    },
+    "parking": {
+      "title": "Estacionamento de camiões",
+      "body": "Encontre um lugar seguro para estacionar esta noite!"
+    }
   }
 }
