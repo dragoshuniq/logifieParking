@@ -5,7 +5,7 @@ import {
   openAppSettings,
   PermissionStatus,
   requestPermission,
-} from "@/services/notifications/notificationPermissions";
+} from "@/services/notifications/notification-permissions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCallback, useEffect, useState } from "react";
 

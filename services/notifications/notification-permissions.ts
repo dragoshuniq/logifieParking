@@ -1,31 +1,14 @@
 import * as Linking from "expo-linking";
 import * as Notifications from "expo-notifications";
+import { PermissionStatus } from "expo-notifications";
 import { Platform } from "react-native";
 
-/**
- * Permission status types
- */
-export type PermissionStatus = "granted" | "denied" | "undetermined";
-
-/**
- * Get current notification permission status
- */
 export async function getPermissionStatus(): Promise<PermissionStatus> {
   const { status } = await Notifications.getPermissionsAsync();
 
-  if (status === "granted") {
-    return "granted";
-  } else if (status === "denied") {
-    return "denied";
-  } else {
-    return "undetermined";
-  }
+  return status;
 }
 
-/**
- * Request notification permission from the OS
- * Only call this after user explicitly taps a permission dialog CTA
- */
 export async function requestPermission(): Promise<PermissionStatus> {
   const { status } = await Notifications.requestPermissionsAsync({
     ios: {
