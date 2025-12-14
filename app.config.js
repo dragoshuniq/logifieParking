@@ -14,31 +14,31 @@ export default {
       icon: {
         light: "./assets/images/ios-light.png",
         dark: "./assets/images/ios-dark.png",
-        tinted: "./assets/images/ios-tinted.png"
-      }
+        tinted: "./assets/images/ios-tinted.png",
+      },
     },
     android: {
       adaptiveIcon: {
         backgroundColor: "#ffffff",
         foregroundImage: "./assets/images/adaptive-icon.png",
-        monochromeImage: "./assets/images/adaptive-icon.png"
+        monochromeImage: "./assets/images/adaptive-icon.png",
       },
       edgeToEdgeEnabled: true,
       predictiveBackGestureEnabled: false,
       config: {
         googleMaps: {
-          apiKey: process.env.GOOGLE_MAPS_API_KEY
-        }
+          apiKey: process.env.GOOGLE_MAPS_API_KEY,
+        },
       },
       permissions: [
         "android.permission.ACCESS_COARSE_LOCATION",
-        "android.permission.ACCESS_FINE_LOCATION"
+        "android.permission.ACCESS_FINE_LOCATION",
       ],
-      package: "com.dragoshuniq.LogifieParking"
+      package: "com.dragoshuniq.LogifieParking",
     },
     web: {
       output: "static",
-      favicon: "./assets/images/favicon.ico"
+      favicon: "./assets/images/favicon.ico",
     },
     plugins: [
       "expo-router",
@@ -46,9 +46,11 @@ export default {
       [
         "expo-location",
         {
-          locationAlwaysAndWhenInUsePermission: "$(PRODUCT_NAME) needs access to your location to display nearby truck parking locations and help you find the closest available parking spots.",
-          locationWhenInUsePermission: "$(PRODUCT_NAME) needs access to your location to display nearby truck parking locations and help you find the closest available parking spots."
-        }
+          locationAlwaysAndWhenInUsePermission:
+            "$(PRODUCT_NAME) needs access to your location to display nearby truck parking locations and help you find the closest available parking spots.",
+          locationWhenInUsePermission:
+            "$(PRODUCT_NAME) needs access to your location to display nearby truck parking locations and help you find the closest available parking spots.",
+        },
       ],
       [
         "expo-splash-screen",
@@ -58,16 +60,23 @@ export default {
           resizeMode: "contain",
           backgroundColor: "#ffffff",
           dark: {
-            backgroundColor: "#000000"
-          }
-        }
+            backgroundColor: "#000000",
+          },
+        },
+      ],
+      [
+        "expo-notifications",
+        {
+          icon: "./assets/images/notification.png",
+          color: "#e63946",
+        },
       ],
       "expo-localization",
-      "expo-sqlite"
+      "expo-sqlite",
     ],
     experiments: {
       typedRoutes: true,
-      reactCompiler: true
-    }
-  }
+      reactCompiler: true,
+    },
+  },
 };

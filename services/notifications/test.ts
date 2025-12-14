@@ -19,14 +19,12 @@ async function setupAndroidChannel() {
 }
 
 export async function scheduleTestReminders(
-  minutesFromNow: number = 1
+  secondsFromNow: number = 10
 ) {
   await setupAndroidChannel();
 
   const now = new Date();
-  const testTime = new Date(
-    now.getTime() + minutesFromNow * 60 * 1000
-  );
+  const testTime = new Date(now.getTime() + secondsFromNow * 1000);
   const hour = testTime.getHours();
   const minute = testTime.getMinutes();
 
@@ -41,7 +39,7 @@ export async function scheduleTestReminders(
   );
 
   console.log(
-    `Scheduling test notifications for ${hour}:${minute} (in ${minutesFromNow} minute(s))`
+    `Scheduling test notifications for ${hour}:${minute} (in ${secondsFromNow} second(s))`
   );
 
   await Notifications.scheduleNotificationAsync({

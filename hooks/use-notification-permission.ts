@@ -3,8 +3,8 @@ import {
   getPermissionStatus,
   openAppSettings,
   requestPermission,
-  scheduleAllReminders,
-} from "@/services/notifications/notification-permissions";
+  scheduleTestReminders,
+} from "@/services/notifications";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from "expo-notifications";
 import { useCallback, useEffect, useState } from "react";
@@ -155,7 +155,9 @@ export function useNotificationPermission() {
       if (result === Notifications.PermissionStatus.GRANTED) {
         const token = await getExpoPushTokenIfGranted();
         analytics.notif_token_obtained(token !== null);
-        await scheduleAllReminders();
+        // FOR TESTING: Schedule reminders 1 minute from now
+        await scheduleTestReminders(1);
+        // ORIGINAL: await scheduleAllReminders();
 
         await saveUxState({
           ...uxState,
