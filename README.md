@@ -1,50 +1,47 @@
-# Welcome to your Expo app 👋
+# Logifie
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Logifie is a leading Logistics and Spedition company specializing in Less Than Truckload (LTL) and Full Truckload (FTL) solutions across Europe. We leverage the latest IT technologies to ensure superior performance, reliability, and operational efficiency, connecting shippers and carriers through data-driven optimization.
 
-## Get started
+## Key Features
 
-1. Install dependencies
+### 🗺️ Interactive Parking & Services Map
 
-   ```bash
-   npm install
-   ```
+A comprehensive tool for logistics professionals to locate essential services on the road.
 
-2. Start the app
+- **Find Locations**: Search for truck parking, rest areas, gas stations, and service points.
+- **Detailed Information**: View capacity, fees, amenities, and contact details for each location.
+- **Navigation**: Integrated routing to selected service points.
+- **Filtering**: Easily filter by country, facility type (e.g., parking, shower, mechanic), or brand.
 
-   ```bash
-   npx expo start
-   ```
+### 📱 Driver Companion App
 
-In the output, you'll find options to open the app in a
+Empower your drivers with a dedicated mobile assistant designed for life on the road.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Digital Tachograph**: Log driving, rest, and work hours with ease, ensuring compliance with EU regulations.
+- **Activity Management**: View history and manage daily/weekly activity logs.
+- **Offline Capabilities**: Access parking and service locations even without an internet connection using local database caching.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 🚛 Carrier Network
 
-## Get a fresh project
+Dedicated portal for carriers to optimize their operations.
 
-When you're ready, run:
+- **Load Access**: Connect with consistent freight opportunities across Europe.
+- **Route Optimization**: AI-powered route planning to reduce specialized empty kilometers.
+- **Digital Management**: Streamlined documentation and booking processes.
 
-```bash
-npm run reset-project
-```
+### ⛽ Fuel Intelligence
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **Fuel Prices**: Monitor fuel prices across different regions to optimize refueling stops.
 
-## Learn more
+### 📦 For Shippers
 
-To learn more about developing your project with Expo, look at the following resources:
+- **Instant Quotes**: Get real-time pricing for FTL and LTL road transport.
+- **Shipment Tracking**: Real-time visibility of cargo status.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Technology Stack
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Frontend**: Next.js 16, React 19, TailwindCSS, Framer Motion
+- **Maps**: Leaflet, React-Leaflet
+- **Backend & Database**: Next.js API Routes, Mongoose (MongoDB)
+- **UI Components**: HeroUI, Lucide React
+- **Internationalization**: next-intl
