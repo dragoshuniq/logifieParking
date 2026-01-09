@@ -1,10 +1,8 @@
 import { AppConstants } from "@/constants/app.const";
+import { STORAGE_KEYS } from "@/constants/storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as StoreReview from "expo-store-review";
 import { Linking, Platform } from "react-native";
-
-const REVIEW_REQUEST_KEY = "@store_review_last_requested";
-const REVIEW_COUNT_KEY = "@store_review_count";
 const COOLDOWN_DAYS = 90;
 const MIN_ACTIONS_BEFORE_REQUEST = 3;
 
@@ -55,17 +53,17 @@ export const openStoreForReview = () => {
 const shouldRequestReview = async (): Promise<boolean> => {
   try {
     const lastRequestedStr = await AsyncStorage.getItem(
-      REVIEW_REQUEST_KEY
+      STORAGE_KEYS.STORE_REVIEW_LAST_REQUESTED
     );
     const actionCountStr = await AsyncStorage.getItem(
-      REVIEW_COUNT_KEY
+      STORAGE_KEYS.STORE_REVIEW_COUNT
     );
 
     const actionCount = actionCountStr
       ? parseInt(actionCountStr, 10)
       : 0;
     await AsyncStorage.setItem(
-      REVIEW_COUNT_KEY,
+      STORAGE_KEYS.STORE_REVIEW_COUNT,
       (actionCount + 1).toString()
     );
 
@@ -94,10 +92,10 @@ const shouldRequestReview = async (): Promise<boolean> => {
 const markReviewRequested = async () => {
   try {
     await AsyncStorage.setItem(
-      REVIEW_REQUEST_KEY,
+      STORAGE_KEYS.STORE_REVIEW_LAST_REQUESTED,
       new Date().toISOString()
     );
-    await AsyncStorage.setItem(REVIEW_COUNT_KEY, "0");
+    await AsyncStorage.setItem(STORAGE_KEYS.STORE_REVIEW_COUNT, "0");
   } catch (error) {
     console.error("Error marking review requested:", error);
   }

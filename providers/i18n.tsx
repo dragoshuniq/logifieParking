@@ -6,6 +6,7 @@ import {
 import { configureCalendarLocale } from "@/utils/calendar-config";
 import { configureDayjsLocale } from "@/utils/dayjs-config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { STORAGE_KEYS } from "@/constants/storage";
 import * as Localization from "expo-localization";
 import * as i18next from "i18next";
 import { initReactI18next } from "react-i18next";
@@ -26,8 +27,6 @@ import se from "@/locales/se.json";
 import tr from "@/locales/tr.json";
 import ua from "@/locales/ua.json";
 
-const LANGUAGE_STORAGE_KEY = "@language";
-
 export { LANGUAGE_FLAGS, LANGUAGE_NAMES, Languages };
 
 export const validateLanguage = (language: string): Languages => {
@@ -38,11 +37,11 @@ export const validateLanguage = (language: string): Languages => {
 };
 
 export const persistLanguage = async (language: Languages) => {
-  await AsyncStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  await AsyncStorage.setItem(STORAGE_KEYS.LANGUAGE, language);
 };
 
 export const loadPersistedLanguage = async (): Promise<Languages> => {
-  const stored = await AsyncStorage.getItem(LANGUAGE_STORAGE_KEY);
+  const stored = await AsyncStorage.getItem(STORAGE_KEYS.LANGUAGE);
   if (stored) {
     return validateLanguage(stored);
   }

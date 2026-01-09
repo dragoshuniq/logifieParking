@@ -6,11 +6,11 @@ import {
   scheduleAllReminders,
 } from "@/services/notifications";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { STORAGE_KEYS } from "@/constants/storage";
 import * as Notifications from "expo-notifications";
 import { useCallback, useEffect, useState } from "react";
 import * as analytics from "../services/notifications/analytics";
 
-const STORAGE_KEY = "notif_permission_ux_state_v1";
 const SNOOZE_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
 interface NotificationUXState {
@@ -41,7 +41,9 @@ export function useNotificationPermission() {
 
   const loadUxState = useCallback(async () => {
     try {
-      const stored = await AsyncStorage.getItem(STORAGE_KEY);
+      const stored = await AsyncStorage.getItem(
+        STORAGE_KEYS.NOTIFICATION_PERMISSION_UX_STATE
+      );
       if (stored) {
         setUxState(JSON.parse(stored));
       }
@@ -54,7 +56,7 @@ export function useNotificationPermission() {
     async (newState: NotificationUXState) => {
       try {
         await AsyncStorage.setItem(
-          STORAGE_KEY,
+          STORAGE_KEYS.NOTIFICATION_PERMISSION_UX_STATE,
           JSON.stringify(newState)
         );
         setUxState(newState);

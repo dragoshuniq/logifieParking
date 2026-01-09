@@ -3,6 +3,7 @@ import { ExternalLinks } from "@/constants/app.const";
 import { DRAWER_LINKS } from "@/constants/drawer.config";
 import { ESheets } from "@/constants/sheets";
 import { SocialNetworksRoutes } from "@/constants/social.config";
+import { STORAGE_KEYS } from "@/constants/storage";
 import { useThemeToggle } from "@/hooks/use-theme-toggle";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import {
@@ -50,7 +51,7 @@ export function CustomDrawerContent() {
   };
 
   const handleResetOnboarding = async () => {
-    await AsyncStorage.removeItem("@onboarding_complete");
+    await AsyncStorage.removeItem(STORAGE_KEYS.ONBOARDING_COMPLETE);
     router.replace("/onboarding");
   };
 

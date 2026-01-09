@@ -21,10 +21,10 @@ import Animated, {
 
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
+import { STORAGE_KEYS } from "@/constants/storage";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const ONBOARDING_STORAGE_KEY = "@onboarding_complete";
 
 type OnboardingSlide = {
   id: string;
@@ -82,7 +82,7 @@ export function Onboarding() {
   };
 
   const handleComplete = async () => {
-    await AsyncStorage.setItem(ONBOARDING_STORAGE_KEY, "true");
+    await AsyncStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
     router.replace("/(tabs)");
   };
 
@@ -246,6 +246,6 @@ const styles = StyleSheet.create({
 });
 
 export const checkOnboardingComplete = async (): Promise<boolean> => {
-  const value = await AsyncStorage.getItem(ONBOARDING_STORAGE_KEY);
+  const value = await AsyncStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE);
   return value === "true";
 };
