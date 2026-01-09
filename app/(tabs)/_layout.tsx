@@ -11,7 +11,7 @@ import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import {
   getPermissionStatus,
-  scheduleTestReminders,
+  scheduleAllReminders,
 } from "@/services/notifications";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -23,14 +23,9 @@ export default function TabLayout() {
 
   useEffect(() => {
     (async () => {
-      // FOR TESTING ONLY: Check if permissions are already granted and schedule test reminders
-      // This handles the case where the user previously granted permissions
       const status = await getPermissionStatus();
       if (status === "granted") {
-        console.log(
-          "Permissions already granted, scheduling test reminders..."
-        );
-        await scheduleTestReminders(1);
+        await scheduleAllReminders();
       }
     })();
   }, []);

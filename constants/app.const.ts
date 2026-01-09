@@ -7,11 +7,12 @@ export const AppConstants = {
   slogan: "Inspired by People. Powered by AI. Delivered by Logifie",
   companyLegalName: "XXXX sp. z o.o.",
   companyAddress: "XXX Katowice, str. XXX",
-  companyPhone: "+48 780 110 110",
+  companyPhone: "+48 xxxxxxxx",
   companyEmail: "contact@logifie.com",
   companyWebsite: "https://logifie.com",
-  companyFacebook: "https://www.facebook.com/logifie",
-  companyInstagram: "https://www.instagram.com/logifie",
+  companyFacebook:
+    "https://www.facebook.com/profile.php?id=61586181896001",
+  companyInstagram: "https://www.instagram.com/logifie_logistics",
   companyLinkedin: "https://www.linkedin.com/company/logifie",
   companyTiktok: "https://www.tiktok.com/logifie",
   coordinates: {
@@ -31,11 +32,6 @@ export const AppConstants = {
     androidPackageName: "",
   },
 } as const;
-
-export const DEFAULT_COORDINATES = {
-  latitude: 50.2743132,
-  longitude: 19.0040024,
-};
 
 export const getAppStoreUrl = (
   platform: "ios" | "android" | "web"
