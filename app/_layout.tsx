@@ -67,6 +67,13 @@ export default function RootLayout() {
                         headerShown: false,
                       }}
                     />
+                    <Drawer.Screen
+                      name="onboarding"
+                      options={{
+                        headerShown: false,
+                        drawerItemStyle: { display: "none" },
+                      }}
+                    />
                   </Drawer>
                 </SafeAreaProvider>
                 <StatusBar style="auto" />

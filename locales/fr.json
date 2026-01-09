@@ -417,5 +417,22 @@
       "title": "Parking Poids Lourds",
       "body": "Trouvez un parking sécurisé pour ce soir !"
     }
+  },
+  "onboarding": {
+    "skip": "Passer",
+    "next": "Suivant",
+    "getStarted": "Commencer",
+    "parking": {
+      "title": "Trouver des parkings pour camions",
+      "description": "Découvrez des emplacements de stationnement sécurisés dans toute l'Europe avec des informations détaillées sur les installations, la sécurité et la disponibilité. Planifiez vos arrêts en toute confiance."
+    },
+    "fuel": {
+      "title": "Comparer les prix du carburant",
+      "description": "Restez informé des prix actuels du carburant dans les pays européens. Comparez les prix de l'essence et du diesel pour optimiser vos coûts de carburant."
+    },
+    "driver": {
+      "title": "Suivre les heures de travail",
+      "description": "Surveillez vos heures de conduite et de travail avec des contrôles de conformité aux réglementations de l'UE. Enregistrez les activités, suivez les périodes de repos et assurez-vous de respecter toutes les exigences légales."
+    }
   }
 }

@@ -417,5 +417,22 @@
       "title": "Truck Parking",
       "body": "Find a safe parking spot for tonight!"
     }
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "next": "Next",
+    "getStarted": "Get Started",
+    "parking": {
+      "title": "Find Truck Parking",
+      "description": "Discover safe parking locations across Europe with detailed information on facilities, security, and availability. Plan your rest stops with confidence."
+    },
+    "fuel": {
+      "title": "Compare Fuel Prices",
+      "description": "Stay updated with current fuel prices across European countries. Compare petrol and diesel prices to optimize your fuel costs."
+    },
+    "driver": {
+      "title": "Track Work Hours",
+      "description": "Monitor your driving and working hours with EU regulation compliance checks. Log activities, track rest periods, and ensure you meet all legal requirements."
+    }
   }
 }

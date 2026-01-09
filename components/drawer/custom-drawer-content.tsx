@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ExternalLinks } from "@/constants/app.const";
 import { DRAWER_LINKS } from "@/constants/drawer.config";
 import { ESheets } from "@/constants/sheets";
@@ -14,6 +15,7 @@ import { shareApp } from "@/utils/share-app";
 import { Ionicons } from "@expo/vector-icons";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
@@ -45,6 +47,11 @@ export function CustomDrawerContent() {
 
   const handleOpenLanguagePicker = () => {
     SheetManager.show(ESheets.LanguagePicker);
+  };
+
+  const handleResetOnboarding = async () => {
+    await AsyncStorage.removeItem("@onboarding_complete");
+    router.replace("/onboarding");
   };
 
   return (

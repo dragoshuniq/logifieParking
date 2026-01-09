@@ -417,5 +417,22 @@
       "title": "Lastebilparkering",
       "body": "Finn en trygg parkeringsplass for kvelden!"
     }
+  },
+  "onboarding": {
+    "skip": "Hopp over",
+    "next": "Neste",
+    "getStarted": "Kom i gang",
+    "parking": {
+      "title": "Finn lastebilparkeringer",
+      "description": "Oppdag trygge parkeringsplasser over hele Europa med detaljert informasjon om fasiliteter, sikkerhet og tilgjengelighet. Planlegg pausene dine med trygghet."
+    },
+    "fuel": {
+      "title": "Sammenlign drivstoffpriser",
+      "description": "Hold deg oppdatert med gjeldende drivstoffpriser i europeiske land. Sammenlign bensin- og dieselpriser for å optimalisere drivstoffkostnadene dine."
+    },
+    "driver": {
+      "title": "Spor arbeidstimer",
+      "description": "Overvåk kjøre- og arbeidstimene dine med EU-forskriftskontroller. Registrer aktiviteter, spor hvileperioder og sørg for at du oppfyller alle lovkrav."
+    }
   }
 }

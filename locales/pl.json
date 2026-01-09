@@ -417,5 +417,22 @@
       "title": "Parking dla ciężarówek",
       "body": "Znajdź bezpieczne miejsce parkingowe na noc!"
     }
+  },
+  "onboarding": {
+    "skip": "Pomiń",
+    "next": "Dalej",
+    "getStarted": "Rozpocznij",
+    "parking": {
+      "title": "Znajdź parkingi dla ciężarówek",
+      "description": "Odkryj bezpieczne miejsca parkingowe w całej Europie ze szczegółowymi informacjami o obiektach, bezpieczeństwie i dostępności. Planuj swoje przerwy z pewnością."
+    },
+    "fuel": {
+      "title": "Porównaj ceny paliw",
+      "description": "Bądź na bieżąco z aktualnymi cenami paliw w krajach europejskich. Porównuj ceny benzyny i oleju napędowego, aby zoptymalizować koszty paliwa."
+    },
+    "driver": {
+      "title": "Śledź godziny pracy",
+      "description": "Monitoruj swoje godziny jazdy i pracy ze sprawdzaniem zgodności z przepisami UE. Rejestruj aktywności, śledź okresy odpoczynku i upewnij się, że spełniasz wszystkie wymagania prawne."
+    }
   }
 }

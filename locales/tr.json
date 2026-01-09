@@ -417,5 +417,22 @@
       "title": "Kamyon Parkı",
       "body": "Bu gece için güvenli bir park yeri bulun!"
     }
+  },
+  "onboarding": {
+    "skip": "Atla",
+    "next": "İleri",
+    "getStarted": "Başla",
+    "parking": {
+      "title": "Kamyon park yerleri bulun",
+      "description": "Tesisler, güvenlik ve müsaitlik hakkında ayrıntılı bilgilerle Avrupa genelinde güvenli park yerleri keşfedin. Molalarınızı güvenle planlayın."
+    },
+    "fuel": {
+      "title": "Yakıt fiyatlarını karşılaştırın",
+      "description": "Avrupa ülkelerindeki güncel yakıt fiyatlarından haberdar olun. Yakıt maliyetlerinizi optimize etmek için benzin ve dizel fiyatlarını karşılaştırın."
+    },
+    "driver": {
+      "title": "Çalışma saatlerini takip edin",
+      "description": "AB yönetmeliklerine uygunluk kontrolleriyle sürüş ve çalışma saatlerinizi izleyin. Faaliyetleri kaydedin, dinlenme sürelerini takip edin ve tüm yasal gereksinimleri karşıladığınızdan emin olun."
+    }
   }
 }

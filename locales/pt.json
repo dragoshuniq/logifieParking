@@ -417,5 +417,22 @@
       "title": "Estacionamento de camiões",
       "body": "Encontre um lugar seguro para estacionar esta noite!"
     }
+  },
+  "onboarding": {
+    "skip": "Saltar",
+    "next": "Próximo",
+    "getStarted": "Começar",
+    "parking": {
+      "title": "Encontre estacionamentos para camiões",
+      "description": "Descubra locais de estacionamento seguros em toda a Europa com informações detalhadas sobre instalações, segurança e disponibilidade. Planeie as suas paragens com confiança."
+    },
+    "fuel": {
+      "title": "Compare preços de combustível",
+      "description": "Mantenha-se atualizado com os preços atuais de combustível nos países europeus. Compare preços de gasolina e gasóleo para otimizar os seus custos de combustível."
+    },
+    "driver": {
+      "title": "Registe horas de trabalho",
+      "description": "Monitorize as suas horas de condução e trabalho com verificações de conformidade com os regulamentos da UE. Registe atividades, acompanhe períodos de descanso e certifique-se de cumprir todos os requisitos legais."
+    }
   }
 }
