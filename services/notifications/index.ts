@@ -1,4 +1,4 @@
 export * from "./analytics";
 export * from "./constants";
-export * from "./notification-permissions";
+export * from "./notifications";
 export * from "./types";
