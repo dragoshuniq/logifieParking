@@ -74,10 +74,12 @@ export const AppRoutes = {
   Faq: "/faq",
   Contact: "/contact",
   PrivacyPolicy: "/privacy-policy",
+  CookiesPolicy: "/cookies-policy",
   TermsAndConditions: "/terms-and-conditions",
   GetQuote: "/get-quote",
   Fuel: "/fuel",
   Careers: "/careers",
-  Sitemap: "/sitemap",
+  Holidays: "/holidays",
+  Sitemap: "/sitemap.xml",
   Robots: "/robots",
 };
