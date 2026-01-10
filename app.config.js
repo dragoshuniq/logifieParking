@@ -77,11 +77,17 @@ export default {
       "expo-sqlite",
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
+      "@react-native-firebase/perf",
       [
         "expo-build-properties",
         {
           ios: {
             useFrameworks: "static",
+            extraPods: [
+              { name: "GoogleUtilities", modular_headers: true },
+              { name: "GoogleDataTransport", modular_headers: true },
+              { name: "nanopb", modular_headers: true },
+            ],
           },
         },
       ],

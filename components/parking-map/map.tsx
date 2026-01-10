@@ -2,7 +2,6 @@ import { getAllParkings, IParking } from "@/api/parking";
 import { AppConstants } from "@/constants/app.const";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
-import { useThemedColors } from "@/hooks/use-themed-colors";
 import { ONE_MINUTE, TWO_WEEKS } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
 import * as Location from "expo-location";
@@ -24,7 +23,6 @@ export const ParkingMap = () => {
   const theme = useColorScheme() ?? "light";
   const { top } = useSafeAreaInsets();
   const mapRef = useRef<MapView>(null);
-  const { primary } = useThemedColors("primary");
 
   const { data } = useQuery({
     queryKey: ["parkings"],
