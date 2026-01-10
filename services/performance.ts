@@ -1,7 +1,7 @@
 import perf from "@react-native-firebase/perf";
 
-export const initializePerformance = async () => {
-  await perf().setPerformanceCollectionEnabled(true);
+export const initializePerformance = () => {
+  perf().dataCollectionEnabled = true;
 };
 
 export const startTrace = async (traceName: string) => {
