@@ -83,11 +83,7 @@ export default {
         {
           ios: {
             useFrameworks: "static",
-            extraPods: [
-              { name: "GoogleUtilities", modular_headers: true },
-              { name: "GoogleDataTransport", modular_headers: true },
-              { name: "nanopb", modular_headers: true },
-            ],
+            buildReactNativeFromSource: true,
           },
         },
       ],
