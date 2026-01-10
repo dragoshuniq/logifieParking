@@ -77,6 +77,14 @@ export default {
       "expo-sqlite",
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
+      [
+        "expo-build-properties",
+        {
+          ios: {
+            useFrameworks: "static",
+          },
+        },
+      ],
     ],
     experiments: {
       typedRoutes: true,
