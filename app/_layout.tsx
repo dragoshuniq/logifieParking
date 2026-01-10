@@ -19,6 +19,7 @@ import { NotificationProvider } from "@/providers/notification-provider";
 import { queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
 import { initializeCrashlytics } from "@/services/crashlytics";
+import { initializePerformance } from "@/services/performance";
 import { Drawer } from "expo-router/drawer";
 import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -39,6 +40,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     initializeCrashlytics();
+    initializePerformance();
   }, []);
 
   return (

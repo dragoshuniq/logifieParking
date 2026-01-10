@@ -1,7 +1,7 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -63,7 +63,9 @@ export function Onboarding() {
     },
   ];
 
-  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+  const handleScroll = (
+    event: NativeSyntheticEvent<NativeScrollEvent>
+  ) => {
     const offsetX = event.nativeEvent.contentOffset.x;
     const index = Math.round(offsetX / SCREEN_WIDTH);
     setCurrentIndex(index);
@@ -79,7 +81,10 @@ export function Onboarding() {
   };
 
   const handleComplete = async () => {
-    await AsyncStorage.setItem(STORAGE_KEYS.ONBOARDING_COMPLETE, "true");
+    await AsyncStorage.setItem(
+      STORAGE_KEYS.ONBOARDING_COMPLETE,
+      "true"
+    );
     router.replace("/(tabs)");
   };
 
@@ -115,7 +120,8 @@ export function Onboarding() {
               style={[
                 styles.paginationDot,
                 {
-                  backgroundColor: currentIndex === index ? tint : icon,
+                  backgroundColor:
+                    currentIndex === index ? tint : icon,
                   width: currentIndex === index ? 24 : 8,
                 },
               ]}
@@ -126,7 +132,10 @@ export function Onboarding() {
         <View style={styles.buttons}>
           {currentIndex < slides.length - 1 ? (
             <>
-              <Pressable onPress={handleComplete} style={styles.skipButton}>
+              <Pressable
+                onPress={handleComplete}
+                style={styles.skipButton}
+              >
                 <ThemedText style={styles.skipText}>
                   {t("onboarding.skip")}
                 </ThemedText>
@@ -143,7 +152,10 @@ export function Onboarding() {
           ) : (
             <Pressable
               onPress={handleComplete}
-              style={[styles.getStartedButton, { backgroundColor: tint }]}
+              style={[
+                styles.getStartedButton,
+                { backgroundColor: tint },
+              ]}
             >
               <ThemedText style={styles.getStartedText}>
                 {t("onboarding.getStarted")}
@@ -236,6 +248,8 @@ const styles = StyleSheet.create({
 });
 
 export const checkOnboardingComplete = async (): Promise<boolean> => {
-  const value = await AsyncStorage.getItem(STORAGE_KEYS.ONBOARDING_COMPLETE);
+  const value = await AsyncStorage.getItem(
+    STORAGE_KEYS.ONBOARDING_COMPLETE
+  );
   return value === "true";
 };
