@@ -56,6 +56,7 @@ export const ExternalLinks = (language: Languages) => {
     GetQuote: `${HOME_URL}/${language}${AppRoutes.GetQuote}`,
     TermsAndConditions: `${HOME_URL}/${language}${AppRoutes.TermsAndConditions}`,
     PrivacyPolicy: `${HOME_URL}/${language}${AppRoutes.PrivacyPolicy}`,
+    Holidays: `${HOME_URL}/${language}${AppRoutes.Holidays}`,
   };
 };
 

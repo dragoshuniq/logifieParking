@@ -9,7 +9,8 @@ export type DrawerLinkConfig = {
     | "Contact"
     | "GetQuote"
     | "TermsAndConditions"
-    | "PrivacyPolicy";
+    | "PrivacyPolicy"
+    | "Holidays";
   highlighted?: boolean;
 };
 
@@ -32,6 +33,12 @@ export const DRAWER_LINKS: DrawerLinkConfig[] = [
     icon: "calculator-outline",
     translationKey: "drawer.getQuote",
     urlKey: "GetQuote",
+  },
+  {
+    id: "holidays",
+    icon: "calendar-outline",
+    translationKey: "drawer.holidays",
+    urlKey: "Holidays",
   },
   {
     id: "termsAndConditions",
