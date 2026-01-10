@@ -18,7 +18,9 @@ import "@/providers/i18n";
 import { NotificationProvider } from "@/providers/notification-provider";
 import { queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
+import { initializeCrashlytics } from "@/services/crashlytics";
 import { Drawer } from "expo-router/drawer";
+import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const asyncStoragePersister = createAsyncStoragePersister({
@@ -34,6 +36,10 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+
+  useEffect(() => {
+    initializeCrashlytics();
+  }, []);
 
   return (
     <PersistQueryClientProvider

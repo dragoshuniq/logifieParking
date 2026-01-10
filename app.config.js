@@ -16,6 +16,7 @@ export default {
         dark: "./assets/images/ios-dark.png",
         tinted: "./assets/images/ios-tinted.png",
       },
+      googleServicesFile: "./firebase/GoogleService-Info.plist",
     },
     android: {
       adaptiveIcon: {
@@ -35,6 +36,7 @@ export default {
         "android.permission.ACCESS_FINE_LOCATION",
       ],
       package: "com.dragoshuniq.LogifieParking",
+      googleServicesFile: "./firebase/google-services.json",
     },
     web: {
       output: "static",
@@ -73,6 +75,8 @@ export default {
       ],
       "expo-localization",
       "expo-sqlite",
+      "@react-native-firebase/app",
+      "@react-native-firebase/crashlytics",
     ],
     experiments: {
       typedRoutes: true,
