@@ -14,10 +14,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  withSpring,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
@@ -112,25 +109,18 @@ export function Onboarding() {
 
       <View style={styles.footer}>
         <View style={styles.pagination}>
-          {slides.map((_, index) => {
-            const animatedStyle = useAnimatedStyle(() => ({
-              width: withSpring(currentIndex === index ? 24 : 8),
-            }));
-
-            return (
-              <Animated.View
-                key={index}
-                style={[
-                  styles.paginationDot,
-                  {
-                    backgroundColor:
-                      currentIndex === index ? tint : icon,
-                  },
-                  animatedStyle,
-                ]}
-              />
-            );
-          })}
+          {slides.map((_, index) => (
+            <Animated.View
+              key={index}
+              style={[
+                styles.paginationDot,
+                {
+                  backgroundColor: currentIndex === index ? tint : icon,
+                  width: currentIndex === index ? 24 : 8,
+                },
+              ]}
+            />
+          ))}
         </View>
 
         <View style={styles.buttons}>
