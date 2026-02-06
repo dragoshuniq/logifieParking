@@ -23,11 +23,11 @@ export const SocialNetworksRoutes: NetworkType[] = [
     icon: "logo-instagram",
     name: "Instagram",
   },
-  // {
-  //   webLink: AppConstants.companyTiktok,
-  //   icon: "logo-tiktok",
-  //   name: "TikTok",
-  // },
+  {
+    webLink: AppConstants.companyTiktok,
+    icon: "logo-tiktok",
+    name: "TikTok",
+  },
   // {
   //   webLink: `mailto:${AppConstants.companyEmail}`,
   //   icon: "mail-outline",

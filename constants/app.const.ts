@@ -14,7 +14,7 @@ export const AppConstants = {
     "https://www.facebook.com/profile.php?id=61586181896001",
   companyInstagram: "https://www.instagram.com/logifie_logistics",
   companyLinkedin: "https://www.linkedin.com/company/logifie",
-  companyTiktok: "https://www.tiktok.com/logifie",
+  companyTiktok: "https://www.tiktok.com/@logifie",
   coordinates: {
     latitude: 50.2758545,
     longitude: 19.0244098,
