@@ -47,3 +47,5 @@ app-example
 # Firebase config files
 firebase/google-services.json
 firebase/GoogleService-Info.plist
+
+.claude
