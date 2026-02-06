@@ -28,16 +28,16 @@ export const SocialNetworksRoutes: NetworkType[] = [
   //   icon: "logo-tiktok",
   //   name: "TikTok",
   // },
-  {
-    webLink: `mailto:${AppConstants.companyEmail}`,
-    icon: "mail-outline",
-    name: "Mail",
-  },
-  {
-    webLink: `tel:${AppConstants.companyPhone}`,
-    icon: "call-outline",
-    name: "Phone",
-  },
+  // {
+  //   webLink: `mailto:${AppConstants.companyEmail}`,
+  //   icon: "mail-outline",
+  //   name: "Mail",
+  // },
+  // {
+  //   webLink: `tel:${AppConstants.companyPhone}`,
+  //   icon: "call-outline",
+  //   name: "Phone",
+  // },
 ] as const;
 
 export const Networks = SocialNetworksRoutes.reduce(
