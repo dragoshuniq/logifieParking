@@ -30,6 +30,7 @@
     "home": "Inicio",
     "contact": "Contáctanos",
     "getQuote": "Solicitar presupuesto",
+    "holidays": "Días festivos",
     "termsConditions": "Términos y condiciones",
     "privacyPolicy": "Política de privacidad",
     "driver": "Conductor",
@@ -402,6 +403,37 @@
         "heading": "Visualización en la app",
         "content": "• Muestra cuántos descansos semanales reducidos siguen pendientes de compensar.\n• Muestra las horas totales pendientes y la fecha límite más tardía para compensarlas."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Horas de trabajo",
+      "body": "¡Recuerda registrar tu actividad diaria!"
+    },
+    "fuel": {
+      "title": "Precios del combustible",
+      "body": "¡Consulta los precios del combustible de hoy!"
+    },
+    "parking": {
+      "title": "Aparcamiento de camiones",
+      "body": "¡Encuentra un lugar seguro para aparcar esta noche!"
+    }
+  },
+  "onboarding": {
+    "skip": "Saltar",
+    "next": "Siguiente",
+    "getStarted": "Empezar",
+    "parking": {
+      "title": "Encuentra aparcamientos para camiones",
+      "description": "Descubre ubicaciones de aparcamiento seguras en toda Europa con información detallada sobre instalaciones, seguridad y disponibilidad. Planifica tus paradas con confianza."
+    },
+    "fuel": {
+      "title": "Compara precios de combustible",
+      "description": "Mantente actualizado con los precios actuales del combustible en los países europeos. Compara precios de gasolina y diésel para optimizar tus costos de combustible."
+    },
+    "driver": {
+      "title": "Registra horas de trabajo",
+      "description": "Supervisa tus horas de conducción y trabajo con controles de cumplimiento de las normativas de la UE. Registra actividades, realiza un seguimiento de los períodos de descanso y asegúrate de cumplir con todos los requisitos legales."
     }
   }
 }

@@ -5,37 +5,34 @@ export const TIMEZONE = "Europe/Warsaw";
 export const AppConstants = {
   companyName: "Logifie",
   slogan: "Inspired by People. Powered by AI. Delivered by Logifie",
-  companyLegalName: "XXXX sp. z o.o.",
-  companyAddress: "XXX Katowice, str. XXX",
-  companyPhone: "+48 780 110 110",
-  companyEmail: "contact@logifie.com",
+  companyLegalName: "Logifie sp. z o.o.",
+  companyAddress: "Jesionowa 9a/311 , 40-159 Katowice",
+  companyPhone: "+48 xxxxxxxx",
+  companyEmail: "office@logifie.com",
   companyWebsite: "https://logifie.com",
-  companyFacebook: "https://www.facebook.com/logifie",
-  companyInstagram: "https://www.instagram.com/logifie",
+  companyFacebook:
+    "https://www.facebook.com/profile.php?id=61586181896001",
+  companyInstagram: "https://www.instagram.com/logifie_logistics",
   companyLinkedin: "https://www.linkedin.com/company/logifie",
-  companyTiktok: "https://www.tiktok.com/logifie",
+  companyTiktok: "https://www.tiktok.com/@logifie",
+  companyYoutube: "https://www.youtube.com/@Logifie",
   coordinates: {
-    latitude: 50.2743132,
-    longitude: 19.0040024,
+    latitude: 50.2758545,
+    longitude: 19.0244098,
   },
   invoiceData: {
-    companyLegalName: "XXXX sp. z o.o.",
-    companyAddress: "XXX Katowice",
-    companyVat: "XXX",
-    companyVatEu: "PLXXX",
-    companyRegon: "XXX",
-    companyKrs: "XXX",
+    companyLegalName: "Logifie sp. z o.o.",
+    companyAddress: "Jesionowa 9a/311 , 40-159 Katowice",
+    companyVat: "9542902637",
+    companyVatEu: "PL9542902637",
+    companyRegon: "54389402000000",
+    companyKrs: "0001221730",
   },
   store: {
     iosAppId: "",
     androidPackageName: "",
   },
 } as const;
-
-export const DEFAULT_COORDINATES = {
-  latitude: 50.2743132,
-  longitude: 19.0040024,
-};
 
 export const getAppStoreUrl = (
   platform: "ios" | "android" | "web"
@@ -60,6 +57,7 @@ export const ExternalLinks = (language: Languages) => {
     GetQuote: `${HOME_URL}/${language}${AppRoutes.GetQuote}`,
     TermsAndConditions: `${HOME_URL}/${language}${AppRoutes.TermsAndConditions}`,
     PrivacyPolicy: `${HOME_URL}/${language}${AppRoutes.PrivacyPolicy}`,
+    Holidays: `${HOME_URL}/${language}${AppRoutes.Holidays}`,
   };
 };
 
@@ -74,10 +72,12 @@ export const AppRoutes = {
   Faq: "/faq",
   Contact: "/contact",
   PrivacyPolicy: "/privacy-policy",
+  CookiesPolicy: "/cookies-policy",
   TermsAndConditions: "/terms-and-conditions",
   GetQuote: "/get-quote",
   Fuel: "/fuel",
   Careers: "/careers",
-  Sitemap: "/sitemap",
+  Holidays: "/holidays",
+  Sitemap: "/sitemap.xml",
   Robots: "/robots",
 };

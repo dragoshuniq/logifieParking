@@ -1,18 +1,17 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { STORAGE_KEYS } from "@/constants/storage";
 import { useEffect, useState } from "react";
 import {
   Appearance,
   useColorScheme as useRNColorScheme,
 } from "react-native";
 
-const THEME_STORAGE_KEY = "@theme";
-
 export function useThemeToggle() {
   const systemColorScheme = useRNColorScheme();
   const [theme, setTheme] = useState<"light" | "dark" | null>(null);
 
   useEffect(() => {
-    AsyncStorage.getItem(THEME_STORAGE_KEY).then((value) => {
+    AsyncStorage.getItem(STORAGE_KEYS.THEME).then((value) => {
       if (value === "light" || value === "dark") {
         setTheme(value);
         Appearance.setColorScheme(value);
@@ -25,7 +24,7 @@ export function useThemeToggle() {
   const toggleTheme = async () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    await AsyncStorage.setItem(THEME_STORAGE_KEY, newTheme);
+    await AsyncStorage.setItem(STORAGE_KEYS.THEME, newTheme);
     Appearance.setColorScheme(newTheme);
   };
 

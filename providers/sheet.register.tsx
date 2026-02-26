@@ -4,6 +4,7 @@ import DatePickerSheet from "@/components/driver/date-picker-sheet";
 import ExportConfigSheet from "@/components/driver/export-config-sheet";
 import TimePickerSheet from "@/components/driver/time-picker-sheet";
 import { FuelPriceFilters } from "@/components/fuel-price/fuel-price-filters";
+import NotificationPermissionDialog from "@/components/notifications/notification-permission-dialog";
 import { NavigationOptions } from "@/components/parking-map/navigation-options";
 import InfoSheet from "@/components/ui/info-sheet";
 import { ESheets } from "@/constants/sheets";
@@ -20,3 +21,7 @@ registerSheet(ESheets.TimePicker, TimePickerSheet);
 registerSheet(ESheets.DatePicker, DatePickerSheet);
 registerSheet(ESheets.ExportConfig, ExportConfigSheet);
 registerSheet(ESheets.InfoSheet, InfoSheet);
+registerSheet(
+  ESheets.NotificationPermission,
+  NotificationPermissionDialog
+);

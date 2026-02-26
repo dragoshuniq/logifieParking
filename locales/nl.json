@@ -30,6 +30,7 @@
     "home": "Home",
     "contact": "Contact",
     "getQuote": "Offerte aanvragen",
+    "holidays": "Feestdagen",
     "termsConditions": "Algemene voorwaarden",
     "privacyPolicy": "Privacybeleid",
     "driver": "Bestuurder",
@@ -402,6 +403,37 @@
         "heading": "Weergave in de app",
         "content": "• Toont hoeveel verkorte wekelijkse rusten nog gecompenseerd moeten worden.\n• Toont totale openstaande compensatie-uren en de laatste deadline."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Werkuren",
+      "body": "Vergeet niet je dagelijkse activiteit te loggen!"
+    },
+    "fuel": {
+      "title": "Brandstofprijzen",
+      "body": "Bekijk de brandstofprijzen van vandaag!"
+    },
+    "parking": {
+      "title": "Vrachtwagenparkeren",
+      "body": "Vind een veilige parkeerplaats voor vannacht!"
+    }
+  },
+  "onboarding": {
+    "skip": "Overslaan",
+    "next": "Volgende",
+    "getStarted": "Aan de slag",
+    "parking": {
+      "title": "Vind vrachtwagenparkeerplaatsen",
+      "description": "Ontdek veilige parkeerlocaties in heel Europa met gedetailleerde informatie over faciliteiten, beveiliging en beschikbaarheid. Plan je rustpauzes met vertrouwen."
+    },
+    "fuel": {
+      "title": "Vergelijk brandstofprijzen",
+      "description": "Blijf op de hoogte van actuele brandstofprijzen in Europese landen. Vergelijk benzine- en dieselprijzen om je brandstofkosten te optimaliseren."
+    },
+    "driver": {
+      "title": "Registreer werkuren",
+      "description": "Houd je rij- en werkuren bij met nalevingscontroles van EU-regelgeving. Registreer activiteiten, volg rustperiodes en zorg ervoor dat je voldoet aan alle wettelijke vereisten."
     }
   }
 }

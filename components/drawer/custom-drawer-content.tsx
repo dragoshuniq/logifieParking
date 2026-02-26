@@ -47,6 +47,9 @@ export function CustomDrawerContent() {
     SheetManager.show(ESheets.LanguagePicker);
   };
 
+  const halfSlice = SocialNetworksRoutes.length / 2;
+  const firstHalf = SocialNetworksRoutes.slice(0, halfSlice + 1);
+  const secondHalf = SocialNetworksRoutes.slice(halfSlice + 1);
   return (
     <ThemedSafeAreaView style={styles.container}>
       <ScrollView
@@ -140,7 +143,7 @@ export function CustomDrawerContent() {
         <ThemedView style={styles.socialContainer}>
           <View style={styles.socialWrapper}>
             <View style={styles.socialRow}>
-              {SocialNetworksRoutes.slice(0, 4).map((network) => (
+              {firstHalf.map((network) => (
                 <SocialLink key={network.name} network={network}>
                   <ThemedView
                     style={[
@@ -158,7 +161,7 @@ export function CustomDrawerContent() {
               ))}
             </View>
             <View style={styles.socialRow}>
-              {SocialNetworksRoutes.slice(4, 6).map((network) => (
+              {secondHalf.map((network) => (
                 <SocialLink key={network.name} network={network}>
                   <ThemedView
                     style={[

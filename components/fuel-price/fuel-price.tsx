@@ -1,9 +1,16 @@
 import { getFuelData, getStaleTimeForFuelData } from "@/api/fuel";
+import { showNotificationPermissionDialog } from "@/components/notifications/notification-permission-dialog";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useNotificationPermission } from "@/hooks/use-notification-permission";
 import { ONE_WEEK } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
-import React, { useCallback, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import {
   ActivityIndicator,
@@ -18,14 +25,33 @@ import { FuelPriceCard } from "./fuel-price-card";
 import { showFuelPriceFilters, SortType } from "./fuel-price-filters";
 import { FuelPriceHeader } from "./fuel-price-header";
 
+export type UnitType = "per1000L" | "perLiter";
+
 export const FuelPrice = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState<SortType>(SortType.None);
+  const [unit, setUnit] = useState<UnitType>("per1000L");
   const { t } = useTranslation();
   const theme = useColorScheme() ?? "light";
   const colors = Colors[theme];
 
-  const { data, isFetching, refetch } = useQuery({
+  const toggleUnit = useCallback(() => {
+    setUnit((prev) =>
+      prev === "per1000L" ? "perLiter" : "per1000L"
+    );
+  }, []);
+
+  const {
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    openPermissionDialog,
+    closePermissionDialog,
+    primaryAction,
+    secondaryAction,
+  } = useNotificationPermission();
+
+  const { data, isFetching, isLoading, refetch } = useQuery({
     queryKey: ["fuel-prices"],
     queryFn: () => getFuelData(),
     staleTime: (query) => {
@@ -33,10 +59,17 @@ export const FuelPrice = () => {
       return getStaleTimeForFuelData(lastDate);
     },
     gcTime: ONE_WEEK,
-    retry: 3,
+    retry: 5,
     retryDelay: (attemptIndex) =>
       Math.min(1000 * 2 ** attemptIndex, 30000),
   });
+
+  // Show notification permission dialog after successful data fetch
+  useEffect(() => {
+    if (data && !isLoading) {
+      openPermissionDialog("value_moment");
+    }
+  }, [data, isLoading]);
 
   const handleFilterPress = useCallback(() => {
     showFuelPriceFilters({
@@ -44,6 +77,26 @@ export const FuelPrice = () => {
       onSortChange: (sort) => setSortType(sort),
     });
   }, [sortType]);
+
+  // Show notification permission dialog when needed
+  useEffect(() => {
+    if (showPermissionDialog) {
+      showNotificationPermissionDialog({
+        mode: dialogMode,
+        context: dialogContext,
+        onPrimary: primaryAction,
+        onSecondary: secondaryAction,
+        onClose: closePermissionDialog,
+      });
+    }
+  }, [
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    primaryAction,
+    secondaryAction,
+    closePermissionDialog,
+  ]);
 
   const ListHeader = useMemo(
     () => (
@@ -54,13 +107,23 @@ export const FuelPrice = () => {
         onSearchChange={setSearchQuery}
         sortType={sortType}
         onFilterPress={handleFilterPress}
+        unit={unit}
+        onToggleUnit={toggleUnit}
       />
     ),
-    [data, colors, searchQuery, sortType, handleFilterPress]
+    [
+      data,
+      colors,
+      searchQuery,
+      sortType,
+      handleFilterPress,
+      unit,
+      toggleUnit,
+    ]
   );
 
   const renderEmpty = () => {
-    if (isFetching) {
+    if (isLoading) {
       return (
         <View style={styles.centerContainer}>
           <ActivityIndicator size="large" />
@@ -113,7 +176,9 @@ export const FuelPrice = () => {
       <FlatList
         data={countries}
         keyExtractor={(item) => item.countryCode}
-        renderItem={({ item }) => <FuelPriceCard country={item} />}
+        renderItem={({ item }) => (
+          <FuelPriceCard country={item} unit={unit} />
+        )}
         ListHeaderComponent={ListHeader}
         ListEmptyComponent={renderEmpty}
         contentContainerStyle={styles.listContent}

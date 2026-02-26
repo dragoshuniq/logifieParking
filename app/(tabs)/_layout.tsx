@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { CustomDrawerHeader } from "@/components/drawer/custom-drawer-header";
@@ -9,6 +9,10 @@ import {
 } from "@/components/drawer/disclaimers";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import {
+  getPermissionStatus,
+  scheduleAllReminders,
+} from "@/services/notifications";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/build/MaterialCommunityIcons";
@@ -16,6 +20,15 @@ import MaterialCommunityIcons from "@expo/vector-icons/build/MaterialCommunityIc
 export default function TabLayout() {
   const { t } = useTranslation();
   const colorScheme = useColorScheme();
+
+  useEffect(() => {
+    (async () => {
+      const status = await getPermissionStatus();
+      if (status === "granted") {
+        await scheduleAllReminders();
+      }
+    })();
+  }, []);
 
   return (
     <Tabs

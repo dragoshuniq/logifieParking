@@ -26,7 +26,12 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
 
   const barData = weeklyStats.dailyStats.map((day) => ({
     value: day.drivingHours + day.workHours + day.availabilityHours,
-    label: formatDate(day.date, { weekday: "short" }),
+    label: formatDate(day.date, {
+      weekday: "short",
+      day: undefined,
+      month: undefined,
+      year: undefined,
+    }),
     frontColor: primary.DEFAULT,
     topLabelComponent: () => (
       <ThemedText style={{ fontSize: 10, marginBottom: 2 }}>

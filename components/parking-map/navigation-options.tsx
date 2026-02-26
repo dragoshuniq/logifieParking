@@ -1,14 +1,17 @@
+import { showNotificationPermissionDialog } from "@/components/notifications/notification-permission-dialog";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
 import { ESheets } from "@/constants/sheets";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useNotificationPermission } from "@/hooks/use-notification-permission";
 import React, {
   useCallback,
   useEffect,
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import ActionSheet, {
   ActionSheetRef,
@@ -52,10 +55,29 @@ export const NavigationOptions = () => {
       })();
   }, [destination]);
 
+  const { t } = useTranslation();
+
+  const {
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    openPermissionDialog,
+    closePermissionDialog,
+    primaryAction,
+    secondaryAction,
+  } = useNotificationPermission();
+
   const renderAvailableMap = useCallback(
     ({ item }: { item: GetAppsResponse }) => {
       return (
-        <TouchableOpacity key={item.id} onPress={() => item.open()}>
+        <TouchableOpacity
+          key={item.id}
+          onPress={() => {
+            item.open();
+            // Show notification permission after opening map
+            openPermissionDialog("value_moment");
+          }}
+        >
           <ThemedText
             lightColor={Colors.light.text}
             darkColor={Colors.dark.text}
@@ -66,8 +88,28 @@ export const NavigationOptions = () => {
         </TouchableOpacity>
       );
     },
-    []
+    [t, openPermissionDialog]
   );
+
+  // Show notification permission dialog when needed
+  useEffect(() => {
+    if (showPermissionDialog) {
+      showNotificationPermissionDialog({
+        mode: dialogMode,
+        context: dialogContext,
+        onPrimary: primaryAction,
+        onSecondary: secondaryAction,
+        onClose: closePermissionDialog,
+      });
+    }
+  }, [
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    primaryAction,
+    secondaryAction,
+    closePermissionDialog,
+  ]);
 
   const themeColors = Colors[colorScheme as "light" | "dark"];
 

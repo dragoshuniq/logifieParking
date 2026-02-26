@@ -10,6 +10,7 @@ import { showExportConfig } from "@/components/driver/export-config-sheet";
 import { HorizontalCalendar } from "@/components/driver/horizontal-calendar";
 import { StatsCard } from "@/components/driver/stats-card";
 import { useThemedColors } from "@/hooks/use-themed-colors";
+import { useDatabase } from "@/providers/driver-database";
 import {
   calculateBreakCompliance,
   calculateDailyDrivingCompliance,
@@ -29,11 +30,9 @@ import {
   getActivitiesByDate,
   getActivitiesByDateRange,
   getWeeklyRestDeficits,
-  initDatabase,
   updateActivity,
   WeeklyRestDeficit,
 } from "@/utils/driver-db";
-import { exportToCSV, exportToXLS } from "@/utils/export";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -54,6 +53,7 @@ export const DriverHours = () => {
     "content2",
     "background"
   );
+  const db = useDatabase();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [weekDates, setWeekDates] = useState<Date[]>([]);
@@ -81,13 +81,14 @@ export const DriverHours = () => {
   }, []);
 
   const loadActivities = useCallback(async () => {
-    const dayActivities = await getActivitiesByDate(selectedDate);
+    const dayActivities = await getActivitiesByDate(db, selectedDate);
     setActivities(dayActivities);
 
     const current = dayjs(selectedDate);
     const startOfWeek = current.startOf("isoWeek").toDate();
     const endOfWeek = current.endOf("isoWeek").toDate();
     const weekActs = await getActivitiesByDateRange(
+      db,
       startOfWeek,
       endOfWeek
     );
@@ -99,6 +100,7 @@ export const DriverHours = () => {
       .toDate();
     const endOfFortnight = current.endOf("isoWeek").toDate();
     const fortnightActs = await getActivitiesByDateRange(
+      db,
       startOfFortnight,
       endOfFortnight
     );
@@ -106,17 +108,17 @@ export const DriverHours = () => {
 
     const fourMonthsAgo = current.subtract(4, "month").toDate();
     const fourMonthActs = await getActivitiesByDateRange(
+      db,
       fourMonthsAgo,
       endOfWeek
     );
     setFourMonthActivities(fourMonthActs);
 
-    const deficits = await getWeeklyRestDeficits();
+    const deficits = await getWeeklyRestDeficits(db);
     setRestDeficits(deficits);
-  }, [selectedDate]);
+  }, [db, selectedDate]);
 
   useEffect(() => {
-    initDatabase();
     updateWeekDates(selectedDate);
   }, [selectedDate, updateWeekDates]);
 
@@ -127,9 +129,9 @@ export const DriverHours = () => {
   const handleSaveActivity = async (activity: Activity) => {
     try {
       if (activity.id) {
-        await updateActivity(activity);
+        await updateActivity(db, activity);
       } else {
-        await addActivity(activity);
+        await addActivity(db, activity);
       }
       loadActivities();
     } catch {
@@ -145,7 +147,7 @@ export const DriverHours = () => {
       onDelete: async () => {
         if (!activity.id) return;
         try {
-          await deleteActivity(activity.id);
+          await deleteActivity(db, activity.id);
           loadActivities();
         } catch {
           Alert.alert(
@@ -178,31 +180,6 @@ export const DriverHours = () => {
   const handleExport = () => {
     showExportConfig({
       selectedDate,
-      onExport: async (
-        type: "csv" | "xls",
-        startDate: Date,
-        endDate: Date
-      ) => {
-        try {
-          const activities = await getActivitiesByDateRange(
-            startDate,
-            endDate
-          );
-          const deficits = await getWeeklyRestDeficits();
-          if (type === "csv") {
-            await exportToCSV(activities, deficits, t);
-          } else {
-            await exportToXLS(activities, deficits, t);
-          }
-        } catch {
-          Alert.alert(
-            t("common.error"),
-            t("driver.errors.exportFailed", {
-              type: type.toUpperCase(),
-            })
-          );
-        }
-      },
     });
   };
 

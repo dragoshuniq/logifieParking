@@ -30,6 +30,7 @@
     "home": "Hem",
     "contact": "Kontakta oss",
     "getQuote": "Begär offert",
+    "holidays": "Helgdagar",
     "termsConditions": "Villkor",
     "privacyPolicy": "Integritetspolicy",
     "driver": "Förare",
@@ -402,6 +403,37 @@
         "heading": "Visning i appen",
         "content": "• Visar hur många reducerade veckovilor som återstår att kompensera.\n• Visar totala återstående timmar att kompensera och sista deadline."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Arbetstid",
+      "body": "Kom ihåg att logga din dagliga aktivitet!"
+    },
+    "fuel": {
+      "title": "Bränslepriser",
+      "body": "Kolla dagens bränslepriser!"
+    },
+    "parking": {
+      "title": "Lastbilsparkering",
+      "body": "Hitta en säker parkeringsplats för natten!"
+    }
+  },
+  "onboarding": {
+    "skip": "Hoppa över",
+    "next": "Nästa",
+    "getStarted": "Kom igång",
+    "parking": {
+      "title": "Hitta lastbilsparkeringar",
+      "description": "Upptäck säkra parkeringsplatser i hela Europa med detaljerad information om faciliteter, säkerhet och tillgänglighet. Planera dina raster med förtroende."
+    },
+    "fuel": {
+      "title": "Jämför bränslepriser",
+      "description": "Håll dig uppdaterad med aktuella bränslepriser i europeiska länder. Jämför bensin- och dieselpriser för att optimera dina bränslekostnader."
+    },
+    "driver": {
+      "title": "Spåra arbetstimmar",
+      "description": "Övervaka dina kör- och arbetstimmar med EU-regelefterlevnadskontroller. Registrera aktiviteter, spåra viloperioder och se till att du uppfyller alla lagkrav."
     }
   }
 }

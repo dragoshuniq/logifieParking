@@ -30,6 +30,7 @@
     "home": "Home",
     "contact": "Contattaci",
     "getQuote": "Richiedi preventivo",
+    "holidays": "Festività",
     "termsConditions": "Termini e condizioni",
     "privacyPolicy": "Privacy",
     "driver": "Autista",
@@ -402,6 +403,37 @@
         "heading": "Visualizzazione in app",
         "content": "• Mostra quanti riposi settimanali ridotti restano da compensare.\n• Mostra il totale delle ore di compensazione pendenti e la scadenza ultima per effettuarla."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Ore di lavoro",
+      "body": "Ricordati di registrare la tua attività giornaliera!"
+    },
+    "fuel": {
+      "title": "Prezzi carburante",
+      "body": "Controlla i prezzi del carburante di oggi!"
+    },
+    "parking": {
+      "title": "Parcheggio camion",
+      "body": "Trova un parcheggio sicuro per stasera!"
+    }
+  },
+  "onboarding": {
+    "skip": "Salta",
+    "next": "Avanti",
+    "getStarted": "Inizia",
+    "parking": {
+      "title": "Trova parcheggi per camion",
+      "description": "Scopri parcheggi sicuri in tutta Europa con informazioni dettagliate su strutture, sicurezza e disponibilità. Pianifica le tue soste con fiducia."
+    },
+    "fuel": {
+      "title": "Confronta i prezzi del carburante",
+      "description": "Rimani aggiornato sui prezzi attuali del carburante nei paesi europei. Confronta i prezzi di benzina e diesel per ottimizzare i costi del carburante."
+    },
+    "driver": {
+      "title": "Monitora le ore di lavoro",
+      "description": "Monitora le tue ore di guida e di lavoro con controlli di conformità alle normative UE. Registra le attività, monitora i periodi di riposo e assicurati di rispettare tutti i requisiti legali."
     }
   }
 }

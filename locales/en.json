@@ -30,6 +30,7 @@
     "home": "Home",
     "contact": "Contact Us",
     "getQuote": "Get Quote",
+    "holidays": "Holidays",
     "termsConditions": "Terms & Conditions",
     "privacyPolicy": "Privacy Policy",
     "driver": "Driver",
@@ -402,6 +403,37 @@
         "heading": "Display in the App",
         "content": "• Shows how many reduced weekly rests still need compensation.\n• Shows total hours of outstanding compensation and the latest deadline by which it must be taken."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Work Hours",
+      "body": "Remember to log your daily activity!"
+    },
+    "fuel": {
+      "title": "Fuel Prices",
+      "body": "Check today's fuel prices!"
+    },
+    "parking": {
+      "title": "Truck Parking",
+      "body": "Find a safe parking spot for tonight!"
+    }
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "next": "Next",
+    "getStarted": "Get Started",
+    "parking": {
+      "title": "Find Truck Parking",
+      "description": "Discover safe parking locations across Europe with detailed information on facilities, security, and availability. Plan your rest stops with confidence."
+    },
+    "fuel": {
+      "title": "Compare Fuel Prices",
+      "description": "Stay updated with current fuel prices across European countries. Compare petrol and diesel prices to optimize your fuel costs."
+    },
+    "driver": {
+      "title": "Track Work Hours",
+      "description": "Monitor your driving and working hours with EU regulation compliance checks. Log activities, track rest periods, and ensure you meet all legal requirements."
     }
   }
 }

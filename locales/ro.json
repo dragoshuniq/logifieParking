@@ -30,6 +30,7 @@
     "home": "Acasă",
     "contact": "Contactează-ne",
     "getQuote": "Cere ofertă",
+    "holidays": "Sărbători",
     "termsConditions": "Termeni și condiții",
     "privacyPolicy": "Politica de confidențialitate",
     "driver": "Șofer",
@@ -402,6 +403,37 @@
         "heading": "Afișare în aplicație",
         "content": "• Arată câte odihne săptămânale reduse mai necesită compensare.\n• Arată totalul orelor de compensare restante și cel mai târziu termen până la care trebuie efectuată."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Program de Lucru",
+      "body": "Nu uita să îți înregistrezi activitatea zilnică!"
+    },
+    "fuel": {
+      "title": "Prețuri Carburant",
+      "body": "Verifică prețurile la carburant de astăzi!"
+    },
+    "parking": {
+      "title": "Parcare Camioane",
+      "body": "Găsește un loc de parcare sigur pentru diseară!"
+    }
+  },
+  "onboarding": {
+    "skip": "Sari peste",
+    "next": "Următorul",
+    "getStarted": "Începe",
+    "parking": {
+      "title": "Găsește Parcări pentru Camioane",
+      "description": "Descoperă locații de parcare sigure în toată Europa cu informații detaliate despre facilități, securitate și disponibilitate. Planifică-ți pauzele cu încredere."
+    },
+    "fuel": {
+      "title": "Compară Prețurile Carburantului",
+      "description": "Rămâi la curent cu prețurile actuale ale carburantului în țările europene. Compară prețurile la benzină și motorină pentru a optimiza costurile cu combustibilul."
+    },
+    "driver": {
+      "title": "Monitorizează Orele de Lucru",
+      "description": "Monitorizează orele de conducere și de lucru cu verificări de conformitate cu reglementările UE. Înregistrează activități, urmărește perioadele de odihnă și asigură-te că îndeplinești toate cerințele legale."
     }
   }
 }

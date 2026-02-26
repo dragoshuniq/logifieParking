@@ -30,6 +30,7 @@
     "home": "Hjem",
     "contact": "Kontakt os",
     "getQuote": "Få tilbud",
+    "holidays": "Helligdage",
     "termsConditions": "Vilkår",
     "privacyPolicy": "Privatlivspolitik",
     "driver": "Chauffør",
@@ -402,6 +403,37 @@
         "heading": "Visning i appen",
         "content": "• Viser hvor mange reducerede ugentlige hviler der mangler at blive kompenseret.\n• Viser det samlede antal manglende kompensationstimer og seneste frist."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Arbejdstid",
+      "body": "Husk at registrere din daglige aktivitet!"
+    },
+    "fuel": {
+      "title": "Brændstofpriser",
+      "body": "Tjek dagens brændstofpriser!"
+    },
+    "parking": {
+      "title": "Lastbilparkering",
+      "body": "Find en sikker parkeringsplads i nat!"
+    }
+  },
+  "onboarding": {
+    "skip": "Spring over",
+    "next": "Næste",
+    "getStarted": "Kom i gang",
+    "parking": {
+      "title": "Find lastbilparkeringer",
+      "description": "Opdag sikre parkeringspladser i hele Europa med detaljerede oplysninger om faciliteter, sikkerhed og tilgængelighed. Planlæg dine pauser med tillid."
+    },
+    "fuel": {
+      "title": "Sammenlign brændstofpriser",
+      "description": "Hold dig opdateret med aktuelle brændstofpriser i europæiske lande. Sammenlign benzin- og dieselpriser for at optimere dine brændstofomkostninger."
+    },
+    "driver": {
+      "title": "Registrer arbejdstimer",
+      "description": "Overvåg dine køre- og arbejdstimer med EU-regelefterlevelseskontroller. Registrer aktiviteter, spor hvileperioder og sørg for, at du opfylder alle lovmæssige krav."
     }
   }
 }

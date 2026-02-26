@@ -28,7 +28,7 @@ declare module "react-native-actions-sheet" {
         value?: Date;
         maximumDate?: Date;
         minimumDate?: Date;
-        minuteInterval?: number;
+        minuteInterval?: MinuteInterval;
       };
       returnValue?: undefined;
     };
@@ -53,11 +53,6 @@ declare module "react-native-actions-sheet" {
     };
     ExportConfig: {
       payload: {
-        onExport: (
-          type: "csv" | "xls",
-          startDate: Date,
-          endDate: Date
-        ) => void;
         selectedDate: Date;
       };
       returnValue?: undefined;
@@ -69,6 +64,16 @@ declare module "react-native-actions-sheet" {
           heading: string;
           content: string;
         }[];
+      };
+      returnValue?: undefined;
+    };
+    NotificationPermission: {
+      payload: {
+        mode: "request" | "settings";
+        context: "value_moment" | "feature_gate";
+        onPrimary: () => void;
+        onSecondary: () => void;
+        onClose: () => void;
       };
       returnValue?: undefined;
     };

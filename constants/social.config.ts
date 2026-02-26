@@ -33,11 +33,11 @@ export const SocialNetworksRoutes: NetworkType[] = [
     icon: "mail-outline",
     name: "Mail",
   },
-  {
-    webLink: `tel:${AppConstants.companyPhone}`,
-    icon: "call-outline",
-    name: "Phone",
-  },
+  // {
+  //   webLink: `tel:${AppConstants.companyPhone}`,
+  //   icon: "call-outline",
+  //   name: "Phone",
+  // },
 ] as const;
 
 export const Networks = SocialNetworksRoutes.reduce(

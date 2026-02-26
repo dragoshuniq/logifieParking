@@ -39,11 +39,13 @@ export const useFormatCurrency = () => {
 
   const formatCurrency = (
     amount: number,
-    currency: string = "EUR"
+    currency: string = "EUR",
+    options?: Intl.NumberFormatOptions
   ) => {
     return new Intl.NumberFormat(locale, {
       style: "currency",
       currency,
+      ...options,
     }).format(amount);
   };
 

@@ -30,6 +30,7 @@
     "home": "Startseite",
     "contact": "Kontakt",
     "getQuote": "Angebot anfordern",
+    "holidays": "Feiertage",
     "termsConditions": "AGB",
     "privacyPolicy": "Datenschutzerklärung",
     "driver": "Fahrer",
@@ -402,6 +403,37 @@
         "heading": "Anzeige in der App",
         "content": "• Zeigt, wie viele reduzierte Wochenruhen noch auszugleichen sind.\n• Zeigt die gesamten offenen Ausgleichsstunden und die späteste Frist für den Ausgleich."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Arbeitszeiten",
+      "body": "Denken Sie daran, Ihre tägliche Aktivität zu protokollieren!"
+    },
+    "fuel": {
+      "title": "Kraftstoffpreise",
+      "body": "Überprüfen Sie die heutigen Kraftstoffpreise!"
+    },
+    "parking": {
+      "title": "LKW-Parkplatz",
+      "body": "Finden Sie einen sicheren Parkplatz für heute Abend!"
+    }
+  },
+  "onboarding": {
+    "skip": "Überspringen",
+    "next": "Weiter",
+    "getStarted": "Los geht's",
+    "parking": {
+      "title": "LKW-Parkplätze finden",
+      "description": "Entdecken Sie sichere Parkplätze in ganz Europa mit detaillierten Informationen zu Einrichtungen, Sicherheit und Verfügbarkeit. Planen Sie Ihre Pausen mit Zuversicht."
+    },
+    "fuel": {
+      "title": "Kraftstoffpreise vergleichen",
+      "description": "Bleiben Sie über aktuelle Kraftstoffpreise in europäischen Ländern informiert. Vergleichen Sie Benzin- und Dieselpreise, um Ihre Kraftstoffkosten zu optimieren."
+    },
+    "driver": {
+      "title": "Arbeitszeiten verfolgen",
+      "description": "Überwachen Sie Ihre Fahr- und Arbeitszeiten mit EU-Regelungskonformitätsprüfungen. Protokollieren Sie Aktivitäten, verfolgen Sie Ruhezeiten und stellen Sie sicher, dass Sie alle gesetzlichen Anforderungen erfüllen."
     }
   }
 }

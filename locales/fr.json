@@ -30,6 +30,7 @@
     "home": "Accueil",
     "contact": "Contactez-nous",
     "getQuote": "Demander un devis",
+    "holidays": "Jours fériés",
     "termsConditions": "Conditions générales",
     "privacyPolicy": "Politique de confidentialité",
     "driver": "Conducteur",
@@ -402,6 +403,37 @@
         "heading": "Affichage dans l’app",
         "content": "• Indique combien de repos hebdomadaires réduits restent à compenser.\n• Indique le total des heures de compensation restantes et la date limite la plus tardive."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Heures de travail",
+      "body": "N'oubliez pas d'enregistrer votre activité quotidienne !"
+    },
+    "fuel": {
+      "title": "Prix du carburant",
+      "body": "Vérifiez les prix du carburant d'aujourd'hui !"
+    },
+    "parking": {
+      "title": "Parking Poids Lourds",
+      "body": "Trouvez un parking sécurisé pour ce soir !"
+    }
+  },
+  "onboarding": {
+    "skip": "Passer",
+    "next": "Suivant",
+    "getStarted": "Commencer",
+    "parking": {
+      "title": "Trouver des parkings pour camions",
+      "description": "Découvrez des emplacements de stationnement sécurisés dans toute l'Europe avec des informations détaillées sur les installations, la sécurité et la disponibilité. Planifiez vos arrêts en toute confiance."
+    },
+    "fuel": {
+      "title": "Comparer les prix du carburant",
+      "description": "Restez informé des prix actuels du carburant dans les pays européens. Comparez les prix de l'essence et du diesel pour optimiser vos coûts de carburant."
+    },
+    "driver": {
+      "title": "Suivre les heures de travail",
+      "description": "Surveillez vos heures de conduite et de travail avec des contrôles de conformité aux réglementations de l'UE. Enregistrez les activités, suivez les périodes de repos et assurez-vous de respecter toutes les exigences légales."
     }
   }
 }

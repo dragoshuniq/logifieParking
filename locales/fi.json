@@ -30,6 +30,7 @@
     "home": "Etusivu",
     "contact": "Ota yhteyttä",
     "getQuote": "Pyydä tarjous",
+    "holidays": "Pyhät",
     "termsConditions": "Ehdot",
     "privacyPolicy": "Tietosuoja",
     "driver": "Kuljettaja",
@@ -402,6 +403,37 @@
         "heading": "Näyttö sovelluksessa",
         "content": "• Näyttää, kuinka monta lyhennettyä viikkolepoa on korvaamatta.\n• Näyttää korvaamatta olevien tuntien kokonaismäärän ja viimeisen määräajan."
       }
+    }
+  },
+  "notifications": {
+    "driver": {
+      "title": "Työajat",
+      "body": "Muista kirjata päivittäinen toimintasi!"
+    },
+    "fuel": {
+      "title": "Polttoainehinnat",
+      "body": "Tarkista tämän päivän polttoainehinnat!"
+    },
+    "parking": {
+      "title": "Rekkaparkki",
+      "body": "Etsi turvallinen pysäköintipaikka yöksi!"
+    }
+  },
+  "onboarding": {
+    "skip": "Ohita",
+    "next": "Seuraava",
+    "getStarted": "Aloita",
+    "parking": {
+      "title": "Löydä kuorma-autopaikat",
+      "description": "Löydä turvallisia pysäköintipaikkoja kaikkialta Euroopasta yksityiskohtaisilla tiedoilla tiloista, turvallisuudesta ja saatavuudesta. Suunnittele taukosi luottavaisin mielin."
+    },
+    "fuel": {
+      "title": "Vertaa polttoainehintoja",
+      "description": "Pysy ajan tasalla polttoaineiden nykyhinnoista Euroopan maissa. Vertaa bensiinin ja dieselin hintoja optimoidaksesi polttoainekustannuksesi."
+    },
+    "driver": {
+      "title": "Seuraa työtunteja",
+      "description": "Seuraa ajo- ja työtuntejasi EU-säännösten noudattamisen tarkistuksilla. Kirjaa toiminnot, seuraa lepoaikoja ja varmista, että täytät kaikki lakisääteiset vaatimukset."
     }
   }
 }

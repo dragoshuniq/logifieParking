@@ -8,6 +8,8 @@ import { ThemedTouchableOpacity } from "../ui/themed-touchable-opacity";
 import { ThemedView } from "../ui/themed-view";
 import { SortType } from "./fuel-price-filters";
 
+type UnitType = "per1000L" | "perLiter";
+
 type FuelPriceHeaderProps = {
   data: { date: string } | undefined | null;
   colors: (typeof Colors)["light"] | (typeof Colors)["dark"];
@@ -15,6 +17,8 @@ type FuelPriceHeaderProps = {
   onSearchChange: (query: string) => void;
   sortType: SortType;
   onFilterPress: () => void;
+  unit: UnitType;
+  onToggleUnit: () => void;
 };
 
 export const FuelPriceHeader = memo(function FuelPriceHeader({
@@ -24,17 +28,34 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
   onSearchChange,
   sortType,
   onFilterPress,
+  unit,
+  onToggleUnit,
 }: FuelPriceHeaderProps) {
   const { t, i18n } = useTranslation();
 
   if (!data) return null;
   return (
     <ThemedView style={styles.header}>
-      <ThemedText style={styles.date}>
-        {t("fuelPrice.updated", {
-          date: new Date(data.date).toLocaleDateString(i18n.language),
-        })}
-      </ThemedText>
+      <View style={styles.topRow}>
+        <ThemedText style={styles.date}>
+          {t("fuelPrice.updated", {
+            date: new Date(data.date).toLocaleDateString(
+              i18n.language
+            ),
+          })}
+        </ThemedText>
+
+        <ThemedTouchableOpacity
+          lightColor={colors.primary.DEFAULT}
+          darkColor={colors.primary.DEFAULT}
+          onPress={onToggleUnit}
+          style={styles.unitButton}
+        >
+          <ThemedText>
+            {unit === "per1000L" ? "/ 1000L" : "/ 1L"}
+          </ThemedText>
+        </ThemedTouchableOpacity>
+      </View>
 
       <View style={styles.searchContainer}>
         <MaterialIcons
@@ -101,9 +122,28 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 8,
   },
+  topRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 16,
+  },
   date: {
     fontSize: 16,
-    marginBottom: 16,
+  },
+  unitButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  unitButtonText: {
+    fontSize: 12,
+    fontWeight: "600",
   },
   searchContainer: {
     flexDirection: "row",

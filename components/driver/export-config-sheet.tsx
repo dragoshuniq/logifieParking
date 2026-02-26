@@ -1,10 +1,18 @@
+import { showNotificationPermissionDialog } from "@/components/notifications/notification-permission-dialog";
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
-import { ESheets, ExportConfigProps } from "@/constants/sheets";
+import { ESheets } from "@/constants/sheets";
+import { useNotificationPermission } from "@/hooks/use-notification-permission";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { useFormatDate } from "@/hooks/useFormat";
+import { useDatabase } from "@/providers/driver-database";
 import dayjs, { configureDayjsLocale } from "@/utils/dayjs-config";
-import { useRef, useState } from "react";
+import {
+  getActivitiesByDateRange,
+  getWeeklyRestDeficits,
+} from "@/utils/driver-db";
+import { exportToCSV, exportToXLS } from "@/utils/export";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -19,7 +27,11 @@ import ActionSheet, {
 } from "react-native-actions-sheet";
 import { showDatePicker } from "./date-picker-sheet";
 
-export const showExportConfig = (payload: ExportConfigProps) => {
+export type ExportConfigPayload = {
+  selectedDate: Date;
+};
+
+export const showExportConfig = (payload: ExportConfigPayload) => {
   SheetManager.show(ESheets.ExportConfig, {
     payload,
   });
@@ -34,7 +46,7 @@ type PeriodType =
 
 const ExportConfigSheet = () => {
   const payload = useSheetPayload("ExportConfig") as
-    | ExportConfigProps
+    | ExportConfigPayload
     | undefined;
   const { t, i18n } = useTranslation();
   const { formatDate } = useFormatDate();
@@ -43,11 +55,21 @@ const ExportConfigSheet = () => {
     "content2",
     "primary"
   );
+  const db = useDatabase();
 
   configureDayjsLocale(i18n.language);
 
-  const { onExport, selectedDate } =
-    payload || ({} as ExportConfigProps);
+  const { selectedDate } = payload || ({} as ExportConfigPayload);
+
+  const {
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    openPermissionDialog,
+    closePermissionDialog,
+    primaryAction,
+    secondaryAction,
+  } = useNotificationPermission();
 
   const [exportType, setExportType] = useState<ExportType>("csv");
   const [periodType, setPeriodType] =
@@ -61,7 +83,7 @@ const ExportConfigSheet = () => {
     actionSheetRef?.current?.hide();
   };
 
-  const handleExport = () => {
+  const handleExport = async () => {
     let startDate: Date;
     let endDate: Date;
 
@@ -98,7 +120,32 @@ const ExportConfigSheet = () => {
     }
 
     onCloseSheet();
-    onExport?.(exportType, startDate, endDate);
+
+    try {
+      const activities = await getActivitiesByDateRange(
+        db,
+        startDate,
+        endDate
+      );
+      const deficits = await getWeeklyRestDeficits(db);
+
+      if (exportType === "csv") {
+        await exportToCSV(activities, deficits, t);
+      } else {
+        await exportToXLS(activities, deficits, t);
+      }
+
+      // Show notification permission dialog after successful export
+      openPermissionDialog("value_moment");
+    } catch (error) {
+      console.error(error);
+      Alert.alert(
+        t("common.error"),
+        t("driver.errors.exportFailed", {
+          type: exportType.toUpperCase(),
+        })
+      );
+    }
   };
 
   const handleCustomStartDate = () => {
@@ -120,6 +167,26 @@ const ExportConfigSheet = () => {
       },
     });
   };
+
+  // Show notification permission dialog when needed
+  useEffect(() => {
+    if (showPermissionDialog) {
+      showNotificationPermissionDialog({
+        mode: dialogMode,
+        context: dialogContext,
+        onPrimary: primaryAction,
+        onSecondary: secondaryAction,
+        onClose: closePermissionDialog,
+      });
+    }
+  }, [
+    showPermissionDialog,
+    dialogMode,
+    dialogContext,
+    primaryAction,
+    secondaryAction,
+    closePermissionDialog,
+  ]);
 
   return (
     <ActionSheet

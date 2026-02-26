@@ -1,6 +1,8 @@
 import dayjs from "@/utils/dayjs-config";
 import { File, Paths } from "expo-file-system";
 import { isAvailableAsync, shareAsync } from "expo-sharing";
+import Papa from "papaparse";
+import * as XLSX from "xlsx";
 import {
   calculateBreakCompliance,
   calculateDailyDrivingCompliance,
@@ -36,27 +38,27 @@ const getActivityTypeLabel = (
   }
 };
 
-export const exportToCSV = async (
-  activities: Activity[],
-  deficits: WeeklyRestDeficit[] | undefined,
-  t: TranslateFunction
-): Promise<void> => {
-  if (!activities || activities.length === 0) {
-    throw new Error("No activities to export");
-  }
+const generateFileName = (extension: string): string => {
+  const timestamp = dayjs().format("YYYY-MM-DD_HH-mm-ss");
+  const random = Math.random().toString(36).substring(2, 8);
+  return `driver_hours_${timestamp}_${random}.${extension}`;
+};
 
-  const headers = [
-    t("driver.export.headers.date"),
-    t("driver.export.headers.startTime"),
-    t("driver.export.headers.endTime"),
-    t("driver.export.headers.duration"),
-    t("driver.export.headers.activityType"),
-    t("driver.export.headers.dailyDriving"),
-    t("driver.export.headers.breakCompliance"),
-    t("driver.export.headers.dailyRest"),
-    t("driver.export.headers.nightWork"),
-  ];
-  const rows = activities.map((activity) => {
+const cleanupFile = async (file: File): Promise<void> => {
+  try {
+    if (file.exists) {
+      await file.delete();
+    }
+  } catch (error) {
+    console.warn("Failed to cleanup file:", error);
+  }
+};
+
+const prepareActivityData = (
+  activities: Activity[],
+  t: TranslateFunction
+): Record<string, string>[] => {
+  return activities.map((activity) => {
     const startDate = dayjs(activity.startDateTime);
     const endDate = dayjs(activity.endDateTime);
     const date = startDate.toDate();
@@ -84,56 +86,97 @@ export const exportToCSV = async (
       date
     );
 
-    return [
-      startDate.format("YYYY-MM-DD"),
-      startDate.format("HH:mm"),
-      endDate.format("HH:mm"),
-      activity.duration.toFixed(2),
-      getActivityTypeLabel(activity.type, t),
-      drivingCompliance.isCompliant ? "OK" : "VIOLATION",
-      breakCompliance.isCompliant ? "OK" : "VIOLATION",
-      restCompliance.isCompliant ? "OK" : "VIOLATION",
-      nightWork.hasNightWork ? "YES" : "NO",
-    ];
+    return {
+      [t("driver.export.headers.date")]:
+        startDate.format("YYYY-MM-DD"),
+      [t("driver.export.headers.startTime")]:
+        startDate.format("HH:mm"),
+      [t("driver.export.headers.endTime")]: endDate.format("HH:mm"),
+      [t("driver.export.headers.duration")]:
+        activity.duration.toFixed(2),
+      [t("driver.export.headers.activityType")]: getActivityTypeLabel(
+        activity.type,
+        t
+      ),
+      [t("driver.export.headers.dailyDriving")]:
+        drivingCompliance.isCompliant
+          ? t("common.ok")
+          : t("common.violation"),
+      [t("driver.export.headers.breakCompliance")]:
+        breakCompliance.isCompliant
+          ? t("common.ok")
+          : t("common.violation"),
+      [t("driver.export.headers.dailyRest")]:
+        restCompliance.isCompliant
+          ? t("common.ok")
+          : t("common.violation"),
+      [t("driver.export.headers.nightWork")]: nightWork.hasNightWork
+        ? t("common.yes")
+        : t("common.no"),
+    };
   });
+};
 
-  let csvContent = [
-    headers.join(","),
-    ...rows.map((row) => row.join(",")),
-  ].join("\n");
+const prepareDeficitData = (
+  deficits: WeeklyRestDeficit[],
+  t: TranslateFunction
+): Record<string, string>[] => {
+  return deficits.map((deficit) => ({
+    [t("driver.export.headers.weekStart")]: dayjs(
+      deficit.weekStart
+    ).format("YYYY-MM-DD"),
+    [t("driver.export.headers.weekEnd")]: dayjs(
+      deficit.weekEnd
+    ).format("YYYY-MM-DD"),
+    [t("driver.export.headers.deficitHours")]:
+      deficit.deficitHours.toFixed(2),
+    [t("driver.export.headers.compensatedHours")]:
+      deficit.compensatedHours.toFixed(2),
+    [t("driver.export.headers.mustCompensateBy")]: dayjs(
+      deficit.mustCompensateBy
+    ).format("YYYY-MM-DD"),
+  }));
+};
 
-  if (deficits && deficits.length > 0) {
-    csvContent += "\n\n";
-    csvContent +=
-      t("driver.export.headers.weeklyRestDeficits") + "\n";
-    csvContent +=
-      [
-        t("driver.export.headers.weekStart"),
-        t("driver.export.headers.weekEnd"),
-        t("driver.export.headers.deficitHours"),
-        t("driver.export.headers.compensatedHours"),
-        t("driver.export.headers.mustCompensateBy"),
-      ].join(",") + "\n";
-    deficits.forEach((deficit) => {
-      csvContent +=
-        [
-          dayjs(deficit.weekStart).format("YYYY-MM-DD"),
-          dayjs(deficit.weekEnd).format("YYYY-MM-DD"),
-          deficit.deficitHours.toFixed(2),
-          deficit.compensatedHours.toFixed(2),
-          dayjs(deficit.mustCompensateBy).format("YYYY-MM-DD"),
-        ].join(",") + "\n";
-    });
+export const exportToCSV = async (
+  activities: Activity[],
+  deficits: WeeklyRestDeficit[] | undefined,
+  t: TranslateFunction
+): Promise<void> => {
+  if (!activities || activities.length === 0) {
+    throw new Error("No activities to export");
   }
 
-  const fileName = `driver_hours_${dayjs().format(
-    "YYYY-MM-DD_HH-mm"
-  )}.csv`;
+  let file: File | null = null;
 
   try {
-    const file = new File(Paths.document, fileName);
-    file.create();
-    file.write(csvContent);
+    const activitiesData = prepareActivityData(activities, t);
+
+    let csvContent = Papa.unparse(activitiesData, {
+      quotes: true,
+      header: true,
+    });
+
+    if (deficits && deficits.length > 0) {
+      csvContent += "\n\n";
+      csvContent +=
+        t("driver.export.headers.weeklyRestDeficits") + "\n";
+
+      const deficitsData = prepareDeficitData(deficits, t);
+      const deficitsCSV = Papa.unparse(deficitsData, {
+        quotes: true,
+        header: true,
+      });
+
+      csvContent += deficitsCSV;
+    }
+
+    const fileName = generateFileName("csv");
+    file = new File(Paths.cache, fileName);
+
+    await file.create({ overwrite: true });
+
+    await file.write(csvContent);
 
     if (!file.exists) {
       throw new Error("File was not created successfully");
@@ -150,8 +193,14 @@ export const exportToCSV = async (
       UTI: "public.comma-separated-values-text",
     });
 
-    requestStoreReviewAfterAction();
+    await requestStoreReviewAfterAction();
+
+    await cleanupFile(file);
   } catch (error) {
+    if (file) {
+      await cleanupFile(file);
+    }
+
     console.error("Export error:", error);
     throw error;
   }
@@ -166,147 +215,46 @@ export const exportToXLS = async (
     throw new Error("No activities to export");
   }
 
-  const xmlHeader =
-    '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>';
-  const xlsHeader =
-    '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
-  const xlsFooter = "</Workbook>";
-
-  const headers = [
-    t("driver.export.headers.date"),
-    t("driver.export.headers.startTime"),
-    t("driver.export.headers.endTime"),
-    t("driver.export.headers.duration"),
-    t("driver.export.headers.activityType"),
-    t("driver.export.headers.dailyDriving"),
-    t("driver.export.headers.breakCompliance"),
-    t("driver.export.headers.dailyRest"),
-    t("driver.export.headers.nightWork"),
-  ];
-  const rows = activities.map((activity) => {
-    const startDate = dayjs(activity.startDateTime);
-    const endDate = dayjs(activity.endDateTime);
-    const date = startDate.toDate();
-
-    const dayActivities = activities.filter((a) =>
-      dayjs(a.startDateTime).isSame(startDate, "day")
-    );
-
-    const drivingCompliance = calculateDailyDrivingCompliance(
-      dayActivities,
-      date,
-      activities
-    );
-    const breakCompliance = calculateBreakCompliance(
-      dayActivities,
-      date
-    );
-    const restCompliance = calculateDailyRestCompliance(
-      dayActivities,
-      date,
-      activities
-    );
-    const nightWork = calculateNightWorkCompliance(
-      dayActivities,
-      date
-    );
-
-    return [
-      startDate.format("YYYY-MM-DD"),
-      startDate.format("HH:mm"),
-      endDate.format("HH:mm"),
-      activity.duration.toFixed(2),
-      getActivityTypeLabel(activity.type, t),
-      drivingCompliance.isCompliant ? "OK" : "VIOLATION",
-      breakCompliance.isCompliant ? "OK" : "VIOLATION",
-      restCompliance.isCompliant ? "OK" : "VIOLATION",
-      nightWork.hasNightWork ? "YES" : "NO",
-    ];
-  });
-
-  let worksheet = `
-    <Worksheet ss:Name="Driver Hours">
-      <Table>
-        <Row>
-          ${headers
-            .map(
-              (h) => `<Cell><Data ss:Type="String">${h}</Data></Cell>`
-            )
-            .join("")}
-        </Row>
-        ${rows
-          .map(
-            (row) => `
-          <Row>
-            ${row
-              .map(
-                (cell) =>
-                  `<Cell><Data ss:Type="String">${cell}</Data></Cell>`
-              )
-              .join("")}
-          </Row>
-        `
-          )
-          .join("")}
-      </Table>
-    </Worksheet>
-  `;
-
-  if (deficits && deficits.length > 0) {
-    const deficitHeaders = [
-      t("driver.export.headers.weekStart"),
-      t("driver.export.headers.weekEnd"),
-      t("driver.export.headers.deficitHours"),
-      t("driver.export.headers.compensatedHours"),
-      t("driver.export.headers.mustCompensateBy"),
-    ];
-    const deficitRows = deficits.map((deficit) => [
-      dayjs(deficit.weekStart).format("YYYY-MM-DD"),
-      dayjs(deficit.weekEnd).format("YYYY-MM-DD"),
-      deficit.deficitHours.toFixed(2),
-      deficit.compensatedHours.toFixed(2),
-      dayjs(deficit.mustCompensateBy).format("YYYY-MM-DD"),
-    ]);
-
-    worksheet += `
-    <Worksheet ss:Name="Rest Deficits">
-      <Table>
-        <Row>
-          ${deficitHeaders
-            .map(
-              (h) => `<Cell><Data ss:Type="String">${h}</Data></Cell>`
-            )
-            .join("")}
-        </Row>
-        ${deficitRows
-          .map(
-            (row) => `
-          <Row>
-            ${row
-              .map(
-                (cell) =>
-                  `<Cell><Data ss:Type="String">${cell}</Data></Cell>`
-              )
-              .join("")}
-          </Row>
-        `
-          )
-          .join("")}
-      </Table>
-    </Worksheet>
-    `;
-  }
-
-  const xlsContent = xmlHeader + xlsHeader + worksheet + xlsFooter;
-
-  const fileName = `driver_hours_${dayjs().format(
-    "YYYY-MM-DD_HH-mm"
-  )}.xls`;
+  let file: File | null = null;
 
   try {
-    const file = new File(Paths.document, fileName);
-    file.create();
-    file.write(xlsContent);
+    const workbook = XLSX.utils.book_new();
+
+    const activitiesData = prepareActivityData(activities, t);
+    const activitiesSheet = XLSX.utils.json_to_sheet(activitiesData);
+    XLSX.utils.book_append_sheet(
+      workbook,
+      activitiesSheet,
+      "Driver Hours"
+    );
+
+    if (deficits && deficits.length > 0) {
+      const deficitsData = prepareDeficitData(deficits, t);
+      const deficitsSheet = XLSX.utils.json_to_sheet(deficitsData);
+      XLSX.utils.book_append_sheet(
+        workbook,
+        deficitsSheet,
+        "Rest Deficits"
+      );
+    }
+
+    const excelBase64 = XLSX.write(workbook, {
+      type: "base64",
+      bookType: "xlsx",
+    });
+
+    const fileName = generateFileName("xlsx");
+    file = new File(Paths.cache, fileName);
+
+    await file.create({ overwrite: true });
+
+    const binaryString = atob(excelBase64);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+
+    await file.write(bytes);
 
     if (!file.exists) {
       throw new Error("File was not created successfully");
@@ -318,12 +266,20 @@ export const exportToXLS = async (
     }
 
     await shareAsync(file.uri, {
-      mimeType: "application/vnd.ms-excel",
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       dialogTitle: t("driver.export.dialogTitle"),
+      UTI: "org.openxmlformats.spreadsheetml.sheet",
     });
 
-    requestStoreReviewAfterAction();
+    await requestStoreReviewAfterAction();
+
+    await cleanupFile(file);
   } catch (error) {
+    if (file) {
+      await cleanupFile(file);
+    }
+
     console.error("Export error:", error);
     throw error;
   }

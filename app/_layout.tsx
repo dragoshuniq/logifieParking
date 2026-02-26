@@ -13,14 +13,22 @@ import "react-native-reanimated";
 import { CustomDrawerContent } from "@/components/drawer/custom-drawer-content";
 import { PersistGate } from "@/components/ui/persist-gate";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { DriverDatabaseProvider } from "@/providers/driver-database";
 import "@/providers/i18n";
+import { NotificationProvider } from "@/providers/notification-provider";
 import { queryClient } from "@/providers/query";
 import "@/providers/sheet.register";
+import { initializeCrashlytics } from "@/services/crashlytics";
+import { initializePerformance } from "@/services/performance";
 import { Drawer } from "expo-router/drawer";
+import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const asyncStoragePersister = createAsyncStoragePersister({
   storage: AsyncStorage,
+  serialize: JSON.stringify,
+  deserialize: JSON.parse,
+  throttleTime: 1000,
 });
 
 export const unstable_settings = {
@@ -30,31 +38,57 @@ export const unstable_settings = {
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
+  useEffect(() => {
+    initializeCrashlytics();
+    initializePerformance();
+  }, []);
+
   return (
     <PersistQueryClientProvider
       client={queryClient}
       persistOptions={{
         persister: asyncStoragePersister,
+        dehydrateOptions: {
+          shouldDehydrateQuery: (query) => {
+            const shouldPersist = query.meta?.persist !== false;
+            return shouldPersist;
+          },
+        },
       }}
     >
       <PersistGate>
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <SheetProvider>
-            <SafeAreaProvider>
-              <Drawer drawerContent={() => <CustomDrawerContent />}>
-                <Drawer.Screen
-                  name="(tabs)"
-                  options={{
-                    headerShown: false,
-                  }}
-                />
-              </Drawer>
-            </SafeAreaProvider>
-            <StatusBar style="auto" />
-          </SheetProvider>
-        </ThemeProvider>
+        <DriverDatabaseProvider>
+          <NotificationProvider>
+            <ThemeProvider
+              value={
+                colorScheme === "dark" ? DarkTheme : DefaultTheme
+              }
+            >
+              <SheetProvider>
+                <SafeAreaProvider>
+                  <Drawer
+                    drawerContent={() => <CustomDrawerContent />}
+                  >
+                    <Drawer.Screen
+                      name="(tabs)"
+                      options={{
+                        headerShown: false,
+                      }}
+                    />
+                    <Drawer.Screen
+                      name="onboarding"
+                      options={{
+                        headerShown: false,
+                        drawerItemStyle: { display: "none" },
+                      }}
+                    />
+                  </Drawer>
+                </SafeAreaProvider>
+                <StatusBar style="auto" />
+              </SheetProvider>
+            </ThemeProvider>
+          </NotificationProvider>
+        </DriverDatabaseProvider>
       </PersistGate>
     </PersistQueryClientProvider>
   );
