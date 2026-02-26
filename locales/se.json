@@ -151,6 +151,9 @@
     "dieselDesc": "Diesel: högst till lägst"
   },
   "parking": {
+    "loading": "Laddar parkeringsplatser...",
+    "loadError": "Kunde inte ladda parkeringsplatser",
+    "retry": "Försök igen",
     "noLocationDetails": "Inga platsdetaljer tillgängliga",
     "location": "Plats",
     "city": "Stad",

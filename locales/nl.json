@@ -151,6 +151,9 @@
     "dieselDesc": "Diesel: hoog naar laag"
   },
   "parking": {
+    "loading": "Parkeerplaatsen laden...",
+    "loadError": "Kan parkeerplaatsen niet laden",
+    "retry": "Opnieuw proberen",
     "noLocationDetails": "Geen locatiedetails beschikbaar",
     "location": "Locatie",
     "city": "Stad",

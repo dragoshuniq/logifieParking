@@ -151,6 +151,9 @@
     "dieselDesc": "Diésel: de mayor a menor"
   },
   "parking": {
+    "loading": "Cargando estacionamientos...",
+    "loadError": "No se pudieron cargar los estacionamientos",
+    "retry": "Reintentar",
     "noLocationDetails": "No hay detalles de ubicación",
     "location": "Ubicación",
     "city": "Ciudad",

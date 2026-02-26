@@ -1,4 +1,4 @@
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
+import { apiFetch } from "./client";
 
 export interface IParking {
   _id: string;
@@ -27,13 +27,9 @@ export const getAllParkings = async (
   if (countryCode) {
     params.append("countryCode", countryCode);
   }
-  const response = await fetch(
-    `${API_URL}/api/parking?${params.toString()}`
+  const data = await apiFetch<ParkingData>(
+    `/api/parking?${params.toString()}`
   );
-  if (!response.ok) {
-    throw new Error("Failed to fetch parkings");
-  }
-  const data = await response.json();
   if (!data?.parkings?.length) {
     throw new Error("No parkings returned");
   }
@@ -44,12 +40,7 @@ export const getParkingById = async (
   id: string
 ): Promise<IParking | null> => {
   try {
-    const response = await fetch(`${API_URL}/api/parking/${id}`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch parking");
-    }
-    const data = await response.json();
-    return data;
+    return await apiFetch<IParking>(`/api/parking/${id}`);
   } catch {
     return null;
   }
@@ -59,14 +50,7 @@ export const getParkingsByCountry = async (
   countryCode: string
 ): Promise<IParking[]> => {
   try {
-    const response = await fetch(
-      `${API_URL}/api/parking/country/${countryCode}`
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch parkings by country");
-    }
-    const data = await response.json();
-    return data;
+    return await apiFetch<IParking[]>(`/api/parking/country/${countryCode}`);
   } catch {
     return [];
   }

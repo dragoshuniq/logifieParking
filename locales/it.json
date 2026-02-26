@@ -151,6 +151,9 @@
     "dieselDesc": "Diesel: dal max al min"
   },
   "parking": {
+    "loading": "Caricamento parcheggi...",
+    "loadError": "Impossibile caricare i parcheggi",
+    "retry": "Riprova",
     "noLocationDetails": "Nessun dettaglio sulla posizione",
     "location": "Posizione",
     "city": "Città",

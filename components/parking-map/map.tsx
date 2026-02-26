@@ -2,29 +2,38 @@ import { getAllParkings, IParking } from "@/api/parking";
 import { AppConstants } from "@/constants/app.const";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
-import { ONE_MINUTE, TWO_WEEKS } from "@/providers/query";
+import { ONE_MINUTE, ONE_WEEK } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
 import * as Location from "expo-location";
 import React, { useEffect, useMemo, useRef } from "react";
-import { Platform, StyleSheet } from "react-native";
+import {
+  ActivityIndicator,
+  Platform,
+  Pressable,
+  StyleSheet,
+} from "react-native";
 import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import { DrawerToggleButton } from "../drawer/custom-drawer-header";
+import { ThemedText } from "../ui/themed-text";
 import { ThemedView } from "../ui/themed-view";
 import { LocationButton } from "./location-button";
 import { MapDisclaimerButton } from "./map-disclaimer";
 import { getDarkMapStyle } from "./map-style";
 import { showNavigationOptions } from "./navigation-options";
 
-import { ClusterMarker } from "./cluster-marker"; // [NEW] Import ClusterMarker
+import { ClusterMarker } from "./cluster-marker";
 
 export const ParkingMap = () => {
   const theme = useColorScheme() ?? "light";
+  const colors = Colors[theme];
   const { top } = useSafeAreaInsets();
   const mapRef = useRef<MapView>(null);
+  const { t } = useTranslation();
 
-  const { data } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["parkings"],
     queryFn: () => getAllParkings(),
     staleTime: (query) => {
@@ -32,7 +41,7 @@ export const ParkingMap = () => {
       const hasNoData =
         !parkingData?.parkings?.length ||
         parkingData?.totalParkings === 0;
-      return hasNoData ? ONE_MINUTE : TWO_WEEKS;
+      return hasNoData ? ONE_MINUTE : ONE_WEEK;
     },
     refetchOnMount: (query) => {
       const parkingData = query.state.data;
@@ -41,10 +50,9 @@ export const ParkingMap = () => {
         parkingData?.totalParkings === 0;
       return hasNoData;
     },
-    retry: 5,
-    retryDelay: (attemptIndex) =>
-      Math.min(1000 * 2 ** attemptIndex, 30000),
-    gcTime: TWO_WEEKS,
+    retry: 3,
+    retryDelay: 3000,
+    gcTime: ONE_WEEK,
   });
 
   const clusterColor = Colors[theme].primary.DEFAULT;
@@ -87,6 +95,37 @@ export const ParkingMap = () => {
       <DrawerToggleButton
         containerStyle={[styles.drawerToggleButton, { top: top }]}
       />
+      {isLoading && !data && (
+        <ThemedView style={styles.overlay}>
+          <ActivityIndicator size="large" color={colors.primary.DEFAULT} />
+          <ThemedText style={styles.overlayText}>
+            {t("parking.loading")}
+          </ThemedText>
+        </ThemedView>
+      )}
+      {isError && !data && (
+        <ThemedView style={styles.overlay}>
+          <ThemedText style={styles.overlayText}>
+            {t("parking.loadError")}
+          </ThemedText>
+          <Pressable
+            onPress={() => refetch()}
+            style={[
+              styles.retryButton,
+              { backgroundColor: colors.primary.DEFAULT },
+            ]}
+          >
+            <ThemedText
+              style={[
+                styles.retryButtonText,
+                { color: colors.primary.foreground },
+              ]}
+            >
+              {t("parking.retry")}
+            </ThemedText>
+          </Pressable>
+        </ThemedView>
+      )}
       <MapView
         toolbarEnabled={false}
         ref={mapRef}
@@ -154,5 +193,25 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 16,
     zIndex: 1000,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 999,
+  },
+  overlayText: {
+    marginTop: 12,
+    fontSize: 16,
+  },
+  retryButton: {
+    marginTop: 16,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    fontSize: 16,
+    fontWeight: "600",
   },
 });

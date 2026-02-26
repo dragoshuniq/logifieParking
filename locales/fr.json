@@ -151,6 +151,9 @@
     "dieselDesc": "Diesel : du plus haut au plus bas"
   },
   "parking": {
+    "loading": "Chargement des parkings...",
+    "loadError": "Impossible de charger les parkings",
+    "retry": "Réessayer",
     "noLocationDetails": "Aucun détail de localisation disponible",
     "location": "Localisation",
     "city": "Ville",

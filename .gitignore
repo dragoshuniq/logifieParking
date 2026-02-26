@@ -43,6 +43,7 @@ app-example
 /android
 .env
 .env.*
+!.env.example
 
 # Firebase config files
 firebase/google-services.json

@@ -151,6 +151,9 @@
     "dieselDesc": "Diesel: High to Low"
   },
   "parking": {
+    "loading": "Loading parking locations...",
+    "loadError": "Could not load parking locations",
+    "retry": "Retry",
     "noLocationDetails": "No location details available",
     "location": "Location",
     "city": "City",

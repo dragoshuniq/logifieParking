@@ -151,6 +151,9 @@
     "dieselDesc": "Diesel: korkeasta matalaan"
   },
   "parking": {
+    "loading": "Ladataan pysäköintipaikkoja...",
+    "loadError": "Pysäköintipaikkoja ei voitu ladata",
+    "retry": "Yritä uudelleen",
     "noLocationDetails": "Ei sijaintitietoja",
     "location": "Sijainti",
     "city": "Kaupunki",

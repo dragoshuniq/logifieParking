@@ -151,6 +151,9 @@
     "dieselDesc": "Diesel: absteigend"
   },
   "parking": {
+    "loading": "Parkplätze werden geladen...",
+    "loadError": "Parkplätze konnten nicht geladen werden",
+    "retry": "Erneut versuchen",
     "noLocationDetails": "Keine Standortdetails verfügbar",
     "location": "Standort",
     "city": "Stadt",

@@ -151,6 +151,9 @@
     "dieselDesc": "Gasóleo: maior para menor"
   },
   "parking": {
+    "loading": "A carregar estacionamentos...",
+    "loadError": "Não foi possível carregar os estacionamentos",
+    "retry": "Tentar novamente",
     "noLocationDetails": "Sem detalhes de localização",
     "location": "Localização",
     "city": "Cidade",

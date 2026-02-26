@@ -151,6 +151,9 @@
     "dieselDesc": "Diesel: høj til lav"
   },
   "parking": {
+    "loading": "Indlæser parkeringspladser...",
+    "loadError": "Kunne ikke indlæse parkeringspladser",
+    "retry": "Prøv igen",
     "noLocationDetails": "Ingen placeringsdetaljer tilgængelige",
     "location": "Placering",
     "city": "By",

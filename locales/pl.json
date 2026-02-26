@@ -151,6 +151,9 @@
     "dieselDesc": "ON: malejąco"
   },
   "parking": {
+    "loading": "Ładowanie parkingów...",
+    "loadError": "Nie udało się załadować parkingów",
+    "retry": "Ponów próbę",
     "noLocationDetails": "Brak szczegółów lokalizacji",
     "location": "Lokalizacja",
     "city": "Miasto",

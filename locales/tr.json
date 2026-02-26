@@ -151,6 +151,9 @@
     "dieselDesc": "Dizel: yüksekten düşüğe"
   },
   "parking": {
+    "loading": "Otoparklar yükleniyor...",
+    "loadError": "Otoparklar yüklenemedi",
+    "retry": "Tekrar dene",
     "noLocationDetails": "Konum bilgisi yok",
     "location": "Konum",
     "city": "Şehir",

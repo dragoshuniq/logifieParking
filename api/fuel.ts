@@ -1,6 +1,5 @@
 import dayjs from "@/utils/dayjs-config";
-
-const API_URL = process.env.EXPO_PUBLIC_API_URL;
+import { apiFetch } from "./client";
 
 export interface IFuelPrice {
   country: string;
@@ -23,15 +22,8 @@ export interface IFuel {
 export const getFuelData = async (
   date?: string
 ): Promise<IFuel | null> => {
-  const url = date
-    ? `${API_URL}/api/fuel?date=${date}`
-    : `${API_URL}/api/fuel`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Failed to fetch fuel data");
-  }
-  const data = await response.json();
-  return data;
+  const path = date ? `/api/fuel?date=${date}` : `/api/fuel`;
+  return apiFetch<IFuel>(path);
 };
 
 export const getStaleTimeForFuelData = (

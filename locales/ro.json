@@ -151,6 +151,9 @@
     "dieselDesc": "Motorină: de la mare la mic"
   },
   "parking": {
+    "loading": "Se încarcă parcările...",
+    "loadError": "Parcările nu au putut fi încărcate",
+    "retry": "Reîncearcă",
     "noLocationDetails": "Nu există detalii despre locație",
     "location": "Locație",
     "city": "Oraș",
