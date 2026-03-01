@@ -164,6 +164,21 @@ jobs:
             echo "metro.config.js not found"
           fi
 
+      - name: Decode Firebase config files
+        env:
+          GOOGLE_SERVICES_B64: ${{ secrets.GOOGLE_SERVICES }}
+          GOOGLE_SERVICE_INFO_PLIST_B64: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}
+        run: |
+          mkdir -p firebase
+          if [ -z "$GOOGLE_SERVICES_B64" ]; then
+            echo "ERROR: GOOGLE_SERVICES secret is empty or not set!"
+            exit 1
+          fi
+          echo "$GOOGLE_SERVICES_B64" | base64 --decode > firebase/google-services.json
+          echo "$GOOGLE_SERVICE_INFO_PLIST_B64" | base64 --decode > firebase/GoogleService-Info.plist
+          echo "Firebase config files created:"
+          ls -la firebase/
+
       - name: Build Development APK
         if: github.event.inputs.buildType == 'all' || github.event.inputs.buildType == 'dev' || github.event_name == 'push'
         run: |

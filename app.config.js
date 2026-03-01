@@ -16,9 +16,7 @@ export default {
         dark: "./assets/images/ios-dark.png",
         tinted: "./assets/images/ios-tinted.png",
       },
-      googleServicesFile:
-        process.env.GOOGLE_SERVICE_INFO_PLIST ||
-        "./firebase/GoogleService-Info.plist",
+      googleServicesFile: "./firebase/GoogleService-Info.plist",
     },
     android: {
       adaptiveIcon: {
@@ -38,8 +36,7 @@ export default {
         "android.permission.ACCESS_FINE_LOCATION",
       ],
       package: "com.dragoshuniq.LogifieParking",
-      googleServicesFile:
-        process.env.GOOGLE_SERVICES || "./firebase/google-services.json",
+      googleServicesFile: "./firebase/google-services.json",
     },
     web: {
       output: "static",
