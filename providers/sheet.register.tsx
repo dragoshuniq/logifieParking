@@ -21,7 +21,4 @@ registerSheet(ESheets.TimePicker, TimePickerSheet);
 registerSheet(ESheets.DatePicker, DatePickerSheet);
 registerSheet(ESheets.ExportConfig, ExportConfigSheet);
 registerSheet(ESheets.InfoSheet, InfoSheet);
-registerSheet(
-  ESheets.NotificationPermission,
-  NotificationPermissionDialog
-);
+registerSheet(ESheets.NotificationPermission, NotificationPermissionDialog);

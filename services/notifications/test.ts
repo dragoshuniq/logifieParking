@@ -18,9 +18,7 @@ async function setupAndroidChannel() {
   }
 }
 
-export async function scheduleTestReminders(
-  secondsFromNow: number = 10
-) {
+export async function scheduleTestReminders(secondsFromNow: number = 10) {
   await setupAndroidChannel();
 
   const now = new Date();
@@ -28,12 +26,8 @@ export async function scheduleTestReminders(
   const hour = testTime.getHours();
   const minute = testTime.getMinutes();
 
-  await Notifications.cancelScheduledNotificationAsync(
-    NOTIFICATION_IDS.DRIVER
-  );
-  await Notifications.cancelScheduledNotificationAsync(
-    NOTIFICATION_IDS.FUEL
-  );
+  await Notifications.cancelScheduledNotificationAsync(NOTIFICATION_IDS.DRIVER);
+  await Notifications.cancelScheduledNotificationAsync(NOTIFICATION_IDS.FUEL);
   await Notifications.cancelScheduledNotificationAsync(
     NOTIFICATION_IDS.PARKING
   );

@@ -58,10 +58,7 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
 
   return (
     <ThemedView
-      style={[
-        styles.chartContainer,
-        { backgroundColor: content2.DEFAULT },
-      ]}
+      style={[styles.chartContainer, { backgroundColor: content2.DEFAULT }]}
     >
       <ThemedText style={styles.chartTitle}>
         {t("driver.activityDistribution")}
@@ -89,10 +86,7 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
             {pieData.map((item, index) => (
               <View key={index} style={styles.legendItem}>
                 <View
-                  style={[
-                    styles.legendColor,
-                    { backgroundColor: item.color },
-                  ]}
+                  style={[styles.legendColor, { backgroundColor: item.color }]}
                 />
                 <ThemedText style={styles.legendText}>
                   {item.label}: {formatDuration(item.value)}
@@ -103,9 +97,7 @@ export const ActivityDistributionChart = ({ dailyStats }: Props) => {
         </View>
       ) : (
         <View style={styles.emptyChart}>
-          <ThemedText style={styles.emptyText}>
-            {t("common.noData")}
-          </ThemedText>
+          <ThemedText style={styles.emptyText}>{t("common.noData")}</ThemedText>
         </View>
       )}
     </ThemedView>

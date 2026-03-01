@@ -49,11 +49,7 @@ export default function TabLayout() {
             />
           ),
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              size={28}
-              name="truck-fast"
-              color={color}
-            />
+            <MaterialCommunityIcons size={28} name="truck-fast" color={color} />
           ),
         }}
       />

@@ -48,19 +48,10 @@ export const StatsCard = ({
   };
 
   return (
-    <ThemedView
-      style={[styles.card, { backgroundColor: content2.DEFAULT }]}
-    >
+    <ThemedView style={[styles.card, { backgroundColor: content2.DEFAULT }]}>
       {info && (
-        <TouchableOpacity
-          onPress={handleInfoPress}
-          style={styles.infoButton}
-        >
-          <MaterialIcons
-            name="info"
-            size={24}
-            color={warning.DEFAULT}
-          />
+        <TouchableOpacity onPress={handleInfoPress} style={styles.infoButton}>
+          <MaterialIcons name="info" size={24} color={warning.DEFAULT} />
         </TouchableOpacity>
       )}
       <ThemedText style={styles.title}>{title}</ThemedText>
@@ -69,14 +60,10 @@ export const StatsCard = ({
           {value}
         </ThemedText>
         {maxValue && (
-          <ThemedText style={styles.maxValue}>
-            / {maxValue}
-          </ThemedText>
+          <ThemedText style={styles.maxValue}>/ {maxValue}</ThemedText>
         )}
       </View>
-      {subtitle && (
-        <ThemedText style={styles.subtitle}>{subtitle}</ThemedText>
-      )}
+      {subtitle && <ThemedText style={styles.subtitle}>{subtitle}</ThemedText>}
     </ThemedView>
   );
 };

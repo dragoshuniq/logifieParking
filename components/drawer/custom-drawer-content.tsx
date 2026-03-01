@@ -39,9 +39,7 @@ export function CustomDrawerContent() {
     t,
   } = useTranslation();
 
-  const links = ExternalLinks(
-    validateLanguage(language) as Languages
-  );
+  const links = ExternalLinks(validateLanguage(language) as Languages);
 
   const handleOpenLanguagePicker = () => {
     SheetManager.show(ESheets.LanguagePicker);
@@ -66,17 +64,12 @@ export function CustomDrawerContent() {
           </ThemedView>
           <View style={styles.actionContainer}>
             <ThemedTouchableOpacity
-              style={[
-                styles.languageButton,
-                { borderColor: borderColor },
-              ]}
+              style={[styles.languageButton, { borderColor: borderColor }]}
               onPress={handleOpenLanguagePicker}
             >
               <CountryFlag
                 isoCode={
-                  LANGUAGE_FLAGS[
-                    validateLanguage(language) as Languages
-                  ]
+                  LANGUAGE_FLAGS[validateLanguage(language) as Languages]
                 }
                 size={32}
                 style={styles.languageFlag}
@@ -87,10 +80,7 @@ export function CustomDrawerContent() {
             </ThemedTouchableOpacity>
             <ThemedTouchableOpacity
               onPress={toggleTheme}
-              style={[
-                styles.themeButton,
-                { borderColor: borderColor },
-              ]}
+              style={[styles.themeButton, { borderColor: borderColor }]}
             >
               <Ionicons
                 name={isDark ? "moon" : "sunny"}
@@ -102,10 +92,7 @@ export function CustomDrawerContent() {
 
           <ThemedView style={styles.linksContainer}>
             {DRAWER_LINKS.map((link) => (
-              <ExternalLink
-                key={link.id}
-                href={links[link.urlKey] as any}
-              >
+              <ExternalLink key={link.id} href={links[link.urlKey] as any}>
                 <ThemedView
                   style={[
                     styles.linkButton,
@@ -146,10 +133,7 @@ export function CustomDrawerContent() {
               {firstHalf.map((network) => (
                 <SocialLink key={network.name} network={network}>
                   <ThemedView
-                    style={[
-                      styles.socialButton,
-                      { borderColor: borderColor },
-                    ]}
+                    style={[styles.socialButton, { borderColor: borderColor }]}
                   >
                     <Ionicons
                       name={network.icon}
@@ -164,10 +148,7 @@ export function CustomDrawerContent() {
               {secondHalf.map((network) => (
                 <SocialLink key={network.name} network={network}>
                   <ThemedView
-                    style={[
-                      styles.socialButton,
-                      { borderColor: borderColor },
-                    ]}
+                    style={[styles.socialButton, { borderColor: borderColor }]}
                   >
                     <Ionicons
                       name={network.icon}
@@ -179,10 +160,7 @@ export function CustomDrawerContent() {
               ))}
               <ThemedTouchableOpacity
                 onPress={shareApp}
-                style={[
-                  styles.socialButton,
-                  { borderColor: borderColor },
-                ]}
+                style={[styles.socialButton, { borderColor: borderColor }]}
               >
                 <Ionicons
                   name="share-social-outline"

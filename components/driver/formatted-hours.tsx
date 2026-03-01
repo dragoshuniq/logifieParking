@@ -6,10 +6,7 @@ type FormattedHoursProps = {
   style?: any;
 };
 
-export const FormattedHours = ({
-  hours,
-  style,
-}: FormattedHoursProps) => {
+export const FormattedHours = ({ hours, style }: FormattedHoursProps) => {
   const { t } = useTranslation();
 
   return (

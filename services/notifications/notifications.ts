@@ -25,9 +25,7 @@ export async function requestPermission(): Promise<NotificationPermissionStatus>
   return status;
 }
 
-export async function getExpoPushTokenIfGranted(): Promise<
-  string | null
-> {
+export async function getExpoPushTokenIfGranted(): Promise<string | null> {
   try {
     const status = await getPermissionStatus();
     if (status !== "granted") {
@@ -53,8 +51,7 @@ export async function ensurePushReady(): Promise<{
   token: string | null;
 }> {
   const status = await getPermissionStatus();
-  const token =
-    status === "granted" ? await getExpoPushTokenIfGranted() : null;
+  const token = status === "granted" ? await getExpoPushTokenIfGranted() : null;
   return { status, token };
 }
 
@@ -76,12 +73,8 @@ async function setupAndroidChannel() {
 export async function scheduleAllReminders() {
   await setupAndroidChannel();
 
-  await Notifications.cancelScheduledNotificationAsync(
-    NOTIFICATION_IDS.DRIVER
-  );
-  await Notifications.cancelScheduledNotificationAsync(
-    NOTIFICATION_IDS.FUEL
-  );
+  await Notifications.cancelScheduledNotificationAsync(NOTIFICATION_IDS.DRIVER);
+  await Notifications.cancelScheduledNotificationAsync(NOTIFICATION_IDS.FUEL);
   await Notifications.cancelScheduledNotificationAsync(
     NOTIFICATION_IDS.PARKING
   );

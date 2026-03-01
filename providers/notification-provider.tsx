@@ -16,9 +16,7 @@ type NotificationData = {
   url?: string;
 };
 
-function redirectFromNotification(
-  notification: Notifications.Notification
-) {
+function redirectFromNotification(notification: Notifications.Notification) {
   const data = notification.request.content.data as NotificationData;
   const url = data?.url;
 
@@ -34,8 +32,7 @@ export function NotificationProvider({
 }) {
   useEffect(() => {
     const checkInitialNotification = async () => {
-      const response =
-        await Notifications.getLastNotificationResponseAsync();
+      const response = await Notifications.getLastNotificationResponseAsync();
       if (response?.notification) {
         redirectFromNotification(response.notification);
         await Notifications.clearLastNotificationResponseAsync();
@@ -44,12 +41,11 @@ export function NotificationProvider({
 
     checkInitialNotification();
 
-    const subscription =
-      Notifications.addNotificationResponseReceivedListener(
-        (response) => {
-          redirectFromNotification(response.notification);
-        }
-      );
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        redirectFromNotification(response.notification);
+      }
+    );
 
     return () => {
       subscription.remove();

@@ -17,8 +17,10 @@ type Props = {
 
 export const FuelPriceCard = ({ country, unit }: Props) => {
   const { t } = useTranslation();
-  const { primary: primaryColors, default: defaultColors } =
-    useThemedColors("primary", "default");
+  const { primary: primaryColors, default: defaultColors } = useThemedColors(
+    "primary",
+    "default"
+  );
   const { formatCurrency } = useFormatCurrency();
   const borderColor = defaultColors[400];
 
@@ -33,9 +35,7 @@ export const FuelPriceCard = ({ country, unit }: Props) => {
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <CountryFlag isoCode={country.countryCode} size={24} />
-          <ThemedText style={styles.countryName}>
-            {country.country}
-          </ThemedText>
+          <ThemedText style={styles.countryName}>{country.country}</ThemedText>
         </View>
         <ThemedText style={styles.countryCode}>
           {country.countryCode}
@@ -48,10 +48,7 @@ export const FuelPriceCard = ({ country, unit }: Props) => {
             {t("fuelPrice.petrol")}
           </ThemedText>
           <ThemedText
-            style={[
-              styles.priceEur,
-              { color: primaryColors.DEFAULT },
-            ]}
+            style={[styles.priceEur, { color: primaryColors.DEFAULT }]}
           >
             {formatCurrency(getPriceValue(country.petrol), "EUR", {
               minimumFractionDigits: decimalPlaces,
@@ -79,10 +76,7 @@ export const FuelPriceCard = ({ country, unit }: Props) => {
             {t("fuelPrice.diesel")}
           </ThemedText>
           <ThemedText
-            style={[
-              styles.priceEur,
-              { color: primaryColors.DEFAULT },
-            ]}
+            style={[styles.priceEur, { color: primaryColors.DEFAULT }]}
           >
             {formatCurrency(getPriceValue(country.diesel), "EUR", {
               minimumFractionDigits: decimalPlaces,

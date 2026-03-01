@@ -27,18 +27,14 @@ export const getAllParkings = async (
   if (countryCode) {
     params.append("countryCode", countryCode);
   }
-  const data = await apiFetch<ParkingData>(
-    `/api/parking?${params.toString()}`
-  );
+  const data = await apiFetch<ParkingData>(`/api/parking?${params.toString()}`);
   if (!data?.parkings?.length) {
     throw new Error("No parkings returned");
   }
   return data;
 };
 
-export const getParkingById = async (
-  id: string
-): Promise<IParking | null> => {
+export const getParkingById = async (id: string): Promise<IParking | null> => {
   try {
     return await apiFetch<IParking>(`/api/parking/${id}`);
   } catch {

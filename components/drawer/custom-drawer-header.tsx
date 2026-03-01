@@ -30,11 +30,7 @@ export const CustomDrawerHeader = ({
           }
         }}
       >
-        <MaterialIcons
-          name="info"
-          size={30}
-          color={warning.DEFAULT}
-        />
+        <MaterialIcons name="info" size={30} color={warning.DEFAULT} />
       </ThemedTouchableOpacity>
     </ThemedSafeAreaView>
   );
@@ -46,10 +42,7 @@ export const DrawerToggleButton = ({
   containerStyle?: StyleProp<ViewStyle>;
 }) => {
   const navigation = useNavigation();
-  const { primary, secondary } = useThemedColors(
-    "primary",
-    "secondary"
-  );
+  const { primary, secondary } = useThemedColors("primary", "secondary");
   const toggleDrawer = () => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   };

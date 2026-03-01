@@ -5,12 +5,7 @@ import { ESheets } from "@/constants/sheets";
 import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useNotificationPermission } from "@/hooks/use-notification-permission";
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import ActionSheet, {
@@ -26,9 +21,7 @@ type NavigationOptionsProps = {
   destination: LatLng;
 };
 
-export const showNavigationOptions = (
-  payload: NavigationOptionsProps
-) => {
+export const showNavigationOptions = (payload: NavigationOptionsProps) => {
   SheetManager.show(ESheets.NavigationOptions, {
     payload,
   });
@@ -37,9 +30,9 @@ export const showNavigationOptions = (
 export const NavigationOptions = () => {
   const payload = useSheetPayload(ESheets.NavigationOptions);
   const { destination } = payload || {};
-  const [navigationOptions, setNavigationOptions] = useState<
-    GetAppsResponse[]
-  >([]);
+  const [navigationOptions, setNavigationOptions] = useState<GetAppsResponse[]>(
+    []
+  );
   const actionSheetRef = useRef<ActionSheetRef>(null);
   const colorScheme = useColorScheme() ?? "light";
 

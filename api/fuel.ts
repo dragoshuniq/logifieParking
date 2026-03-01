@@ -19,16 +19,12 @@ export interface IFuel {
   updatedAt: Date;
 }
 
-export const getFuelData = async (
-  date?: string
-): Promise<IFuel | null> => {
+export const getFuelData = async (date?: string): Promise<IFuel | null> => {
   const path = date ? `/api/fuel?date=${date}` : `/api/fuel`;
   return apiFetch<IFuel>(path);
 };
 
-export const getStaleTimeForFuelData = (
-  lastDataDate?: string
-): number => {
+export const getStaleTimeForFuelData = (lastDataDate?: string): number => {
   const now = dayjs();
   const currentDay = now.day();
   const currentHour = now.hour();

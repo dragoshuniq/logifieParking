@@ -252,10 +252,7 @@ export const getWeeklyRestDeficitsByDateRange = async (
     );
     return result;
   } catch (error) {
-    console.error(
-      "Failed to get weekly rest deficits by date range:",
-      error
-    );
+    console.error("Failed to get weekly rest deficits by date range:", error);
     return [];
   }
 };

@@ -5,12 +5,7 @@ import { useColorScheme } from "@/hooks/use-color-scheme";
 import { useNotificationPermission } from "@/hooks/use-notification-permission";
 import { ONE_WEEK } from "@/providers/query";
 import { useQuery } from "@tanstack/react-query";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   ActivityIndicator,
@@ -36,9 +31,7 @@ export const FuelPrice = () => {
   const colors = Colors[theme];
 
   const toggleUnit = useCallback(() => {
-    setUnit((prev) =>
-      prev === "per1000L" ? "perLiter" : "per1000L"
-    );
+    setUnit((prev) => (prev === "per1000L" ? "perLiter" : "per1000L"));
   }, []);
 
   const {
@@ -60,8 +53,7 @@ export const FuelPrice = () => {
     },
     gcTime: ONE_WEEK,
     retry: 5,
-    retryDelay: (attemptIndex) =>
-      Math.min(1000 * 2 ** attemptIndex, 30000),
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
   });
 
   // Show notification permission dialog after successful data fetch
@@ -111,15 +103,7 @@ export const FuelPrice = () => {
         onToggleUnit={toggleUnit}
       />
     ),
-    [
-      data,
-      colors,
-      searchQuery,
-      sortType,
-      handleFilterPress,
-      unit,
-      toggleUnit,
-    ]
+    [data, colors, searchQuery, sortType, handleFilterPress, unit, toggleUnit]
   );
 
   const renderEmpty = () => {
@@ -176,17 +160,12 @@ export const FuelPrice = () => {
       <FlatList
         data={countries}
         keyExtractor={(item) => item.countryCode}
-        renderItem={({ item }) => (
-          <FuelPriceCard country={item} unit={unit} />
-        )}
+        renderItem={({ item }) => <FuelPriceCard country={item} unit={unit} />}
         ListHeaderComponent={ListHeader}
         ListEmptyComponent={renderEmpty}
         contentContainerStyle={styles.listContent}
         refreshControl={
-          <RefreshControl
-            refreshing={isFetching}
-            onRefresh={() => refetch()}
-          />
+          <RefreshControl refreshing={isFetching} onRefresh={() => refetch()} />
         }
       />
     </ThemedView>

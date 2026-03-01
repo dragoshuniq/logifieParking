@@ -10,9 +10,7 @@ import {
 
 export const DATABASE_NAME = "driver_hours.db";
 
-const DatabaseContext = createContext<SQLite.SQLiteDatabase | null>(
-  null
-);
+const DatabaseContext = createContext<SQLite.SQLiteDatabase | null>(null);
 
 type Props = {
   children: ReactNode;
@@ -45,18 +43,14 @@ export function DriverDatabaseProvider({ children }: Props) {
   }
 
   return (
-    <DatabaseContext.Provider value={db}>
-      {children}
-    </DatabaseContext.Provider>
+    <DatabaseContext.Provider value={db}>{children}</DatabaseContext.Provider>
   );
 }
 
 export function useDatabase() {
   const db = useContext(DatabaseContext);
   if (!db) {
-    throw new Error(
-      "useDatabase must be used within DriverDatabaseProvider"
-    );
+    throw new Error("useDatabase must be used within DriverDatabaseProvider");
   }
   return db;
 }

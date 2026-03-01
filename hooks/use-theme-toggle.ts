@@ -1,10 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { STORAGE_KEYS } from "@/constants/storage";
 import { useEffect, useState } from "react";
-import {
-  Appearance,
-  useColorScheme as useRNColorScheme,
-} from "react-native";
+import { Appearance, useColorScheme as useRNColorScheme } from "react-native";
 
 export function useThemeToggle() {
   const systemColorScheme = useRNColorScheme();

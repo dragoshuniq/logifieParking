@@ -27,9 +27,7 @@ type FuelPriceFiltersPayload = {
   onSortChange: (sort: SortType) => void;
 };
 
-export const showFuelPriceFilters = (
-  payload: FuelPriceFiltersPayload
-) => {
+export const showFuelPriceFilters = (payload: FuelPriceFiltersPayload) => {
   SheetManager.show(ESheets.FuelPriceFilters, {
     payload,
   });
@@ -52,8 +50,10 @@ export const FuelPriceFilters = () => {
     currentSort || SortType.None
   );
   const actionSheetRef = useRef<ActionSheetRef>(null);
-  const { content2: content2Colors, tint: tintColors } =
-    useThemedColors("content2", "tint");
+  const { content2: content2Colors, tint: tintColors } = useThemedColors(
+    "content2",
+    "tint"
+  );
   const handleSortSelect = (sort: SortType) => {
     setSelectedSort(selectedSort === sort ? SortType.None : sort);
   };
@@ -75,9 +75,7 @@ export const FuelPriceFilters = () => {
       useBottomSafeAreaPadding
     >
       <View style={styles.content}>
-        <ThemedText style={styles.title}>
-          {t("fuelPrice.sortBy")}
-        </ThemedText>
+        <ThemedText style={styles.title}>{t("fuelPrice.sortBy")}</ThemedText>
 
         {SORT_OPTIONS.map((option, index) => (
           <SortOption
@@ -90,10 +88,7 @@ export const FuelPriceFilters = () => {
         ))}
 
         <ThemedTouchableOpacity
-          style={[
-            styles.confirmButton,
-            { backgroundColor: tintColors },
-          ]}
+          style={[styles.confirmButton, { backgroundColor: tintColors }]}
           onPress={handleConfirm}
         >
           <ThemedText

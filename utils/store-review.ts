@@ -59,9 +59,7 @@ const shouldRequestReview = async (): Promise<boolean> => {
       STORAGE_KEYS.STORE_REVIEW_COUNT
     );
 
-    const actionCount = actionCountStr
-      ? parseInt(actionCountStr, 10)
-      : 0;
+    const actionCount = actionCountStr ? parseInt(actionCountStr, 10) : 0;
     await AsyncStorage.setItem(
       STORAGE_KEYS.STORE_REVIEW_COUNT,
       (actionCount + 1).toString()
@@ -78,8 +76,7 @@ const shouldRequestReview = async (): Promise<boolean> => {
     const lastRequested = new Date(lastRequestedStr);
     const now = new Date();
     const daysSinceLastRequest = Math.floor(
-      (now.getTime() - lastRequested.getTime()) /
-        (1000 * 60 * 60 * 24)
+      (now.getTime() - lastRequested.getTime()) / (1000 * 60 * 60 * 24)
     );
 
     return daysSinceLastRequest >= COOLDOWN_DAYS;

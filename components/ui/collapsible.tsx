@@ -21,9 +21,7 @@ export function Collapsible({
       >
         <ThemedText type="defaultSemiBold">{title}</ThemedText>
       </TouchableOpacity>
-      {isOpen && (
-        <ThemedView style={styles.content}>{children}</ThemedView>
-      )}
+      {isOpen && <ThemedView style={styles.content}>{children}</ThemedView>}
     </ThemedView>
   );
 }

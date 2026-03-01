@@ -9,11 +9,7 @@ import {
   calculateDailyRestCompliance,
   calculateNightWorkCompliance,
 } from "./compliance";
-import {
-  Activity,
-  ActivityType,
-  WeeklyRestDeficit,
-} from "./driver-db";
+import { Activity, ActivityType, WeeklyRestDeficit } from "./driver-db";
 import { requestStoreReviewAfterAction } from "./store-review";
 
 type TranslateFunction = (key: string) => string;
@@ -72,44 +68,32 @@ const prepareActivityData = (
       date,
       activities
     );
-    const breakCompliance = calculateBreakCompliance(
-      dayActivities,
-      date
-    );
+    const breakCompliance = calculateBreakCompliance(dayActivities, date);
     const restCompliance = calculateDailyRestCompliance(
       dayActivities,
       date,
       activities
     );
-    const nightWork = calculateNightWorkCompliance(
-      dayActivities,
-      date
-    );
+    const nightWork = calculateNightWorkCompliance(dayActivities, date);
 
     return {
-      [t("driver.export.headers.date")]:
-        startDate.format("YYYY-MM-DD"),
-      [t("driver.export.headers.startTime")]:
-        startDate.format("HH:mm"),
+      [t("driver.export.headers.date")]: startDate.format("YYYY-MM-DD"),
+      [t("driver.export.headers.startTime")]: startDate.format("HH:mm"),
       [t("driver.export.headers.endTime")]: endDate.format("HH:mm"),
-      [t("driver.export.headers.duration")]:
-        activity.duration.toFixed(2),
+      [t("driver.export.headers.duration")]: activity.duration.toFixed(2),
       [t("driver.export.headers.activityType")]: getActivityTypeLabel(
         activity.type,
         t
       ),
-      [t("driver.export.headers.dailyDriving")]:
-        drivingCompliance.isCompliant
-          ? t("common.ok")
-          : t("common.violation"),
-      [t("driver.export.headers.breakCompliance")]:
-        breakCompliance.isCompliant
-          ? t("common.ok")
-          : t("common.violation"),
-      [t("driver.export.headers.dailyRest")]:
-        restCompliance.isCompliant
-          ? t("common.ok")
-          : t("common.violation"),
+      [t("driver.export.headers.dailyDriving")]: drivingCompliance.isCompliant
+        ? t("common.ok")
+        : t("common.violation"),
+      [t("driver.export.headers.breakCompliance")]: breakCompliance.isCompliant
+        ? t("common.ok")
+        : t("common.violation"),
+      [t("driver.export.headers.dailyRest")]: restCompliance.isCompliant
+        ? t("common.ok")
+        : t("common.violation"),
       [t("driver.export.headers.nightWork")]: nightWork.hasNightWork
         ? t("common.yes")
         : t("common.no"),
@@ -122,14 +106,13 @@ const prepareDeficitData = (
   t: TranslateFunction
 ): Record<string, string>[] => {
   return deficits.map((deficit) => ({
-    [t("driver.export.headers.weekStart")]: dayjs(
-      deficit.weekStart
-    ).format("YYYY-MM-DD"),
-    [t("driver.export.headers.weekEnd")]: dayjs(
-      deficit.weekEnd
-    ).format("YYYY-MM-DD"),
-    [t("driver.export.headers.deficitHours")]:
-      deficit.deficitHours.toFixed(2),
+    [t("driver.export.headers.weekStart")]: dayjs(deficit.weekStart).format(
+      "YYYY-MM-DD"
+    ),
+    [t("driver.export.headers.weekEnd")]: dayjs(deficit.weekEnd).format(
+      "YYYY-MM-DD"
+    ),
+    [t("driver.export.headers.deficitHours")]: deficit.deficitHours.toFixed(2),
     [t("driver.export.headers.compensatedHours")]:
       deficit.compensatedHours.toFixed(2),
     [t("driver.export.headers.mustCompensateBy")]: dayjs(
@@ -159,8 +142,7 @@ export const exportToCSV = async (
 
     if (deficits && deficits.length > 0) {
       csvContent += "\n\n";
-      csvContent +=
-        t("driver.export.headers.weeklyRestDeficits") + "\n";
+      csvContent += t("driver.export.headers.weeklyRestDeficits") + "\n";
 
       const deficitsData = prepareDeficitData(deficits, t);
       const deficitsCSV = Papa.unparse(deficitsData, {
@@ -222,20 +204,12 @@ export const exportToXLS = async (
 
     const activitiesData = prepareActivityData(activities, t);
     const activitiesSheet = XLSX.utils.json_to_sheet(activitiesData);
-    XLSX.utils.book_append_sheet(
-      workbook,
-      activitiesSheet,
-      "Driver Hours"
-    );
+    XLSX.utils.book_append_sheet(workbook, activitiesSheet, "Driver Hours");
 
     if (deficits && deficits.length > 0) {
       const deficitsData = prepareDeficitData(deficits, t);
       const deficitsSheet = XLSX.utils.json_to_sheet(deficitsData);
-      XLSX.utils.book_append_sheet(
-        workbook,
-        deficitsSheet,
-        "Rest Deficits"
-      );
+      XLSX.utils.book_append_sheet(workbook, deficitsSheet, "Rest Deficits");
     }
 
     const excelBase64 = XLSX.write(workbook, {

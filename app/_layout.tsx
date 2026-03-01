@@ -60,15 +60,11 @@ export default function RootLayout() {
         <DriverDatabaseProvider>
           <NotificationProvider>
             <ThemeProvider
-              value={
-                colorScheme === "dark" ? DarkTheme : DefaultTheme
-              }
+              value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
             >
               <SheetProvider>
                 <SafeAreaProvider>
-                  <Drawer
-                    drawerContent={() => <CustomDrawerContent />}
-                  >
+                  <Drawer drawerContent={() => <CustomDrawerContent />}>
                     <Drawer.Screen
                       name="(tabs)"
                       options={{

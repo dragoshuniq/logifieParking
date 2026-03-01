@@ -92,9 +92,7 @@ export const useFormatDuration = () => {
     if (m === 0) {
       return `${h}${t("format.hourShort")}`;
     }
-    return `${h}${t("format.hourShort")} ${m}${t(
-      "format.minuteShort"
-    )}`;
+    return `${h}${t("format.hourShort")} ${m}${t("format.minuteShort")}`;
   };
 
   return { formatDuration };

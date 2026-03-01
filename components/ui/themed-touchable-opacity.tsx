@@ -19,10 +19,6 @@ export function ThemedTouchableOpacity({
   );
 
   return (
-    <TouchableOpacity
-      style={[{ backgroundColor }, style]}
-      {...otherProps}
-    />
+    <TouchableOpacity style={[{ backgroundColor }, style]} {...otherProps} />
   );
 }
-

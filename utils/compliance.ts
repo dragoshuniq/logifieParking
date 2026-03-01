@@ -115,8 +115,7 @@ export const calculateDailyStats = (
   const endOfDay = dayjs(date).endOf("day").valueOf();
 
   const dayActivities = activities.filter(
-    (a) =>
-      a.startDateTime >= startOfDay && a.startDateTime <= endOfDay
+    (a) => a.startDateTime >= startOfDay && a.startDateTime <= endOfDay
   );
 
   const stats: DailyStats = {
@@ -159,9 +158,7 @@ export const calculateWeeklyStats = (
   activities: Activity[],
   dates: Date[]
 ): WeeklyStats => {
-  const dailyStats = dates.map((date) =>
-    calculateDailyStats(activities, date)
-  );
+  const dailyStats = dates.map((date) => calculateDailyStats(activities, date));
 
   const stats: WeeklyStats = {
     totalWorkHours: 0,
@@ -199,10 +196,7 @@ export const calculateDailyDrivingCompliance = (
       a.type === ActivityType.DRIVING
   );
 
-  const drivingHours = dayActivities.reduce(
-    (sum, a) => sum + a.duration,
-    0
-  );
+  const drivingHours = dayActivities.reduce((sum, a) => sum + a.duration, 0);
 
   const weekDays = Array.from({ length: 7 }, (_, i) =>
     dayjs(date).startOf("isoWeek").add(i, "day")
@@ -235,15 +229,11 @@ export const calculateDailyDrivingCompliance = (
   if (drivingHours > limit) {
     level = "violation";
     alerts.push(
-      `Daily driving exceeded ${limit}h limit (${drivingHours.toFixed(
-        1
-      )}h)`
+      `Daily driving exceeded ${limit}h limit (${drivingHours.toFixed(1)}h)`
     );
   } else if (drivingHours > 9 && extendedDaysThisWeek >= 2) {
     level = "warning";
-    alerts.push(
-      "Already used 2 extended driving days (10h) this week"
-    );
+    alerts.push("Already used 2 extended driving days (10h) this week");
   } else if (drivingHours > 8) {
     level = "warning";
     alerts.push("Approaching daily driving limit");
@@ -267,10 +257,7 @@ export const calculateBreakCompliance = (
   const endOfDay = dayjs(date).endOf("day").valueOf();
 
   const dayActivities = activities
-    .filter(
-      (a) =>
-        a.startDateTime >= startOfDay && a.startDateTime <= endOfDay
-    )
+    .filter((a) => a.startDateTime >= startOfDay && a.startDateTime <= endOfDay)
     .sort((a, b) => a.startDateTime - b.startDateTime);
 
   const drivingActivities = dayActivities.filter(
@@ -286,10 +273,7 @@ export const calculateBreakCompliance = (
     duration: b.duration * 60,
   }));
 
-  const totalBreakMinutes = breaks.reduce(
-    (sum, b) => sum + b.duration,
-    0
-  );
+  const totalBreakMinutes = breaks.reduce((sum, b) => sum + b.duration, 0);
 
   let requiredBreakMinutes = 0;
   let cumulativeDrivingMinutes = 0;
@@ -356,10 +340,7 @@ export const calculateDailyRestCompliance = (
   const endOfDay = dayjs(date).endOf("day").valueOf();
 
   const sortedActivities = [...activities]
-    .filter(
-      (a) =>
-        a.startDateTime >= startOfDay && a.startDateTime <= endOfDay
-    )
+    .filter((a) => a.startDateTime >= startOfDay && a.startDateTime <= endOfDay)
     .sort((a, b) => a.startDateTime - b.startDateTime);
 
   const workActivities = sortedActivities.filter(
@@ -373,10 +354,7 @@ export const calculateDailyRestCompliance = (
     (a) => a.type === ActivityType.REST
   );
 
-  const restHours = restActivities.reduce(
-    (sum, a) => sum + a.duration,
-    0
-  );
+  const restHours = restActivities.reduce((sum, a) => sum + a.duration, 0);
 
   let activityWindowHours = 0;
   if (workActivities.length > 0) {
@@ -389,14 +367,10 @@ export const calculateDailyRestCompliance = (
 
   const startOfWeek = dayjs(date).startOf("isoWeek").valueOf();
   const weekActivities = historicalActivities.filter(
-    (a) =>
-      a.startDateTime >= startOfWeek && a.startDateTime <= endOfDay
+    (a) => a.startDateTime >= startOfWeek && a.startDateTime <= endOfDay
   );
 
-  const reducedRestCount = countReducedDailyRests(
-    weekActivities,
-    date
-  );
+  const reducedRestCount = countReducedDailyRests(weekActivities, date);
 
   let restType: "regular" | "reduced" | "none" = "none";
   if (restHours >= 11) {
@@ -413,16 +387,12 @@ export const calculateDailyRestCompliance = (
     isCompliant = false;
     level = "violation";
     alerts.push(
-      `Activity window exceeded 15h (${activityWindowHours.toFixed(
-        1
-      )}h)`
+      `Activity window exceeded 15h (${activityWindowHours.toFixed(1)}h)`
     );
   } else if (activityWindowHours > 13) {
     level = "warning";
     alerts.push(
-      `Activity window exceeded 13h (${activityWindowHours.toFixed(
-        1
-      )}h)`
+      `Activity window exceeded 13h (${activityWindowHours.toFixed(1)}h)`
     );
   }
 
@@ -483,10 +453,7 @@ const countReducedDailyRests = (
         a.startDateTime <= dayEnd
     );
 
-    const totalRest = dayRests.reduce(
-      (sum, a) => sum + a.duration,
-      0
-    );
+    const totalRest = dayRests.reduce((sum, a) => sum + a.duration, 0);
 
     if (totalRest >= 9 && totalRest < 11) {
       count++;
@@ -506,8 +473,7 @@ export const calculateNightWorkCompliance = (
   const endOfDay = dayjs(date).endOf("day").valueOf();
 
   const dayActivities = activities.filter(
-    (a) =>
-      a.startDateTime >= startOfDay && a.startDateTime <= endOfDay
+    (a) => a.startDateTime >= startOfDay && a.startDateTime <= endOfDay
   );
 
   const workActivities = dayActivities.filter(
@@ -528,13 +494,10 @@ export const calculateNightWorkCompliance = (
     const nightStart = activityStart
       .startOf("day")
       .add(nightWindowStart, "hour");
-    const nightEnd = activityStart
-      .startOf("day")
-      .add(nightWindowEnd, "hour");
+    const nightEnd = activityStart.startOf("day").add(nightWindowEnd, "hour");
 
     if (
-      (activityStart.isBefore(nightEnd) &&
-        activityEnd.isAfter(nightStart)) ||
+      (activityStart.isBefore(nightEnd) && activityEnd.isAfter(nightStart)) ||
       activityStart.isSame(nightStart) ||
       activityStart.isSame(nightEnd)
     ) {
@@ -578,8 +541,7 @@ export const calculateWeeklyWorkingTimeCompliance = (
   const endOfWeek = dayjs(currentDate).endOf("isoWeek").valueOf();
 
   const weekActivities = activities.filter(
-    (a) =>
-      a.startDateTime >= startOfWeek && a.startDateTime <= endOfWeek
+    (a) => a.startDateTime >= startOfWeek && a.startDateTime <= endOfWeek
   );
 
   const weeklyHours = weekActivities
@@ -591,12 +553,9 @@ export const calculateWeeklyWorkingTimeCompliance = (
     )
     .reduce((sum, a) => sum + a.duration, 0);
 
-  const fourMonthsAgo = dayjs(currentDate)
-    .subtract(4, "month")
-    .valueOf();
+  const fourMonthsAgo = dayjs(currentDate).subtract(4, "month").valueOf();
   const fourMonthActivities = activities.filter(
-    (a) =>
-      a.startDateTime >= fourMonthsAgo && a.startDateTime <= endOfWeek
+    (a) => a.startDateTime >= fourMonthsAgo && a.startDateTime <= endOfWeek
   );
 
   const totalHours = fourMonthActivities
@@ -625,9 +584,7 @@ export const calculateWeeklyWorkingTimeCompliance = (
     isCompliant = false;
     level = "violation";
     alerts.push(
-      `Weekly working time exceeded 60h limit (${weeklyHours.toFixed(
-        1
-      )}h)`
+      `Weekly working time exceeded 60h limit (${weeklyHours.toFixed(1)}h)`
     );
   } else if (weeklyHours > 56) {
     level = "warning";
@@ -638,9 +595,7 @@ export const calculateWeeklyWorkingTimeCompliance = (
     isCompliant = false;
     level = "violation";
     alerts.push(
-      `4-month average exceeded 48h (${fourMonthAverage.toFixed(
-        1
-      )}h/week)`
+      `4-month average exceeded 48h (${fourMonthAverage.toFixed(1)}h/week)`
     );
   } else if (fourMonthAverage > 46) {
     level = "warning";
@@ -705,9 +660,7 @@ export const calculateWeeklyDrivingCompliance = (
     isCompliant = false;
     level = "violation";
     alerts.push(
-      `Weekly driving exceeded 56h limit (${weeklyDrivingHours.toFixed(
-        1
-      )}h)`
+      `Weekly driving exceeded 56h limit (${weeklyDrivingHours.toFixed(1)}h)`
     );
   } else if (weeklyDrivingHours > 52) {
     level = "warning";
@@ -718,9 +671,7 @@ export const calculateWeeklyDrivingCompliance = (
     isCompliant = false;
     level = "violation";
     alerts.push(
-      `Two-week driving exceeded 90h limit (${twoWeekDrivingHours.toFixed(
-        1
-      )}h)`
+      `Two-week driving exceeded 90h limit (${twoWeekDrivingHours.toFixed(1)}h)`
     );
   } else if (twoWeekDrivingHours > 85) {
     level = "warning";
@@ -821,8 +772,7 @@ const findRestBlocks = (
     .filter((a) => a.type === ActivityType.REST)
     .sort((a, b) => b.startDateTime - a.startDateTime);
 
-  const blocks: { start: number; end: number; duration: number }[] =
-    [];
+  const blocks: { start: number; end: number; duration: number }[] = [];
   let currentBlock: Activity[] = [];
 
   for (let i = 0; i < restActivities.length; i++) {
@@ -835,8 +785,7 @@ const findRestBlocks = (
 
     const lastInBlock = currentBlock[currentBlock.length - 1];
     const timeDiff =
-      Math.abs(lastInBlock.startDateTime - current.endDateTime) /
-      (1000 * 60);
+      Math.abs(lastInBlock.startDateTime - current.endDateTime) / (1000 * 60);
 
     if (timeDiff <= 60) {
       currentBlock.push(current);
@@ -857,10 +806,7 @@ const findRestBlocks = (
   }
 
   if (currentBlock.length > 0) {
-    const totalDuration = currentBlock.reduce(
-      (sum, a) => sum + a.duration,
-      0
-    );
+    const totalDuration = currentBlock.reduce((sum, a) => sum + a.duration, 0);
     if (totalDuration >= 24) {
       blocks.push({
         start: currentBlock[currentBlock.length - 1].startDateTime,
@@ -901,13 +847,9 @@ export const validateTwoWeekRestPattern = (
   alerts: string[];
 } => {
   const restBlocks = findRestBlocks(activities);
-  const twoWeeksAgo = dayjs(currentDate)
-    .subtract(2, "week")
-    .valueOf();
+  const twoWeeksAgo = dayjs(currentDate).subtract(2, "week").valueOf();
 
-  const recentRests = restBlocks.filter(
-    (r) => r.start >= twoWeeksAgo
-  );
+  const recentRests = restBlocks.filter((r) => r.start >= twoWeeksAgo);
 
   const alerts: string[] = [];
   let isCompliant = true;
@@ -928,9 +870,7 @@ export const validateTwoWeekRestPattern = (
       alerts.push("Single weekly rest must be at least 45h");
     }
   } else if (recentRests.length === 2) {
-    const [first, second] = recentRests.sort(
-      (a, b) => a.start - b.start
-    );
+    const [first, second] = recentRests.sort((a, b) => a.start - b.start);
 
     if (first.duration >= 45 && second.duration >= 45) {
       pattern = "two-regular";

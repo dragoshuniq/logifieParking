@@ -22,18 +22,15 @@ export const showDatePicker = (payload: DatePickerProps) => {
 };
 
 const DatePickerSheet = () => {
-  const payload = useSheetPayload("DatePicker") as
-    | DatePickerProps
-    | undefined;
+  const payload = useSheetPayload("DatePicker") as DatePickerProps | undefined;
   const { t, i18n } = useTranslation();
-  const { content1, content2, primary, content3, background } =
-    useThemedColors(
-      "content1",
-      "content2",
-      "primary",
-      "content3",
-      "background"
-    );
+  const { content1, content2, primary, content3, background } = useThemedColors(
+    "content1",
+    "content2",
+    "primary",
+    "content3",
+    "background"
+  );
 
   const {
     onCancel = () => {},
@@ -44,9 +41,7 @@ const DatePickerSheet = () => {
   } = payload || ({} as DatePickerProps);
 
   const [localDate, setLocalDate] = useState(
-    value
-      ? dayjs(value).format("YYYY-MM-DD")
-      : dayjs().format("YYYY-MM-DD")
+    value ? dayjs(value).format("YYYY-MM-DD") : dayjs().format("YYYY-MM-DD")
   );
   const actionSheetRef = useRef<ActionSheetRef>(null);
 
@@ -102,16 +97,10 @@ const DatePickerSheet = () => {
     <ActionSheet
       ref={actionSheetRef}
       useBottomSafeAreaPadding
-      containerStyle={[
-        styles.container,
-        { backgroundColor: content1.DEFAULT },
-      ]}
+      containerStyle={[styles.container, { backgroundColor: content1.DEFAULT }]}
     >
       <ThemedView
-        style={[
-          styles.content,
-          { backgroundColor: content1.DEFAULT },
-        ]}
+        style={[styles.content, { backgroundColor: content1.DEFAULT }]}
       >
         <Calendar
           key={i18n.language}
@@ -127,10 +116,7 @@ const DatePickerSheet = () => {
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
             onPress={handleClose}
-            style={[
-              styles.button,
-              { backgroundColor: content2.DEFAULT },
-            ]}
+            style={[styles.button, { backgroundColor: content2.DEFAULT }]}
           >
             <ThemedText style={styles.buttonText}>
               {t("common.cancel")}
@@ -139,16 +125,10 @@ const DatePickerSheet = () => {
 
           <TouchableOpacity
             onPress={handleConfirm}
-            style={[
-              styles.button,
-              { backgroundColor: primary.DEFAULT },
-            ]}
+            style={[styles.button, { backgroundColor: primary.DEFAULT }]}
           >
             <ThemedText
-              style={[
-                styles.buttonText,
-                { color: primary.foreground },
-              ]}
+              style={[styles.buttonText, { color: primary.foreground }]}
             >
               {t("common.confirm")}
             </ThemedText>

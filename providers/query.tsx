@@ -20,8 +20,7 @@ export const queryClient = new QueryClient({
         }
         return true;
       },
-      retryDelay: (attemptIndex) =>
-        Math.min(1000 * 2 ** attemptIndex, 30000),
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
       refetchOnMount: (query) => {
         if (query.state.data) {
           return false;

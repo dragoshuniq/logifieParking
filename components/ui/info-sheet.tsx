@@ -4,12 +4,7 @@ import { ESheets, InfoSheetProps } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
-import {
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import ActionSheet, {
   SheetManager,
   SheetProps,
@@ -32,8 +27,7 @@ const InfoSheet = (props: SheetProps) => {
     "text"
   );
 
-  const { title = t("common.information"), sections = [] } =
-    payload || {};
+  const { title = t("common.information"), sections = [] } = payload || {};
 
   const translatedTitle = title.includes(".") ? t(title) : title;
 
@@ -52,47 +46,28 @@ const InfoSheet = (props: SheetProps) => {
       key={`section-${index}`}
       style={[styles.section, { backgroundColor: content2.DEFAULT }]}
     >
-      <ThemedText style={styles.sectionHeading}>
-        {t(item.heading)}
-      </ThemedText>
-      <ThemedText style={styles.sectionContent}>
-        {t(item.content)}
-      </ThemedText>
+      <ThemedText style={styles.sectionHeading}>{t(item.heading)}</ThemedText>
+      <ThemedText style={styles.sectionContent}>{t(item.content)}</ThemedText>
     </ThemedView>
   );
 
   return (
     <ActionSheet
       id={props.sheetId}
-      containerStyle={[
-        styles.container,
-        { backgroundColor: content1.DEFAULT },
-      ]}
+      containerStyle={[styles.container, { backgroundColor: content1.DEFAULT }]}
       gestureEnabled
       closeOnTouchBackdrop
     >
       <View style={styles.header}>
         <View style={styles.titleContainer}>
           <View
-            style={[
-              styles.iconContainer,
-              { backgroundColor: primary.DEFAULT },
-            ]}
+            style={[styles.iconContainer, { backgroundColor: primary.DEFAULT }]}
           >
-            <MaterialIcons
-              name="info"
-              size={20}
-              color={primary.foreground}
-            />
+            <MaterialIcons name="info" size={20} color={primary.foreground} />
           </View>
-          <ThemedText style={styles.title}>
-            {translatedTitle}
-          </ThemedText>
+          <ThemedText style={styles.title}>{translatedTitle}</ThemedText>
         </View>
-        <TouchableOpacity
-          onPress={onCloseSheet}
-          style={styles.closeButton}
-        >
+        <TouchableOpacity onPress={onCloseSheet} style={styles.closeButton}>
           <MaterialIcons name="close" size={20} color={text} />
         </TouchableOpacity>
       </View>
@@ -105,10 +80,7 @@ const InfoSheet = (props: SheetProps) => {
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           <ThemedView
-            style={[
-              styles.section,
-              { backgroundColor: content2.DEFAULT },
-            ]}
+            style={[styles.section, { backgroundColor: content2.DEFAULT }]}
           >
             <ThemedText>{t("common.noInformation")}</ThemedText>
           </ThemedView>

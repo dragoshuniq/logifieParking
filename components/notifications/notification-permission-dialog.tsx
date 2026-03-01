@@ -1,18 +1,10 @@
 import { ThemedText } from "@/components/ui/themed-text";
 import { ThemedView } from "@/components/ui/themed-view";
-import {
-  ESheets,
-  NotificationPermissionPayload,
-} from "@/constants/sheets";
+import { ESheets, NotificationPermissionPayload } from "@/constants/sheets";
 import { useThemedColors } from "@/hooks/use-themed-colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import ActionSheet, {
   SheetManager,
   SheetProps,
@@ -70,11 +62,7 @@ const NotificationPermissionDialog = (props: SheetProps) => {
     "text"
   );
 
-  if (
-    !payload ||
-    typeof payload !== "object" ||
-    !("mode" in payload)
-  ) {
+  if (!payload || typeof payload !== "object" || !("mode" in payload)) {
     return null;
   }
 
@@ -97,10 +85,7 @@ const NotificationPermissionDialog = (props: SheetProps) => {
   return (
     <ActionSheet
       id={props.sheetId}
-      containerStyle={[
-        styles.container,
-        { backgroundColor: content1.DEFAULT },
-      ]}
+      containerStyle={[styles.container, { backgroundColor: content1.DEFAULT }]}
       gestureEnabled
       closeOnTouchBackdrop
       onClose={handleClose}
@@ -109,10 +94,7 @@ const NotificationPermissionDialog = (props: SheetProps) => {
       <View style={styles.header}>
         <View style={styles.titleContainer}>
           <View
-            style={[
-              styles.iconContainer,
-              { backgroundColor: primary.DEFAULT },
-            ]}
+            style={[styles.iconContainer, { backgroundColor: primary.DEFAULT }]}
           >
             <MaterialIcons
               name="notifications"
@@ -133,10 +115,7 @@ const NotificationPermissionDialog = (props: SheetProps) => {
       </View>
 
       {/* Content */}
-      <ScrollView
-        style={styles.content}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Body text */}
         <ThemedText style={styles.bodyText}>{copy.body}</ThemedText>
 
@@ -155,9 +134,7 @@ const NotificationPermissionDialog = (props: SheetProps) => {
                 color={primary.DEFAULT}
                 style={styles.bulletIcon}
               />
-              <ThemedText style={styles.bulletText}>
-                {bullet}
-              </ThemedText>
+              <ThemedText style={styles.bulletText}>{bullet}</ThemedText>
             </View>
           ))}
         </ThemedView>
@@ -170,19 +147,13 @@ const NotificationPermissionDialog = (props: SheetProps) => {
       <View style={styles.buttonContainer}>
         {/* Primary button (filled) */}
         <TouchableOpacity
-          style={[
-            styles.primaryButton,
-            { backgroundColor: primary.DEFAULT },
-          ]}
+          style={[styles.primaryButton, { backgroundColor: primary.DEFAULT }]}
           onPress={handlePrimary}
           accessibilityRole="button"
           accessibilityLabel={copy.primaryButton}
         >
           <ThemedText
-            style={[
-              styles.primaryButtonText,
-              { color: primary.foreground },
-            ]}
+            style={[styles.primaryButtonText, { color: primary.foreground }]}
           >
             {copy.primaryButton}
           </ThemedText>

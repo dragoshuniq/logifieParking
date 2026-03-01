@@ -26,13 +26,11 @@ type LanguageItem = {
   flag: string;
 };
 
-const LANGUAGES: LanguageItem[] = Object.values(Languages).map(
-  (lang) => ({
-    code: lang,
-    name: LANGUAGE_NAMES[lang],
-    flag: LANGUAGE_FLAGS[lang],
-  })
-);
+const LANGUAGES: LanguageItem[] = Object.values(Languages).map((lang) => ({
+  code: lang,
+  name: LANGUAGE_NAMES[lang],
+  flag: LANGUAGE_FLAGS[lang],
+}));
 
 export default function LanguagePickerSheet(props: SheetProps) {
   const {
@@ -85,9 +83,7 @@ export default function LanguagePickerSheet(props: SheetProps) {
             size={32}
             style={{ borderRadius: 100, width: 32, height: 32 }}
           />
-          <ThemedText style={styles.languageName}>
-            {item.name}
-          </ThemedText>
+          <ThemedText style={styles.languageName}>{item.name}</ThemedText>
         </ThemedView>
       </TouchableOpacity>
     );
@@ -104,9 +100,7 @@ export default function LanguagePickerSheet(props: SheetProps) {
       closeOnTouchBackdrop
     >
       <View style={styles.header}>
-        <ThemedText type="subtitle">
-          {t("language.selectLanguage")}
-        </ThemedText>
+        <ThemedText type="subtitle">{t("language.selectLanguage")}</ThemedText>
       </View>
       <FlatList
         data={LANGUAGES}

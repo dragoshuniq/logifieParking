@@ -39,15 +39,13 @@ export const ParkingMap = () => {
     staleTime: (query) => {
       const parkingData = query.state.data;
       const hasNoData =
-        !parkingData?.parkings?.length ||
-        parkingData?.totalParkings === 0;
+        !parkingData?.parkings?.length || parkingData?.totalParkings === 0;
       return hasNoData ? ONE_MINUTE : ONE_WEEK;
     },
     refetchOnMount: (query) => {
       const parkingData = query.state.data;
       const hasNoData =
-        !parkingData?.parkings?.length ||
-        parkingData?.totalParkings === 0;
+        !parkingData?.parkings?.length || parkingData?.totalParkings === 0;
       return hasNoData;
     },
     retry: 3,

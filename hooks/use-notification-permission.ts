@@ -23,13 +23,11 @@ export type DialogContext = "value_moment" | "feature_gate";
 export type DialogMode = "request" | "settings";
 
 export function useNotificationPermission() {
-  const [status, setStatus] =
-    useState<Notifications.PermissionStatus>(
-      Notifications.PermissionStatus.UNDETERMINED
-    );
+  const [status, setStatus] = useState<Notifications.PermissionStatus>(
+    Notifications.PermissionStatus.UNDETERMINED
+  );
   const [loading, setLoading] = useState(true);
-  const [showPermissionDialog, setShowPermissionDialog] =
-    useState(false);
+  const [showPermissionDialog, setShowPermissionDialog] = useState(false);
   const [dialogMode, setDialogMode] = useState<DialogMode>("request");
   const [dialogContext, setDialogContext] =
     useState<DialogContext>("value_moment");
@@ -52,20 +50,17 @@ export function useNotificationPermission() {
     }
   }, []);
 
-  const saveUxState = useCallback(
-    async (newState: NotificationUXState) => {
-      try {
-        await AsyncStorage.setItem(
-          STORAGE_KEYS.NOTIFICATION_PERMISSION_UX_STATE,
-          JSON.stringify(newState)
-        );
-        setUxState(newState);
-      } catch (error) {
-        console.error("Error saving notification UX state:", error);
-      }
-    },
-    []
-  );
+  const saveUxState = useCallback(async (newState: NotificationUXState) => {
+    try {
+      await AsyncStorage.setItem(
+        STORAGE_KEYS.NOTIFICATION_PERMISSION_UX_STATE,
+        JSON.stringify(newState)
+      );
+      setUxState(newState);
+    } catch (error) {
+      console.error("Error saving notification UX state:", error);
+    }
+  }, []);
 
   useEffect(() => {
     const initialize = async () => {
@@ -85,9 +80,7 @@ export function useNotificationPermission() {
       }
 
       const now = Date.now();
-      return (
-        uxState.snoozedUntil === null || uxState.snoozedUntil < now
-      );
+      return uxState.snoozedUntil === null || uxState.snoozedUntil < now;
     },
     [uxState.snoozedUntil]
   );
@@ -130,13 +123,7 @@ export function useNotificationPermission() {
         lastPrimerShownAt: Date.now(),
       });
     },
-    [
-      status,
-      uxState,
-      shouldShowForValueMoment,
-      getDialogMode,
-      saveUxState,
-    ]
+    [status, uxState, shouldShowForValueMoment, getDialogMode, saveUxState]
   );
 
   const closePermissionDialog = useCallback(() => {
@@ -145,10 +132,7 @@ export function useNotificationPermission() {
 
   const primaryAction = useCallback(async () => {
     if (dialogMode === "request") {
-      analytics.notif_dialog_primary_clicked(
-        dialogMode,
-        dialogContext
-      );
+      analytics.notif_dialog_primary_clicked(dialogMode, dialogContext);
 
       const result = await requestPermission();
       setStatus(result);
@@ -175,19 +159,10 @@ export function useNotificationPermission() {
     }
 
     closePermissionDialog();
-  }, [
-    dialogMode,
-    dialogContext,
-    uxState,
-    saveUxState,
-    closePermissionDialog,
-  ]);
+  }, [dialogMode, dialogContext, uxState, saveUxState, closePermissionDialog]);
 
   const secondaryAction = useCallback(async () => {
-    analytics.notif_dialog_secondary_clicked(
-      dialogMode,
-      dialogContext
-    );
+    analytics.notif_dialog_secondary_clicked(dialogMode, dialogContext);
 
     const now = Date.now();
     await saveUxState({
@@ -197,13 +172,7 @@ export function useNotificationPermission() {
     });
 
     closePermissionDialog();
-  }, [
-    dialogMode,
-    dialogContext,
-    uxState,
-    saveUxState,
-    closePermissionDialog,
-  ]);
+  }, [dialogMode, dialogContext, uxState, saveUxState, closePermissionDialog]);
 
   return {
     status,

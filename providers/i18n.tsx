@@ -1,8 +1,4 @@
-import {
-  LANGUAGE_FLAGS,
-  LANGUAGE_NAMES,
-  Languages,
-} from "@/types/language";
+import { LANGUAGE_FLAGS, LANGUAGE_NAMES, Languages } from "@/types/language";
 import { configureCalendarLocale } from "@/utils/calendar-config";
 import { configureDayjsLocale } from "@/utils/dayjs-config";
 import AsyncStorage from "@react-native-async-storage/async-storage";

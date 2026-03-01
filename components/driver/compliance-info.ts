@@ -42,22 +42,16 @@ export const getComplianceInfo = (
       title: "complianceInfo.breakCompliance.title",
       sections: [
         {
-          heading:
-            "complianceInfo.breakCompliance.legalBasis.heading",
-          content:
-            "complianceInfo.breakCompliance.legalBasis.content",
+          heading: "complianceInfo.breakCompliance.legalBasis.heading",
+          content: "complianceInfo.breakCompliance.legalBasis.content",
         },
         {
-          heading:
-            "complianceInfo.breakCompliance.drivingBreaks.heading",
-          content:
-            "complianceInfo.breakCompliance.drivingBreaks.content",
+          heading: "complianceInfo.breakCompliance.drivingBreaks.heading",
+          content: "complianceInfo.breakCompliance.drivingBreaks.content",
         },
         {
-          heading:
-            "complianceInfo.breakCompliance.workingBreaks.heading",
-          content:
-            "complianceInfo.breakCompliance.workingBreaks.content",
+          heading: "complianceInfo.breakCompliance.workingBreaks.heading",
+          content: "complianceInfo.breakCompliance.workingBreaks.content",
         },
         {
           heading: "complianceInfo.breakCompliance.important.heading",
@@ -162,16 +156,12 @@ export const getComplianceInfo = (
       title: "complianceInfo.restCompensation.title",
       sections: [
         {
-          heading:
-            "complianceInfo.restCompensation.legalBasis.heading",
-          content:
-            "complianceInfo.restCompensation.legalBasis.content",
+          heading: "complianceInfo.restCompensation.legalBasis.heading",
+          content: "complianceInfo.restCompensation.legalBasis.content",
         },
         {
-          heading:
-            "complianceInfo.restCompensation.whenRequired.heading",
-          content:
-            "complianceInfo.restCompensation.whenRequired.content",
+          heading: "complianceInfo.restCompensation.whenRequired.heading",
+          content: "complianceInfo.restCompensation.whenRequired.content",
         },
         {
           heading: "complianceInfo.restCompensation.rules.heading",

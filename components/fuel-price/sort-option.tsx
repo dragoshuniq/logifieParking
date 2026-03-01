@@ -18,8 +18,10 @@ export const SortOption = ({
   onPress,
   isLast,
 }: SortOptionProps) => {
-  const { default: defaultColors, primary: primaryColors } =
-    useThemedColors("default", "primary");
+  const { default: defaultColors, primary: primaryColors } = useThemedColors(
+    "default",
+    "primary"
+  );
 
   return (
     <TouchableOpacity
@@ -40,9 +42,7 @@ export const SortOption = ({
             borderColor: isSelected
               ? primaryColors.DEFAULT
               : defaultColors[400],
-            backgroundColor: isSelected
-              ? primaryColors.DEFAULT
-              : "transparent",
+            backgroundColor: isSelected ? primaryColors.DEFAULT : "transparent",
           },
         ]}
       >

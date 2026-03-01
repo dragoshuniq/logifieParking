@@ -20,8 +20,7 @@ export const dumpReactQueryCache = async () => {
   try {
     const keys = await AsyncStorage.getAllKeys();
     const reactQueryKeys = keys.filter(
-      (key) =>
-        key.includes("react-query") || key.includes("REACT_QUERY")
+      (key) => key.includes("react-query") || key.includes("REACT_QUERY")
     );
 
     if (reactQueryKeys.length === 0) {
@@ -69,8 +68,7 @@ export const clearReactQueryCache = async () => {
   try {
     const keys = await AsyncStorage.getAllKeys();
     const reactQueryKeys = keys.filter(
-      (key) =>
-        key.includes("react-query") || key.includes("REACT_QUERY")
+      (key) => key.includes("react-query") || key.includes("REACT_QUERY")
     );
     await AsyncStorage.multiRemove(reactQueryKeys);
     console.log("React Query cache cleared from AsyncStorage");

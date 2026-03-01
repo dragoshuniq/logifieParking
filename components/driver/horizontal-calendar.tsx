@@ -7,10 +7,7 @@ import { configureDayjsLocale } from "@/utils/dayjs-config";
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
-import {
-  CalendarProvider,
-  WeekCalendar,
-} from "react-native-calendars";
+import { CalendarProvider, WeekCalendar } from "react-native-calendars";
 
 type Props = {
   selectedDate: string;

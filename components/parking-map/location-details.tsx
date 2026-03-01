@@ -40,10 +40,7 @@ export const LocationDetailsComponent = ({
   if (isFetching) {
     return (
       <ThemedView style={styles.container}>
-        <ActivityIndicator
-          size="small"
-          color={themeColors.primary.DEFAULT}
-        />
+        <ActivityIndicator size="small" color={themeColors.primary.DEFAULT} />
       </ThemedView>
     );
   }

@@ -45,10 +45,7 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
 
   return (
     <ThemedView
-      style={[
-        styles.chartContainer,
-        { backgroundColor: content2.DEFAULT },
-      ]}
+      style={[styles.chartContainer, { backgroundColor: content2.DEFAULT }]}
     >
       <ThemedText style={styles.chartTitle}>
         {t("driver.dailyWorkHours")}
@@ -83,9 +80,7 @@ export const DailyWorkHoursChart = ({ weeklyStats }: Props) => {
         </View>
       ) : (
         <View style={styles.emptyChart}>
-          <ThemedText style={styles.emptyText}>
-            {t("common.noData")}
-          </ThemedText>
+          <ThemedText style={styles.emptyText}>{t("common.noData")}</ThemedText>
         </View>
       )}
     </ThemedView>

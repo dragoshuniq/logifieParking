@@ -48,8 +48,7 @@ export const LocationButton = ({ onLocationFound }: Props) => {
         return;
       }
 
-      const { status } =
-        await Location.requestForegroundPermissionsAsync();
+      const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         setIsLoading(false);
         return;

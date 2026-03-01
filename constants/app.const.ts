@@ -10,8 +10,7 @@ export const AppConstants = {
   companyPhone: "+48 xxxxxxxx",
   companyEmail: "office@logifie.com",
   companyWebsite: "https://logifie.com",
-  companyFacebook:
-    "https://www.facebook.com/profile.php?id=61586181896001",
+  companyFacebook: "https://www.facebook.com/profile.php?id=61586181896001",
   companyInstagram: "https://www.instagram.com/logifie_logistics",
   companyLinkedin: "https://www.linkedin.com/company/logifie",
   companyTiktok: "https://www.tiktok.com/@logifie",
@@ -34,9 +33,7 @@ export const AppConstants = {
   },
 } as const;
 
-export const getAppStoreUrl = (
-  platform: "ios" | "android" | "web"
-) => {
+export const getAppStoreUrl = (platform: "ios" | "android" | "web") => {
   const { iosAppId, androidPackageName } = AppConstants.store;
 
   if (platform === "ios" && iosAppId) {

@@ -39,11 +39,10 @@ const ActivityFormSheet = () => {
       "text"
     );
 
-  const { onSave, onDelete, initialActivity, selectedDate } =
-    payload || {
-      onSave: () => {},
-      selectedDate: new Date(),
-    };
+  const { onSave, onDelete, initialActivity, selectedDate } = payload || {
+    onSave: () => {},
+    selectedDate: new Date(),
+  };
 
   const actionSheetRef = useRef<ActionSheetRef>(null);
 
@@ -54,14 +53,10 @@ const ActivityFormSheet = () => {
     initialActivity?.type || ActivityType.DRIVING
   );
   const [startTime, setStartTime] = useState(
-    initialActivity
-      ? dayjs(initialActivity.startDateTime).format("HH:mm")
-      : ""
+    initialActivity ? dayjs(initialActivity.startDateTime).format("HH:mm") : ""
   );
   const [endTime, setEndTime] = useState(
-    initialActivity
-      ? dayjs(initialActivity.endDateTime).format("HH:mm")
-      : ""
+    initialActivity ? dayjs(initialActivity.endDateTime).format("HH:mm") : ""
   );
   const [duration, setDuration] = useState(
     initialActivity?.duration.toString() || ""
@@ -243,11 +238,7 @@ const ActivityFormSheet = () => {
         .minute(parseInt(endMinute))
         .second(0)
         .millisecond(0);
-      calculatedDuration = endDateTime.diff(
-        startDateTime,
-        "hour",
-        true
-      );
+      calculatedDuration = endDateTime.diff(startDateTime, "hour", true);
     }
 
     if (calculatedDuration <= 0) return;
@@ -268,10 +259,7 @@ const ActivityFormSheet = () => {
     <ActionSheet
       ref={actionSheetRef}
       useBottomSafeAreaPadding
-      containerStyle={[
-        styles.container,
-        { backgroundColor: content1.DEFAULT },
-      ]}
+      containerStyle={[styles.container, { backgroundColor: content1.DEFAULT }]}
       gestureEnabled
       closeOnPressBack
     >
@@ -353,9 +341,7 @@ const ActivityFormSheet = () => {
           >
             <ThemedText
               style={{
-                color: isManualEntry
-                  ? primary.foreground
-                  : content2.foreground,
+                color: isManualEntry ? primary.foreground : content2.foreground,
               }}
             >
               {t("driver.form.manualEntry")}
@@ -368,10 +354,7 @@ const ActivityFormSheet = () => {
         </ThemedText>
         <TouchableOpacity
           onPress={handleStartTimePicker}
-          style={[
-            styles.input,
-            { backgroundColor: content2.DEFAULT },
-          ]}
+          style={[styles.input, { backgroundColor: content2.DEFAULT }]}
         >
           <ThemedText
             style={{
@@ -406,10 +389,7 @@ const ActivityFormSheet = () => {
             </ThemedText>
             <TouchableOpacity
               onPress={handleEndTimePicker}
-              style={[
-                styles.input,
-                { backgroundColor: content2.DEFAULT },
-              ]}
+              style={[styles.input, { backgroundColor: content2.DEFAULT }]}
             >
               <ThemedText
                 style={{
@@ -426,10 +406,7 @@ const ActivityFormSheet = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={onCloseSheet}
-          style={[
-            styles.button,
-            { backgroundColor: content2.DEFAULT },
-          ]}
+          style={[styles.button, { backgroundColor: content2.DEFAULT }]}
         >
           <ThemedText style={{ color: content2.foreground }}>
             {t("common.cancel")}
@@ -442,10 +419,7 @@ const ActivityFormSheet = () => {
               onDelete();
               onCloseSheet();
             }}
-            style={[
-              styles.button,
-              { backgroundColor: danger.DEFAULT },
-            ]}
+            style={[styles.button, { backgroundColor: danger.DEFAULT }]}
           >
             <ThemedText style={{ color: danger.foreground }}>
               {t("common.delete")}
@@ -455,10 +429,7 @@ const ActivityFormSheet = () => {
 
         <TouchableOpacity
           onPress={handleSave}
-          style={[
-            styles.button,
-            { backgroundColor: success.DEFAULT },
-          ]}
+          style={[styles.button, { backgroundColor: success.DEFAULT }]}
         >
           <ThemedText style={{ color: success.foreground }}>
             {t("common.save")}

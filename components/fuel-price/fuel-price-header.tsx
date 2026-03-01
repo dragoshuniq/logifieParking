@@ -39,9 +39,7 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
       <View style={styles.topRow}>
         <ThemedText style={styles.date}>
           {t("fuelPrice.updated", {
-            date: new Date(data.date).toLocaleDateString(
-              i18n.language
-            ),
+            date: new Date(data.date).toLocaleDateString(i18n.language),
           })}
         </ThemedText>
 
@@ -51,9 +49,7 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
           onPress={onToggleUnit}
           style={styles.unitButton}
         >
-          <ThemedText>
-            {unit === "per1000L" ? "/ 1000L" : "/ 1L"}
-          </ThemedText>
+          <ThemedText>{unit === "per1000L" ? "/ 1000L" : "/ 1L"}</ThemedText>
         </ThemedTouchableOpacity>
       </View>
 
@@ -83,11 +79,7 @@ export const FuelPriceHeader = memo(function FuelPriceHeader({
             style={styles.clearIcon}
             onPress={() => onSearchChange("")}
           >
-            <MaterialIcons
-              name="close"
-              size={18}
-              color={colors.icon}
-            />
+            <MaterialIcons name="close" size={18} color={colors.icon} />
           </ThemedTouchableOpacity>
         )}
         <ThemedTouchableOpacity

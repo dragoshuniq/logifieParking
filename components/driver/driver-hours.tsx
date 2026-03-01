@@ -58,18 +58,14 @@ export const DriverHours = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [weekDates, setWeekDates] = useState<Date[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [weekActivities, setWeekActivities] = useState<Activity[]>(
+  const [weekActivities, setWeekActivities] = useState<Activity[]>([]);
+  const [fortnightActivities, setFortnightActivities] = useState<Activity[]>(
     []
   );
-  const [fortnightActivities, setFortnightActivities] = useState<
-    Activity[]
-  >([]);
-  const [fourMonthActivities, setFourMonthActivities] = useState<
-    Activity[]
-  >([]);
-  const [restDeficits, setRestDeficits] = useState<
-    WeeklyRestDeficit[]
-  >([]);
+  const [fourMonthActivities, setFourMonthActivities] = useState<Activity[]>(
+    []
+  );
+  const [restDeficits, setRestDeficits] = useState<WeeklyRestDeficit[]>([]);
 
   const updateWeekDates = useCallback((date: Date) => {
     const current = dayjs(date);
@@ -87,11 +83,7 @@ export const DriverHours = () => {
     const current = dayjs(selectedDate);
     const startOfWeek = current.startOf("isoWeek").toDate();
     const endOfWeek = current.endOf("isoWeek").toDate();
-    const weekActs = await getActivitiesByDateRange(
-      db,
-      startOfWeek,
-      endOfWeek
-    );
+    const weekActs = await getActivitiesByDateRange(db, startOfWeek, endOfWeek);
     setWeekActivities(weekActs);
 
     const startOfFortnight = current
@@ -150,10 +142,7 @@ export const DriverHours = () => {
           await deleteActivity(db, activity.id);
           loadActivities();
         } catch {
-          Alert.alert(
-            t("common.error"),
-            t("driver.errors.deleteFailed")
-          );
+          Alert.alert(t("common.error"), t("driver.errors.deleteFailed"));
         }
       },
     });
@@ -192,10 +181,7 @@ export const DriverHours = () => {
     weekActivities
   );
 
-  const breakCompliance = calculateBreakCompliance(
-    activities,
-    selectedDate
-  );
+  const breakCompliance = calculateBreakCompliance(activities, selectedDate);
 
   const dailyRest = calculateDailyRestCompliance(
     activities,
@@ -203,24 +189,20 @@ export const DriverHours = () => {
     weekActivities
   );
 
-  const nightWork = calculateNightWorkCompliance(
-    activities,
-    selectedDate
-  );
+  const nightWork = calculateNightWorkCompliance(activities, selectedDate);
 
-  const dailyWorkingHours =
-    dailyStats.drivingHours + dailyStats.workHours;
+  const dailyWorkingHours = dailyStats.drivingHours + dailyStats.workHours;
   const maxDailyWorking = nightWork.hasNightWork
     ? 10
     : dailyRest.restType === "reduced"
-    ? 15
-    : 13;
+      ? 15
+      : 13;
   const dailyWorkingLevel =
     dailyWorkingHours > maxDailyWorking
       ? "violation"
       : dailyWorkingHours > maxDailyWorking - 2
-      ? "warning"
-      : "compliant";
+        ? "warning"
+        : "compliant";
 
   const weeklyWorking = calculateWeeklyWorkingTimeCompliance(
     fourMonthActivities,
@@ -238,20 +220,13 @@ export const DriverHours = () => {
   );
 
   return (
-    <ThemedView
-      style={[styles.container, { backgroundColor: background }]}
-    >
+    <ThemedView style={[styles.container, { backgroundColor: background }]}>
       <View style={styles.header}>
-        <ThemedText style={styles.headerTitle}>
-          {t("driver.title")}
-        </ThemedText>
+        <ThemedText style={styles.headerTitle}>{t("driver.title")}</ThemedText>
         <View style={styles.headerButtons}>
           <TouchableOpacity
             onPress={handleDatePicker}
-            style={[
-              styles.headerButton,
-              { backgroundColor: primary.DEFAULT },
-            ]}
+            style={[styles.headerButton, { backgroundColor: primary.DEFAULT }]}
           >
             <FontAwesome6
               name="calendar-days"
@@ -261,10 +236,7 @@ export const DriverHours = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleExport}
-            style={[
-              styles.headerButton,
-              { backgroundColor: primary.DEFAULT },
-            ]}
+            style={[styles.headerButton, { backgroundColor: primary.DEFAULT }]}
           >
             <FontAwesome6
               name="file-export"
@@ -277,12 +249,8 @@ export const DriverHours = () => {
       <HorizontalCalendar
         selectedDate={dayjs(selectedDate).format("YYYY-MM-DD")}
         markedDates={weekActivities
-          .map((activity) =>
-            dayjs(activity.startDateTime).format("YYYY-MM-DD")
-          )
-          .filter(
-            (date, index, self) => self.indexOf(date) === index
-          )}
+          .map((activity) => dayjs(activity.startDateTime).format("YYYY-MM-DD"))
+          .filter((date, index, self) => self.indexOf(date) === index)}
         onDateSelect={(dateStr) => {
           const date = dayjs(dateStr).toDate();
           setSelectedDate(date);
@@ -316,12 +284,7 @@ export const DriverHours = () => {
             title={t("driver.stats.dailyWorking")}
             value={dailyWorkingHours.toFixed(1)}
             maxValue={maxDailyWorking.toString()}
-            level={
-              dailyWorkingLevel as
-                | "compliant"
-                | "warning"
-                | "violation"
-            }
+            level={dailyWorkingLevel as "compliant" | "warning" | "violation"}
             subtitle={
               dailyRest.restType === "reduced"
                 ? t("driver.stats.reducedRestLimit")
@@ -331,9 +294,7 @@ export const DriverHours = () => {
           />
           <StatsCard
             title={t("driver.stats.breakCompliance")}
-            value={`${Math.floor(
-              breakCompliance.totalBreakMinutes
-            )}m`}
+            value={`${Math.floor(breakCompliance.totalBreakMinutes)}m`}
             maxValue={
               breakCompliance.requiredBreakMinutes > 0
                 ? `${breakCompliance.requiredBreakMinutes}m`
@@ -405,8 +366,7 @@ export const DriverHours = () => {
             subtitle={
               weeklyRest.lastRestEnd
                 ? t("driver.stats.hoursAgo", {
-                    hours:
-                      weeklyRest.hoursSinceLastWeeklyRest.toFixed(0),
+                    hours: weeklyRest.hoursSinceLastWeeklyRest.toFixed(0),
                   })
                 : t("driver.stats.noWeeklyRest")
             }
@@ -420,8 +380,7 @@ export const DriverHours = () => {
               subtitle={t("driver.stats.hoursOwed", {
                 hours: restDeficits
                   .reduce(
-                    (sum, d) =>
-                      sum + (d.deficitHours - d.compensatedHours),
+                    (sum, d) => sum + (d.deficitHours - d.compensatedHours),
                     0
                   )
                   .toFixed(1),

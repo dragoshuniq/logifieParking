@@ -22,14 +22,13 @@ export const ActivityList = ({
 }: ActivityListProps) => {
   const { t } = useTranslation();
   const { formatTime } = useFormatTime();
-  const { content2, primary, success, warning, text } =
-    useThemedColors(
-      "content2",
-      "primary",
-      "success",
-      "warning",
-      "text"
-    );
+  const { content2, primary, success, warning, text } = useThemedColors(
+    "content2",
+    "primary",
+    "success",
+    "warning",
+    "text"
+  );
 
   const getActivityTranslationKey = (type: ActivityType): string => {
     switch (type) {
@@ -85,26 +84,14 @@ export const ActivityList = ({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <ThemedText style={styles.headerTitle}>
-          {t("driver.title")}
-        </ThemedText>
+        <ThemedText style={styles.headerTitle}>{t("driver.title")}</ThemedText>
         <TouchableOpacity
           onPress={onAddPress}
-          style={[
-            styles.addButton,
-            { backgroundColor: primary.DEFAULT },
-          ]}
+          style={[styles.addButton, { backgroundColor: primary.DEFAULT }]}
         >
-          <FontAwesome6
-            name="plus"
-            size={16}
-            color={primary.foreground}
-          />
+          <FontAwesome6 name="plus" size={16} color={primary.foreground} />
           <ThemedText
-            style={[
-              styles.addButtonText,
-              { color: primary.foreground },
-            ]}
+            style={[styles.addButtonText, { color: primary.foreground }]}
           >
             {t("driver.form.addActivity")}
           </ThemedText>
@@ -138,13 +125,8 @@ export const ActivityList = ({
                 </View>
                 <View style={styles.activityDetails}>
                   <ThemedText style={styles.activityType}>
-                    {formatTime(
-                      dayjs(item.startDateTime).format("HH:mm")
-                    )}{" "}
-                    -{" "}
-                    {formatTime(
-                      dayjs(item.endDateTime).format("HH:mm")
-                    )}
+                    {formatTime(dayjs(item.startDateTime).format("HH:mm"))} -{" "}
+                    {formatTime(dayjs(item.endDateTime).format("HH:mm"))}
                   </ThemedText>
                   <View style={styles.activityTimeRow}>
                     <ThemedText style={styles.activityTime}>

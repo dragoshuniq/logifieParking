@@ -64,20 +64,12 @@ const TimePickerSheet = () => {
     <ActionSheet
       ref={actionSheetRef}
       useBottomSafeAreaPadding
-      containerStyle={[
-        styles.container,
-        { backgroundColor: content1.DEFAULT },
-      ]}
+      containerStyle={[styles.container, { backgroundColor: content1.DEFAULT }]}
     >
       <ThemedView
-        style={[
-          styles.content,
-          { backgroundColor: content1.DEFAULT },
-        ]}
+        style={[styles.content, { backgroundColor: content1.DEFAULT }]}
       >
-        <ThemedText style={styles.title}>
-          {t("driver.selectTime")}
-        </ThemedText>
+        <ThemedText style={styles.title}>{t("driver.selectTime")}</ThemedText>
 
         <View style={styles.pickerWrapper}>
           <DatePicker
@@ -95,10 +87,7 @@ const TimePickerSheet = () => {
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
             onPress={handleClose}
-            style={[
-              styles.button,
-              { backgroundColor: content2.DEFAULT },
-            ]}
+            style={[styles.button, { backgroundColor: content2.DEFAULT }]}
           >
             <ThemedText style={styles.buttonText}>
               {t("common.cancel")}
@@ -107,16 +96,10 @@ const TimePickerSheet = () => {
 
           <TouchableOpacity
             onPress={handleConfirm}
-            style={[
-              styles.button,
-              { backgroundColor: primary.DEFAULT },
-            ]}
+            style={[styles.button, { backgroundColor: primary.DEFAULT }]}
           >
             <ThemedText
-              style={[
-                styles.buttonText,
-                { color: primary.foreground },
-              ]}
+              style={[styles.buttonText, { color: primary.foreground }]}
             >
               {t("common.confirm")}
             </ThemedText>
