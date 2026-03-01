@@ -24,8 +24,6 @@ on:
 env:
   EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
   GOOGLE_PLAY_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
-  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
   NODE_OPTIONS: --openssl-legacy-provider
 
 jobs:
@@ -40,80 +38,72 @@ jobs:
     needs: check-skip
     runs-on: ubuntu-latest
     steps:
-      - name: 🏗 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🏗 Setup Node.js
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "yarn"
+          cache: "pnpm"
 
-      - name: 📦 Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: 📦 Setup yarn cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+      - name: Run TypeScript check
+        run: pnpm tsc
 
-      - name: 📦 Install dependencies
-        run: yarn install
+      - name: Run ESLint
+        run: pnpm lint
 
-      - name: 🧪 Run TypeScript check
-        run: yarn tsc
+      - name: Run Prettier check
+        run: pnpm format:check
 
-      - name: 🧹 Run ESLint
-        run: yarn lint
-
-      - name: 🎨 Run Prettier check
-        run: yarn format:check
-
-      - name: 📢 Notify test results
+      - name: Notify test results via Telegram
         if: always()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ env.SLACK_WEBHOOK }}
-          SLACK_COLOR: ${{ job.status == 'success' && 'good' || 'danger' }}
-          SLACK_TITLE: Test Results
-          SLACK_MESSAGE: 'Tests ${{ job.status == "success" && "passed ✅" || "failed ❌" }}'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          format: markdown
+          message: |
+            *Tests ${{ job.status == 'success' && 'passed ✅' || 'failed ❌' }}*
+
+            Repository: `${{ github.repository }}`
+            Branch: `${{ github.ref_name }}`
+            Commit: `${{ github.event.head_commit.message }}`
+            Author: ${{ github.actor }}
 
   build-and-deploy:
     needs: test
     if: (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')) || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
-      - name: 🏗 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🏗 Setup Node.js
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "yarn"
+          cache: "pnpm"
 
-      - name: 📦 Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - name: 📦 Setup yarn cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: |
-          yarn install
-          yarn global add eas-cli@latest
+          pnpm install --frozen-lockfile
+          pnpm add -g eas-cli@latest
 
-      - name: 📱 Setup EAS build cache
+      - name: Setup EAS build cache
         uses: actions/cache@v3
         with:
           path: ~/.eas-build-local
@@ -121,33 +111,28 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-eas-build-local-
 
-      - name: 🔄 Verify EAS CLI installation
+      - name: Verify EAS CLI installation
         run: |
           echo "EAS CLI version:"
           eas --version
 
-      - name: 📋 Fix package.json main entry
+      - name: Fix package.json main entry
         run: |
-          # Check if jq is installed, if not install it
           if ! command -v jq &> /dev/null; then
             echo "Installing jq..."
             sudo apt-get update && sudo apt-get install -y jq
           fi
 
-          # Fix the main entry in package.json
           if [ -f ./package.json ]; then
-            # Create a backup
             cp package.json package.json.bak
-            # Update the package.json
             jq '.main = "node_modules/expo/AppEntry.js"' package.json > package.json.tmp && mv package.json.tmp package.json
             echo "Updated package.json main entry"
-            cat package.json | grep "main"
           else
             echo "package.json not found"
             exit 1
           fi
 
-      - name: 📋 Update metro.config.js for SVG support
+      - name: Update metro.config.js for SVG support
         run: |
           if [ -f ./metro.config.js ]; then
             echo "Creating backup of metro.config.js"
@@ -179,16 +164,15 @@ jobs:
             echo "metro.config.js not found"
           fi
 
-      - name: 📱 Build Development APK
+      - name: Build Development APK
         if: github.event.inputs.buildType == 'all' || github.event.inputs.buildType == 'dev' || github.event_name == 'push'
         run: |
-          # Build with increased memory limit
           export NODE_OPTIONS="--openssl-legacy-provider --max_old_space_size=4096"
           eas build --platform android --profile development --local --non-interactive --output=./app-dev.apk
         env:
           NODE_ENV: development
 
-      - name: 📱 Build Production APK
+      - name: Build Production APK
         if: github.event.inputs.buildType == 'all' || github.event.inputs.buildType == 'prod-apk' || github.event_name == 'push'
         run: |
           export NODE_OPTIONS="--openssl-legacy-provider --max_old_space_size=4096"
@@ -196,7 +180,7 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: 📱 Build Production AAB
+      - name: Build Production AAB
         if: github.event.inputs.buildType == 'all' || github.event.inputs.buildType == 'prod-aab' || github.event_name == 'push'
         run: |
           export NODE_OPTIONS="--openssl-legacy-provider --max_old_space_size=4096"
@@ -204,15 +188,15 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: 🚀 Submit to Play Store
-        if: (github.event.inputs.buildType == 'all' || github.event.inputs.buildType == 'publish-stores') && (matrix.platform == 'android' || github.event.inputs.platform == 'all' || github.event.inputs.platform == 'android')
+      - name: Submit to Play Store
+        if: github.event.inputs.buildType == 'all' || github.event.inputs.buildType == 'publish-stores'
         run: |
           eas submit -p android --path ./app-prod.aab --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
           GOOGLE_PLAY_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
 
-      - name: 📦 Upload build artifacts to GitHub
+      - name: Upload build artifacts to GitHub
         uses: actions/upload-artifact@v4
         with:
           name: app-builds
@@ -222,11 +206,19 @@ jobs:
             ./app-prod.aab
           retention-days: 7
 
-      - name: 📢 Notify build completion
+      - name: Notify build completion via Telegram
         if: always()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ env.SLACK_WEBHOOK }}
-          SLACK_COLOR: ${{ job.status == 'success' && 'good' || 'danger' }}
-          SLACK_TITLE: Build Results
-          SLACK_MESSAGE: 'Build ${{ job.status == "success" && "completed successfully ✅" || "failed ❌" }}'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          format: markdown
+          message: |
+            *Build ${{ job.status == 'success' && 'completed ✅' || 'failed ❌' }}*
+
+            Repository: `${{ github.repository }}`
+            Branch: `${{ github.ref_name }}`
+            Build type: `${{ github.event.inputs.buildType || 'push' }}`
+            Author: ${{ github.actor }}
+
+            [View workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
