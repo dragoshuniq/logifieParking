@@ -88,6 +88,12 @@ export default {
         },
       ],
     ],
+    extra: {
+      eas: {
+        projectId: "86afd051-fa19-487e-81a7-253dfd7f4963",
+      },
+    },
+    owner: "logifie",
     experiments: {
       typedRoutes: true,
       reactCompiler: true,
